@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+<style>
+        /* Zoom when hover to picture */
+        .geeks { 
+            overflow: hidden;
+            /*display :   inline-block; */
+            padding :0px;
+            margin : 0px;
+        }
+      .zoom { 
+          transition: transform .2s; 
+          margin: 0 auto;
+  
+        }
+
+        .zoom:hover {
+          -ms-transform: scale(1.1); /* IE 9 */
+          -webkit-transform: scale(1.1); /* Safari 3-8 */
+          transform: scale(1.1); 
+        }
+    </style>
+
+<div style="margin-top: 35px">
+    <span style="font-size: 25px; line-height: 40px; font-weight: 400; border-radius: unset">
+        @ViewBag.lblBaiVietPhoBien
+    </span>
+    @*<span style="float: right;">
+        <button class="btn btn-warning" style="background: linear-gradient( 271.67deg, #E4750E 3.49%, rgba(228, 117, 14, 0) 134.77%), linear-gradient( 0deg, #FFB526, #FFB526); border-radius: 0; padding: 5px 15px 5px 15px; border-radius: 2px;">
+            @ViewBag.lblXemThem <i class="fas fa-play"
+                        style="margin-left: 5px;font-size: 5px; vertical-align: middle;"></i>
+        </button>
+    </span>*@
+</div>
+@for (var i = 0; i < ViewBag.list4HottestNews.Count; i++)
+{
+    var item = ViewBag.list4HottestNews[i];
+    <div class="row" style="margin-top: 20px">
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            <div class="geeks">
+                 <a href="/chi-tiet-tin-tuc/@item.Url">
+                 <img src="@item.Photo" style="width: 100%; padding: unset; height: 175px" class="img-responsive zoom"
+                 alt="Image">
+            </a>
+            </div>
+           
+           
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            <p style="line-height: 15px; font-size: 12px; color: #265178">@item.PublishedTime</p>
+            <a href="/chi-tiet-tin-tuc/@item.Url" style="font-size: 18px; font-weight: 700;color: #265178;">
+                @item.Name
+            </a>
+            <p class="ellipsis3" style="line-height: 23.25px; font-size: 15px; font-weight: 400;">
+                @item.Description
+            </p>
+        </div>
+    </div>
+}
+

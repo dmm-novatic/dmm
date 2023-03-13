@@ -1,0 +1,247 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    #body-login {
+        /* background-image: url(/image/Rectangle167.png); */
+        background-image: url(/images/Frame286.png);
+        background-size: cover;
+        /* background-color: blue; */
+        padding: 100px;
+        width: 100%;
+        position: relative;
+    }
+
+    @@media (max-width: 1025px) {
+        #body-login {
+            padding: 20px;
+        }
+    }
+
+    .form-login-modal {
+        width: 100%;
+        height: 100%;
+        /* background-color: red; */
+        position: relative;
+    }
+
+    .form-group-inner {
+        height: 100%;
+    }
+
+    .login {
+        border-radius: 20px;
+        background-color: rgb(0 0 0 / 50%);
+        height: auto;
+        top: 15%;
+        padding: 30px;
+    }
+
+        .login h3 {
+            color: #2AD9FF;
+            margin-bottom: 30px;
+        }
+
+        .login h5 {
+            color: white;
+        }
+
+    label {
+        color: white;
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+    .field-icon {
+        float: right;
+        margin-right: 10px;
+        margin-top: -25px;
+        position: relative;
+        z-index: 2;
+    }
+
+
+    .login .btn {
+        width: 100%;
+        background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), #FFB526;
+    }
+
+
+    #register-modal {
+        color: #FF9900;
+    }
+
+    .logo-social {
+        float: right;
+    }
+
+    .form-control, .form-group {
+        margin-bottom: 13px;
+    }
+
+    /* Responsive for Contact page */
+
+    @@media (max-width : 1085px) and (min-width : 768px) {
+        .login {
+            width: max-content;
+        }
+    }
+
+    @@media (min-width : 768px) {
+        #col-contact-1 {
+            padding-left: 0px;
+            padding-right: 10px;
+        }
+
+        #col-contact-2 {
+            padding-right: 0px;
+            padding-left: 10px;
+        }
+    }
+
+    @@media (max-width : 769px) {
+        #col-contact-1 {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        #col-contact-2 {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        @@media (max-width : 360px) {
+            .g-recaptcha {
+                transform: scale(0.8);
+                transform-origin: 0 0;
+            }
+        }
+    }
+</style>
+<script>
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    function ThongBao() {
+        debugger;
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var body = $("#Textarea1").val();
+        var date = new Date();
+        var obj = {
+            "id": 0,
+            "name": email,
+            "active": 1,
+            "createdTime": date,
+            "description": body,
+            "ViewStatusID": 10001,
+            "IsChecked": 0,
+        };
+        if (name == "") {
+            Swal.fire({
+                type: 'warning',
+                title: 'Thông tin không đúng định dạng',
+                text: 'Họ và tên không được để trống',
+                confirmButtonText: 'Đóng'
+            })
+        } else if (!validateEmail(email)) {
+            Swal.fire({
+                type: 'warning',
+                title: 'Thông tin không đúng định dạng',
+                text: 'Sai định dạng email (VD: abc@abc.abc)',
+                confirmButtonText: 'Đóng'
+            })
+        } else if (body == "") {
+            Swal.fire({
+                type: 'warning',
+                title: 'Thông tin không đúng định dạng',
+                text: 'Nội dung không được để trống',
+                confirmButtonText: 'Đóng'
+            })
+        }else {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/subscribe/api/Add",
+                data: JSON.stringify(obj),
+                success: function (responseData) {
+                    if (responseData.status == 201 && responseData.message === "CREATED") {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Thành công',
+                            text: 'Gửi liên hệ thành công!',
+                            confirmButtonText: 'Đóng'
+                        }).then((result) => {
+                                window.location.href = '/home';
+                        })
+                    }
+                },
+                error: function (e) {
+                    Swal.fire({
+                        type: 'Error!',
+                        text: 'Vui lòng điền đầy đủ thông tin',
+                        icon: 'warning',
+                        confirmButtonText: 'Đóng'
+                    })
+                }
+            })
+        }
+
+    }
+</script>
+<div class="container " id="body-login">
+    <div class="form-login-modal">
+        <div class="form-group-inner">
+            <div class="col-xs-0 col-sm-2 col-md-3 col-lg-3">
+            </div>
+            <div class="col-xs-0 col-sm-2 col-md-3 col-lg-3 cent">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 login">
+                <h3>@ViewBag.lblLienHe</h3>
+
+
+                <form action="" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="Select1">@ViewBag.lblDanhMuc</label>
+                        <select class="form-control" id="Select1">
+                            <option>@ViewBag.lblThongTinChung</option>
+                        </select>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px;">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="col-contact-1">
+                                <label for="name">@ViewBag.lblHoVaTen</label>
+                                <input type="text" class="form-control" id="name" placeholder="@ViewBag.lblNhapHoVaTen">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="col-contact-2">
+                                <label for="email">@ViewBag.lblDiaChiEmail</label>
+                                <input type="text" class="form-control" name="email" id="email"
+                                       placeholder="@ViewBag.lblNhapEmail">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Textarea1">@ViewBag.lblNoiDung</label>
+                            <textarea class="form-control" id="Textarea1" rows="6"></textarea>
+                        </div>
+
+                        <div class="form-group" style="display : none">
+                            <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback">
+                            </div>
+                        </div>
+                        <script src='https://www.google.com/recaptcha/api.js'></script>
+                    </div>
+
+                    <button type="button" class="btn btn-warning" style="padding: 8px 12px; margin-top : 30px" onclick="ThongBao();">@ViewBag.lblGuiDi</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

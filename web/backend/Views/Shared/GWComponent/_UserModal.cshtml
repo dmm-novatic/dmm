@@ -1,0 +1,607 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    .lwa-loading {
+        position: unset !important;
+    }
+
+    .bk-login-status {
+        display: none;
+    }
+
+    .lwa-status {
+        display: none !important;
+    }
+</style>
+
+
+@*<script>
+        $(document).ready(function () {
+            //$(".lwa-links-remember").click(function () {
+            //    alert('bawts dc may roi !');
+            //})
+
+            $("[data-toggle=modal]").click(function () {
+                //alert('bawts dc may roi !');
+                //this target id:
+                /*var id = $(this).attr("xxx");*//*var id = $(this).attr("xxx");*/ //#subscribe-modal;
+                //id.fadeIn();
+            })
+        })
+
+    </script>*@
+<div class="modal fade login-modal" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-label">
+    <div class="modal-dialog">
+        <div class="modal-content login-signup-form">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10005;</span></button>
+                <div class="modal-title" id="login-modal-label">
+                    <ul class="nav nav-tabs js-login-form-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#signup-tab" aria-controls="signup-tab" role="tab" data-toggle="tab">@ViewBag.lblDangKy</a></li>
+                        @*<li role="presentation" ><a href="#login-tab" aria-controls="login-tab" role="tab" data-toggle="tab">@ViewBag.lblDangNhap</a></li>*@
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade " id="login-tab">
+                        <div class="login-with-social">
+                            <div class='apsl-login-networks theme-1 clearfix'>
+                                @*<span class='apsl-login-new-text'>@ViewBag.lblChiaSeQuaMangXaHoi:</span>*@
+                                <span class='apsl-login-new-text'>Social network:</span>
+
+                                <div class='social-networks'>
+                                    <a id="btnLoginFacebook" title='Login with facebook'>
+                                        <div class="apsl-icon-block icon-facebook clearfix">
+                                            <i class="fa fa-facebook"></i>
+                                            <span class="apsl-login-text">Login</span>
+                                            <span class="apsl-long-login-text">Login with facebook</span>
+                                        </div>
+                                    </a>
+                                    @*<a id="btnLoginTwitter" title='Login with twitter'>
+                                            <div class="apsl-icon-block icon-twitter clearfix">
+                                                <i class="fa fa-twitter"></i>
+                                                <span class="apsl-login-text">Login</span>
+                                                <span class="apsl-long-login-text">Login with twitter</span>
+                                            </div>
+                                        </a>*@
+                                    <a id="btnLoginGoogle" title='Login with google'>
+                                        <div class="apsl-icon-block icon-google clearfix">
+                                            <i class="fa fa-google"></i>
+                                            <span class="apsl-login-text">Login</span>
+                                            <span class="apsl-long-login-text">Login with google</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-divider"><span>@ViewBag.lblHoac</span></div>
+                        <form name="lwa-form" class="bk-lwa-form" action="" method="post">
+                            <div class="bk-login-status">
+                                <span class="lwa-status"></span>
+                            </div>
+                            <p class="lwa-username login-username">
+                                <label for="user_login_l">@ViewBag.lblTenDangNhap</label>
+                                <input type="text" name="log" id="user_login_l" class="input" value="" size="20">
+                            </p>
+                            <p class="lwa-password login-password">
+                                <label for="user_pass">@ViewBag.lblMatKhau</label>
+                                <input type="password" name="pwd" id="user_pass" class="input" value="" size="20">
+                            </p>
+                            <div class="lwa-submit login-submit">
+                                <div class="lwa-links">
+                                    <div class="login-remember">
+                                        <label>
+                                            <input name="rememberme" type="checkbox" id="lwa_rememberme" value="forever" /> <span>@ViewBag.lblLuuTaiKhoan</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="lwa-submit-button login-submit">
+                                    <button id="wp-submit1" class="btn btn-block btn-primary lwa-wp-submit" name="wp-submit" tabindex="100" onclick="Login()">@ViewBag.lblDangNhap</button>
+                                    <input type="hidden" name="lwa_profile_link" />
+                                    <input type="hidden" name="login-with-ajax" value="login" />
+                                    <input type="hidden" name="redirect_to" value="../index.html" />
+                                </div>
+                            </div>
+
+                            <p class="login-lost-password">
+                                <a class="lwa-links-remember link link--darken" href="#lost-password" data-target="#forgotPassword-modal" data-toggle="modal" title="Password Lost and Found">Lost your password?</a>
+                            </p>
+
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in active lwa-register" id="signup-tab">
+                        <form name="login-form" id="loginform" action="#" method="post">
+                            <div class="login-with-social">
+                                @*<div class='apsl-login-networks theme-1 clearfix'>
+                                        <span class='apsl-login-new-text'>@ViewBag.lblChiaSeQuaMangXaHoi:</span>
+
+                                        <div class='social-networks'>
+                                            <a href="../wp-login99b8.php?apsl_login_id=facebook_login&amp;state=cmVkaXJlY3RfdG89aHR0cCUzQSUyRiUyRnRoZW5leHRtYWcuYmstbmluamEuY29tJTJGZGVmYXVsdA==" title='Login with facebook'>
+                                                <div class="apsl-icon-block icon-facebook clearfix">
+                                                    <i class="fa fa-facebook"></i>
+                                                    <span class="apsl-login-text">Login</span>
+                                                    <span class="apsl-long-login-text">Login with facebook</span>
+                                                </div>
+                                            </a>
+                                            <a href="https://api.twitter.com/oauth/authenticate?oauth_token=ItH6EgAAAAAA3xiwAAABbRnRHlk" title='Login with twitter'>
+                                                <div class="apsl-icon-block icon-twitter clearfix">
+                                                    <i class="fa fa-twitter"></i>
+                                                    <span class="apsl-login-text">Login</span>
+                                                    <span class="apsl-long-login-text">Login with twitter</span>
+                                                </div>
+                                            </a>
+                                            <a href="../wp-loginea79.php?apsl_login_id=google_login&amp;state=cmVkaXJlY3RfdG89aHR0cCUzQSUyRiUyRnRoZW5leHRtYWcuYmstbmluamEuY29tJTJGZGVmYXVsdA==" title='Login with google'>
+                                                <div class="apsl-icon-block icon-google clearfix">
+                                                    <i class="fa fa-google"></i>
+                                                    <span class="apsl-login-text">Login</span>
+                                                    <span class="apsl-long-login-text">Login with google</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>*@
+                            </div>
+                            <div class="block-divider" style="margin-top:-2%;"><img src="/files/frontend/images/core/LOGO-gw.png" alt="logo"></div>
+                            <p class="login-email">
+                                <label for="user_login">Họ và tên</label>
+                                <input type="text" name="user_fullname" id="user_fullname" class="input" value="" size="20">
+                            </p>
+                            <p class="login-username">
+                                <label for="user_login">Số điện thoại</label>
+                                <input type="text" name="user_phone" id="user_phone" class="input" value="" size="20">
+                            </p>
+                            <p class="login-username" style="display:none">
+                                <label for="user_login">Địa chỉ</label>
+                                <input type="text" name="user_address" id="user_address" class="input" value="" size="20">
+                            </p>
+                            <p class="login-email">
+                                <label for="user_login">E-mail</label>
+                                <input type="text" name="user_email" id="user_email" class="input" value="" size="20">
+                            </p>
+                            <p class="login-username">
+                                <label for="user_login">@ViewBag.lblTenDangNhap</label>
+                                <input type="text" name="user_login" id="user_username" class="input" value="" size="20">
+                            </p>
+                            <p class="login-email">
+                                <label for="user_login">Mật khẩu</label>
+                                <input type="password" name="user_pass_register" id="user_pass_register" class="input" value="" size="20">
+                            </p>
+                            <div class="lwa-links">
+                                <div class="login-remember">
+                                    <label>
+                                        <input name="rememberme" type="checkbox" id="notVip_Memembership" onclick="check()" value="0" /> <span>Thành viên không trả phí</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="lwa-links">
+                                <div class="login-remember">
+                                    <label>
+                                        <input name="rememberme" type="checkbox" id="vip_Memembership" onclick="check2()" value="true" /> <span>Thành viên có trả phí</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="login-submit">
+                                <button class="btn btn-block btn-primary" type="submit" value="@ViewBag.lblDangKy" onclick="Register()" tabindex="100">@ViewBag.lblDangKy</button>
+                                @*<input type="hidden" name="login-with-ajax" value="@ViewBag.lblDangKy" />*@
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+<script>
+    document.getElementById("vip_Memembership").checked = true;
+    function Login() {
+        //debugger;
+        var Username = $("#user_login_l").val();
+        var Password = $("#user_pass").val();
+        var obj = {
+            "id": 1,
+            "accountTypeID": 1,
+            "active": 1,
+            "name": "",
+            "email": "",
+            "username": $("#user_login_l").val(),
+            "password": $("#user_pass").val(),
+            "photo": "",
+            "description": "",
+            "info": ""
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/Account/api/Login',
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.data[0].isActivated == 0) {
+                    Swal.fire({
+                        title: 'Warning',
+                        text: 'Yêu cầu kích hoạt: ' + responseData.data[0].email + '!',
+                        type: 'error',
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                    })
+                }
+                else if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    localStorage.setItem("currentLoggedInUser", JSON.stringify(responseData.data[0]));
+                    Swal.fire({
+                        title: 'Login success!',
+                        text: 'Welcome back, ' + responseData.data[0].name + '!',
+                        type: 'success',
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "@Url.Action("Index", "Home")";
+                        }
+                    })
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                Swal.fire(
+                    'Đăng nhập thất bại',
+                    'Kiểm tra thông tin đăng nhập và mật khẩu của bạn!',
+                    'error'
+                );
+            }
+        });
+    }
+
+    function Register() {
+        //debugger;
+        var obj = {
+            "accountTypeID": 10002,
+            "active": 1,
+            "name": $("#user_fullname").val(),
+            "email": $("#user_email").val(),
+            "username": $("#user_username").val(),
+            "password": $("#user_pass_register").val(),
+            "address": "",
+            "phone": $("#user_phone").val(),
+            "photo": "",
+            "description": "",
+            "info": ""
+        };
+        
+        if (document.getElementById("vip_Memembership").checked == true) {
+            obj.description = "vip_Memembership";
+        }
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/Account/api/Add',
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.status == 201 && responseData.message === "CREATED") {
+                    localStorage.setItem("currentLoggedInUser", JSON.stringify(responseData.data[0]));
+                    Swal.fire({
+                        title: 'Đăng ký thành công!',
+                        html: '<div style="text-align:left"><p> Xin Chào ' + responseData.data[0].username + '</p>' +
+                                'Để hoàn thành kích hoạt tài khoản, bạn cần xác minh địa chỉ email của bạn. <br/>' +
+                                'Vui lòng kiểm tra Email: ' + responseData.data[0].email + ' nhấp vào liên kết để xác minh và kích hoạt tài khoản của bạn! <br/>' +
+                                'Trong vòng 24 giờ, nếu bạn không nhận được bất kỳ email nào từ chúng tôi, vui lòng liên hệ với bộ phận Hỗ trợ kỹ thuật qua email <strong> gappingworld@gmail.com </strong> <br/> <p>  </p>' +
+                                'Cảm ơn bạn!</div>',
+                        type: 'success',
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "@Url.Action("Index", "Home")";
+                        }
+                    })
+                    InsertNotification($("#user_username").val(), "Register");
+                }
+                if (responseData.status == 202 && responseData.message === "EMAILEXIST") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email đã được sử dụng!',
+                        text: 'Hãy thử lại hoặc nhấn vào quên mật khẩu!'
+                    })
+                }
+                if (responseData.status == 203 && responseData.message === "USENAMEEXIST") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Tên đăng nhập đã được sử dụng!',
+                        text: 'Hãy thử lại với tên đăng nhập khác!'
+                    })
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                Swal.fire(
+                    'Error',
+                    'Please kindly check your account information',
+                    'error'
+                );
+            }
+        });
+
+    }
+
+    function check() {
+        
+          if(document.getElementById("notVip_Memembership").checked == true){
+          document.getElementById("vip_Memembership").checked = false
+          }
+          if(document.getElementById("notVip_Memembership").checked == false){
+          document.getElementById("vip_Memembership").checked = true
+          }
+
+        }
+
+    function check2() {
+
+         if(document.getElementById("vip_Memembership").checked == true){
+          document.getElementById("notVip_Memembership").checked = false
+          }
+          if(document.getElementById("vip_Memembership").checked == false){
+          document.getElementById("notVip_Memembership").checked = true
+          }
+        }
+
+</script>
+
+
+
+
+
+
+@*GOOGLE LOGIN*@
+<meta name="google-signin-client_id" content="1043349267663-6bm197krf37cu3jia913uc5vd17haqeq.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    var btnGoogleClickedFlag =  0;
+    $(document).ready(function () {
+        $("#btnLoginGoogle").click(function () {
+            btnGoogleClickedFlag = 1;
+            $(".g-signin2 > div > div > span > span:last-child").click();
+        });
+    });
+
+    function onSignIn(googleUser) {
+
+        //if alredy logged in - return
+        if (btnGoogleClickedFlag == 0) {
+            return;
+        }
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        //alert("Successfully logged in with Google :D ! You are " + profile.getName() + " - " + profile.getEmail());
+        //var accountPassword = makePassword(8);
+        var accountUsername = profile.getEmail();
+        debugger;
+        console.log("Account username1: "+ accountUsername)
+        accountUsername = accountUsername.substring(0, accountUsername.indexOf("@@"));
+        console.log("Account username2: "+ accountUsername);
+        var AccountObj = {
+            "accountTypeID": 10002,
+            "active": 1,
+            "name": profile.getName(),
+            "email": profile.getEmail(),
+            "username": accountUsername,
+            "password": "",
+            "address": "",
+            "phone": "",
+            "photo": profile.getImageUrl(),
+            "description": profile.getId(),
+            "info": ""
+        }
+
+         $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: '/Account/api/LoginSocialNetWork',
+            data: JSON.stringify(AccountObj),
+            success: function (responseDataAccount) {
+                debugger;
+                console.log("result: " + responseDataAccount.data);
+                //responseData = JSON.parse(responseData)
+                if (responseDataAccount.status == 200 && responseDataAccount.message === "SUCCESS") {
+                    Swal.fire({
+                        title: 'Login success!',
+                        text: 'Welcome, ' + responseDataAccount.data[0].name + '!',
+                        type: 'success',
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "@Url.Action("Index", "Home")";
+                        }
+                    })
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                Swal.fire(
+                    'Login failed',
+                    'Please kindly check your account information',
+                    'error'
+                );
+            }
+        });
+
+    }
+    function makePassword(length) {
+        var result           = '';
+       var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+       var charactersLength = characters.length;
+       for ( var i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+       }
+       return result;
+    }
+</script>
+
+<div class="container" style="display:none">
+
+
+    <div class="g-signin2" onclick="onSignIn();" data-onsuccess="onSignIn"></div>
+
+
+
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+</div>
+
+@*GOOGLE LOGIN ENDS*@
+
+
+
+
+@*FACEBOOK LOGIN*@
+<script>
+    $(document).ready(function () {
+        $("#btnLoginFacebook > div > i").click(function () {
+            fbLogin();
+        });
+    });
+
+    window.fbAsyncInit = function () {
+        // FB JavaScript SDK configuration and setup
+        FB.init({
+            appId: '512004726054795', // FB App ID
+            cookie: true,  // enable cookies to allow the server to access the session
+            xfbml: true,  // parse social plugins on this page
+            version: 'v5.0' // use graph api version 2.8
+        });
+
+        // Check whether the user already logged in
+        //FB.getLoginStatus(function (response) {
+        //    if (response.status === 'connected') {
+        //        //display user data
+        //        getFbUserData();
+        //    }
+        //});
+    };
+
+    // Load the JavaScript SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // Facebook login with JavaScript SDK
+    function fbLogin() {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                // Get and display the user profile data
+                getFbUserData();
+            } else {
+                document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+            }
+        }, { scope: 'email' });
+    }
+
+    // Fetch the user profile data from facebook
+    function getFbUserData() {
+        FB.api('/me', { locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture' },
+            function (response) {
+                document.getElementById('fbLink').setAttribute("onclick", "fbLogout()");
+                document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
+                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
+                document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> ' + response.id + '</p><p><b>Name:</b> ' + response.first_name + ' ' + response.last_name + '</p><p><b>Email:</b> ' + response.email + '</p><p><b>Gender:</b> ' + response.gender + '</p><p><b>Locale:</b> ' + response.locale + '</p><p><b>Picture:</b> <img src="' + response.picture.data.url + '"/></p><p><b>FB Profile:</b> <a target="_blank" href="' + response.link + '">click to view profile</a></p>';
+                //alert("Successfully logged in with Facebook :D ! You are: " + response.first_name + " " + response.last_name + "" + response.email);
+
+                var accountUsername = response.email;
+                debugger;
+                console.log("Account username1: "+ accountUsername)
+                accountUsername = accountUsername.substring(0, accountUsername.indexOf("@@"));
+                console.log("Account username2: " + accountUsername);
+                console.log(response.first_name + " " + response.last_name);
+                //var accountPassword = makePassword(8);
+                var AccountObj = {
+                    "accountTypeID": 10002,
+                    "active": 1,
+                    "name": response.first_name + ' ' + response.last_name,
+                    "email":  response.email,
+                    "username": accountUsername,
+                    "password": "",
+                    "address": "",
+                    "phone": "",
+                    "photo": response.picture.data.url,
+                    "description": response.id,
+                    "info": ""
+                }
+
+                 $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: '/Account/api/LoginSocialNetWork',
+                    data: JSON.stringify(AccountObj),
+                    success: function (responseDataAccount) {
+                        debugger;
+                        console.log("result: " + responseDataAccount.data);
+                        //responseData = JSON.parse(responseData)
+                        if (responseDataAccount.status == 200 && responseDataAccount.message === "SUCCESS") {
+                            Swal.fire({
+                                title: 'Login success!',
+                                text: 'Welcome, ' + responseDataAccount.data[0].name + '!',
+                                type: 'success',
+                                showCancelButton: false,
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = "@Url.Action("Index", "Home")";
+                                }
+                            })
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Login failed',
+                            'Please kindly check your account information',
+                            'error'
+                        );
+                    }
+                });
+
+            });
+    }
+
+    // Logout from facebook
+    function fbLogout() {
+        FB.logout(function () {
+            document.getElementById('fbLink').setAttribute("onclick", "fbLogin()");
+            document.getElementById('fbLink').innerHTML = '<img src="https://support.shopgate.com/hc/en-us/article_attachments/207878347/log_in_with_facebook_button.png"/>';
+            document.getElementById('userData').innerHTML = '';
+            document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
+        });
+    }
+</script>
+<div style="display:none">
+    <!-- Display login status -->
+    <div id="status"></div>
+
+    <!-- Facebook login or logout button -->
+    <a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><img src="https://support.shopgate.com/hc/en-us/article_attachments/207878347/log_in_with_facebook_button.png" /></a>
+
+    <!-- Display user profile data -->
+    <div id="userData"></div>
+</div>
+@*FACEBOOK LOGIN ENDS*@

@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = null;
+}
+
+<script>
+    (function() {
+        function addEventListener(element, event, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(event, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + event, handler);
+            }
+        }
+
+        function maybePrefixUrlField() {
+            if (this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+                this.value = "http://" + this.value;
+            }
+        }
+
+        var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+        if (urlFields && urlFields.length > 0) {
+            for (var j = 0; j < urlFields.length; j++) {
+                addEventListener(urlFields[j], 'blur', maybePrefixUrlField);
+            }
+        } /* test if browser supports date fields */
+        var testInput = document.createElement('input');
+        testInput.setAttribute('type', 'date');
+        if (testInput.type !== 'date') {
+
+            /* add placeholder & pattern to all date fields */
+            var dateFields = document.querySelectorAll('.mc4wp-form input[type="date"]');
+            for (var i = 0; i < dateFields.length; i++) {
+                if (!dateFields[i].placeholder) {
+                    dateFields[i].placeholder = 'YYYY-MM-DD';
+                }
+                if (!dateFields[i].pattern) {
+                    dateFields[i].pattern = '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])';
+                }
+            }
+        }
+
+    })();
+</script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var wpcf7 = {
+        "apiSettings": {
+            "root": "http:\/\/thenextmag.bk-ninja.com\/default\/wp-json\/contact-form-7\/v1",
+            "namespace": "contact-form-7\/v1"
+        },
+        "recaptcha": {
+            "messages": {
+                "empty": "Please verify that you are not a robot."
+            }
+        },
+        "cached": "1"
+    };
+    /* ]]> */
+</script>
+<script type='text/javascript' src='~/files/frontend/js/scripts5560.js?ver=5.0.4'></script>
+<script type='text/javascript' src='~/files/frontend/js/shortcode433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/widget.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='~/files/frontend/js/core.mine899.js'></script>
+<script type='text/javascript' src='~/files/frontend/js/tabs.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='~/files/frontend/js/accordion.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='~/files/frontend/js/imagesloaded.min55a0.js?ver=3.2.0'></script>
+<script type='text/javascript' src='~/files/frontend/js/masonry.mind617.js?ver=3.3.2'></script>
+<script type='text/javascript' src='~/files/frontend/js/jquery.masonry.minef70.js?ver=3.1.2b'></script>
+<script type='text/javascript' src='~/files/frontend/js/throttle-debounce.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/bootstrap.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/countdown.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/flickity.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/fotorama.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/magnific-popup.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/owl-carousel.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/perfect-scrollbar.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/theiaStickySidebar.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/vticker.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/fitvids433d.js?ver=4.9.11'></script>
+
+<script type='text/javascript' src='~/files/frontend/js/scripts433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/comment-reply.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript' src='~/files/frontend/js/wp-embed.min433d.js?ver=4.9.11'></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var mc4wp_forms_config = [];
+    /* ]]> */
+</script>
+<script type='text/javascript' src='~/files/frontend/js/forms-api.min4189.js?ver=4.2.4'></script>
+<!--[if lte IE 9]>
+<script type='text/javascript' src='http://thenextmag.bk-ninja.com/default/wp-content/plugins/mailchimp-for-wp/assets/~/files/frontend/js/third-party/placeholders.min.js?ver=4.2.4'></script>
+<![endif]-->

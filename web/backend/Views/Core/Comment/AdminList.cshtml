@@ -1,0 +1,915 @@
+
+
+@{
+    ViewData["Title"] = "Bình luận";
+    Layout = "_NovaticAdmin";
+}
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+
+<div class="page-header card">
+    <div class="col">
+
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Bình luận</h3>
+            </div>
+        </div>
+
+        @*<a href="#" id="btnAddItem" onclick="editItem(0);"
+               class="btn btn-brand btn-elevate btn-icon-sm">
+                <i class="fa fa-plus"></i>
+                <span class='hideOnMobile'>New Record</span>
+            </a>*@
+
+
+
+
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page-body start -->
+            <div class="page-body">
+
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+
+                            <table id="tableData" class="table  table-hover">
+                                <thead>
+                                    <!--<tr>
+            <th>Index</th>
+            <th>Apply Type ID</th>
+            <th>Active</th>
+            <th>Apply Type Name</th>
+            <th>Description</th>
+            <th>Created Time</th>
+            <th>Detail</th>
+            <th>Delete</th>
+        </tr>-->
+                                <th>STT</th>
+                                <th>ID</th>
+                                <th>Tên tài khoản</th>
+                                <th>Tên bài viết</th>
+                                <th>Trạng thái</th>
+                                <th>Nội dung</th>
+                                @*<th>Topic name</th>*@
+                                @*<th>Mô tả</th>*@
+                                <th>Ngày tạo</th>
+
+                                <th>Chi tiết</th>
+                                <th>Xóa</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                <th>STT</th>
+                                <th>ID</th>
+                                <th>Tên tài khoản</th>
+                                <th>Tên bài viết</th>
+                                <th>Trạng thái</th>
+                                <th>Nội dung</th>
+                                @*<th>Topic name</th>*@
+                                @*<th>Mô tả</th>*@
+                                <th>Ngày tạo</th>
+
+                                <th>Chi tiết</th>
+                                <th>Xóa</th>
+                                </tfoot>
+                            </table>
+
+
+
+
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i>Chi tiết bình luận</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <form action="" method="POST" onsubmit='updateItem(updatingItemID); return false;' role="form">
+
+                                                @*<div class="form-group" style="display:none">
+                                                        <label for="">Apply type ID</label>
+                                                        <input type="text" class="form-control"
+                                                            id="commentId" required readonly
+                                                            placeholder="">
+                                                    </div>*@
+
+
+                                                <div class='form-group' style="display:none">
+                                                    <label for=''>Apply type name</label>
+                                                    <input type='text' class='form-control'
+                                                           id='commentName' required
+                                                           placeholder=''>
+                                                </div>
+
+
+                                                <div class='form-group' style="display:none">
+                                                    <label for=''>Description</label>
+                                                    <input type='text' class='form-control'
+                                                           id='commentDescription'
+                                                           placeholder=''>
+                                                </div>
+
+
+                                                @*<div class='form-group' style="display:none">
+                                                        <label for=''>CreatedTime</label>
+                                                        <input type='text'
+                                                            class='form-control datetimepicker'
+                                                            id='commentCreatedTime'
+                                                            placeholder=''>
+                                                    </div>*@
+
+
+                                                <div class='form-group' style="display:none">
+                                                    <label for=''>Active</label>
+                                                    <input type='text' class='form-control'
+                                                           id='commentActive' readonly
+                                                           placeholder=''>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="">ID</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-id" value="0"
+                                                           id="commentId" required readonly
+                                                           placeholder="">
+                                                </div>
+                                                <div class='form-group row selectContainer'>
+                                                    <label class=''>Tên tài khoản</label><span class='required'>*</span>
+                                                    <div class='col-sm-12'>
+                                                        <select disabled name='select' required id='commentAccountID' class='form-control fill dataSelect  input-accountID' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var accountData = [];
+                                                    //debugger;
+                                                    function loadDataSelectAccount() {
+                                                        $.ajax({
+                                                            url: '/Comment/api/list',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function (responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                                // debugger;
+                                                                var data = responseData.data;
+                                                                accountData = data;
+                                                                data.forEach(function (item, index) {
+                                                                    var data = {
+                                                                        id: item.accountId,
+                                                                        text: item.accountName
+                                                                    };
+                                                                    //console.log(data);
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#commentAccountID').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function (e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function () {
+                                                        loadDataSelectAccount();
+                                                    });
+                                                </script>
+                                                <div class="form-group">
+                                                    <label for="">Tên bài viết</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control input-id" value=""
+                                                           id="commentPostName" required readonly
+                                                           placeholder="">
+                                                </div>
+                                                <script>
+                                                    var postData = [];
+                                                    //debugger;
+                                                    function loadDataSelectPost() {
+                                                        $.ajax({
+                                                            url: '/post/api/ListPaging?pageSize=100&pageIndex=1',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function (responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded post');
+                                                                //debugger;
+                                                                var data = responseData.data;
+                                                                postData = data;
+                                                                data.forEach(function (item, index) {
+                                                                    var data = {
+                                                                        id: item.postId,
+                                                                        text: item.postName
+                                                                    };
+                                                                    //console.log(data);
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#commentPostID').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function (e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function () {
+                                                        //debugger;
+                                                        loadDataSelectPost();
+                                                    });
+                                                </script>
+
+                                                @*<div class="form-group" style="display:none ">
+                                                        <label for="">Active</label><span class='required'>*</span>
+                                                        <input type="number" class="form-control input-active" value="0"
+                                                               id="commentActive" required
+                                                               placeholder="">
+                                                    </div>*@
+                                                <div class="form-group">
+                                                    <label for="">Phê duyệt</label><span class='required'>*</span>
+                                                    @*<input type="number" class="form-control input-approve" value="0"
+                                                        id="commentApprove" required
+                                                        placeholder="">*@
+                                                    <select name='select' required id='commentApprove' class='form-control fill dataSelect  input-postID' style=' border: 1px solid #e9ecef; '>
+                                                    </select>
+                                                    <script>
+                                                        var dataApprove = [{
+                                                            id: 0,
+                                                            text: "Ẩn bình luận"
+                                                        }, { id: 1, text: "Hiển thị bình luận" }];
+                                                        dataApprove.forEach(function (item, index) {
+                                                            var data = {
+                                                                id: item.id,
+                                                                text: item.text
+                                                            };
+                                                            //console.log(data);
+                                                            var newOption = new Option(data.text, data.id, false, false);
+                                                            $('#commentApprove').append(newOption).trigger('change');
+                                                        })
+
+                                                    </script>
+                                                </div>
+                                                @*<div class="form-group">
+                                                        <label for="">Nội dung</label><span class='required'>*</span>
+                                                        <textarea class="form-control  input-name " rows="2" id="commentName" required></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="">Mô tả</label>
+                                                        <textarea class="form-control  input-description " rows="2" id="commentDescription"></textarea>
+                                                    </div>*@
+                                                @*<div class="form-group">
+                                                        <label for="">Email</label><span class='required'>*</span>
+                                                        <textarea class="form-control  input-email " rows="2" id="commentEmail" required></textarea>
+                                                    </div>*@
+                                                <div class="form-group">
+                                                    <label for="">Nội dung</label><span class='required'>*</span>
+                                                    <textarea class="form-control  input-text " rows="2" id="commentText" required></textarea>
+                                                </div>
+                                                @*<div class="form-group">
+                                                        <label for="">Website</label><span class='required'>*</span>
+                                                        <textarea class="form-control  input-website " rows="2" id="commentWebsite" required></textarea>
+                                                    </div>*@
+                                                <div class='form-group'>
+                                                    <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                    <div class='input-group date datetimepicker  input-createdTime' id='commentCreatedTimeDiv'>
+                                                        <input type='text' id="commentCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit" class="btn btn-default" value="Save changes">
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary"
+                                                    id="btnUpdateItem"
+                                                    onclick="document.getElementById('hiddenSubmit').click();">
+                                                Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Main-body end -->
+
+<div id="styleSelector">
+
+
+</div>
+
+
+
+<!-- Warning Section Starts -->
+<!-- Older IE warning message -->
+<!--[if lt IE 10]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="../files/assets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="../files/assets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="../files/assets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="../files/assets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="../files/assets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+<![endif]-->
+<!-- Warning Section Ends -->
+<!-- Required Jquery -->
+
+<script>
+    var hiddenItem = ["active", "address", "description", "email", "info", "password", "phone", "photo", "website", "accountId", "postId", "username", "name", "postCategoryId", "postCategoryName", "isChecked"];
+    var dataSource = [];
+    var updatingItemID = 0;
+    var tableUpdating = 0;
+    var table;
+
+    $(document).ready(function () {
+        // Load data
+        //loadData();
+        setTimeout(function () { loadData(); }, 500);
+        // includeLibrary();
+
+        // Datetime picker
+        $('.datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        });
+
+        $('.dataSelect').select2();
+
+        $(".datetimepicker").on('dp.change', function (e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+            // console.log(this.value);
+        })
+
+    });
+
+
+    function loadData() {
+        $.ajax({
+            url: "/Comment/api/list",
+            type: "GET",
+            contentType: "application/json",
+            success: function (responseData) {
+                // debugger;
+                var data = responseData.data;
+                dataSource = data;
+
+
+
+
+                data.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    var styleIsChecked = "";
+                    rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            if (item["isChecked"] == 0) {
+                                styleIsChecked = "style='background-color:#006fff4d'";
+                            }
+                            // console.log(key + " -> " + item[key]);
+                            if (!hiddenItem.includes(key) && key != "approve") {
+                                rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                            }
+                            if (key == "approve" && item[key] == 1) {
+                                rowContent += "<td style='font-size: 1.2em; text-align:center;' class='row" + item.id + "-column column-" + key + "' property='" + key + "'><span class='label label-success label-mini'>Hiển thị</span></td>";
+                            }
+                            if (key == "approve" && item[key] == 0) {
+                                rowContent += "<td style='font-size: 1.2em; text-align:center;' class='row" + item.id + "-column column-" + key + "' property='" + key + "'><div><span class='label label-danger label-mini'>Đang Ẩn</span></div></td>";
+                            }
+                        }
+                    }
+                    rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                    rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                    var newRow = "<tr " + styleIsChecked + " id='row" + item.id + "' >" + rowContent + "</tr>";
+                    $(newRow).appendTo($("#tableData tbody"));
+
+                    // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                });
+
+                //Init datatable
+                if (tableUpdating === 0) {
+                    initTablePage()
+                }
+
+                //update data with foreign key
+                updateTable();
+            },
+            error: function (e) {
+                //console.log(e.message);
+                initTablePage()
+            }
+        });
+    }
+
+    function initTable() {
+        table = $('#tableData').DataTable({
+            aLengthMenu: [
+                [10, 25, 50, 100, 200, -1],
+                [10, 25, 50, 100, 200, 'Tất cả']
+            ],
+            'order': [
+                [1, 'desc']
+            ]
+        });
+
+
+
+        table.on('order.dt search.dt', function () {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+        $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function () {
+            var title = $(this).text();
+            $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+        });
+
+        table.columns().every(function () {
+            var that = this;
+
+            $('input', this.footer()).on('keyup change', function () {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
+    }
+    function initTablePage() {
+        table = $('#tableData').DataTable({
+            aLengthMenu: [
+                //[10, 25, 50, 100, 200, -1],
+                //[10, 25, 50, 100, 200, 'Tất cả']
+                [-1, 10, 25, 50, 100, 200],
+                ['Tất cả', 10, 25, 50, 100, 200]
+            ],
+            'order': [
+                [1, 'desc']
+            ],
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            "initComplete": function (settings, json) {
+                table.on('order.dt search.dt', function () {
+                    table.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+
+                $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="tableFooterFilter" value="" placeholder="Tìm kiếm ' + title + '" />');
+                });
+
+                table.columns().every(function () {
+                    var that = this;
+                    $('input.tableFooterFilter', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+        setTimeout(function () {
+            table.page.len(10).draw();
+        }, 1000);
+    }
+
+    function editItem(id) {
+        //debugger;
+        updatingItemID = id;
+        $("#modal-id").modal('show');
+
+        let obj = getItemById(id);
+        $("#commentId").val(id > 0 ? obj.id : "");
+        $("#commentPostID").val(id > 0 ? obj.postId : "");
+        $("#commentAccountID").val(id > 0 ? obj.accountId : "");
+        $("#commentActive").val(id > 0 ? obj.active : "");
+        $("#commentApprove").val(id > 0 ? obj.approve : "");
+        $("#commentName").val(id > 0 ? obj.name : "");
+        $("#commentDescription").val(id > 0 ? obj.description : "");
+        $("#commentEmail").val(id > 0 ? obj.email : "");
+        $("#commentText").val(id > 0 ? obj.text : "");
+        $("#commentWebsite").val(id > 0 ? obj.website : "");
+        $("#commentCreatedTime").val(id > 0 ? obj.createdTime : "");
+        $('#commentPostID').trigger('change');
+        $('#commentAccountID').trigger('change');
+        $('#commentApprove').trigger('change');
+        $('#commentPostName').val(id > 0 ? obj.postName : "");
+
+        if (id > 0) {
+            obj.isChecked = 1;
+            $.ajax({
+                url: "/Comment/api/Update",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(obj),
+                success: function (responseData) {
+                //console.log(responseData);
+                //debugger;
+                    if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                        console.log("success update IsChecked!");
+                    }
+                },
+                error: function (e) {
+                    console.log("failed update IsChecked!");
+                }
+            });
+        }
+        
+        // $("#commentId").val(id > 0 ? obj.id : "");
+        // $("#commentName").val(id > 0 ? obj.name : "");
+        // $("#commentDescription").val(id > 0 ? obj.description : "");
+        // $("#commentCreatedTime").val(id > 0 ? obj.createdTime : "");
+        // $("#commentActive").val(id > 0 ? obj.active : "");
+
+        if (id == 0) {
+            $("#commentActive").val(1);
+            $("#commentCreatedTime").val(new Date());
+        }
+        else {
+            // correcting data
+            //$('#buyProvinceID').val(obj.provinceID.split(", ")).trigger('change');
+
+        }
+        formatNumber();
+    }
+
+
+    function updateItem(id) {
+        debugger;
+        var actionName = (id == 0 ? "Create" : "Update");
+        let obj = getItemById(id);
+        let objName = id > 0 ? obj.name : " ";
+
+        validateInputNumber();
+
+        // "id": $("#commentId").val(),
+        // "name": $("#commentName").val(),
+        // "description": $("#commentDescription").val(),
+        // "createdTime": $("#commentCreatedTime").val(),
+        // "active": $("#commentActive").val()
+        var updatingObj = {
+            "id": $("#commentId").val(),
+            "postID": obj.postId,
+            "accountID": $("#commentAccountID").val(),
+            "active": 1,
+            "approve": $("#commentApprove").val(),
+            "name": $("#commentName").val(),
+            "description": $("#commentDescription").val(),
+            "email": obj.email,
+            "text": $("#commentText").val(),
+            "website": obj.website,
+            "createdTime": datetimeFormat($("#commentCreatedTime").val()),
+            "isChecked" : 1,
+        };
+
+        // correcting data
+        //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+        //updatingObj.createdTime = "2019-01-01 00:00:00";
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Performing " + actionName + " item " + objName,
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: "/Comment/api/Update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            //console.log(responseData);
+                            //debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Updated!',
+                                    'Item ' + objName + ' has been successfully updated!',
+                                    'success'
+                                ),
+                                updateTable(id, updatingObj, "update");
+                                var updatedItemIndex = dataSource.findIndex(item => parseInt(item.id) === id);
+                                dataSource[updatedItemIndex] = updatingObj;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' update item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                };
+
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: "/Comment/api/Add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            //console.log(responseData);
+                            //debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                Swal.fire(
+                                    'Created!',
+                                    'New item has been successfully created!',
+                                    'success'
+                                );
+                                updatingObj = responseData.data;
+                                dataSource.push(updatingObj);
+                                updateTable(0, updatingObj, "add");
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' create item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+    function deleteItem(id) {
+        let obj = getItemById(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: "Comment/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function (responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Deleted!',
+                                'Item ' + obj.name + ' has been deleted.',
+                                'success'
+                            );
+                            updateTable(id, 0, "delete");
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Error!',
+                            'Item ' + obj.name + ' can\'t be deleted.',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+        })
+    }
+
+    function updateTable(id, obj, action) {
+        if (action === "delete") {
+            table.row("#row" + id).remove().draw();
+        }
+
+        if (action === "add") {
+            console.log("Added:" + obj);
+
+            var addedItems = [obj];
+            var addedValues = [];
+
+
+            addedItems.forEach(function (item, index) {
+                // console.log(item, index);
+                var rowContent = "";
+                addedValues.push("<td style='text-align: center;'></td>");
+                for (var key in item) {
+                    if (item.hasOwnProperty(key)) {
+                        // console.log(key + " -> " + item[key]);
+                        if (!hiddenItem.includes(key)) {
+                            addedValues.push("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+                        }
+                        if (key == "approve" && item[key] == 1) {
+                            addedValues.push("<td style='font-size: 1.2em; text-align:center;' class='row" + item.id + "-column column-" + key + "' property='" + key + "'><span class='label label-success label-mini'>Hiển thị</span></td>");
+                        }
+                        if (key == "approve" && item[key] == 0) {
+                            addedValues.push("<td style='font-size: 1.2em; text-align:center;' class='row" + item.id + "-column column-" + key + "' property='" + key + "'><div><span class='label label-danger label-mini'>Đang Ẩn</span></div></td>");
+                        }
+                    }
+                }
+                addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+                addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                table.row.add(addedValues).draw();
+            });
+            // location.reload();
+        }
+
+        if (action === "update") {
+            // alert(id);
+            //debugger;
+            $(".row" + id + "-column").each(function () {
+                var propertyName = $(this).attr("property");
+                console.log(propertyName);
+
+                for (var key in obj) {
+                    if (key === propertyName && obj.hasOwnProperty(key)) {
+                        //this.innerText = obj[key];
+                        if (obj[key] == 1) {
+                            this.innerHTML = "<td style='font-size: 1.2em; text-align:center;' class='row" + obj.id + "-column column-" + key + "' property='" + key + "'><span class='label label-success label-mini'>Hiển thị</span></td>";
+                        }
+                        if (obj[key] == 0) {
+                            this.innerHTML = "<td style='font-size: 1.2em; text-align:center;' class='row" + obj.id + "-column column-" + key + "' property='" + key + "'><div><span class='label label-danger label-mini'>Đang Ẩn</span></div></td>";
+                        }
+                    }
+                }
+
+            });
+        }
+
+        //Update columns with foreign key
+        // var NO_FKFKUpdateSelector = 'tr';
+        // if( !(typeof(id) === 'undefined')) {
+        //     NO_FKFKUpdateSelector = '#row'+id;
+        // }
+        // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKID]').each(function(){
+        //     // debugger;
+        //     var commentID = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+        //     var commentObj = getItemById(commentID);
+        //     var NO_FKID = parseInt(commentObj.NO_FKID);
+        //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKID);
+        //     $(this).text(NO_FKObj.name);
+        //     // console.log('FK updated for Staff '+commentID);
+        // });
+
+        var postFKUpdateSelector = 'tr';
+        if (!(typeof (id) === 'undefined')) {
+            // debugger;
+            postFKUpdateSelector = '#row' + id;
+            var postID = parseInt(obj.postID);
+            var postObj = postData.find(item => parseInt(item.id) === postID);
+            $('#tableData tbody ' + postFKUpdateSelector + ' td[property=postID]').text(postObj.name);
+        }
+        else {
+            $('#tableData tbody ' + postFKUpdateSelector + ' td[property=postID]').each(function () {
+                // debugger;
+                var commentID = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                var commentObj = getItemById(commentID);
+                var postID = parseInt(commentObj.postID);
+                var postObj = postData.find(item => parseInt(item.id) === postID);
+                $(this).text(postObj.name);
+                // console.log('FK updated for Staff '+commentID);
+            });
+        }
+        var accountFKUpdateSelector = 'tr';
+        if (!(typeof (id) === 'undefined')) {
+            // debugger;
+            accountFKUpdateSelector = '#row' + id;
+            var accountID = parseInt(obj.accountID);
+            var accountObj = accountData.find(item => parseInt(item.id) === accountID);
+            $('#tableData tbody ' + accountFKUpdateSelector + ' td[property=accountID]').text(accountObj.name);
+        }
+        else {
+            $('#tableData tbody ' + accountFKUpdateSelector + ' td[property=accountID]').each(function () {
+                // debugger;
+                var commentID = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                var commentObj = getItemById(commentID);
+                var accountID = parseInt(commentObj.accountID);
+                var accountObj = accountData.find(item => parseInt(item.id) === accountID);
+                $(this).text(accountObj.name);
+                // console.log('FK updated for Staff '+commentID);
+            });
+        }
+
+        formatNumber();
+    }
+
+
+    function getItemById(id) {
+        const result = dataSource.find(item => parseInt(item.id) === id);
+        return result;
+    }
+
+    function camelToSentenceCase(input) {
+        var text = input;
+        var result = text.replace(/([A-Z])/g, " $1");
+        var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+        return finalResult;
+    }
+
+    function datetimeFormat(datetime) {
+        return moment(datetime).format("YYYY-MM-DD HH:mm:ss");
+    }
+
+
+
+</script>

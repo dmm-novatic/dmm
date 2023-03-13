@@ -1,0 +1,1337 @@
+﻿@{
+    ViewData["Title"] = "Đơn hàng"; Layout = "_NovaticAdmin";
+}
+
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Đơn hàng đang chờ xử lý</h3>
+            </div>
+        </div>
+
+       
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    
+                    <div class="card-block novaticContainer">
+                        
+                        <div class="dt-responsive table-responsive">
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Loại đơn hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Trạng thái thanh toán</th>
+                                        <th>Khách hàng</th>
+                                        <th>Cửa hàng</th>
+                                        <th>Thành tiền</th>
+                                        <th>Ngày tạo</th>
+                                        <th id="acp">Xác nhận đơn hàng</th>
+                                        <th>Detail</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Loại đơn hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Trạng thái thanh toán</th>
+                                        <th>Khách hàng</th>
+                                        <th>Cửa hàng</th>
+                                        <th>Thành tiền</th>
+                                        <th>Ngày tạo</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Detail item</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="POST" onsubmit="updateItem(updatingItemId); return false;" role="form">
+                                                <!-- <div class="form-group">
+        <label for="">Apply type Id</label>
+        <input type="text" class="form-control"
+            id="ordersId" required readonly
+            placeholder="">
+    </div>
+
+
+    <div class='form-group'>
+        <label for=''>Apply type name</label>
+        <input type='text' class='form-control'
+            id='ordersName' required
+            placeholder=''>
+    </div>
+
+
+    <div class='form-group'>
+        <label for=''>Description</label>
+        <input type='text' class='form-control'
+            id='ordersDescription'
+            placeholder=''>
+    </div>
+
+
+    <div class='form-group'>
+        <label for=''>CreatedTime</label>
+        <input type='text'
+            class='form-control datetimepicker'
+            id='ordersCreatedTime'
+            placeholder=''>
+    </div>
+
+
+    <div class='form-group' style="">
+        <label for=''>Active</label>
+        <input type='text' class='form-control'
+            id='ordersActive' readonly
+            placeholder=''>
+    </div>
+    -->
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Id</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-id" value="0" id="ordersId" required readonly placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">GUID</label>
+                                                    <input type="text" class="form-control input-guId" id="ordersGuId" placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-3 selectContainer">
+                                                    <label class="">Loại đơn hàng</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="ordersOrderTypeId" class="form-control fill dataSelect input-orderTypeId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var orderTypeData = [];
+                                                    function loadDataSelectOrderType() {
+                                                        return $.ajax({
+                                                            url: '@{
+                                                                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                                                    }' + 'orderType/api/list',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function(responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded orderType');
+                                                                // debugger;
+                                                                var data = responseData.data;
+                                                                orderTypeData = data;
+                                                                data.forEach(function(item, index) {
+                                                                    var data = {
+                                                                        id: item.id,
+                                                                        text: item.name
+                                                                    };
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#ordersOrderTypeId').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function(e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function() {
+                                                        //loadDataSelectOrderType();
+                                                    });
+                                                </script>
+                                                <div class="form-group col-sm-3 selectContainer">
+                                                    <label class="">Trạng thái</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="ordersOrderStatusId" class="form-control fill dataSelect input-orderStatusId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var orderStatusData = [];
+                                                    function loadDataSelectOrderStatus() {
+                                                        return $.ajax({
+                                                            url: '@{
+                                                                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                                                    }' + 'orderStatus/api/list',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function(responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded orderStatus');
+                                                                // debugger;
+                                                                var data = responseData.data;
+                                                                orderStatusData = data;
+                                                                data.forEach(function(item, index) {
+                                                                    var data = {
+                                                                        id: item.id,
+                                                                        text: item.name
+                                                                    };
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#ordersOrderStatusId').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function(e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function() {
+                                                        //loadDataSelectOrderStatus();
+                                                    });
+                                                </script>
+                                                <div class="form-group col-sm-3 selectContainer">
+                                                    <label class="">Trạng thái thanh toán</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="ordersOrderPaymentStatusId" class="form-control fill dataSelect input-orderPaymentStatusId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var orderPaymentStatusData = [];
+                                                    function loadDataSelectOrderPaymentStatus() {
+                                                        return $.ajax({
+                                                            url: '@{
+                                                                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                                                    }' + 'orderPaymentStatus/api/list',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function(responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded orderPaymentStatus');
+                                                                // debugger;
+                                                                var data = responseData.data;
+                                                                orderPaymentStatusData = data;
+                                                                data.forEach(function(item, index) {
+                                                                    var data = {
+                                                                        id: item.id,
+                                                                        text: item.name
+                                                                    };
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#ordersOrderPaymentStatusId').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function(e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function() {
+                                                        //loadDataSelectOrderPaymentStatus();
+                                                    });
+                                                </script>
+                                                <div class="form-group col-sm-3 selectContainer">
+                                                    <label class="">Khách hàng</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="ordersAccountId" class="form-control fill dataSelect input-accountId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var accountData = [];
+                                                    function loadDataSelectAccount() {
+                                                        return $.ajax({
+                                                            url: '@{
+                                                                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                                                    }' + 'account/api/list',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function(responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                                // debugger;
+                                                                var data = responseData.data;
+                                                                accountData = data;
+                                                                data.forEach(function(item, index) {
+                                                                    var data = {
+                                                                        id: item.id,
+                                                                        text: item.name
+                                                                    };
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#ordersAccountId').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function(e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function() {
+                                                        //loadDataSelectAccount();
+                                                    });
+                                                </script>
+                                                <div class="form-group col-sm-3 selectContainer">
+                                                    <label class="">Cửa hàng</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="ordersShopId" class="form-control fill dataSelect input-shopId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var shopData = [];
+                                                    function loadDataSelectShop() {
+                                                        return $.ajax({
+                                                            url: '@{
+                                                                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                                                    }' + 'shop/api/list',
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function(responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded shop');
+                                                                // debugger;
+                                                                var data = responseData.data;
+                                                                shopData = data;
+                                                                data.forEach(function(item, index) {
+                                                                    var data = {
+                                                                        id: item.id,
+                                                                        text: item.name
+                                                                    };
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#ordersShopId').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function(e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function() {
+                                                        //loadDataSelectShop();
+                                                    });
+                                                </script>
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Voucher</label>
+                                                    <input type="text" class="form-control input-voucher" id="ordersVoucher" placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Giá</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-price" value="0" id="ordersPrice" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Tổng giá</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-totalPrice" value="0" id="ordersTotalPrice" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Giảm giá</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-discount" value="0" id="ordersDiscount" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Thành tiền</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-finalPrice" value="0" id="ordersFinalPrice" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="">Tiêu đề</label><span class="required">*</span>
+                                                    <input type="text" class="form-control input-name" id="ordersName" required placeholder="" />
+                                                </div>
+
+
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control input-description" rows="2" id="ordersDescription"></textarea>
+                                                </div>
+
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Phản hồi khách hàng</label>
+                                                    <textarea class="form-control input-feedback" rows="2" id="ordersFeedback"></textarea>
+                                                </div>
+
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Ghi chú</label>
+                                                    <textarea class="form-control input-info" rows="2" id="ordersInfo"></textarea>
+                                                </div>
+                                                <script>
+                                                    var ordersInfoEditor;
+                                                    ClassicEditor
+                                                        .create(document.querySelector('#ordersInfo'))
+                                                        .then(editor => {
+                                                            // console.log( 'Editor was initialized', editor );
+                                                            ordersInfoEditor = editor;
+                                                            editor.model.document.on('change:data', (evt, data) => {
+                                                                // debugger;
+                                                                // console.log('Updated:'+ data );
+                                                                $('#ordersInfo').val(ordersInfoEditor.getData());
+                                                            });
+                                                        })
+                                                        .catch(err => {
+                                                            console.error(err.stack);
+                                                        });
+                                                </script>
+                                                <script>
+                    var ordersData =[];
+                    function loadDataSelectOrders() {
+                        return $.ajax({
+                            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'orders/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded orders');
+                                // debugger;
+                                var data = responseData.data;
+                                ordersData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#orderItemOrderId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectOrders();
+                    });
+                                                </script>
+                                                <script>
+                    var productItemData =[];
+                    function loadDataSelectProductItem() {
+                        return $.ajax({
+                            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'productItem/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded productItem');
+                                // debugger;
+                                var data = responseData.data;
+                                productItemData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#orderItemProductItemId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectProductItem();
+                    });
+                                                </script>
+                                                <script>
+                    var ordersData =[];
+                    function loadDataSelectOrders() {
+                        return $.ajax({
+                            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'orders/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded orders');
+                                // debugger;
+                                var data = responseData.data;
+                                ordersData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#orderItemOrderId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectOrders();
+                    });
+                                                </script>
+                                                <script>
+                    var productItemData =[];
+                    function loadDataSelectProductItem() {
+                        return $.ajax({
+                            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'productItem/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded productItem');
+                                // debugger;
+                                var data = responseData.data;
+                                productItemData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#orderItemProductItemId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectProductItem();
+                    });
+                                                </script>
+                                                <div class="form-group col-sm-3" style="display:none ">
+                                                    <label for="">Active</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-active" value="0" id="ordersActive" required placeholder="" />
+                                                </div>
+
+
+                                                <div class="form-group col-sm-3">
+                                                    <label for="">Ngày tạo </label><span class="required">*</span>
+                                                    <div class="input-group date datetimepicker input-createdTime" id="ordersCreatedTimeDiv">
+                                                        <input type="text" id="ordersCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                                    </div>
+                                                </div>
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit" class="btn btn-default" value="Save changes" />
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <table id="tableDataOrderItem" class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Index</th>
+                                                        <th>Ảnh sản phẩm</th>
+                                                        <th>Tên</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Giá</th>
+                                                        <th>Mô tả sản phẩm</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem" style="cursor:not-allowed;opacity:0.3">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var hiddenItem = ["id", "guId", "voucher", "price", "totalPrice", "discount", "name", "description", "info", "active", "feedback"];
+    var showItem = ["orderTypeId", "orderStatusId", "orderPaymentStatusId", "accountId", "shopId", "finalPrice", "createdTime"];
+    var dataSource = [];
+    var updatingItemId = 0;
+    var tableUpdating = 0;
+    var table;
+    var hiddenItemOrder = ["id", "active", "totalPrice"];
+    var showItemOrder = ["name", "description", "photo", "price", "quantity"];
+    var dataSourceOrder = [];
+    var updatingItemIdOrder = 0;
+    var tableUpdatingOrder = 0;
+    var tableOrder;
+    $(document).ready(function() {
+        // Load data
+        //loadData();
+        //setTimeout(function(){loadData();}, 460);
+
+        $.when(loadDataSelectOrderType(), formatNumber(), loadDataSelectOrderStatus(), loadDataSelectOrderPaymentStatus(), loadDataSelectAccount(), loadDataSelectShop()).done(function(resultDataSelectOrderTypeordersOrderTypeId, resultDataSelectOrderStatusordersOrderStatusId, resultDataSelectOrderPaymentStatusordersOrderPaymentStatusId, resultDataSelectAccountordersAccountId, resultDataSelectShopordersShopId) {
+            loadData();
+
+        });
+
+        // includeLibrary();
+
+        // Datetime picker
+        $('.datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        });
+
+        $('.dataSelect').select2();
+
+        $(".datetimepicker").on('dp.change', function(e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+            // console.log(this.value);
+        })
+
+    });
+
+    function loadDataOrderItem(id) {
+        $("#tableDataOrderItem tbody").empty();
+            $.ajax({
+                url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + `orderItem/api/GetListByOrderId?OrderID=${id}`,
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    // debugger;
+                    var data = responseData.data;
+                    dataSourceOrder = data;
+
+
+
+
+                    data.forEach(function (item, index) {
+                        /*console.log(item, index);*/
+                        var rowContent = "";
+                        rowContent += "<td style='text-align: start;'>" + (index + 1) + "</td>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (showItemOrder.includes(key)) {
+                                    if (key != "photo") {
+                                        rowContent += "<td style='text-align: start;' class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                    }
+                                    else {
+                                        rowContent += "<td style='text-align: start;' class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+                                    }
+                                }
+                            }
+                        }
+                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+                        $(newRow).appendTo($("#tableDataOrderItem tbody"));
+
+                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    });
+
+                    //Init datatable
+                    if (tableUpdatingOrder === 0) {
+                         formatNumber();
+                    }
+                    updateTableOrder();
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    initTableOrderItem();
+                }
+            });
+        }
+    function updateTableOrder(id, obj) {
+        try {
+            var ordersFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                ordersFKUpdateSelector = '#row' + id;
+                var orderId = parseInt(obj.orderId);
+                var ordersObj = ordersData.find(item => parseInt(item.id) === orderId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(ordersObj.name);
+
+                //update data
+                $('#tableDataOrderItem tbody ' + ordersFKUpdateSelector + ' td[property=orderId]').text(ordersObj.name);
+                //table.cell( this ).data(ordersObj.name);
+            }
+            else {
+                //Page load
+                $('#tableDataOrderItem tbody ' + ordersFKUpdateSelector + ' td[property=orderId]').each(function () {
+                    // debugger;
+                    var orderItemId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var orderItemObj = getOrderItemById(orderItemId);
+                    var orderId = parseInt(orderItemObj.orderId);
+                    var ordersObj = ordersData.find(item => parseInt(item.id) === orderId);
+                    //$(this).text(ordersObj.name);
+                    tableOrder.cell(this).data(ordersObj.name);
+                    // console.log('FK updated for Staff '+orderItemId);
+                });
+            }
+        } catch (error) {
+
+        }
+        try {
+            var productItemFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                productItemFKUpdateSelector = '#row' + id;
+                var productItemId = parseInt(obj.productItemId);
+                var productItemObj = productItemData.find(item => parseInt(item.id) === productItemId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(productItemObj.name);
+
+                //update data
+                $('#tableDataOrderItem tbody ' + productItemFKUpdateSelector + ' td[property=productItemId]').text(productItemObj.name);
+                //table.cell( this ).data(productItemObj.name);
+            }
+            else {
+                //Page load
+                $('#tableDataOrderItem tbody ' + productItemFKUpdateSelector + ' td[property=productItemId]').each(function () {
+                    // debugger;
+                    var orderItemId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var orderItemObj = getOrderItemById(orderItemId);
+                    var productItemId = parseInt(orderItemObj.productItemId);
+                    var productItemObj = productItemData.find(item => parseInt(item.id) === productItemId);
+                    //$(this).text(productItemObj.name);
+                    tableOrder.cell(this).data(productItemObj.name);
+                    // console.log('FK updated for Staff '+orderItemId);
+                });
+            }
+        } catch (error) {
+
+        }
+    }
+
+    function getOrderItemById(id) {
+        const result = dataSourceOrder.find(item => parseInt(item.id) === id);
+        return result;
+    }
+    function loadData() {
+        var accept = JSON.parse(localStorage.getItem("currentLoggedInUser"));
+        var x = document.getElementById("acp");
+        if(accept.accountTypeName==="System admin"){
+            x.style.display = "none";
+        }
+        $.ajax({
+            url: '@{
+        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+    }' + "orders/api/ListByOrderStatus?orderStatusId=1000004",
+            type: "GET",
+            contentType: "application/json",
+            success: function(responseData) {
+                // debugger;
+                var data = responseData.data;
+                dataSource = data;
+
+
+
+
+                data.forEach(function(item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (showItem.includes(key)) {
+                                if (key != "photo") {
+                                    rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                }
+                                else {
+                                    rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+                                }
+                            }
+                        }
+                    }
+                    if (accept.accountTypeName !== "System admin") {
+                        if (item.orderPaymentStatusId == 1000001) {
+                            rowContent += "<td style='text-align: center;'><a><i class='fa fa-check-square fa-2x' style='color:#03a9f4;cursor: not-allowed;opacity: 0.5;'></i></a></td>";
+                        } else {
+                            rowContent += "<td style='text-align: center;'><a onclick='acceptItem(" + item.id + ")'><i class='fa fa-check-square fa-2x' style='color:#03a9f4'></i></a></td>";
+                        }
+
+                    }
+
+                    rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ");loadDataOrderItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                    rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                    var newRow = "<tr id='row" + item.id + "' >" + rowContent + "</tr>";
+                    $(newRow).appendTo($("#tableData tbody"));
+
+                    // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                });
+
+                //Init datatable
+                if (tableUpdating === 0) {
+                    initTable();
+                }
+
+                //update data with foreign key
+                updateTable();
+            },
+            error: function(e) {
+                //console.log(e.message);
+                initTable();
+            }
+        });
+formatNumber();
+    }
+
+    function initTable() {
+        table = $('#tableData').DataTable({
+            aLengthMenu: [
+                [-1, 10, 25, 50, 100, 200],
+                ['Tất cả', 10, 25, 50, 100, 200]
+            ],
+            'order': [
+                [1, 'desc']
+            ]
+        });
+
+
+
+        table.on('order.dt search.dt', function() {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+        $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function() {
+            var title = $(this).text();
+            $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+        });
+
+        table.columns().every(function() {
+            var that = this;
+
+            $('input', this.footer()).on('keyup change', function() {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
+
+        setTimeout(function() {
+            table.page.len(10).draw();
+        }, 1000);
+        formatNumber();
+    }
+
+    function editItem(id) {
+        updatingItemId = id;
+        $("#modal-id").modal('show');
+
+        let obj = getItemById(id);
+        $("#ordersId").val(id > 0 ? obj.id : "");
+        $("#ordersGuId").val(id > 0 ? obj.guId : "");
+        $("#ordersOrderTypeId").val(id > 0 ? obj.orderTypeId : "");
+        $("#ordersOrderStatusId").val(id > 0 ? obj.orderStatusId : "");
+        $("#ordersOrderPaymentStatusId").val(id > 0 ? obj.orderPaymentStatusId : "");
+        $("#ordersAccountId").val(id > 0 ? obj.accountId : "");
+        $("#ordersShopId").val(id > 0 ? obj.shopId : "");
+        $("#ordersVoucher").val(id > 0 ? obj.voucher : "");
+        $("#ordersPrice").val(id > 0 ? obj.price : "");
+        $("#ordersTotalPrice").val(id > 0 ? obj.totalPrice : "");
+        $("#ordersDiscount").val(id > 0 ? obj.discount : "");
+        $("#ordersFinalPrice").val(id > 0 ? obj.finalPrice : "");
+        $("#ordersName").val(id > 0 ? obj.name : "");
+        $("#ordersDescription").val(id > 0 ? obj.description : "");
+        $("#ordersInfo").val(id > 0 ? obj.info : "");
+        $("#ordersActive").val(id > 0 ? obj.active : "");
+        $("#ordersFeedback").val(id > 0 ? obj.feedback : "");
+        $("#ordersCreatedTime").val(id > 0 ? obj.createdTime : "");
+        $('#ordersOrderTypeId').trigger('change');
+        $('#ordersOrderStatusId').trigger('change');
+        $('#ordersOrderPaymentStatusId').trigger('change');
+        $('#ordersAccountId').trigger('change');
+        $('#ordersShopId').trigger('change');
+        ordersInfoEditor.setData((id > 0 ? obj.info : ''));
+
+        // $("#ordersId").val(id > 0 ? obj.id : "");
+        // $("#ordersName").val(id > 0 ? obj.name : "");
+        // $("#ordersDescription").val(id > 0 ? obj.description : "");
+        // $("#ordersCreatedTime").val(id > 0 ? obj.createdTime : "");
+        // $("#ordersActive").val(id > 0 ? obj.active : "");
+
+        if (id == 0) {
+            $("#ordersActive").val(1);
+            $("#ordersCreatedTime").val(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
+        }
+        else {
+            // correcting data
+            //$('#buyProvinceId').val(obj.provinceId.split(", ")).trigger('change');
+
+        }
+        formatNumber();
+    }
+
+
+    function updateItem(id) {
+        var actionName = (id == 0 ? "Create" : "Update");
+        let obj = getItemById(id);
+        let objName = id > 0 ? obj.name : " ";
+
+        validateInputNumber();
+
+        // "id": $("#ordersId").val(),
+        // "name": $("#ordersName").val(),
+        // "description": $("#ordersDescription").val(),
+        // "createdTime": $("#ordersCreatedTime").val(),
+        // "active": $("#ordersActive").val()
+        var updatingObj = {
+            "id": $("#ordersId").val(),
+            "guId": $("#ordersGuId").val(),
+            "orderTypeId": $("#ordersOrderTypeId").val(),
+            "orderStatusId": $("#ordersOrderStatusId").val(),
+            "orderPaymentStatusId": $("#ordersOrderPaymentStatusId").val(),
+            "accountId": $("#ordersAccountId").val(),
+            "shopId": $("#ordersShopId").val(),
+            "voucher": $("#ordersVoucher").val(),
+            "price": $("#ordersPrice").val(),
+            "totalPrice": $("#ordersTotalPrice").val(),
+            "discount": $("#ordersDiscount").val(),
+            "finalPrice": $("#ordersFinalPrice").val(),
+            "name": $("#ordersName").val(),
+            "description": $("#ordersDescription").val(),
+            "info": $("#ordersInfo").val(),
+            "active": $("#ordersActive").val(),
+            "feedback": $("#ordersFeedback").val(),
+            "createdTime": datetimeFormat($("#ordersCreatedTime").val()),
+
+        };
+
+        // correcting data
+        //updatingObj.provinceId = updatingObj.provinceId.join(", ");
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Performing " + actionName + " item " + objName,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: '@{
+                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+    }' + "orders/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function(responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Updated!',
+                                    'Item ' + objName + ' has been successfully updated!',
+                                    'success'
+                                ).then(() => {
+updateTable(id, updatingObj, "update");
+                                var updatedItemIndex = dataSource.findIndex(item => parseInt(item.id) === id);
+                                dataSource[updatedItemIndex] = updatingObj;
+                                    location.reload();
+                                });
+
+
+                            }
+                        },
+                        error: function(e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Couldn\'t update item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                };
+
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: '@{
+                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+    }' + "orders/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function(responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                Swal.fire(
+                                    'Created!',
+                                    'New item has been successfully created!',
+                                    'success'
+                                );
+                                updatingObj = responseData.data;
+                                dataSource.push(updatingObj);
+                                updateTable(0, updatingObj, "add");
+                            }
+                        },
+                        error: function(e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Couldn\'t create item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+    function deleteItem(id) {
+        let obj = getItemById(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: '@{
+                                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+    }' + "orders/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function(responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Deleted!',
+                                'Item ' + obj.name + ' has been deleted.',
+                                'success'
+                            );
+                            updateTable(id, 0, "delete");
+                        }
+                    },
+                    error: function(e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Error!',
+                            'Item ' + obj.name + ' can\'t be deleted.',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+        })
+    }
+    function acceptItem(id) {
+        let obj = getItemById(id);
+        console.log("1",obj)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, accept it!'
+        }).then((result) => {
+            if (result.value) {
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: '@{
+                 @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+    }' + "orders/api/AcceptOrder",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(obj),
+                    success: function(responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Accept!',
+                                'Item ' + obj.name + ' has been accpet.',
+                                'success'
+                            ).then(()=>{
+obj.orderPaymentStatusId = 1000001;
+                            updateTable(id, obj, "update");
+                                location.reload();
+                            });
+
+
+                        }
+                    },
+                    error: function(e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Error!',
+                            'Item ' + obj.name + ' can\'t be accept it.',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+        })
+
+    }
+    function updateTable(id, obj, action) {
+        var accept = JSON.parse(localStorage.getItem("currentLoggedInUser"));
+        var x = document.getElementById("acp");
+        if(accept.accountTypeName==="System admin"){
+            x.style.display = "none";
+        }
+        if (action === "delete") {
+            table.row("#row" + id).remove().draw();
+        }
+
+        if (action === "add") {
+            console.log("Added:" + obj);
+
+            //var addedItems = [obj];
+            var addedItems = obj;
+            var addedValues = [];
+
+
+            addedItems.forEach(function(item, index) {
+                // console.log(item, index);
+                var rowContent = "";
+                addedValues.push("<td style='text-align: center;'></td>");
+                for (var key in item) {
+                    if (item.hasOwnProperty(key)) {
+                        // console.log(key + " -> " + item[key]);
+                        if (showItem.includes(key)) {
+                            if (key != "photo") {
+                                addedValues.push("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+                            }
+                            else {
+                                addedValues.push("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>");
+                            }
+                        }
+                    }
+                }
+                if (accept.accountTypeName !== "System admin") {
+                        if (item.orderPaymentStatusId == 1000001) {
+                           addedValues.push("<td style='text-align: center;'><a><i class='fa fa-check-square fa-2x' style='color:#03a9f4;cursor: not-allowed;opacity: 0.5;'></i></a></td>");
+                        } else {
+                            addedValues.push("<td style='text-align: center;'><a onclick='acceptItem(" + item.id + ")'><i class='fa fa-check-square fa-2x' style='color:#03a9f4'></i></a></td>");
+                        }
+
+                    }
+
+
+                addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                table.row.add(addedValues).draw();
+            });
+            // location.reload();
+        }
+
+        if (action === "update") {
+            // alert(id);
+            $(".row" + id + "-column").each(function() {
+                var propertyName = $(this).attr("property");
+                console.log(propertyName);
+
+                for (var key in obj) {
+                    if (key === propertyName && obj.hasOwnProperty(key)) {
+                        if (key === "photo") {
+                            $(this).children().attr("src", obj[key]);
+                        }
+                        else {
+                            this.innerText = obj[key];
+                        }
+                    }
+                }
+
+            });
+
+        }
+
+        //Update columns with foreign key
+        // var NO_FKFKUpdateSelector = 'tr';
+        // if( !(typeof(id) === 'undefined')) {
+        //     NO_FKFKUpdateSelector = '#row'+id;
+        // }
+        // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKId]').each(function(){
+        //     // debugger;
+        //     var ordersId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+        //     var ordersObj = getItemById(ordersId);
+        //     var NO_FKId = parseInt(ordersObj.NO_FKId);
+        //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKId);
+        //     $(this).text(NO_FKObj.name);
+        //     // console.log('FK updated for Staff '+ordersId);
+        // });
+
+        try {
+            var orderTypeFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                orderTypeFKUpdateSelector = '#row' + id;
+                var orderTypeId = parseInt(obj.orderTypeId);
+                var orderTypeObj = orderTypeData.find(item => parseInt(item.id) === orderTypeId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(orderTypeObj.name);
+
+                //update data
+                $('#tableData tbody ' + orderTypeFKUpdateSelector + ' td[property=orderTypeId]').text(orderTypeObj.name);
+                //table.cell( this ).data(orderTypeObj.name);
+            }
+            else {
+                //Page load
+                $('#tableData tbody ' + orderTypeFKUpdateSelector + ' td[property=orderTypeId]').each(function() {
+                    // debugger;
+                    var ordersId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var ordersObj = getItemById(ordersId);
+                    var orderTypeId = parseInt(ordersObj.orderTypeId);
+                    var orderTypeObj = orderTypeData.find(item => parseInt(item.id) === orderTypeId);
+                    //$(this).text(orderTypeObj.name);
+                    table.cell(this).data(orderTypeObj.name);
+                    // console.log('FK updated for Staff '+ordersId);
+                });
+            }
+        } catch (error) {
+
+        }
+        try {
+            var orderStatusFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                orderStatusFKUpdateSelector = '#row' + id;
+                var orderStatusId = parseInt(obj.orderStatusId);
+                var orderStatusObj = orderStatusData.find(item => parseInt(item.id) === orderStatusId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(orderStatusObj.name);
+
+                //update data
+                $('#tableData tbody ' + orderStatusFKUpdateSelector + ' td[property=orderStatusId]').text(orderStatusObj.name);
+                //table.cell( this ).data(orderStatusObj.name);
+            }
+            else {
+                //Page load
+                $('#tableData tbody ' + orderStatusFKUpdateSelector + ' td[property=orderStatusId]').each(function() {
+                    // debugger;
+                    var ordersId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var ordersObj = getItemById(ordersId);
+                    var orderStatusId = parseInt(ordersObj.orderStatusId);
+                    var orderStatusObj = orderStatusData.find(item => parseInt(item.id) === orderStatusId);
+                    //$(this).text(orderStatusObj.name);
+                    table.cell(this).data(orderStatusObj.name);
+                    // console.log('FK updated for Staff '+ordersId);
+                });
+            }
+        } catch (error) {
+
+        }
+        try {
+            var orderPaymentStatusFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                orderPaymentStatusFKUpdateSelector = '#row' + id;
+                var orderPaymentStatusId = parseInt(obj.orderPaymentStatusId);
+                var orderPaymentStatusObj = orderPaymentStatusData.find(item => parseInt(item.id) === orderPaymentStatusId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(orderPaymentStatusObj.name);
+
+                //update data
+                $('#tableData tbody ' + orderPaymentStatusFKUpdateSelector + ' td[property=orderPaymentStatusId]').text(orderPaymentStatusObj.name);
+                //table.cell( this ).data(orderPaymentStatusObj.name);
+            }
+            else {
+                //Page load
+                $('#tableData tbody ' + orderPaymentStatusFKUpdateSelector + ' td[property=orderPaymentStatusId]').each(function() {
+                    // debugger;
+                    var ordersId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var ordersObj = getItemById(ordersId);
+                    var orderPaymentStatusId = parseInt(ordersObj.orderPaymentStatusId);
+                    var orderPaymentStatusObj = orderPaymentStatusData.find(item => parseInt(item.id) === orderPaymentStatusId);
+                    //$(this).text(orderPaymentStatusObj.name);
+                    table.cell(this).data(orderPaymentStatusObj.name);
+                    // console.log('FK updated for Staff '+ordersId);
+                });
+            }
+        } catch (error) {
+
+        }
+        try {
+            var accountFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                accountFKUpdateSelector = '#row' + id;
+                var accountId = parseInt(obj.accountId);
+                var accountObj = accountData.find(item => parseInt(item.id) === accountId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(accountObj.name);
+
+                //update data
+                $('#tableData tbody ' + accountFKUpdateSelector + ' td[property=accountId]').text(accountObj.name);
+                //table.cell( this ).data(accountObj.name);
+            }
+            else {
+                //Page load
+                $('#tableData tbody ' + accountFKUpdateSelector + ' td[property=accountId]').each(function() {
+                    // debugger;
+                    var ordersId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var ordersObj = getItemById(ordersId);
+                    var accountId = parseInt(ordersObj.accountId);
+                    var accountObj = accountData.find(item => parseInt(item.id) === accountId);
+                    //$(this).text(accountObj.name);
+                    table.cell(this).data(accountObj.name);
+                    // console.log('FK updated for Staff '+ordersId);
+                });
+            }
+        } catch (error) {
+
+        }
+        try {
+            var shopFKUpdateSelector = 'tr';
+            if (!(typeof (id) === 'undefined')) {
+                // debugger;
+                shopFKUpdateSelector = '#row' + id;
+                var shopId = parseInt(obj.shopId);
+                var shopObj = shopData.find(item => parseInt(item.id) === shopId);
+                //create data
+                //$('#tableData tbody tr:first-child td:nth-child(0)').text(shopObj.name);
+
+                //update data
+                $('#tableData tbody ' + shopFKUpdateSelector + ' td[property=shopId]').text(shopObj.name);
+                //table.cell( this ).data(shopObj.name);
+            }
+            else {
+                //Page load
+                $('#tableData tbody ' + shopFKUpdateSelector + ' td[property=shopId]').each(function() {
+                    // debugger;
+                    var ordersId = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+                    var ordersObj = getItemById(ordersId);
+                    var shopId = parseInt(ordersObj.shopId);
+                    var shopObj = shopData.find(item => parseInt(item.id) === shopId);
+                    //$(this).text(shopObj.name);
+                    table.cell(this).data(shopObj.name);
+                    // console.log('FK updated for Staff '+ordersId);
+                });
+            }
+        } catch (error) {
+
+        }
+
+        formatNumber();
+    }
+
+
+    function getItemById(id) {
+        const result = dataSource.find(item => parseInt(item.id) === id);
+        return result;
+    }
+</script>

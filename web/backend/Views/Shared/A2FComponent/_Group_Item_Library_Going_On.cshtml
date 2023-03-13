@@ -1,0 +1,225 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+
+    @@media only screen and (max-width: 880px) {
+        #nameEach {
+            font-size: 20px !important;
+            font-weight: 600 !important;
+        }
+    }
+    .goingOnLogo {
+        position: absolute !important
+    }
+
+    .Event_Image {
+        position: relative;
+        height: 219px;
+        padding-left: 15px !important;
+    }
+
+        .Event_Image .imageItem {
+            position: relative !important;
+        }
+
+        .Event_Image img:nth-child(2) {
+            top: 10% !important;
+            left: -2% !important;
+        }
+
+        .Event_Image img:first-of-type {
+            width: 350px;
+            height: 220px;
+        }
+
+    .EventContext {
+        padding-bottom: 3%;
+        height: 260px;
+    }
+
+        .EventContext p:nth-child(3) {
+            display: inline-block;
+            padding-right: 1%;
+            font-size: 18px;
+        }
+
+        .EventContext p:last-of-type {
+            display: inline-block;
+            padding-right: 1%;
+            font-size: 18px;
+        }
+
+        .EventContext a:first-of-type {
+            color: #265178;
+            font-size: 28px;
+            font-family: sans-serif;
+        }
+
+        .EventContext p:nth-child(2) {
+            color: #5A6990;
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+        .EventContext span {
+            color: #54555A;
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+    /*Add class css for playButton*/
+    .PlayButton {
+        position: absolute !important;
+        top: 0% !important;
+        border-radius: 50px;
+        width: 55px;
+        height: 55px;
+        background-color: white;
+        padding-top: 18px;
+        padding-left: 21px;
+        margin-left: 38%;
+        margin-top: 22%;
+        box-shadow: 0px 0px 0px 8px rgb(255 255 255 / 30%);
+    }
+
+        .PlayButton:hover {
+            position: absolute;
+            border-radius: 55px;
+            width: 59px;
+            height: 59px;
+            background-color: white;
+            padding-top: 20px;
+            padding-left: 23px;
+            margin-left: 37.5%;
+            margin-top: 21.5%;
+            box-shadow: 0px 0px 0px 0px rgb(255 255 255 / 30%);
+            transition: all 0.2s ease;
+        }
+
+
+        /* Responsive */
+        @@media (max-width : 767px) {
+            .PlayButton {
+                display : none;
+            }
+
+            .EventContext {
+                height : 195px;
+            }
+             
+
+            #NextViewID {
+                padding-left: 89px!important;
+                padding-right: 89px!important;
+            }
+        }
+</style>
+<div class="container">
+    @for (int i = 0; i < ViewBag.ListEventsIsGoingOn.Count; i++)
+    {
+        var item = ViewBag.ListEventsIsGoingOn[i];
+    <div class="row">
+        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 Event_Image">
+            <img class="imageItem imgBorderCover" style="width: 100%" src="@item.Photo" />
+            <p class="PlayButton"><a href="/chi-tiet-thu-vien/@item.Url"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>
+
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 EventContext">
+            <a id="nameEach" class="ellipsis3" href="/chi-tiet-thu-vien/@item.Url" style="font-size: 24px">@item.Name</a>
+            <p class="ellipsis3" style="width: 90%; font-size: 15px">
+                @item.Description
+            </p>
+            <div>
+                <span><i class="far fa-eye"></i></span><span>  @item.ViewCount</span>
+                <span style="margin-left: 10px"><i class="fas fa-calendar-day"></i></span><span>  @item.CreatedTime.ToString("dd/MM/yyyy")</span>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    }
+    <div id="next-viewEventsOn"> </div>
+</div>
+
+
+<div id="Nextview-button" style="text-align: center; margin-bottom: 50px" class="row">
+    <button id="NextViewID" onclick="NextView();" style="padding-left: 120px; padding-right: 120px; background-color: #11335A; color: #FFFFFF" type="button" class="btn btn-default">@ViewBag.lblXemTiep</button>
+</div>
+<script>
+
+    var currentpageIndex = 2;
+
+    function NextView() {
+        debugger;
+        var currentpageSize = 4;
+        var SameCategoryListCount = "";
+        var dataSource = [];
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: '/Post/api/ListPagingLibrary/' + currentpageIndex + '/' + currentpageSize,
+            success: function (result) {
+                console.log("arrList: " + result.data);
+                dataSource = result.data;
+                for (var i = 0; i < dataSource.length; i++) {
+                    var date = new Date(dataSource[i].createdTime);
+                    var a = date.getDay();
+                    if (a < 10) {
+                        a = "0" + a
+                    }
+                    var b = date.getMonth() + 1;
+                    if (b < 10) {
+                        b = "0" + b
+                    }
+                    var c = date.getFullYear();
+                    dataSource[i].createdTime = a + "/" + b + "/" + c;
+                    //var htmlImg = "";
+                    //if (dataSource[i].video != "") {
+                    //    htmlImg = `  <iframe class="embed-responsive-item" style="width: 100%; height:100%" src="` + dataSource[i].video + `"></iframe>`;
+                    //}
+                    //else {
+                    //    htmlImg = ` <img class="imageItem" style="width: 100%" src="/` + dataSource[i].photo + `" /><p class="PlayButton"><a href="/chi-tiet-thu-vien/` + dataSource[i].url +`"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>`;
+                    //}
+                    $("#next-viewEventsOn").append(`<div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Event_Image">
+            <img class="imageItem imgBorderCover" style="width: 100%" src="`+ dataSource[i].photo + `" />
+            <p class="PlayButton"><a href="/chi-tiet-thu-vien/`+ dataSource[i].url + `"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>
+
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 EventContext">
+            <a id="nameEach" class="ellipsis3" href="/chi-tiet-thu-vien/`+ dataSource[i].url + `" style="font-size: 24px">` + dataSource[i].name + `</a>
+            <p class="ellipsis3" style="width: 90%; font-size: 15px">
+                `+ dataSource[i].description + `
+            </p>
+            <div>
+                <span><i class="far fa-eye"></i></span><span>  `+ dataSource[i].viewCount + `</span>
+
+                <span style="margin-left: 10px"><i class="fas fa-calendar-day"></i></span><span>  `+ dataSource[i].createdTime +`</span>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+`);
+                    }
+
+                },
+                error: function (result) {
+                    $('#Nextview-button').hide();
+                    $("#next-viewEventsOn").append(`<p style="text-align: center; font-size: 15px">Đã xem hết các tài liệu<p> `);
+                }
+            });
+            currentpageIndex++;
+        }
+</script>

@@ -1,0 +1,475 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{ Layout = null; }
+
+<!-- Nabbar : starts -->
+<style>
+    /* CSS in tab bar : Start */
+    .collapsible::after {
+        content: "\2212";
+    }
+    .no-padding {
+        padding : 0 !important;
+    }
+    .nav-tabs-privacy > li > a {
+        line-height: 1.428571;
+        padding: 20px 10px;
+        letter-spacing: 1px;
+        font-size: 18px;
+    }
+
+    ul.nav-tabs-privacy {
+    }
+
+    .nav-tabs-privacy li {
+        width: 100%;
+        
+        background-color: #E9F4F5;
+        color: #265178;
+        border-top-width: thin;
+        border-top-style: solid;
+        border-top-color: #ccc;
+    }
+
+    .nav-tabs-privacy > li.active > a,
+    .nav-tabs-privacy > li.active > a:focus,
+    .nav-tabs-privacy > li.active > a:hover {
+        background-color: #0D9CC9;
+        
+        color: white;
+    }
+
+    .banner {
+        background-color: #E9F4F5;
+        color: #265178; 
+        padding: 20px 30px;  height :100px; pointer-events: none; 
+    }
+
+    .fa-arrow-right {
+        float: right;
+        display: none;
+    }
+
+        .fa-arrow-right.show {
+            display: block;
+        }
+
+    i.icon-navbar {
+        padding-top: 3px;
+        pointer-events: none;
+    }
+
+    
+
+    /* CSS in tab bar : End */
+
+        #aboutus-image {
+            margin : 0 !important;
+        }
+
+        /* Fade animate */
+        .fade {
+            opacity: 0;
+            -webkit-transition: opacity .15s linear;
+            -o-transition: opacity .15s linear;
+            transition: opacity 0.40s linear;
+        }
+         
+</style>
+ 
+
+
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 container-nopadding container-nopadding-aboutus">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="headline" style="box-shadow: 0px 0px 10px #ccc; padding : 0">
+
+        <div class="banner">
+            <h4 style="line-height: 40px; font-size: 32px; font-weight: 400; float: left;">
+                Phụ lục 5
+            </h4>
+            <img  src="~/images/logo1.bmp" class="img-responsive img-logo-tabbar-aboutus" alt="Image" style="float: left; padding: 0; margin-left: 5px">
+       
+            @*<small>Một số ví dụ cho Doanh nghiệp nhằm đáp ứng điều kiện có ảnh hưởng đến quyết định tài trợ vốn của Tổ chức tài chính</small>*@
+        </div>
+
+        <ul class="nav nav-tabs-privacy flex-column" id="privacy-ul" role="tablist">
+            <!-- Comment lại phần load động navbar -->
+
+               @* @for(var i = ViewBag.listPostPhuLuc5.Count-1;i >= 0; i-- )
+                {
+                    if(i== ViewBag.listPostPhuLuc5.Count-1)
+                    {
+                        <li role="presentation" class="active tab-contain">
+                            <a href="#tab-@i" aria-controls="tab" role="tab" data-toggle="tab" style="margin: 0;">
+                            @ViewBag.listPostPhuLuc5[i].Name <i class="fa-solid fa-arrow-right show icon-navbar" style="padding: 3px;"></i>
+                        </a>
+                        </li>
+
+                        <li  role="presentation" style="pointer-events: none; ">
+                        <a href="#"  style="margin: 0;">
+                        2.Chi tiết 
+                    </a>
+                    </li>
+                        continue;
+                    }
+                    <li class="tab-contain" role="presentation">
+                        <a href="#tab-@i" aria-controls="tab-@i" role="tab" data-toggle="tab" style="margin: 0;">
+                        @ViewBag.listPostPhuLuc5[i].Name <i class="fa-solid fa-arrow-right icon-navbar" style="padding: 3px;"></i>
+                    </a>
+                    </li>
+                }*@
+                <li role="presentation" class="active tab-contain">
+                   <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab" style="margin: 0;">
+                        1. PHƯƠNG PHÁP XÂY DỰNG <i class="fa-solid fa-arrow-right show icon-navbar" style="padding: 3px;"></i>
+                   </a>
+                </li>
+                <li class="tab-contain" role="presentation">
+                        <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab" style="margin: 0;">
+                        2. MỘT SỐ VÍ DỤ <i class="fa-solid fa-arrow-right icon-navbar" style="padding: 3px;"></i>
+                    </a>
+                </li>
+        </ul>
+        </div>
+    </div>
+    <!-- Navbar : ends -->
+
+    @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+        <!--SCROLL BAR START-->
+        <partial name="../Shared/A2FComponent/_SurveyBar_AboutUs" />
+        <!--SCROLL BAR END-->
+    </div>*@
+
+</div>
+
+<!-- Navpane : Starts -->
+
+
+<style>
+    @@media (min-width: 992px) {
+        div.tab-content h2 {
+            margin-top: 0; 
+    margin-bottom: 10px;
+}
+        }
+    }
+</style>
+<style>
+    /* Responsive */
+    @@media (max-width: 1199px) {
+        .photo-center-1 {
+            right: 8%;
+        }
+    }
+    
+    @@media (min-width: 631px) {
+        margin-righttghtghtght-sm {
+            display: none;
+        }
+        .photo-center {
+            position: absolute;
+            bottom: 37px;
+            right: 35%;
+            width: 69px;
+        }
+        .photo-center-1 {
+            right: 17%;
+            position: absolute;
+            bottom: 37px;
+            width: 155px;
+        }
+    }
+    
+    @@media (max-width: 630px) {
+        #aboutus-image {
+            display: none;
+
+        }
+        #aboutus-image-sm {
+            display: contents !important;
+            position: relative;
+        }
+        .photo-center {
+            width: 60px;
+            margin: 1%;
+        }
+        .photo-center-1 {
+            width: 126px;
+            margin-right: 1em;
+        }
+        @@media (max-width: 375px) {
+            .photo-center-1 {
+                width: 100px;
+            }
+        }
+    }
+    
+    .tab-pane p, .tab-pane li {
+        font-size: 17px;
+    }
+     
+
+    div.content-phuluc5 table {
+        width : 100% !important;
+    }
+
+    div.content-phuluc5 img {
+        width : 100%;
+    }
+
+    div.content-phuluc5 table td {
+        padding: 0px 4px;
+    }
+</style>
+
+<!-- Responsive for tabbar : start-->
+<style>
+        .content-phuluc5 td {
+           height: fit-content !important;
+        }
+        
+     /* small screen laptop */
+        @@media (max-width : 1200px) and (min-width : 769px) { 
+            .img-logo-tabbar-aboutus {
+                display : none;
+            }
+        }
+
+        /* L screen phone */
+        @@media (max-width : 425px) {
+            .container-nopadding-aboutus {
+                padding : 0;
+            }
+        }
+
+        /* S screen mobile */
+        @@media (max-width : 325px) {
+            .img-logo-tabbar-aboutus {
+                display : none;
+            }
+        }
+
+        @@media (max-width : 1300px) {
+            .container-justpaddingAlittle {
+                padding-right: 0px; 
+                 padding-left: 0px;
+            }
+
+            .container-nopadding-aboutus {
+                padding : 0;
+            }
+        }
+
+
+
+</style>
+
+
+    <!-- Style for nav cộng trừ mở data trong nội dung -->
+    <style>
+    .faq-button {
+        border: 0;
+        width: 100%;
+        border-bottom: 0.5px #265178 solid;
+        background-color: #FFFFFF;
+        border-radius: 0 !important;
+        color: #5A6990;
+        text-align: left;
+    }
+
+    .collapsible:after {
+        content: '\002B';
+        color: #5A6990;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .collapsible.active:after {
+        content: "\2212";
+    }
+
+    .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #f1f1f1;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                }
+            });
+        }
+    });
+</script>
+
+
+
+<style>
+    /* Phần nav trỏ xuống */
+    .nav-down-pl5 { 
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 34px;
+        letter-spacing: 0em;
+        text-align: left;
+        color : #5A6990;
+    }
+</style>
+
+<!-- Tab panes -->
+
+
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="tabPane container-nopadding container-nopadding-aboutus" style="background-color: azure; padding-top: 20px;    border: 1px solid aquamarine;">
+    <div class="tab-content headline" style="text-align:justify;">
+
+        <!-- Trang phương pháp xây dựng-->
+        @for(var i= ViewBag.listPostPhuLuc5.Count-1; i>= 0 ; i--)
+        {
+
+            @*if(i == ViewBag.listPostPhuLuc5.Count-1)*@
+            // LẤY Bài viết cuối cùng để hiển thị
+            if(@ViewBag.listPostPhuLuc5[@i].Id == 47831)
+            {
+                <div role="tabpanel" class="tab-pane active fade in" id="tab">
+           
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-nopadding">
+                    <h2> @ViewBag.listPostPhuLuc5[@i].Name</h2>
+                    <div class="content-phuluc5"> 
+                        @Html.Raw(@ViewBag.listPostPhuLuc5[@i].Text)
+                    </div> 
+                </div>
+            </div>
+             
+            } 
+        }
+
+        <div role="tabpanel" class="tab-pane fade" id="tab-1">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-nopadding">
+              
+                <h2> 2. Một số ví dụ
+                </h2>
+                    
+                <!-- Load ví dụ bằng load ngược-->
+                    @for(var i= ViewBag.listPostPhuLuc5.Count-1; i>= 0 ; i--)
+                    {
+                        <!-- Nếu không phải id là lời giới thiệu thì thêm vào trang -->
+                        if(@ViewBag.listPostPhuLuc5[@i].Id != 47831)
+                        {
+                            <button class="btn collapsible faq-button nav-down-pl5" id="btn-collapse-@i" style="width: 100%; box-shadow: none; outline: none; padding:0 !important; height:50px; margin-bottom: 12px; display:inline-block; overflow:auto;background: azure;" type="button" data-toggle="collapse" data-target="#collapseExample-@i" aria-expanded="false" aria-controls="collapseExample">
+                            @*<span><i class="fas fa-circle icon-faq"></i></span>*@
+                            @ViewBag.listPostPhuLuc5[@i].Name
+                            </button>
+
+                            <div class="collapse" id="collapseExample-@i">
+                                <div class="card card-body content-phuluc5">
+                                    @Html.Raw(@ViewBag.listPostPhuLuc5[@i].Text)
+                                </div>
+                                @if (i != 0)
+                                {
+                                    @*<button onclick="nextView(@i)" class="btn btn-warning buttonViewMore">
+                                        @ViewBag.lblXemThem<i class="fas fa-play" style="margin-left: 5px;font-size: 5px; vertical-align: middle; "></i>
+                                    </button>*@
+                                }
+                            </div>
+                        }
+                        
+                    }
+                      
+            </div>
+        </div>
+        <script>
+            function nextView(value) {
+                //$(".collapsible.faq-button.collapsed[data-target=collapseExample-" + value + "]").click();
+                var nextValue = (value - 1).toString();
+                $("#btn-collapse-" + nextValue+"").click();
+            }
+        </script>
+        
+        @*<div role="tabpanel" class="tab-pane fade" id="tab2">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-nopadding">
+
+                <h2> @ViewBag.listPostPhuLuc5[2].Name</h2>
+                <img src="@ViewBag.listPostPhuLuc5[2].Photo" class="img-responsive" alt="Image" style="padding : 0; margin-top: 20px;  width:100%;">
+                @Html.Raw(@ViewBag.listPostPhuLuc5[2].Text)
+            </div>
+
+        </div> *@
+    </div>
+
+</div>
+
+
+<script>
+    setTimeout(function(){ 
+        // hàm sự kiện click vào thẻ <li>    
+        $("li.tab-contain").click(function(){ 
+            // xử lí xóa class show
+            $(".fa-solid.fa-arrow-right").removeClass("show");
+            // xử lí thêm class show vào trong thẻ <li>
+            $(this).children().children().addClass("show");
+        });
+    }, 1000);
+
+    //function getEventTarget(e) {
+    //    e = e || window.event;
+    //    return e.target || e.srcElement;
+    //};
+    //var ul = document.getElementById('privacy-ul');
+    //ul.onclick = function(event) {
+    //    // debugger
+    //    var listLiInUl = $("li[role=presentation]");
+    //    for (var i = 0; i < listLiInUl.length; i++) {
+    //        var item = listLiInUl[i];
+    //        if (item.className == "active") {
+    //            var childInLi = item.lastElementChild;
+    //            var iconInLi = childInLi.lastElementChild.className = 'fa-solid fa-arrow-right icon-navbar';
+    //        }
+    //    }
+    //    var target = getEventTarget(event);
+    //    target.lastElementChild.className = 'fa-solid fa-arrow-right show icon-navbar';
+    //};
+
+      
+
+    // script làm mềm animate cho navbar
+    $('.collapsible').click(function () {
+            $('.collapsible.active').each(function () {
+                $(this).removeClass("active");
+
+            });
+            $(this).addClass('active');
+            var id = $(this).data('target');
+            $('.TitleCollap.in').each(function () {
+                if ("#" + $(this).attr("id") != id) {
+                    $(this).removeClass("in");
+                    $(this).css('height', '0px');
+                    $(this).addClass("collapse");
+                }
+                else {
+                    $('.collapsible.active').each(function () {
+                        $(this).removeClass("active");
+
+                    });
+                }
+
+            });
+
+        });
+</script>
+<!-- Navpane : Ends -->
+

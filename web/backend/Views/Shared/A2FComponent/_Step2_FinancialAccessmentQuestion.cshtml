@@ -1,0 +1,470 @@
+﻿@using A2F.Util
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = null;
+}
+
+<style>
+    #step-2 .nav.nav-tabs, #step-3 .nav.nav-tabs {
+        background-color: #0e9cc9;
+
+
+    }
+    #step-2 .nav-tabs > li.active > a, #step-2 .nav-tabs > li.active > a:focus, #step-2 .nav-tabs > li.active > a:hover,
+    #step-3 .nav-tabs > li.active > a, #step-3 .nav-tabs > li.active > a:focus, #step-3 .nav-tabs > li.active > a:hover {
+        
+    color: white;
+    border-bottom: 4px solid #6a7885;
+    background-color: unset;
+    }
+    #step-2 .nav-tabs > li > a, #step-3 .nav-tabs > li > a {
+        color: white;
+        
+        border: unset;
+    }
+    .nav > li > a:focus, .nav > li > a:hover {
+        background-color:unset;
+    }
+    .question-quote {
+            font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    /* left: 0px; */
+    /* top: 104px; */
+    border-radius: 5px;
+    padding: 15px;
+    background: #EBF6F9;/*
+    margin-right: 30px;*/
+    margin-bottom: 20px;
+    }
+
+    #smartwizard h5 {
+        font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: gray;
+    margin-bottom: 17px;
+    }
+
+    #smartwizard h3 {
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #265178;
+}
+
+    /* Style color for table */
+    table.table th {
+        background: #0E9CC9;
+        color: #ffffff;
+    }
+
+        table.table th#head-title {
+            background: #125FA6;
+            color: #ffffff
+        }
+
+    table.table tr.section-row {
+        background: #EBF6F9;
+        color: #125FA6;
+    }
+
+    .questionactive {
+        cursor: pointer;
+        border-radius: 50%;
+        display: inline-block !important;
+        padding: 1px 5px !important;
+        background: linear-gradient( 135.52deg, rgba(56, 226, 167, 0) 3.36%, #22A9D3 95.87%), linear-gradient( 0deg, #3FD5A8, #3FD5A8) !important;
+        animation: zoom 0.5s linear normal;
+    }
+
+    table.table td.content {
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+
+    tr.preferential th, table.table th {
+        vertical-align: top !important;
+    }
+</style>
+
+<style>
+    /* preferential table to ❤️ it. */
+    div.wrapper-scrolling-step2 {
+        overflow-x:auto;
+    }
+
+    div.wrapper-scrolling-step2>table.preferential {
+       border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    div.wrapper-scrolling-step2>table.preferential th, div.wrapper-scrolling-step2>table.preferential td {
+      text-align: left;  
+      min-width:130px
+    }
+
+    div.wrapper-scrolling-step2>table.preferential th#head-title  {
+            min-width: 300px !important;
+    }
+
+
+</style>
+
+<br />
+<br />
+<ul class="nav nav-tabs step2-nav">
+  <li class="active"><a data-toggle="tab" href="#home" style="padding: 10px 35px !important;">Xác đinh nguồn tài chính phù hợp</a></li>
+  <li><a data-toggle="tab" href="#menu1" style="padding: 10px 35px !important;">Xác định ngành và lĩnh vực tài chính ưu tiên</a></li> 
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+      <!-- Xác định nguồn tài chính : Start -->
+    <div class="question-quote">
+        Doanh nghiệp của bạn thuộc <b>DNNNV <span id="showDNNNV"></span></b>
+        <br/>
+        <br/> 
+        Doanh nghiệp có thể huy động vốn thông qua các quỹ đầu tư, quỹ khởi nghiệp hoặc các tổ chức tài chính vi mô, 
+        ngân hàng chính sách tùy theo điều kiện hiện tại của doanh nghiệp.
+        <br/> 
+        <br/> 
+        Nhấn vào 
+        <span class="questionactive"><i class="fas fa-check" style="color : white"></i></span> để xem rõ chi tiết về từng lĩnh vực tài chính.
+    </div>
+
+    <!-- Table xác định nguồn tài chính phù hợp : Start-->
+    <div class="wrapper-scrolling-step2">
+     <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" id="head-title">Sản phẩm, dịch vụ tài chính theo nhu cầu của doanh nghiệp</th>
+            @foreach (var item in ViewBag.ListOrganizationType)
+            {
+            <th scope="col">@item.Name</th>
+            @*<th scope="col">Ngân hàng TMCP</th>
+                <th scope="col" class="section-row">Ngân hàng chính sách</th>
+                <th scope="col">TC tài chính vi mô</th>
+                <th scope="col">TC bão lãnh tín dụng</th>
+                <th scope="col">Công ty tài chính</th>
+                <th scope="col">Công ty cho thuê tài chính</th>
+                <th scope="col">Quỹ đầu tư</th>*@
+            }
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.ListFinancialProductType)
+        {
+            // Financial Product Type
+        <tr class="section-row">
+
+            <td scope="row"><b>@item.Name</b></td>
+            @for(int index=0 ; index < ViewBag.ListOrganizationType.Count; index ++) {
+            <td></td>
+              }
+
+        </tr>
+
+        @foreach(var item2 in ViewBag.ListFinancialProduct){
+
+
+                if(item2.FinancialProductTypeId == item.Id)
+                {
+        <tr>
+            <td scope="row">@item2.Name</td>
+
+            @for(int index=0 ; index < ViewBag.ListOrganizationType.Count; index ++) {
+
+            <td class="content table1" id="@ViewBag.ListOrganizationType[index].Id-@item2.Id"></td>
+
+                    }
+
+        </tr>
+                }
+            }
+        }
+
+    </tbody>
+</table>
+</div>
+ <!-- Xác định nguồn tài chính phù hợp : End-->
+
+    <!-- Xác định nguồn tài chính : End -->
+  </div>
+  <div id="menu1" class="tab-pane fade">
+      <!-- Xác định sự ưu tiên : Start -->
+    <div class="question-quote">
+        Nhấn vào 
+        <span class="questionactive"><i class="fas fa-check" style="color : white"></i></span> để xem rõ chi tiết về từng lĩnh vực tài chính ưu tiên.
+    </div>
+
+
+
+    <!-- Table xác định ưu tiên : Start-->
+    <div class="wrapper-scrolling-step2">
+        <table class="table table-hover preferential" > 
+            <thead>
+                <tr class="preferential">
+                    <!-- load by ajax-->
+                </tr>
+            </thead>
+            <tbody class="body-preferential">
+        
+            </tbody>
+        </table>
+    </div>
+     
+ <!-- Xác định ưu tiên : End-->
+
+      <!-- Xác định sự ưu tiên : End -->
+     
+  </div> 
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+
+    setTimeout(function () {
+        $(".sw-btn-next").on('click', function (event) {
+            var dataSource = [];
+            var html = "";
+            var idchart = "";
+            $(".sw-btn-next").addClass("disabled");
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "/financialproductdetail/api/listbyview/" +   currentEnterpriseTypeId ,
+
+                success: function (responseData) {
+
+                    // clear all pick before
+                    $('td.table1').html("");
+                    //$('#showDNNNV').html("");
+
+                    // hiển thị loại hình doanh nghiệp của user
+                    if(currentEnterpriseTypeId == 1000001) {
+                        $('#showDNNNV').html("0");
+                       
+                    } else if(currentEnterpriseTypeId == 1000002) {
+                         $('#showDNNNV').html("1");
+                    } else if(currentEnterpriseTypeId == 1000003) {
+                         $('#showDNNNV').html("2");
+                    
+                    } else if(currentEnterpriseTypeId == 1000004) {
+                         $('#showDNNNV').html("3");
+                    }
+                    
+                    else {
+                        // trả về khi ng dùng chưa điền loại hình dn
+                         $('#showDNNNV').html("Chưa xác định");
+                    }
+
+                    if (responseData.status == 200 && responseData.message == "SUCCESS") {
+                        //receive data from financial product detail
+                        
+                        // nếu user chưa chọn thì k ẩn tab đi (ẩn tab thiếu, show tabs đủ) (chưa xong)
+                        //if(currentEnterpriseTypeId == 0) {
+                        //    /
+                        //    $('ul.step2-nav').hide();
+                        //    $('div#home').hide();  
+                        //    $('div#menu1').fadeIn(); 
+
+                        //} 
+
+                        dataSource = responseData.data;
+
+                        for (var i = 0; i < dataSource.length; i++) {
+                            if (currentEnterpriseTypeId == dataSource[i].enterpriseTypeId) {
+                                idchart = dataSource[i].organizationTypeId + "." + dataSource[i].financialProductId;
+
+                                html = '<span class="questionactive" id ="' + idchart + ' "onclick="hiddenSubmit(' + idchart + ')"><i class="fas fa-check" style="color : white"></i></span>';
+                                idchart = "#" + idchart;
+                                idchart = idchart.replace('.', '-');
+                                $(idchart).html(html);
+                            }
+
+
+
+
+                        }
+                    }
+
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+
+        });
+    }, 500);
+</script>
+
+<script>
+    // ưu tiên : Start
+    setTimeout(function(){
+        $(".sw-btn-next").on('click', function(event){ 
+            var detaildataSource = [];
+             var html = "";
+             var idchart ="";
+             var countt1 = 0;
+             const cars1 = new Array();
+             let blur = true;
+
+             // mảng gồm id các phần tử hàng ngang
+             const finn = new Array();
+             // mảng gồm id các phần tử hàng dọc (đề mục)
+             const pref = new Array();
+
+        $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "/preferentialproductdetail/api/ListToViewModel/",
+
+                success: function (responseData) {
+                    
+                    // xóa toàn bộ bảng = gồm hàng ngang, hàng dọc, tích, các biến lưu tạm  -  k làm vì thấy k sinh ra lỗi (pending)
+                    
+                    $('tr.preferential').html("");
+                    $('td.table2').html("");
+
+
+
+                    if (responseData.status == 200 && responseData.message == "SUCCESS") {
+                        // if user does not pick any value -> send message 
+                        if(ArrayPreferentialSelected.length == 0) {
+                            // nếu user chưa chọn thì k ẩn tab đi (ẩn tab thiếu, show tabs đủ) (xong) 
+                            //$('ul.step2-nav').hide();
+                            //$('div#menu1').hide();  
+                            //$('div#home').fadeIn(); 
+
+                        } else {
+                        //receive data from financial product detail
+                         dataSource = responseData.data;
+
+                         // thêm tên ngân hàng - organize - ngang
+
+                         // hàng đầu tiên AUTO
+                         html = '<th scope="col" id="head-title">Ngành, lĩnh vực tài chính ưu tiên</th>';
+
+                         for(var t = 0; t< ArrayPreferentialSelected.length; t++) {
+                             for(var i=0; i<dataSource.length; i++) {
+                                 // nếu chuỗi từ step 1 so sánh với api giống thì in ra
+                                 if(ArrayPreferentialSelected[t] == dataSource[i].preferentialProductId) {
+                                     // bug : xảy ra lỗi lặp data khi colect từ bước 1 (đã fix)
+                                     if(!finn.includes(dataSource[i].organizationId)) {
+                                         html += '<th scope="col">' + dataSource[i].organizationName+'</th>';
+                                         finn.push(dataSource[i].organizationId);
+                                     }
+                                    
+                                     
+                                 }
+                             }
+                         }
+                         
+                         $('tr.preferential').html(html);
+                         
+                         // clear bộ nhớ tạm của biến : html
+                         html = ""; 
+
+                         // thêm tên sản phâm ưu tiên và đề mục - PreferentialProduct & PreferentialType - dọc
+
+                         // lặp kép : step1 > data sổ tay > nếu đúng pp
+                         
+                         for(var t = 0; t < ArrayPreferentialSelected.length; t++) {
+                             for(var i=0; i<dataSource.length; i++) { 
+                                 // nếu đúng pp
+                                if(ArrayPreferentialSelected[t] == dataSource[i].preferentialProductId) {
+
+                                    // thiếu tính năng : in đề mục của từng lựa chọn (xong)
+
+                                    // Thêm đầu mục (preferentialType) : nếu đề mục chưa có => data sẽ add thêm đề mục vào
+                                    if(!pref.includes(dataSource[i].preferentialTypeId)) {
+                                        html += '<tr class="section-row"> <td scope="row" style="font-weight:bold;">' + dataSource[i].preferentialTypeName + '</td>';
+                                        
+                                        for(var j = 0; j < finn.length; j++) {
+                                            html += '<td></td>';
+                                        }
+                                        html += '</tr>';
+                                        pref.push(dataSource[i].preferentialTypeId);
+                                    }
+
+                                    // Thêm preferentialProduct, chia id cho từng ô của cột
+
+                                    // bug : lặp đoạn add PreferentialProduct vì cột ngang (xong)
+                                      html += '<tr> <td scope="row">' + dataSource[i].preferentialProductName+'</td>';
+                                      for(var j = 0; j < finn.length; j++) {
+                                          // lưu id = cột dọc - cột ngang - bảng 2
+                                          html += '<td class="content table2" id="' +dataSource[i].preferentialProductId + '-'+ finn[j] + "-2" + '"></td>';
+                                      }
+                                      html += '</tr>'; 
+                                      // chỉ cần lấy tên đầu mục nên khi có tên đầu mục sẽ thoát vòng lặp.
+                                      break;
+                                 } 
+
+                             }
+                             
+                         } 
+                         $('tbody.body-preferential').html(html);
+                         
+                         // clear bộ nhớ tạm của biến : html
+                         html = "";
+                         
+                         // thêm tích giữa các ô - id theo cột dọc - cột ngang 
+
+                         // lặp kép : step1 > data sổ tay > nếu đúng pp
+                         // bug : thiếu tích cho 1 vài trường hợp (xong)
+                         
+                         setTimeout(function(){
+                             for(var t = 0; t < ArrayPreferentialSelected.length; t++) {
+                             for(var i = 0; i<dataSource.length;i++) {
+                                // nếu đúng pp
+                                if(ArrayPreferentialSelected[t] == dataSource[i].preferentialProductId) {
+                                    // xác định id của nút xanh
+                                    idchart = "#" + dataSource[i].preferentialProductId +"-"+ dataSource[i].organizationId + "-2" ;
+                                    // truyền tham số Id bảng preferentialProductDetail -> step3
+                                    html = '<span class="questionactive" onclick="PreferentialProductSubmit(' + dataSource[i].id + ')" ><i class="fas fa-check" style="color : white"></i></span>' ;
+                                    $(idchart).html(html);
+                                }
+                             }
+                         }
+                         }, 1000);
+                         
+
+                        }
+                    }
+
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+
+        });
+    },1000);
+
+
+</script>
+ 

@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!-- GOOGLE ADS  -->
+<div class="" id="inArticleBanner2">
+    <div class="">
+        <div class="">
+            <div class="" id="googleAdsInArticleBanner2" style="background:transparent; border: 1px solid transparent;">
+
+
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- In-Article Banner 2 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9498518197328948"
+                     data-ad-slot="7206514288"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!-- GOOGLE ADS ENDS -->
+
+
+
+<div class="author-box single-entry-section">
+    <div class="author-box__image">
+        <div class="author-avatar"><img alt='@ViewBag.PostAccountName' src='@ViewBag.PostAccountPhoto' class='avatar avatar-180 photo avatar photo' height='180' width='180' /></div>
+    </div>
+    <div class="author-box__text">
+        <div class="author-name meta-font"><a href="../author/@ViewBag.PostAccountName" title="Posts by gappingworld" rel="author">@ViewBag.PostAccountName</a></div>
+        <div class="author-bio">@ViewBag.PostAccountInfo</div>
+        <div class="author-info">
+            <div class="row row--space-between row--flex row--vertical-center grid-gutter-20">
+                <div class="author-socials col-xs-12 col-sm-6">
+                    <ul class="list-unstyled list-horizontal list-space-sm">
+                        <li><a href="@ViewBag.SystemConfigs["LINK_AUTHOR_TWITTER"].Description" target="_blank"><i class="mdicon mdicon-twitter"></i><span class="sr-only">Twitter</span></a></li>
+                        @*<li><a href="@ViewBag.lblLinkGoogle" rel="publisher" target="_blank"><i class="mdicon mdicon-google-plus"></i><span class="sr-only">Google+</span></a></li>*@
+                        <li><a href="@ViewBag.SystemConfigs["LINK_FACEBOOK"].Description" target="_blank"><i class="mdicon mdicon-facebook"></i><span class="sr-only">Facebook</span></a></li>
+                        @*<li><a href="@ViewBag.SystemConfigs["LINK_AUTHOR_YOUTUBE"].Description" target="_blank"><span class="sr-only">Youtube</span></a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

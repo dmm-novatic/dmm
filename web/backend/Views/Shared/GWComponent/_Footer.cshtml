@@ -1,0 +1,459 @@
+﻿
+@{
+    Layout = null;
+}
+
+@*<footer class="site-footer footer-2   site-footer--inverse inverse-text">
+        <div class="site-footer__section">
+            <div class="container">
+                <div class="site-footer__section-inner text-center">
+                    <div class="site-logo">
+                        <a href="#">
+                            <img src="~/files/frontend/images/core/LOGO-gw.png" alt="logo" width="80" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer__section">
+            <div class="container">
+                <nav class="footer-menu text-center">
+                    <div class="menu-footer-container">
+                        <ul id="menu-footer" class="navigation navigation--footer navigation--inline">
+
+                            @{
+
+                                foreach (var obj in ViewBag.MenuList)
+                                {
+                                    <li id="menu-footer-@obj.Id" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-2258"><a href="@obj.Url">@obj.Name</a></li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="site-footer__section">
+            <div class="container">
+                <ul class="social-list social-list--lg list-center">
+                    <li><a href="@ViewBag.SystemConfigs["LINK_FACEBOOK"].Description" target="_blank"><i class="mdicon mdicon-facebook"></i></a></li>
+                    <li><a href="@ViewBag.SystemConfigs["LINK_TWITTER"].Description" target="_blank"><i class="mdicon mdicon-twitter"></i></a></li>
+                    <li><a href="@ViewBag.SystemConfigs["LINK_YOUTUBE"].Description" target="_blank"><i class="mdicon mdicon-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__section">
+            <div class="container">
+                <div class="text-center">
+                    Gapping World © 2019. Made with ☕ by <a href="#">Novatic</a>
+                </div>
+            </div>
+        </div>
+    </footer>*@
+<style>
+    .novaticFooter {
+        background-color: #000 !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+        .novaticFooter li, ul {
+            list-style: none !important;
+            padding: 0 !important;
+        }
+
+    footer section {
+        padding: 20px 0 20px 0 !important;
+    }
+
+    .footer-top {
+        border-bottom: 3px solid #fff !important;
+        padding-bottom: 20px !important;
+        overflow: hidden !important;
+    }
+
+    .footer-logo-postgroup {
+        width: 200px !important;
+        float: left !important;
+        display: inline-block !important;
+    }
+
+    .footer-showpc {
+        display: block !important;
+    }
+
+    .footer-social {
+        float: right !important;
+        text-align: right !important;
+    }
+
+        .footer-social ul li {
+            display: inline-block !important;
+            padding: 0 10px !important;
+            list-style: none !important;
+        }
+
+        .footer-social ul {
+            list-style: none !important;
+        }
+
+    .footer-middle {
+        padding: 20px 0 0 0 !important;
+    }
+
+    .footer-row .footer-col:first-child {
+        border-right: 1px solid rgba(255, 255, 255, 1) !important;
+    }
+
+    .footer--col {
+        float: left !important;
+    }
+
+    .footer-list {
+        float: left !important;
+        padding-right: 83px !important;
+    }
+
+        .footer-list ul li {
+            padding-bottom: 20px;
+            font-family: arial_black,Helvetica Neue,Helvetica,sans-serif !important;
+            font-size: 13px !important;
+            line-height: 24px !important;
+            color: #fff !important;
+            text-transform: uppercase !important;
+        }
+
+            .footer-list ul li a {
+                font-family: arial_black,Helvetica Neue,Helvetica,sans-serif !important;
+                /*font-size: 13px !important;*/
+                line-height: 24px !important;
+                color: #fff !important;
+                text-transform: uppercase !important;
+                position: relative !important;
+            }
+
+    .footer--col {
+        float: left !important;
+    }
+
+    .footer-row .footer-col:last-child {
+        padding-left: 50px !important;
+    }
+
+    .footer-list ul li > ul li a {
+        font-family: Arial,Helvetica Neue,Helvetica,sans-serif !important;
+        font-size: 12px !important;
+        color: #fff !important;
+        text-transform: none !important;
+        position: relative !important;
+    }
+
+    .footer-row .footer-col:last-child .footer--col {
+        float: none !important;
+        overflow: hidden !important;
+    }
+
+        .footer-row .footer-col:last-child .footer--col .footer-list:last-child {
+            padding-right: 0 !important;
+        }
+
+    .footer-bottom {
+        background-color: rgba(0, 0, 0, 1) !important;
+        font-size: 14px !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+    }
+
+        .footer-bottom ul li {
+            display: inline-block !important;
+            padding: 10px 15px 0 0 !important;
+        }
+
+            .footer-bottom ul li a {
+                display: inline-block !important;
+                font-size: 12px !important;
+                color: #fff !important;
+                font-weight: 400 !important;
+                position: relative !important;
+            }
+
+            .footer-bottom ul li:last-child {
+                padding-right: 0 !important;
+            }
+
+    #novaticAboutUs {
+        color: white;
+        margin-bottom: 20px;
+        padding-right: unset !important;
+    }
+
+    #novaticAboutUsTitle {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    #novaticContactUs {
+        font-size: 20px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .novaticLogoSocialFooter {
+        color: white;
+        font-size: 26px;
+    }
+
+    .novaticTitleMenuFooter {
+        font-size: 15px !important;
+        font-weight: bold;
+    }
+
+    #novaticFooterLogo {
+        width: 40% !important;
+        margin-top: 20px;
+    }
+
+    a:focus, a:hover {
+        color: unset;
+        text-decoration: unset !important;
+    }
+
+    @@media only screen and (max-width: 575px) {
+        #novaticTopSocial {
+            display: none !important;
+        }
+
+        #novaticBottomSocial {
+            display: unset !important;
+            float: left !important;
+            margin: 30px 0 -25px 10px;
+        }
+
+        #novaticFooterLogo {
+            width: 100% !important;
+        }
+
+        .footer-list {
+            padding-right: 20px !important;
+            padding-left: 5px !important;
+        }
+
+        #novaticAboutUs {
+            display: none;
+        }
+
+        #novaticAboutUsMobile {
+            display: unset !important;
+        }
+
+        #novaticXemThem {
+            display: none;
+        }
+    }
+
+    #novaticContactUs a {
+        color: #fff;
+    }
+</style>
+
+
+<footer class="novaticFooter">
+    <section>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo-postgroup" id="novaticFooterLogo" style="">
+                    <a href="/">
+                        <img style="width:40px; margin-top: -5px;" src="/files/frontend/images/core/LOGO-gw.png" alt="Gapping World">
+                        <span style="color:white;font-size:1.5em;margin-left:10px;">Gapping World</span>
+                    </a>
+                </div>
+                <!--
+                    <div class="beta-btn2">
+                    <a class="track_newdesign" href="http://www.bangkokpost.com?olddesign=1">RETURN TO THE <span>CURRENT DESIGN</span> <img src="https://static.bangkokpost.com/newdesign/assets/images/beta/arrow2.svg" alt="">
+                    </a>
+                </div>
+                -->
+                <div id="novaticTopSocial" class="footer-social footer-showpc" style="margin-top: 10px">
+                    <ul style="margin-bottom: unset !important">
+                        <li style=""><a class="novaticLogoSocialFooter" href="@ViewBag.SystemConfigs["LINK_FACEBOOK"].Description" target="_blank"><i class="mdicon mdicon-facebook"></i></a></li>
+                        <li style=""><a class="novaticLogoSocialFooter" href="@ViewBag.SystemConfigs["LINK_TWITTER"].Description" target="_blank"><i class="mdicon mdicon-twitter"></i></a></li>
+                        <li style=""><a class="novaticLogoSocialFooter" href="@ViewBag.SystemConfigs["LINK_YOUTUBE"].Description" target="_blank"><i class="mdicon mdicon-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="footer-row row">
+                    <div class="footer-col col-15 col-md-9 col-lg-auto">
+                        <div class="footer--col">
+                            @{
+                                int i = 0;
+                                foreach (var obj in ViewBag.MenuListFooter)
+                                {
+                                    if (i < 3)
+                                    {
+                                        int hasChild = 0;
+                                        string childContent = "";
+                                        foreach (var obj2 in ViewBag.MenuListFooter)
+                                        {
+                                            if (obj2.ParentId == obj.Id)
+                                            {
+                                                hasChild = 1;
+                                                childContent += "<li><a href='/" + @obj2.Url + "' title='General'>" + obj2.Name + "</a></li>";
+                                            }
+                                        }
+                                        //kiem tra la cha
+                                        if (hasChild == 0 && obj.ParentId == 0)
+                                        {
+                                            <div class="footer-list">
+                                                <ul>
+                                                    <li>
+                                                        <a href="~/@obj.Url" title="" class="novaticTitleMenuFooter">@obj.Name</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            i++;
+                                        }
+                                        //kiem tra la con
+                                        else if (hasChild == 1)
+                                        {
+                                            <div class="footer-list">
+                                                <ul>
+                                                    <li>
+                                                        <a href="~/@obj.Url" title="" class="novaticTitleMenuFooter">@obj.Name</a>
+                                                        <ul>
+                                                            @Html.Raw(childContent)
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            i++;
+                                        }
+                                    }
+
+                                }
+                            }
+                            @*<div class="footer-list">
+                                    <ul>
+                                        <li>
+                                            <a href="/" title="THAILAND" class="novaticTitleMenuFooter">THAILAND</a>
+                                            <ul>
+                                                <li><a href="/thailand/general" title="General">General</a></li>
+                                                <li><a href="/thailand/politics" title="Politics">Politics</a></li>
+                                                <li><a href="/thailand/special-reports" title="Special Report">Special Report</a></li>
+                                                <li><a href="/thailand/pr" title="PR News &amp; Special publication">PR News</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="footer-list">
+                                    <ul>
+                                        <li>
+                                            <a href="/" title="Opinion" class="novaticTitleMenuFooter">OPINION</a>
+                                            <ul>
+                                                <li><a href="/opinion/columnist" title="Columnists">Columnists</a></li>
+                                                <li><a href="/opinion/postbag" title="Postbag">Postbag</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="footer-list">
+                                    <ul>
+                                        <li>
+                                            <a href="/" title="Video" class="novaticTitleMenuFooter">VIDEO</a>
+                                            <ul>
+                                                <li><a href="/vdo/thailand" title="Thailand">Thailand</a></li>
+                                                <li><a href="/vdo/world" title="World">World</a></li>
+                                                <li>
+                                                    <a href="/vdo/travel-and-lifestyle" title="Travel and Lifestyle">Travel &amp; Lifestyle</a>
+                                                </li>
+                                                <li><a href="/vdo/business" title="Business">Business</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                        </div>
+                        <div class="footer--col">
+                            <div class="footer-list" id="novaticXemThem" style="display:none">
+                                <ul>
+                                    <li><a href="/" title="Bài viết mới nhất" class="novaticTitleMenuFooter">MỚI NHẤT</a></li>
+                                    <li><a href="/" title="Bài viết được xem nhiều nhất" class="novaticTitleMenuFooter">NỔI BẬT</a></li>
+                                    <li><a href="/" title="Bài viết theo chủ đề" class="novaticTitleMenuFooter">CHỦ ĐỀ</a></li>
+                                    <li><a href="/" title="Bài viết theo danh mục" class="novaticTitleMenuFooter">DANH MỤC</a></li>
+                                    <li><a href="/" title="Bài viết có video" class="novaticTitleMenuFooter">VIDEO</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer--col" id="novaticAboutUsMobile" style="display:none;color:white">
+                                <div class="footer-list" style="padding-right:unset !important">
+                                    <div id="novaticAboutUsTitle">
+                                        @ViewBag.lblVechungToi
+                                    </div>
+                                    <div>
+                                        @*GappingWorld là trang thông tin nông sản toàn cầu,với mong muốn mang đến những thông tin cập nhật cho những người quan tâm đến diễn biến thị trường nông sản toàn cầu.*@
+                                        @ViewBag.lblVeChungToi_NoiDung
+                                    </div>
+                                </div>
+                                <div class="footer-list" id="novaticContactUs">
+                                    @ViewBag.lblLienHe
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<hr class="footer-line">*@
+                    <div class="footer-col col-15 col-md-3 col-lg-auto">
+                        <div class="footer--col" id="novaticAboutUs">
+                            <div class="footer-list" style="padding-right:unset !important">
+                                <div id="novaticAboutUsTitle">
+                                    @ViewBag.lblVechungToi
+                                </div>
+                                <div>
+                                    @*GappingWorld là trang thông tin nông sản toàn cầu,với mong muốn mang đến những thông tin cập nhật cho những người quan tâm đến diễn biến thị trường nông sản toàn cầu.*@
+                                    @ViewBag.lblVeChungToi_NoiDung
+                                </div>
+                            </div>
+                            <div class="footer-list" id="novaticContactUs">
+                                <a href="contact">@ViewBag.lblLienHe</a>
+                            </div>
+                        </div>
+                        <!--div class="footer-subscribe">
+                            <div>SUBSCRIBE E-NEWSLETTERS</div>
+                            <div class="footer-form">
+                                <form>
+                                    <input type="text" class="form-control-subscribe" placeholder="">
+                                    <button type="submit" class="btn-signup-subscribe">SING UP</button>
+                                </form>
+                            </div>
+                        </div-->
+                    </div>
+
+                    <div id="novaticBottomSocial" class="footer-social footer-showmobi" style="display:none">
+                        <ul>
+                            <li style=""><a class="novaticLogoSocialFooter" href="@ViewBag.SystemConfigs["LINK_FACEBOOK"].Description" target="_blank"><i class="mdicon mdicon-facebook"></i></a></li>
+                            <li style=""><a class="novaticLogoSocialFooter" href="@ViewBag.SystemConfigs["LINK_TWITTER"].Description" target="_blank"><i class="mdicon mdicon-twitter"></i></a></li>
+                            <li style=""><a class="novaticLogoSocialFooter" href="@ViewBag.SystemConfigs["LINK_YOUTUBE"].Description" target="_blank"><i class="mdicon mdicon-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer-bottom">
+        <div class="container" style="text-align:center;">
+            Gapping World © 2019. Made with ☕ by <a href="/">Novatic</a>
+        </div>
+
+    </section>
+</footer>
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157502554-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-157502554-1');
+</script>

@@ -1,0 +1,791 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+<style>
+    .carousel-caption {
+        padding-left: 5%;
+    }
+    @*Thay đổi giao diện trang chủ*@
+    .navbar {
+        margin-bottom: 0;
+    }
+    .carousel-caption {
+        text-align:left;
+    }
+    #herocover {
+        background-image: unset !important;
+    }
+    #herocover .container {
+        width: 100%;
+        padding: 0;
+    }
+    #herocover .container .row div:first-of-type {
+        padding: 5% 0% 5% 0% !important;
+    }
+    @@media screen and (min-width: 768px) {
+        .carousel-caption {
+            right: 9%;
+            left: 9%;
+            padding-bottom: 30px;
+            height: 100%
+        }
+    }
+    #image-cover-slide {
+        position: absolute;
+        opacity: 1;
+        z-index: auto;
+        width: auto !important;
+        top: 0%;
+        height: 36% !important;
+        left: 0%;
+    }
+    #image-rectangle-slide {
+        position: absolute;
+        opacity: 1;
+        z-index: auto;
+        width: auto !important;
+        top: 0%;
+        left: 0%;
+    }
+    #myCarousel .item .headline, #myCarousel .item .tagline, #myCarousel .item .punchline {
+        visibility: visible !important;
+        opacity: 0 !important;
+    }
+    #myCarousel .item.active .headline, #myCarousel .item.active .tagline, #myCarousel .item.active .punchline {
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin-bottom: 10px;
+    }
+    #myCarousel .item.active .headline {
+        transition: opacity 0.7s cubic-bezier(0.5, 0, 0, 1) 0s !important;
+    }
+    #myCarousel .item.active .tagline {
+        transition: opacity 0.7s cubic-bezier(0.5, 0, 0, 1) 0.4s !important;
+    }
+    #myCarousel .item.active .punchline {
+        transition: opacity 0.7s cubic-bezier(0.5, 0, 0, 1) 0.8s !important;
+        letter-spacing: 1.5px !important;
+    }
+    #herocover .container .row div p:nth-child(2) {
+        width: 100% !important;
+    }
+    #herocover .container .row div p:nth-child(3) {
+        width: 100% !important;
+    }
+    @*Thay đổi giao diện trang chủ- END*@
+    #herocover {
+        background-image: url('/images/Rectangle 244.png');
+        background-size: cover;
+        width: 100%;
+        height: auto;
+    }
+
+
+
+        #herocover .container .row div:last-of-type {
+            padding: 13% 0% 0% 0%;
+        }
+
+        #herocover .container .row div:first-of-type {
+            padding: 15% 0% 15% 10%;
+        }
+
+    .image_group {
+        position: relative
+    }
+
+        .image_group img {
+            position: absolute;
+        }
+
+            .image_group img:first-of-type {
+                z-index: 2
+            }
+
+            .image_group img:nth-child(2) {
+                right: 11%;
+                top: 19%;
+                z-index: auto;
+                width: 140%
+            }
+
+            .image_group img:nth-child(3) {
+                z-index: 1;
+                top: 133%;
+                right: 75%
+            }
+
+            .image_group img:nth-child(4) {
+                z-index: 1;
+                top: 95%;
+                left: 32%;
+            }
+
+    #herocover .container .row div p:first-of-type {
+        font-family: My Custom Regular;
+        font-size: 18px;
+        color: white;
+        width: 350px;
+        font-weight: 400;
+        letter-spacing: 2.5px;
+    }
+
+    #herocover .container .row div p:nth-child(2) {
+        font-family: My Custom Medium;
+        font-size: 45px;
+        color: #2AD9FF;
+        width: 100%;
+    }
+
+    #herocover .container .row div p:nth-child(3) {
+        font-size: 14px;
+        font-family: My Custom Regular;
+        color: white;
+        letter-spacing: 1.5px;
+    }
+
+    .CoverButton {
+        color: white;
+        width: auto;
+        height: 40px;
+        font-family: My Custom Regular;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 20px;
+        background-image: linear-gradient(to left,#E4750E,rgba(228,117,14,0));
+    }
+</style>
+<!--Responsive Start-->
+<style>
+    @@media screen and (min-width: 1246px) and (max-width: 1366px) {
+        .image_group img:first-of-type {
+            width: 65%;
+            top: 120%;
+            right: 20%;
+        }
+
+        .image_group img:nth-child(2) {
+            width: 120%;
+            right: 3%;
+            top: 62%;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 165.5%;
+            right: 58.5%;
+            width: 28%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 116%;
+            left: 53%;
+            width: 28%;
+        }
+    }
+
+    @@media screen and (min-width: 375px) and (max-width:375px) {
+        #herocover {
+            height: 549px;
+        }
+
+            #herocover .container .row div p:first-of-type {
+                width: auto;
+                font-size: 10px;
+            }
+
+            #herocover .container .row div p:nth-child(2) {
+                width: auto;
+                font-size: 19px;
+            }
+
+            #herocover .container .row div p:nth-child(3) {
+                font-size: 11px;
+            }
+
+            #herocover .container .row div button {
+                width: 140px;
+                height: 35px;
+            }
+
+        .image_group img:first-of-type {
+            width: 90%;
+            top: 16px;
+            right: 6%;
+        }
+
+        .image_group img:nth-child(2) {
+            display: none;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 115px;
+            right: 68%;
+            width: 30%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 11px;
+            left: 66%;
+            width: 30%;
+        }
+    }
+
+
+    @@media screen and (min-width: 320px) and (max-width: 374px) {
+        #herocover {
+            height: 549px;
+        }
+
+            #herocover .container .row div p:first-of-type {
+                width: auto;
+                font-size: 10px;
+            }
+
+            #herocover .container .row div p:nth-child(2) {
+                width: auto;
+                font-size: 19px;
+            }
+
+            #herocover .container .row div p:nth-child(3) {
+                font-size: 11px;
+            }
+
+            #herocover .container .row div button {
+                width: 140px;
+                height: 35px;
+            }
+
+        .image_group img:first-of-type {
+            width: 90%;
+            top: 16px;
+            right: 6%;
+        }
+
+        .image_group img:nth-child(2) {
+            display: none;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 99px;
+            right: 68%;
+            width: 30%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 11px;
+            left: 66%;
+            width: 30%;
+        }
+    }
+
+    @@media (min-width:376px) and (max-width: 425px) {
+        #herocover {
+            height: 549px;
+        }
+
+            #herocover .container .row div p:first-of-type {
+                width: auto;
+                font-size: 10px;
+            }
+
+            #herocover .container .row div p:nth-child(2) {
+                width: auto;
+                font-size: 19px;
+            }
+
+            #herocover .container .row div p:nth-child(3) {
+                font-size: 11px;
+            }
+
+            #herocover .container .row div button {
+                width: 140px;
+                height: 35px;
+            }
+
+        .image_group img:first-of-type {
+            width: 90%;
+            top: 16px;
+            right: 6%;
+        }
+
+        .image_group img:nth-child(2) {
+            display: none;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 130px;
+            right: 68%;
+            width: 30%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 8px;
+            left: 66%;
+            width: 30%;
+        }
+    }
+
+    @@media screen and (max-width:768px) and (min-width: 768px) {
+        #herocover {
+            height: 993px;
+        }
+
+        .image_group img:first-of-type {
+            top: 50%;
+            right: 17%;
+        }
+
+        .image_group img:nth-child(2) {
+            right: -1%;
+            top: -82%;
+            width: 119%;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 133%;
+            right: 50%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 40%;
+            left: 56%;
+        }
+    }
+
+    @@media screen and (min-width: 769px) and (max-width:991px) {
+        #herocover {
+            height: 993px;
+        }
+
+        .image_group img:first-of-type {
+            right: 20%;
+        }
+
+        .image_group img:nth-child(2) {
+            width: 100%;
+            right: 5%;
+            top: 0%;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 184.5%;
+            right: 53.5%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 90%;
+            left: 53%;
+        }
+    }
+
+    @@media screen and (min-width:426px) and (max-width: 767px) {
+        #herocover {
+            height: 549px;
+        }
+
+            #herocover .container .row div p:first-of-type {
+                width: auto;
+                font-size: 10px;
+            }
+
+            #herocover .container .row div p:nth-child(2) {
+                width: auto;
+                font-size: 19px;
+            }
+
+            #herocover .container .row div p:nth-child(3) {
+                font-size: 11px;
+            }
+
+            #herocover .container .row div button {
+                width: 140px;
+                height: 35px;
+            }
+
+        .image_group img:first-of-type {
+            width: 90%;
+            top: 16px;
+            right: 6%;
+        }
+
+        .image_group img:nth-child(2) {
+            display: none;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 127px;
+            right: 68%;
+            width: 30%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 8px;
+            left: 66%;
+            width: 30%;
+        }
+    }
+
+    @@media screen and (min-width: 991px) and (max-width:1245px) {
+        #herocover .container .row div:first-of-type {
+            padding: 15% 0% 15% 5%;
+        }
+
+        .image_group img:first-of-type {
+            z-index: 2;
+            width: 75%;
+        }
+
+        .image_group img:nth-child(2) {
+            right: 0%;
+            top: 40%;
+        }
+
+        .image_group img:nth-child(3) {
+            top: 130%;
+            right: 63%;
+            width: 40%;
+        }
+
+        .image_group img:nth-child(4) {
+            top: 92%;
+            left: 37%;
+            width: 40%;
+        }
+
+        #herocover .container .row div p:first-of-type {
+            font-size: 15px;
+        }
+
+        #herocover .container .row div p:nth-child(2) {
+            font-size: 30px;
+        }
+
+        #herocover .container .row div p:nth-child(3) {
+            font-size: 12px;
+            width: 50%;
+        }
+    }
+</style>
+<!--Responsive End-->   
+<div class="container-fluid" id="herocover" style="padding:0;">
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @for (int j = 0; j < ViewBag.DataSlideViewModel.Count; j++)
+                {
+                    if (j == (ViewBag.DataSlideViewModel.Count - 1))
+                    {
+                        <li data-target="#myCarousel" data-slide-to="@j" class="active"></li>
+
+                    }
+                    else
+                    {
+                        <li data-target="#myCarousel" data-slide-to="@j"></li>
+
+                    }
+                }
+
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+                @for (int j = 0; j < ViewBag.DataSlideViewModel.Count; j++)
+                {
+                    var item = ViewBag.DataSlideViewModel[j];
+                    if (j == (ViewBag.DataSlideViewModel.Count - 1))
+                    {
+                        <div class="item active">
+                            <img src="@item.SlidePhoto" alt="Los Angeles" style="width:100%;height:600px">
+                            <img id="image-cover-slide" src="@item.CoverPhoto" style="width:100%;height:600px;position:absolute;">
+
+                            <div class="carousel-caption">
+                                <div class="row" style="margin: auto;width: auto; height: auto;">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                                            <p class="headline">
+                                                @*@item.Category*@
+                                            </p>
+                                            <p class="tagline">
+                                                @item.NameSlideTitle
+                                            </p>
+                                            <p class="punchline">
+                                                @item.NameSlideContent
+                                            </p>
+                                            <p class="button-slide" style="width:100%;float:left">
+                                                @for (int i = 0; i < item.ListSlideButton.Count; i++)
+                                                {
+                                                    @if (item.ListSlideButton[i].ButtonTypeId == 1)
+                                                    {
+                                                        <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/@item.ListSlideButton[i].Url'">
+                                                            @item.ListSlideButton[i].Name
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="punchline" style="margin-left:30px;font-size:16px">
+                                                            <a href="/@item.ListSlideButton[i].Url" style="color: white; text-transform: uppercase;">
+                                                                @item.ListSlideButton[i].Name
+                                                            </a>
+                                                        </span>
+                                                    }
+                                                }
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="item" style="background: linear-gradient( 270deg, #10253ea8 24.84%, rgb(0 7 33 / 89%) 96.11%), rgb(0 0 0 / 57%);">
+                            <img src="@item.SlidePhoto" alt="New York" style="width: 100%; height: 600px;opacity:1;">
+                            <img id="image-rectangle-slide" src="@item.CoverPhoto" style="width:100%;height:600px;position:absolute;">
+                            <div class="carousel-caption">
+                                <div class="row" style="margin: auto;width: auto; height: auto;">
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                                            <p class="headline">
+                                                @*@item.Category*@
+                                            </p>
+                                            <p class="tagline">
+                                                @item.NameSlideTitle
+
+                                            </p>
+                                            <p class="punchline">
+                                                @item.NameSlideContent
+                                            </p>
+                                            <p class="button-slide" style="width:100%;float:left">
+                                                @for (int i = 0; i < item.ListSlideButton.Count; i++)
+                                                {
+                                                    @if (item.ListSlideButton[i].ButtonTypeId == 1)
+                                                    {
+                                                        <span class="punchline" style="margin-right: 30px; font-size: 16px; visibility: visible;" data-sr-id="19">
+                                                            <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/@item.ListSlideButton[i].Url'">
+                                                                @item.ListSlideButton[i].Name
+                                                            </button>
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="punchline" style="margin-right: 30px; font-size: 16px">
+                                                            <a href="/@item.ListSlideButton[i].Url" style="color: white; text-transform: uppercase;">
+                                                                @item.ListSlideButton[i].Name
+                                                            </a>
+                                                        </span>
+                                                    }
+                                                }
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+
+
+                <!--<div class="item active">
+                <img src="/images/Rectangle243.png" alt="Los Angeles" style="width:100%;height:600px">
+                <img id="image-cover-slide" src="/images/HeaderHomePage.png" style="width:100%;height:600px;position:absolute;">
+
+                <div class="carousel-caption">
+                    <div class="row" style="margin: auto;width: auto; height: auto;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                                <p class="headline">
+                            @*@ViewBag.lblThuVien*@
+                            <!--</p>
+                                    <p class="tagline">
+                                        @ViewBag.lblTitleThuVien
+                                    </p>
+                                    <p class="punchline">
+                                        @ViewBag.lblTextThuVien
+                                    </p>
+                                    <p class="button-slide" style="width:100%;float:left">
+                                        <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/thu-vien'">
+                                            @ViewBag.lblTruyCapThuVien
+                                        </button>
+                                        <span class="punchline" style="margin-left:30px;font-size:16px">
+                                            <a href="/ve-chung-toi" style="color: white; text-transform: uppercase;">
+                                                @ViewBag.lblTimHieuThem
+                                            </a>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="background: linear-gradient( 270deg, #10253ea8 24.84%, rgb(0 7 33 / 89%) 96.11%), rgb(0 0 0 / 57%);">
+                    <img src="/images/ss_1336362089 1 (2).png" alt="New York" style="width: 100%; height: 600px;opacity:1;">
+                    <img id="image-rectangle-slide" src="/images/Rectangle244-home.png" style="width:100%;height:600px;position:absolute;">
+                    <div class="carousel-caption">
+                        <div class="row" style="margin: auto;width: auto; height: auto;">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                                    <p class="headline">-->
+                @*@ViewBag.lblDanhGiaTaiChinh*@
+                <!--</p>
+                                    <p class="tagline">
+                                        @ViewBag.lblTitleDanhGiaTaiChinh
+                                    </p>
+                                    <p class="punchline">
+                                        @ViewBag.lblTextDanhGiaTaiChinh
+                                    </p>
+                                    <p class="button-slide" style="width:100%;float:left">
+                                        <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/Liet-ke-cac-khao-sat'">
+                                            @ViewBag.lblThucHienDanhGia
+                                        </button>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="/images/ss_1336362089 1 (1).png" alt="Chicago" style="width: 100%; height: 600px;opacity:1;">
+                    <img id="image-rectangle-slide" src="/images/Rectangle243-home.png" style="width:100%;height:600px;position:absolute;">
+                    <div class="carousel-caption">
+                        <div class="row" style="margin: auto;width: auto; height: auto;">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                                    <p class="headline">-->
+                @*@ViewBag.lblSoTayTaiChinh*@
+                <!--</p>
+                                    <p class="tagline">
+                                        @ViewBag.lblTitleSoTayTaiChinh
+                                    </p>
+                                    <p class="punchline">
+                                        @ViewBag.lblTextSoTayTaiChinh
+                                    </p>
+                                    <p class="button-slide" style="width:100%;float:left">
+                                        <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/so-tay-tai-chinh'">
+                                            @ViewBag.lblTraCuuTrucTuyen
+                                        </button>
+                                        <span class="punchline" style="margin-left:30px;font-size:16px">
+                                            <a href="/so-tay-tai-chinh" style="color: white; text-transform: uppercase;">
+                                                @ViewBag.lblGioiThieuSotay
+                                            </a>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/images/ss_1336362089 1.png" alt="Chicago" style="width: 100%; height: 600px; opacity: 0.6; background: linear-gradient(270deg, #0B2033 24.84%, rgba(15, 20, 38, 0) 96.11%), rgba(0, 0, 0, 0.2);">
+                    <img id="image-rectangle-slide" src="/images/Rectangle242-home.png" src="@ViewBag.SystemConfigList[0]." style="width:100%;height:600px;position:absolute;">
+                    <div class="carousel-caption">
+                        <div class="row" style="margin: auto;width: auto; height: auto;">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+                                    <p class="headline">-->
+                @*@ViewBag.lblTinTucSuKien*@
+                <!--</p>
+                <p class="tagline">
+                    @ViewBag.lblTitleTinTucSuKien
+                </p>
+                <p class="punchline">
+                    @ViewBag.lblTextTinTucSuKien
+                </p>
+                <p class="button-slide" style="width:100%;float:left">
+                    <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/tin-tuc'">
+                        @ViewBag.lblTinTucCapNhat
+                    </button>
+                    <span class="punchline" style="margin-left:30px;font-size:16px">
+                        <button class="btn btn-warning CoverButton punchline" style="text-transform: uppercase;" onclick="window.location.href='/su-kien'">
+                            @ViewBag.lblDanhSachSuKien
+                        </button>-->
+                @*<a href="#" style="color: white; text-transform: uppercase;">
+                        Tìm hiểu thêm
+                    </a>*@
+                <!--</span>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+            </div>
+
+            <!-- Left and right controls -->
+            <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>-->
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+<!--<div class="container-fluid" id="herocover" style="display:block;">-->
+<!-- <div id="herocover"></div> -->
+<!--<div class="container" style="margin: auto;width: auto; height: auto;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                <p class="headline">
+                    @ViewBag.lblCoverHeaderContent
+                </p>
+                <p class="tagline">
+                    @ViewBag.lblBanner
+                </p>
+                <p class="punchline">
+                    @ViewBag.lblContentBanner
+                </p>
+                <button class="btn btn-warning CoverButton punchline" onclick="window.location.href='/tin-tuc'">
+                    @ViewBag.lblTimHieuThem.ToUpper()
+                </button>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 image_group">
+                <img src="~/images/Asset 1 2.png" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="2000" />
+                <img src="~/images/Group.png" data-aos="fade-down" />
+                <img src="~/images/Rectangle 246.png" data-aos="fade-left" data-aos-delay="1000" />
+                <img src="~/images/Rectangle 245.png" data-aos="fade-right" data-aos-delay="1500" />
+            </div>
+
+        </div>
+    </div>
+</div>-->

@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="site-content single-entry single-entry--billboard-blur">
+    <div class="mnmd-block mnmd-block--fullwidth mnmd-block--contiguous single-billboard js-overlay-bg">
+        <div class="background-img hidden-xs hidden-sm" style="background-image: url('@ViewBag.Photo');"></div>
+        <div class="background-img background-img--darkened hidden-md hidden-lg" style="background-image: url('@ViewBag.Photo');"></div>
+        <div class="single-billboard__inner">
+            <header class="single-header single-header--center">
+                <div class="container">
+                    <div class="single-header__inner inverse-text js-overlay-bg-sub-area">
+                        <div class="background-img background-img--dimmed blurred-more hidden-xs hidden-sm js-overlay-bg-sub" style="background-image: url('@ViewBag.Photo');"></div>
+                        <div class="single-header__content">
+                            <a class="cat-193 post__cat post__cat--bg cat-theme-bg" href="../category/@ViewBag.PostCategoryURL">@ViewBag.PostCategoryName</a>
+                            <h1 class="entry-title entry-title--lg">@ViewBag.Title</h1>
+
+                            <div class="entry-teaser hidden-xs">
+                                @*Kayaking is the type of water sport that besides being fun and offering quite a few health and fitness benefits, also triggers the desire to travel more.*@
+                                @ViewBag.Description
+                            </div>
+
+                            <!-- Entry meta -->
+                            <div class="entry-meta">
+                                <span class="entry-author entry-author--with-ava">
+                                    <img alt='gappingworld' src='@ViewBag.PostAccountPhoto' srcset='@ViewBag.PostAccountPhoto 2x' class='avatar avatar-34 photo entry-author__avatar' height='34' width='34' />@ViewBag.lblBoi <a class="entry-author__name" title="Posts by @ViewBag.PostAccountName" rel="author" href="../author/@ViewBag.PostAccountURL">@ViewBag.PostAccountName</a>
+                                </span>
+                                <time class="time published" datetime="@ViewBag.PublishedTime" title="@ViewBag.PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.PublishedTime</time><span><i class="mdicon mdicon-visibility"></i>@ViewBag.ViewCount @ViewBag.lblLuotXem</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>

@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=4278596932157979&autoLogAppEvents=1" nonce="53JMrlK3"></script>
+    <style>
+        .carousel-indicators li {
+            display:none;
+        }
+        #myCarousel menuitem img {
+            height:500px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <!-- Starts Banner Header-->
+    <partial name="../Shared/A2FComponent/_BannerHeader" />
+    <!-- Ends Banner Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-9 col-lg-9" style="padding-bottom: 50px">
+                <!-- Start Location -->
+                <partial name="../Shared/A2FComponent/_Title_Location" />
+                <!-- Ends Location -->
+                <!-- Start New Detail Information -->
+                <partial name="../Shared/A2FComponent/_NewDetail_Information" />
+                <!-- Ends New Detail Information -->
+
+                <!-- Start Comment -->
+                
+                
+                <partial name="../Shared/A2FComponent/_Comment_NewDetail" />
+                <!-- Start Comment -->
+
+                <!-- Start Most Viewed Information -->
+                <partial name="../Shared/A2FComponent/_MostViewed" />
+                <!-- Ends Most Viewed Information -->
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3" style="margin-top: 50px;">
+                <!-- Start Related News Information -->
+                <!-- neu la bai url khao sat tinh hinh tai chinh bo tin tuc lien quan-->
+                @if(@ViewBag.IdString != "47122-khao-sat-tinh-hinh-tai-chinh-doanh-nghiep")
+                {
+                    <partial name="../Shared/A2FComponent/_Related_News" />
+                }
+                
+                <!-- Ends Related News Information -->
+                <!-- Starts SurveyBar -->
+                <partial name="../Shared/A2FComponent/_SurveyBar" />
+                <!-- Ends SurveyBar -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Start Footer -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- Ends Footer -->
+
+    <!-- Start Javascript -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+    <!-- Ends Javascript -->
+
+
+</body>
+</html>

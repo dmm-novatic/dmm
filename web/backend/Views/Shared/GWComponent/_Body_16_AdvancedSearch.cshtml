@@ -1,0 +1,422 @@
+﻿@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+<style>
+
+        #example {
+            border: 1px solid rgba(221, 221, 221, 0.68);
+        }
+
+        th {
+            white-space: nowrap;
+        }
+
+        #example a {
+            color: #1c5815;
+        }
+
+        .form-group {
+            margin-top: 30px;
+        }
+
+
+
+        #dataTable {
+            border: 1px solid rgba(221, 221, 221, 0.68);
+        }
+
+        #dataTable a {
+            color: #1c5815;
+        }
+        #tableData tr th:nth-child(3){
+            min-width: 100px !important;
+        }
+
+
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 200px;
+            height: 200px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @@-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @@media screen and (min-width: 992px) {
+            #container-loader {
+                display: none;
+                white-space: nowrap;
+                width: 120px;
+                height: 120px;
+                position: absolute;
+                margin: auto;
+                left: 100vh;
+                top: 100px;
+                z-index: 100;
+            }
+
+            h3 {
+                float: left;
+                margin-left: -20px;
+                margin-top: 220px !important;
+                text-align: center !important;
+            }
+        }
+
+        @@media screen and (min-width: 768px) and (max-width:991px) {
+             #container-loader {
+                display: none;
+                white-space: nowrap;
+                width: 120px;
+                height: 120px;
+                position: absolute;
+                margin: auto;
+                left: 54vh;
+                top: 50px;
+                z-index: 100;
+            }
+
+            h3 {
+                float: left;
+                margin-left: -20px;
+                margin-top: 220px !important;
+                text-align: center !important;
+            }
+            .container-search .form-group:nth-child(2) {
+                margin-left: -12px !important;
+            }
+
+            .container-search .form-group:nth-child(3) {
+                margin-left: -12px;
+            }
+        }
+
+
+        @@media screen and (max-width: 767px) {
+            #container-loader {
+                display: none;
+                white-space: nowrap;
+                width: 120px;
+                height: 120px;
+                position: absolute;
+                /*margin: auto;*/
+                /*left: 100vh;*/
+                margin-left: 14vh;
+                top: 110px;
+                z-index: 100;
+            }
+            .container-search .form-group:nth-child(2) {
+                margin-left: -12px !important;
+            }
+
+            .container-search .form-group:nth-child(3) {
+                margin-left: -12px;
+            }
+
+            h3 {
+                float: left;
+                margin-left: 20px !important;
+                float: left;
+                margin-left: -20px;
+                margin-top: 220px !important;
+                text-align: center !important;
+            }
+        }
+
+
+
+
+        /*#example{
+        opacity: 0.4;
+      filter: alpha(opacity=50);
+    }*/
+
+        /*.container-search{
+        opacity: 0.3;
+      filter: alpha(opacity=50);
+    }*/
+
+</style>
+
+<script>
+
+    //$('#example').DataTable();
+    $(document).ready(function () {
+        table = $("#tableData").DataTable({
+            // Design Assets
+            stateSave: true,
+            autoWidth: true,
+            // ServerSide Setups
+            processing: true,
+            serverSide: true,
+            // Paging Setups
+            paging: true,
+            // Searching Setups
+            searching: { regex: true },
+            // Ajax Filter
+            ajax: {
+                url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/post/api/LoadTableAdvanceSearch",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: function (d) {
+                    //debugger;
+                    //clear filter when 1st init
+                    var columnFilterFlag = 0;
+                    $('#tableData tfoot input').each(function () {
+                        if ( $(this).val().length > 0 ) columnFilterFlag = 1;
+                    });
+                    if (columnFilterFlag == 0) {
+                        for (var i = 0; i < 8; i++) {
+                            d.columns[i].search.value = "";
+                        }
+                    }
+                    return JSON.stringify(d);
+                    //d.start = 2;
+                    //d.length = 10;
+                }
+            },
+            // Columns Setups
+            columns: [
+                { data: 'id',
+                    render: function (data, type, row, meta) {
+                        //debugger;
+                        var info = table.page.info();
+                        return meta.row + 1 + info.page * info.length; // This contains the row index
+                    }
+                }, 
+                {
+                    data: "id",
+                    render: function (data, type, row, meta) {
+                        return `
+                            <td class='row` + data + `-column column-" + id + "' property='" + id + "'>
+                                <a target='_blank' style='font-weight: bold' href ='@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description` + data + `- ` + row.url + `'>` + data + `</a>
+                            </td>`;
+                    }
+                },
+                {
+                    data: "postAccountName",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-postAccountName'>`+data+`<span>`;
+                    }
+                },
+                {
+                    data: "postCategoryName",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-postCategoryName'>`+data+`<span>`;
+                    }
+                },
+                {
+                    data: "name",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-name'>`+data+`<span>`;
+                    }
+                }, 
+                {
+                    data: "description",
+                    render: function (data, type, row, meta) {
+                        return `<span class='ellipsis3' title='` + data + `' id='row` + row.id + `-column-name'>` + data + `<span>`;
+                    }
+                }, 
+                {
+                    data: "createdTime",
+                    render: function (data) {
+                        var tempDate = new Date(data);
+                        var displayValue = tempDate.toLocaleTimeString() + '<br/>' + tempDate.toLocaleDateString();
+                        return displayValue;
+                    }
+                }, 
+                {
+                    data: "photo",
+                    render: function (data, type, row, meta) {
+                        if (data.length == 0) {
+                            return `<img src='https://gappingworld.com/files/frontend/images/core/default.jpg' style='width: 100% !important; height: 65px !important'>`;
+                        }
+                        return `<img src='` + data + `' style='width: 100% !important; height: 65px !important'>`;
+                    }
+                },
+            ],
+            // Column Definitions
+            columnDefs: [
+                { targets: "no-sort", orderable: false },
+                { targets: "no-search", searchable: false },
+                {
+                    targets: "trim",
+                    render: function (data, type, full, meta) {
+                        if (type === "display") {
+                            data = strtrunc(data, 10);
+                        }
+
+                        return data;
+                    }
+                },
+                { targets: "date-type", type: "date-eu" }
+            ],
+            initComplete: function() {
+            var api = this.api();
+  
+            // Apply the search
+            api.columns().every(function() {
+                var that = this;
+  
+                $('input', this.footer()).on('keyup change', function() {
+                if (that.search() !== this.value) {
+                    that
+                    .search(this.value)
+                    .draw();
+                }
+                });
+            });
+            }
+        });
+
+        
+
+        $('#tableData tfoot th:not(:first-child):not(:last-child)').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" value="" placeholder="Search ' + title + '" />');
+        });
+        
+    });
+
+</script>
+
+
+
+
+<div class="container-search">
+
+
+    <table id="tableData" style="width: unset !important;" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>ID</th>
+                <th>Tác giả</th>
+                <th>Danh mục bài viết</th>
+                @*<th>Layout template</th>*@
+                <th style="width: 25%;">Tiêu đề</th>
+                <th style="width: 22%">Mô tả</th>
+                <th>Ngày tạo</th>
+                <th>Hình ảnh</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Index</th>
+                <th>ID</th>
+                <th>Tác giả</th>
+                <th>Danh mục bài viết</th>
+                @*<th>Layout template</th>*@
+                <th style="width: 25%;">Tiêu đề</th>
+                <th style="width: 22%">Mô tả</th>
+                <th>Ngày tạo</th>
+                <th>Hình ảnh</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+
+
+</div>
+@*<script>
+
+
+    var currentPageIndex = 1;
+    function smParamCreatedTime() {
+
+      
+
+        //1.xóa data of Table
+        var table = $('#example').DataTable();
+        table.rows().remove().draw();
+        //2.validate js
+        //debugger;
+        var fromDate = $("#fromCreatedTime").val().toString();
+        var toDate = $("#toCreatedTime").val().toString();
+        //var subFromDate = fromDate.replace(/-/g, "");
+        //var subToDate = toDate.replace(/-/g, "");
+        var cutFromDate1 = fromDate.substring(0, 4);
+        var cutFromDate2 = fromDate.substring(5, 7);
+        var cutFromDate3 = fromDate.substring(8, 10);
+        var cutToDate1 = toDate.substring(0, 4);
+        var cutToDate2 = toDate.substring(5, 7);
+        var cutToDate3 = toDate.substring(8, 10);
+        var sumFromDate = cutFromDate1 + cutFromDate2 + cutFromDate3;
+        var sumToDate = cutToDate1 + cutToDate2 + cutToDate3;
+        if (fromDate.length > 10 || toDate.length > 10) {
+            alert("yêu cầu nhập đúng ngày tháng năm");
+        }
+        else {
+            if (sumFromDate > sumToDate) {
+                alert("yêu cầu chọn đúng khoảng thời gian")
+            }
+              $("#container-loader").attr("style", "display:unset !important");
+        $("#example_wrapper").attr("style", "opacity: 0.2;", "filter: alpha(opacity=50);")
+
+            //3.Load AJAX
+            var currentPageSize = 999999;
+            //https://localhost:44325/post/api/ListSearchPagingCreatedTime/Search/1/20/2012-10-23/2016-10-10
+            $.get("post/api/ListSearchPagingCreatedTime/Search/" + currentPageIndex + "/" + currentPageSize + "/" + $("#fromCreatedTime").val() + "/" + $("#toCreatedTime").val(), function (data) {
+                var arrList = data.data;
+                //debugger;
+                //if (arrList.length < 20 || (count == totalCount.toString())) {
+                //$("#NextViewID").attr("style","display:none;")
+                //}
+                //console.log(arrList);
+                if (data.message == "SUCCESS") {
+                    $("#container-loader").attr("style", "display:none !important");
+                    $("#example_wrapper").attr("style", "opacity: unset !important", "filter:unset !important")
+                }
+
+                for (var i = 0; i < arrList.length; i++) {
+                    if (arrList[i] == null) {
+                        arrList[i].commentcount = 0;
+                    }
+
+                    //3.add vào table
+                    table.row.add([
+                        i + 1,
+                        arrList[i].name,
+                        arrList[i].postCategoryName,
+                        arrList[i].postAccountName,
+                        arrList[i].publishedTime
+                    ]).draw(false);
+                }
+
+            });
+
+        }
+    }
+</script>*@

@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .card {
+        background-color: #fff;
+        border: none
+    }
+
+    .input-box {
+        position: relative
+    }
+
+    input#searchKeyword-result {
+        height: 45px !important;
+    }
+
+    .input-box i {
+        position: absolute;
+        right: 17px !important;
+        top: 12px !important;
+        color: #ced4da !important;
+        font-size: 21px;
+    }
+
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #eee;
+    }
+</style>
+
+<style>
+    .input-box-faq > input {
+        width: 100% !important;
+    }
+</style>
+<script>
+    function searchA2FResult() {
+        debugger;
+        var keyword = $("#searchKeyword-result").val();
+        if (keyword == "") {
+            Swal.fire({
+                type: 'warning',
+                title: 'Required',
+                text: "Search box cannot be empty",
+                showConfirmButton: true
+            })
+        } else {
+            var URL = window.location.href;
+            var getURL = URL.split('/');
+            var setURL = getURL[0] + "//" + getURL[2] + "/ket-qua-tim-kiem/" + keyword;
+            window.location.href = setURL;
+        }
+    }
+
+</script>
+<div id="seachbox-FAQ" style="width: 100%; height: fit-content; background-color:  #0D3D68;">
+    <div class="row d-flex justify-content-center justify-search-result" style="position: relative;     width: 100%;
+        height: 150px;">
+        <div class="col-md-6" style="position: absolute;
+            left: 25%;
+            top: 35%;">
+            <div class="card">
+                <div class="input-box input-box-faq" style="background-color: #0D3D68;"> <input type="text" class="form-control" placeholder="@ViewBag.lblSearch ..." id="searchKeyword-result"> <i class="fa fa-search" style="color: #AEBECC; right : 25px; top : 11px;" onclick="searchA2FResult()"></i> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Get the input field
+    var input = document.getElementById("searchKeyword-result");
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function (event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            searchA2FResult();
+        }
+    });
+
+</script>

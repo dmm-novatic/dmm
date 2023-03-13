@@ -1,0 +1,287 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <!-- About Us Body Starts -->
+    <!-- Style : Start -->
+
+    <style>
+        .owl-carousel {
+            z-index:0 !important;
+        }
+        .logo-image-mobile {
+            display: none;
+        }
+
+        @@media (max-width: 767px) {
+            .navbar-header {
+                float: right;
+                width: 100%;
+            }
+
+            .logo-image-mobile {
+                display: block !important;
+            }
+
+            .logo-image {
+                display: none;
+            }
+
+            .logo-image-mobile img {
+                height: 30px;
+                margin-top: -3px;
+            }
+
+            .mobile-header-hidden {
+                display: none;
+            }
+
+            .col-12 {
+                padding: 10px 0px 0px 18px !important;
+            }
+
+            #header-login {
+                padding-right: 18px !important;
+            }
+        }
+
+        @@media (max-width: 320px) {
+            .logo-image-mobile img {
+                height: 28px;
+                margin-top: -3px;
+            }
+        }
+
+        @@media (max-width : 460px) {
+            .container-nopadding {
+                padding: 0;
+            }
+        }
+
+        .navbar-default .navbar-toggle:focus,
+        .navbar-default .navbar-toggle:hover {
+            background-color: white;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
+
+        .container-justpaddingAlittle {
+            padding-right: 100px ;
+            padding-left: 100px;
+            margin-top: 50px;
+    margin-bottom: 50px;
+        }
+    </style>
+
+    <!-- Carousel -->
+    <!--
+         This is font library did not supplied yet!
+        <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/carousel.css">
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <style>
+        .d-md-flex {
+            display: flex !important;
+        }
+
+        .align-items-stretch {
+            -ms-flex-align: stretch !important;
+            align-items: stretch !important;
+        }
+
+        blockquote {
+            border-left: 0px solid #eee;
+        }
+
+        .content .container-slide {
+            width: 100%;
+        }
+
+        .btn-carousel {
+            background-color: white;
+            color: #0D9CC9;
+            font-weight: 600;
+            border-color: none;
+        }
+
+            .btn-carousel:hover {
+                background-color: rgba(255, 255, 255, 0.863);
+                color: #0D9CC9;
+                font-weight: 600;
+                border-color: none;
+            }
+    </style>
+    <!-- Carousel End -->
+    <!--CSS TABS Start-->
+    <style>
+
+        .fa-arrow-right {
+            float: right;
+            display: none;
+        }
+
+            .fa-arrow-right.show {
+                display: block;
+            }
+
+        .img-responsive {
+            padding: 0px;
+        }
+
+        .tab-pane h2 {
+            margin-bottom: 3rem;
+            color: #265178;
+        }
+
+        .container {
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+    </style>
+    <!--CSS T!importantBS End-->
+    <!-- Image style Start -->
+    <style>
+        #tab > div > .row div {
+            background-repeat: no-repeat;
+            background-size: auto;
+            height: 345px;
+             position: relative;
+        }
+
+            #tab > div > .row div img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 215px;
+                
+            }
+    </style>
+
+    <style>
+        p {
+            padding-top: 20px;
+        }
+
+        /* Add responsive for surv!importantyBar */
+
+        @@media (min-width : 1400px ) {
+            div.text {
+                padding: 7rem 4rem 0rem 8rem;
+            }
+        }
+
+
+        @@media (max-width :1399px) and (min-width : 1025px) {
+            div.text {
+                padding: 0 !important;
+                padding-top: 50px !important;
+            }
+        }
+
+        @@media (min-width: 415px) and (max-width: 1024px) {
+            div.text {
+                padding: 2rem 0rem 0rem 2rem !important;
+            }
+
+                div.text > blockquote > p {
+                    font-size: 13px !important;
+                }
+
+                    div.text > blockquote > p > a {
+                        padding: 6px 12px !important;
+                    }
+        }
+
+        @@media (min-width: 415px) and (max-width: 465px) {
+            div.text {
+                padding: 0 !important;
+            }
+        }
+
+        @@media (max-width : 991px) {
+
+            #tabPane {
+                margin-top: 50px;
+            }
+        }
+
+        @@media (max-width : 630px) {
+            blockquote > p > a {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- Style : End -->
+    <!-- Body : Start -->
+    <!--SLIDE START-->
+    @*<partial name="../Shared/A2FComponent/_ContentSlide_AboutUs" />*@
+
+    <partial name="../Shared/A2FComponent/_Banner_GuideNotebook" />
+    <!--SLIDE END-->
+    <!-- Body-->
+    <div class="container-fluid container-justpaddingAlittle">
+        <div class="navtab-inner" role="tabpanel">
+            <!-- Nav tabs -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-nopadding">
+                
+
+                        <!-- Tab Bar Start-->
+                        <partial name="../Shared/A2FComponent/_TabBar_PhuLuc5" />
+                        <!-- Tab Bar End-->
+                         
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+    <!-- Body End-->
+    <!-- About Us Body Ends-->
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+
+</body>
+</html>

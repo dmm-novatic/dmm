@@ -1,0 +1,190 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en-US"> 
+<head>
+    <meta charset="UTF-8" />
+    <title>@ViewBag.SystemConfigs["WEBSITE_TITLE"].Description</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:description" content="@ViewBag.SystemConfigs["WEBSITE_DESCRIPTION"].Description">
+    <meta property="og:image" content="@ViewBag.SystemConfigs["WEBSITE_PHOTO"].Description">
+
+
+    <!-- INCLUDE 1 - LIBRARIES -->
+    @*<?php include_once("reusable/library.php") ?>*@
+    <partial name="GWComponent/_Library" />
+
+</head>
+
+<body class="home page-template page-template-page_builder page-template-page_builder-php page page-id-6 header-1">
+    <div class="site-wrapper">
+
+        <!-- INCLUDE 2 - HEADER  -->
+        @*<?php include_once("reusable/header.php") ?>*@
+        <partial name="GWComponent/_Header" />
+
+        <div class="site-content">
+
+            <!-- INCLUDE 3 - SLIDER  -->
+            @*<?php include_once("reusable/homepage-slide.php") ?>*@
+            @*<partial name="GWComponent/_HomePage_Slide" />*@
+            <partial name="GWComponent/_HomePage_TagList" />
+
+            @* đây là slider của topic muốn để đâu thì chèn vào chỗ đó *@
+            @*<partial name="GWComponent/_HomePage_TopicList" />*@
+
+            <!-- INCLUDE 4 - LATEST NEWS  -->
+            @*<?php include_once("reusable/homepage-latest-news.php") ?>*@
+
+            <div id="tnm_posts_block_a-5d773d13b059b" class="mnmd-block mnmd-block--fullwidth" style="margin-bottom:0px">
+                <div class="container">
+                    <div class="row row--space-between">
+                        <partial name="GWComponent/_HomePage_LastestNews" />
+
+                        <!-- end Column 1 -->
+                        <partial name="GWComponent/_HomePage_TrendingNow" />
+
+                        <!-- end Column 2 -->
+                    </div>
+                </div>
+                <!-- .container -->
+            </div>
+
+            <!-- INCLUDE 5 - COUNTDOWN  -->
+            @*<?php include_once("reusable/homepage-countdown.php") ?>*@
+            @*<partial name="GWComponent/_HomePage_Countdown" />*@
+
+
+            <!-- INCLUDE 9 - ADWORDS LIST MARK  -->
+            @*<?php include_once("reusable/homepage-adwords-score.php") ?>*@
+
+            <!-- GOOGLE ADS  -->
+            <div class="mnmd-layout-split mnmd-block mnmd-block--fullwidth" style="margin-bottom:30px">
+                <div class="container">
+                    <div class="row">
+                        <div  class="" id="googleAdsHomepageBanner1" style="background:transparent; border: 1px solid transparent;">
+                            <!-- Banner 1 -->
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-9498518197328948"
+                                 data-ad-slot="2030402747"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div> 
+            <!-- GOOGLE ADS ENDS -->
+
+
+            <partial name="GWComponent/_HomePage_AdwordsSCore" />
+
+
+            <!-- .mnmd-block -->
+            <div class="mnmd-layout-split mnmd-block mnmd-block--fullwidth">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- INCLUDE 6 - NEW STORIES  -->
+                        @*<?php include_once("reusable/homepage-new-stories.php") ?>*@
+                        <partial name="GWComponent/_HomePage_NewStories" />
+
+                        <div class="mnmd-sub-col mnmd-sub-col--right js-sticky-sidebar" role="complementary">
+                            <div class="theiaStickySidebar">
+
+                                <!-- INCLUDE 7 - POPULAR POST  -->
+                                @*<?php include_once("reusable/sideContentPopular.php") ?>*@
+                                @*<partial name="GWComponent/_SideContentPopular" />*@
+
+                                <!-- INCLUDE 8 - MOST  -->
+                                @*<?php include_once("reusable/mostCommented.php") ?>*@
+                                @*<partial name="GWComponent/_MostCommented" />*@
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- INCLUDE 10 - SCIENCE  -->
+            @*<?php include_once("reusable/homepage-adwords-score.php") ?>*@
+            @*<partial name="GWComponent/_HomePage_AdwordsSCore" />*@
+
+            <!-- đây ví dụ đoạn nàyL -->
+            <!-- .mnmd-block -->
+            <div class="mnmd-layout-split mnmd-block mnmd-block--fullwidth" style="display:none">
+                <div class="container">
+                    <div class="row">
+                        @RenderBody()
+                        <div class="mnmd-main-col" role="main">
+                            <!-- INCLUDE 11 - SCIENCE  -->
+                            @*<?php include_once("reusable/homepage-list-new-stories.php") ?>*@
+                            <partial name="GWComponent/_HomePage_ListNewStories" />
+                        </div>
+
+                        <div class="mnmd-sub-col mnmd-sub-col--right js-sticky-sidebar" role="complementary">
+
+                            <!-- INCLUDE 12 -LINK MEDIA  -->
+                            @*<?php include_once("reusable/homepage-sidebar-media.php") ?>*@
+                            <partial name="GWComponent/_HomePage_SidebarMedia" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INCLUDE 12 - LATES VIDEO  -->
+            @*<?php include_once("reusable/homepage-video-lates.php") ?>*@
+            @*<partial name="GWComponent/_HomePage_VideoLates" />*@
+
+            <!-- INCLUDE 13 - EDITOR'S PICK  -->
+            @*<?php include_once("reusable/homepage-new-editorpick.php") ?>*@
+            @*<partial name="GWComponent/_HomePage_NewEditorpick" />*@
+
+        </div>
+
+        <!-- INCLUDE 14 - FOOTER -->
+        @*<?php include_once("reusable/footer.php") ?>*@
+        <partial name="GWComponent/_Footer" />
+
+        <!-- INCLUDE 15 - STICKY HEADER -->
+        @*<?php include_once("reusable/stickyHeader.php") ?>*@
+        <partial name="GWComponent/_StickyHeader" />
+
+        <!-- INCLUDE 16 - USER MODAL -->
+        @*<?php include_once("reusable/userModal.php") ?>*@
+        <partial name="GWComponent/_UserModal" />
+
+        <!-- INCLUDE 17 - CANVAS MENU -->
+        @*<?php include_once("reusable/canvasMenu.php") ?>*@
+        <partial name="GWComponent/_CanvasMenu" />
+
+        <!-- INCLUDE 18 - SUBSCRIBE MODAL -->
+        @*<?php include_once("reusable/subscribeModal.php") ?>*@
+        <partial name="GWComponent/_SubscribeModal" />
+
+        <!-- go top button -->
+        <a href="#" class="mnmd-go-top btn btn-default hidden-xs js-go-top-el">
+            <i class="mdicon mdicon-arrow_upward"></i>
+        </a>
+    </div>
+    <!-- .site-wrapper -->
+    <!-- INCLUDE 2 - JAVASCRIPT -->
+    @*<?php include_once("reusable/javascript.php") ?>*@
+    <partial name="GWComponent/_Javascript" />
+    <partial name="GWComponent/_JSFavouritePost" />
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

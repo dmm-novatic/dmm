@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+    <div class="mnmd-block mnmd-block--fullwidth mnmd-block--contiguous single-header-with-bg single-header--has-pattern" style=&quot;background-color:#f5f5f5&quot;>
+        <div class="container">
+            <header class="single-header ">
+                <div class="single-header__inner">
+                    <a class="cat-207 post__cat post__cat--bg cat-theme-bg" href="../category/@ViewBag.PostCategoryURL">@ViewBag.PostCategoryName</a>
+                    <h1 class="entry-title entry-title--lg">@ViewBag.Title</h1>
+
+                    <div class="entry-teaser entry-teaser--lg">
+                        @ViewBag.Description
+                    </div>
+
+                    <!-- Entry meta -->
+                    <div class="entry-meta">
+                        <span class="entry-author entry-author--with-ava">
+                            <img alt='gappingworld' src='@ViewBag.PostAccountPhoto' srcset='@ViewBag.PostAccountPhoto 2x' class='avatar avatar-34 photo entry-author__avatar' height='34' width='34' />By <a class="entry-author__name" title="Posts by @ViewBag.PostAccountName" rel="author" href="../author/@ViewBag.PostAccountURL">@ViewBag.PostAccountName</a>
+                        </span>
+                        <time class="time published" datetime="@ViewBag.PublishedTime" title="@ViewBag.PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.PublishedTime</time><span><i class="mdicon mdicon-visibility"></i>@ViewBag.ViewCount views</span>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>

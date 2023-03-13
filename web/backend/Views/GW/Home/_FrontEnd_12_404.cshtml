@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gapping World | Not found</title>
+
+    <!-- INCLUDE 1 - LIBRARIES -->
+    @*<?php include_once("reusable/library.php") ?>*@
+    <partial name="GWComponent/_Library" />
+
+</head>
+<body class="error404 header-1">
+    <div class="site-wrapper">
+        <div class="site-content">
+            <div class="container">
+                <div class="page-404-logo site-logo text-center">
+                    <a href="@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description">
+                        <img src="@ViewBag.SystemConfigs["LOGO_HEADER"].Description" alt="logo" width="60" style="padding-top: 20px;"/>
+                        <h1 style="font-family:'Abril Fatface'; color:#333; text-transform:uppercase; letter-spacing:2px; font-size: 1.802rem;">Gapping world</h1>
+                        <!-- logo close -->
+                    </a>
+                </div>
+                <div class="page-404-image" style="margin-top: -55px">
+                    <img src="@ViewBag.SystemConfigs["IMAGE_404"].Description" alt="404" />
+                </div>
+                <div class="page-404-text text-center">
+                    @RenderBody()
+                    <p>
+                        Come back, you're wandering too far!
+                    </p>
+                    <p>
+                        We couldn't find the page you're looking for. Try searching or go back to the <a href="@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description" title="Homepage">Homepage</a>.
+                    </p>
+                </div>
+                <div class="page-404-search" >
+                    <form  onsubmit="return false;"  class="search-form search-form--inline" action="" method="get">
+                        <input id="searchKeyword" type="text" name="s" class="search-form__input" placeholder="Type here to search" value="">
+                        <button type="submit" class="search-form__submit btn btn-primary" onclick="searchGW()">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+            function searchGW() {
+                //debugger;
+                var keyword = $("#searchKeyword").val();
+
+                var url = window.location.href;
+                var arr = url.split("/");
+                var currentUrl = arr[0] + "//" + arr[2]
+
+                var searchUrl = currentUrl + "/search/" + keyword;
+                //console.log(searchUrl);
+                //alert(searchUrl);
+
+                //window.location.replace(searchUrl);
+                window.location.href = searchUrl;
+
+            }
+            var searchInput = document.getElementById("searchKeyword");
+
+            // Execute a function when the user releases a key on the keyboard
+            searchInput.addEventListener("keyup", function (event) {
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                    // Cancel the default action, if needed
+                    event.preventDefault();
+                    // Trigger the button element with a click
+                    searchGW();
+                }
+            });
+        </script>
+
+</body>
+</html>

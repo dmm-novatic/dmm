@@ -1,0 +1,368 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    .BoxEvent {
+        /*width: 562px;*/
+        background-size: cover;
+    }
+
+        .BoxEvent:first-child {
+            height: 310px;
+            background-color: skyblue;
+            border-radius: 10px;
+            background-repeat: no-repeat;
+            /*margin-right: 45px;*/
+        }
+
+        .BoxEvent:nth-child(2) {
+            height: 310px;
+            background-color: rgb(38, 68, 97);
+            border-radius: 10px;
+        }
+
+        .BoxEvent span:first-of-type {
+            padding-left: 43px;
+            color: white;
+        }
+
+        .BoxEvent span {
+            font-size: 18px;
+            color: white;
+        }
+
+        .BoxEvent .EventHeader {
+            font-size: 18px;
+            font-family: My Custom Regular;
+            letter-spacing: 1px;
+            color: white;
+            padding-top: 40px;
+            padding-left: 40px;
+            text-transform: uppercase;
+        }
+
+        .BoxEvent .EventBody {
+            font-family: My Custom Regular;
+            color: white;
+            font-size: 28px;
+            width: 100%;
+            padding-left: 40px;
+        }
+
+    #ViewEventButton {
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        background-color: #11335A;
+        width: auto;
+        height: 36px;
+        font-size: 15px;
+        font-family: My Custom Regular;
+        border-radius: 5px;
+        margin-bottom: 27px;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .div-button {
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .PlayButton:hover {
+        border-radius: 55px;
+        width: 59px;
+        height: 59px;
+        background-color: white;
+        padding-top: 21px;
+        padding-left: 23px;
+        margin-right: 10%;
+        margin-top: 5%;
+        box-shadow: 0px 0px 0px 0px rgb(255 255 255 / 30%);
+        transition: all 0.2s ease;
+        float: right;
+    }
+
+    .PlayButton {
+        border-radius: 50px;
+        width: 55px;
+        height: 55px;
+        background-color: white;
+        padding-top: 19px;
+        padding-left: 21px;
+        margin-right: 10%;
+        margin-top: 5%;
+        float: right;
+        box-shadow: 0px 0px 0px 8px rgb(255 255 255 / 30%);
+    }
+
+    #button2 {
+        margin-top: 3% !important;
+    }
+
+    i {
+        font-size: 18px;
+    }
+
+    #div-button {
+        text-align: center;
+        padding-top: 2%;
+    }
+</style>
+<!--Responsive Start-->
+<style>
+    @@media screen and (min-width: 320px) and (max-width: 374px) {
+        .BoxEvent {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        .EventHeader {
+            font-size: 13px !important;
+            padding-left: 0% !important;
+            padding-top: 10% !important;
+        }
+
+        .EventBody {
+            width: auto !important;
+            padding-left: 0% !important;
+            font-size: 18px !important;
+        }
+
+        .BoxEvent span {
+            font-size: 13px !important;
+        }
+
+            .BoxEvent span:first-of-type {
+                padding-left: 0% !important;
+            }
+
+        .BoxEvent:first-child {
+            margin-bottom: 10% !important;
+            margin-right: 0% !important;
+        }
+
+        .PlayButton {
+            width: 45px !important;
+            height: 45px !important;
+            padding-top: 12px !important;
+            padding-left: 15px !important;
+            margin-left: 211px !important;
+        }
+
+            .PlayButton:hover {
+                width: 49px !important;
+                height: 49px !important;
+                padding-top: 15px !important;
+                padding-left: 17px !important;
+                margin-top: -5.5% !important;
+            }
+
+        #ViewEventButton {
+            width: 100%;
+        }
+
+        i {
+            font-size: 13px;
+        }
+    }
+
+    @@media screen and (min-width:375px) and (max-width: 425px) {
+        .BoxEvent {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        .EventHeader {
+            font-size: 13px !important;
+            padding-left: 0% !important;
+            padding-top: 10% !important;
+        }
+
+        .EventBody {
+            width: auto !important;
+            padding-left: 0% !important;
+            font-size: 18px !important;
+        }
+
+        .BoxEvent span {
+            font-size: 13px !important;
+        }
+
+            .BoxEvent span:first-of-type {
+                padding-left: 0% !important;
+            }
+
+        .BoxEvent:first-child {
+            margin-bottom: 10% !important;
+            margin-right: 0% !important;
+        }
+
+        .PlayButton {
+            width: 45px !important;
+            height: 45px !important;
+            padding-top: 12px !important;
+            padding-left: 15px !important;
+            margin-left: 295px !important;
+        }
+
+            .PlayButton:hover {
+                width: 49px !important;
+                height: 49px !important;
+                padding-top: 15px !important;
+                padding-left: 17px !important;
+                margin-top: -5.5% !important;
+                margin-bottom: 6%;
+            }
+
+        i {
+            font-size: 13px;
+        }
+    }
+
+    @@media screen and (max-width:991px) and (min-width: 768px) {
+        .BoxEvent {
+            height: auto !important;
+            margin: 10px auto;
+            width: 100%;
+        }
+
+        .row {
+            margin: 10px auto;
+        }
+
+        .PlayButton {
+            margin-left: 88%;
+        }
+
+        #button2 {
+            margin-top: 0% !important;
+        }
+
+        .EventBody {
+            width: auto !important;
+        }
+    }
+
+    @@media screen and (min-width: 992px) and (max-width:1199px) {
+        .EventBody {
+            width: auto !important;
+        }
+
+        .PlayButton {
+            margin-left: 83%;
+        }
+
+        #button2 {
+            margin-top: 4% !important;
+        }
+
+        .BoxEvent {
+            width: 48%;
+        }
+
+            .BoxEvent:first-child {
+                /*margin-right: 3%;*/
+            }
+    }
+</style>
+<!--Responsive End-->
+
+
+<div class="container-fluid group-event" style="background-color: #F1FDFF;">
+
+
+
+    <div class="container" style="width: 100%; padding: 0 15% 0 15%; margin: 0; ">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0;">
+                @if (ViewBag.listPostEventIsGoingOn.Count != 0)
+                {
+                    foreach (var item in ViewBag.listPostEventIsGoingOn)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 item-event" style="padding: 0 15px 15px 0;">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 BoxEvent" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url('@item.Photo'); height: 310px;width:100%; background-color: skyblue; border-radius: 10px; background-repeat: no-repeat;">
+                                <p class="EventHeader">
+                                    @ViewBag.lblSuKienDangDienRa
+                                </p>
+                                <p class="EventBody ellipsis2">
+                                    <a href="/chi-tiet-su-kien/@item.Url" style="color:white;">
+                                        @item.Name
+                                    </a>
+                                </p>
+                                <span><i class="fas fa-calendar-day"></i></span>
+                                <span id="time1"></span>
+                                <p class="PlayButton"><a href="/chi-tiet-su-kien/@item.Url"><i class="fas fa-play"></i></a></p>
+                            </div>
+                        </div>
+                        break;
+                    }
+                    <script>
+                    $(document).ready(function () {
+                        if (@ViewBag.listPostEventIsGoingOn.Count > 0) {
+                            var opentime1 = "@ViewBag.listPostEventIsGoingOn[0].OpenTime";
+                            var getopentime1 = "";
+                            if (opentime1 != "") {
+                                opentime1 = opentime1.split(' ');
+                                getopentime1 = opentime1[0];
+                            }
+                            var closetime1 = "@ViewBag.listPostEventIsGoingOn[0].ClosedTime";
+                            var getclosetime1 = "";
+                            if (closetime1 != "") {
+                                closetime1 = closetime1.split(' ');
+                                getclosetime1 = closetime1[0];
+                            }
+                            var time1 = (getopentime1 + " - " + getclosetime1).toString();
+                            document.getElementById("time1").innerHTML = time1
+                        }
+                    });
+                    </script>
+                }
+                @if (ViewBag.listPostEventEnded.Count != 0)
+                {
+                    foreach (var item in ViewBag.listPostEventEnded)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 item-event" style="padding:0 0 15px 15px;">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 BoxEvent" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url('@item.Photo'); height: 310px;width:100%; background-color: rgb(38, 68, 97); border-radius: 10px;">
+                                <p class="EventHeader">@ViewBag.lblSuKienDaKetThuc</p>
+                                <p class="EventBody ellipsis2">
+                                    <a href="/chi-tiet-su-kien/@item.Url" style="color:white;">
+                                        @item.Name
+                                    </a>
+                                </p>
+                                <span><i class="fas fa-calendar-day"></i></span>
+                                <span id="time2"></span>
+                                <p class="PlayButton"><a href="/chi-tiet-su-kien/@item.Url"><i class="fas fa-play"></i></a></p>
+                            </div>
+                        </div>
+                        break;
+                    }
+                    <script>
+                    $(document).ready(function () {
+                        if (@ViewBag.listPostEventEnded.Count > 0 ) {
+                            var opentime2 = "@ViewBag.listPostEventEnded[0].OpenTime".split(' ');
+                            var getopentime2 = opentime2[0];
+                            var closetime2 = "@ViewBag.listPostEventEnded[0].ClosedTime".split(' ');
+                            var getclosetime2 = closetime2[0];
+                            document.getElementById("time2").innerHTML = getopentime2 + " - " + getclosetime2;
+                        }
+                    });
+                    </script>
+                }
+
+            </div>
+        </div>
+        <div id="div-button">
+            <button type="button" id="ViewEventButton" onclick="window.location.href = '/su-kien';" style="border:none">@ViewBag.lblXemThemDSSuKien</button>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        if (@ViewBag.listPostEventEnded.Count == 0 && @ViewBag.listPostEventIsGoingOn.Count == 0 && @ViewBag.listPostEventAboutToStartSoon.Count == 0) {
+            $(".event-carousel").css("display", "none");
+            $(".group-event").css("display", "none");
+        }
+    }
+</script>

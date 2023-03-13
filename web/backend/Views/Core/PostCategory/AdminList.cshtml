@@ -1,0 +1,758 @@
+
+
+@{
+    ViewData["Title"] = "Danh mục bài viết";
+    Layout = "_NovaticAdmin";
+}
+
+<!-- Page-header starts -->
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Danh mục bài viết</h3>
+            </div>
+        </div>
+
+        <a id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm">
+            <i class="fa fa-plus"></i>
+            <span class='hideOnMobile'>New Record</span>
+        </a>
+    </div>
+</div>
+<!-- Page-header ends -->
+
+<!-- Page-body starts -->
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+                            <!-- Table starts -->
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>ID</th>
+                                        <th>Tên danh mục</th>
+                                        <th>Tên danh mục cấp 1</th>
+                                        <th>Tên danh mục cấp 2</th>
+                                        <th>Slug</th>
+                                        <th>Color</th>
+                                        <th>Mô tả</th>
+                                        <th>Số bài viết</th>
+                                        @*<th>Ảnh nền</th>*@
+                                        @*<th>Ngày tạo</th>*@
+                                        <th>Detail</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>ID</th>
+                                        <th>Tên danh mục</th>
+                                        <th>Tên danh mục cấp 1</th>
+                                        <th>Tên danh mục cấp 2</th>
+                                        <th>Slug</th>
+                                        <th>Color</th>
+                                        <th>Mô tả</th>
+                                        <th>Số bài viết</th>
+                                        @*<th>Ảnh nền</th>*@
+                                        @*<th>Ngày tạo</th>*@
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- Table ends -->
+
+                            <!-- Modal form starts -->
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Detail item</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <form action="" method="POST" onsubmit='updateItem(updatingItemID); return false;' role="form">
+                                                <div class="form-group">
+                                                    <label for="">ID</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-id" value="0"
+                                                           id="postCategoryId" required readonly
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="postCategoryActive" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Tên danh mục</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-name"
+                                                           id="postCategoryName" required
+                                                           placeholder="">
+                                                </div>
+
+                                                <div class='form-group row selectContainer'>
+                                                    <label class=''>Danh mục cha</label><span class='required'>*</span>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' required id='PostCategoryParentID' class='form-control fill dataSelect  input-ParentID' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var postCategoryData = [];
+                                                    function loadDataSelectPostCategory() {
+                                                        $.ajax({
+                                                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/PostCategory/api/list",
+                                                            type: 'GET',
+                                                            async: 'true',
+                                                            contentType: 'application/json',
+                                                            success: function (responseData) {
+                                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded accountType');
+                                                                //debugger;
+                                                                var data = responseData.data;
+                                                                postCategoryData = data;
+                                                                var postCategoryRootObj = {
+                                                                    "id": 0,
+                                                                    "active": 1,
+                                                                    "name": "Gốc",
+                                                                    "name2": "",
+                                                                    "slug": "",
+                                                                    "slug2": "",
+                                                                    "color": "",
+                                                                    "description": "",
+                                                                    "photo": "",
+                                                                    "createdTime": "",
+                                                                    "parentid": 0,
+                                                                }
+                                                                data.push(postCategoryRootObj);
+                                                                data.forEach(function (item, index) {
+                                                                    var data = {
+                                                                        id: item.id,
+                                                                        text: item.name
+                                                                    };
+                                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                                    $('#PostCategoryParentID').append(newOption).trigger('change');
+                                                                });
+                                                            },
+                                                            error: function (e) {
+                                                                //console.log(e.message);
+                                                            }
+                                                        });
+                                                    }
+                                                    $(document).ready(function () {
+                                                        loadDataSelectPostCategory();
+                                                    });
+                                                </script>
+
+                                                <div class="form-group">
+                                                    <label for="">Tên Tiếng Anh</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-name2"
+                                                           id="postCategoryName2" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Slug</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-slug"
+                                                           id="postCategorySlug" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Slug tiếng Anh</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-slug2"
+                                                           id="postCategorySlug2" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Số bài viết</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control "
+                                                           id="postCount" required readonly
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Color</label><span class='required'>*</span>
+                                                    <input type="color" class="form-control  input-color"
+                                                           id="postCategoryColor" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control  input-description " rows="2" id="postCategoryDescription"></textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="">Ảnh nền</label>
+                                                    <textarea class="form-control  input-photo " rows="2" id="postCategoryPhoto"></textarea>
+                                                </div>
+
+                                                <div class='form-group'>
+                                                    <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                    <div class='input-group date datetimepicker  input-createdTime' id='postCategoryCreatedTimeDiv'>
+                                                        <input type='text' id="postCategoryCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit" class="btn btn-default" value="Save changes">
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem" onclick="document.getElementById('hiddenSubmit').click();">
+                                                Save changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal form ends -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Page-body ends -->
+
+
+<script>
+    var hiddenItem = ["active","post","createdTime","photo","parentID"];
+    var dataSource = [];
+    var updatingItemID = 0;
+    var tableUpdating = 0;
+    var table;
+
+    $(document).ready(function () {
+        // Load data
+        loadData();
+        // includeLibrary();
+
+        // Datetime picker
+        $('.datetimepicker').datetimepicker({
+            format: 'DD-MM-YYYY HH:mm:ss'
+        });
+
+        $(".datetimepicker").on('dp.change', function (e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("DD-MM-YYYY HH:mm:ss");
+            // console.log(this.value);
+        })
+
+        // Dropdown select2
+        $('.dataSelect').select2();
+    });
+
+
+    function loadData() {
+        $.ajax({
+            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}postCategory/api/list",
+            type: "GET",
+            contentType: "application/json",
+            success: function (responseData) {
+                // debugger;
+                var data = responseData.data;
+                dataSource = data;
+
+
+
+                //debugger;
+                data.forEach(function (item, index) {
+                    if (item.parentID == 0) {
+                        var hasChild = 0;
+                        var rowSubContent = "";
+                        var rowContent = "";
+                        var newSubRow = "";
+                        var newRow = "";
+                        data.forEach(function (item2, index2) {
+                            if (item2.parentID == item.id) {
+                                rowSubContent = "";
+                                newSub2Row = "";
+                                rowSubContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                                for (var key in item2) {
+                                    if (item2.hasOwnProperty(key)) {
+                                        // console.log(key + " -> " + item[key]);
+                                        if (!hiddenItem.includes(key)) {
+                                            if (key == "color") {
+                                                rowSubContent += "<td  style='text-align:center; font-weight:bold; color:"+item2[key]+"' class='row"+item2.id+"-column column-"+key+"' property='"+key+"'>" + item2[key] + "</td>";
+                                            }
+                                            else if (key == "name") {
+                                                rowSubContent += "<td></td>";
+                                            }
+                                            else if (key == "name2") {
+                                                rowSubContent += "<td>" + item2["name"] + "</td>";
+                                            }
+                                            else if (key == "slug2") {
+                                                rowSubContent += "<td></td>";
+                                            }
+                                            else {
+                                                rowSubContent += "<td class='row"+item2.id+"-column column-"+key+"' property='"+key+"'>" + item2[key] + "</td>";
+                                            }
+                                        }
+                                    }
+                                }
+                                rowSubContent += "<td style='text-align: center;'><a onclick='editItem(" + item2.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                                rowSubContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item2.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                                newSubRow += "<tr id='row" + item2.id + "' >" + rowSubContent + "</tr>";
+
+                                data.forEach(function (item3, index3)
+                                {
+                                    if (item3.parentID == item2.id) {
+                                        rowSub2Content = "";
+                                        newSub2Row = "";
+                                        rowSub2Content += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                                        for (var key in item3) {
+                                            if (item3.hasOwnProperty(key)) {
+                                                // console.log(key + " -> " + item[key]);
+                                                if (!hiddenItem.includes(key)) {
+                                                    if (key == "color") {
+                                                        rowSub2Content += "<td  style='text-align:center; font-weight:bold; color:"+item3[key]+"' class='row"+item3.id+"-column column-"+key+"' property='"+key+"'>" + item3[key] + "</td>";
+                                                    }
+                                                    else if (key == "name") {
+                                                        rowSub2Content += "<td></td>";
+                                                    }
+                                                    else if (key == "name2") {
+                                                        rowSub2Content += "<td></td>";
+                                                    }
+                                                    else if (key == "slug2") {
+                                                        rowSub2Content += "<td>" + item3["name"] + "</td>";
+                                                    }
+                                                    else {
+                                                        rowSub2Content += "<td class='row"+item3.id+"-column column-"+key+"' property='"+key+"'>" + item3[key] + "</td>";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        rowSub2Content += "<td style='text-align: center;'><a onclick='editItem(" + item3.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                                        rowSub2Content += "<td style='text-align: center;'><a onclick='deleteItem(" + item3.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                                        newSub2Row += "<tr id='row" + item3.id + "' >" + rowSub2Content + "</tr>";
+
+                                        newSubRow += newSub2Row;
+                                    }
+                                });
+                                
+                                //$(newRow).appendTo($("#tableData tbody"));
+                                hasChild = 1;
+                            }
+                        });
+                        if (hasChild == 1) {
+                            rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                            for (var key in item) {
+                                if (item.hasOwnProperty(key)) {
+                                    // console.log(key + " -> " + item[key]);
+                                    if (!hiddenItem.includes(key)) {
+                                        if (key == "color") {
+                                            rowContent += "<td  style='text-align:center; font-weight:bold; color:" + item[key] + "' class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                        }
+                                        else if (key == "name2") {
+                                            rowContent += "<td></td>";
+                                        }
+                                        else if (key == "slug2") {
+                                            rowContent += "<td></td>";
+                                        }
+                                        else {
+                                            rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                        }
+                                    }
+                                }
+                            }
+                            rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                            rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                            var newRow = "<tr id='row" + item.id + "' >" + rowContent + "</tr>";
+                            $(newRow).appendTo($("#tableData tbody"));
+                            $(newSubRow).appendTo($("#tableData tbody"));
+                        }
+                        else {
+                            rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                            for (var key in item) {
+                                if (item.hasOwnProperty(key)) {
+                                    // console.log(key + " -> " + item[key]);
+                                    if (!hiddenItem.includes(key)) {
+                                        if (key == "color") {
+                                            rowContent += "<td  style='text-align:center; font-weight:bold; color:" + item[key] + "' class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                        }
+                                        else if (key == "name2") {
+                                            rowContent += "<td></td>";
+                                        }
+                                        else if (key == "slug2") {
+                                            rowContent += "<td></td>";
+                                        }
+                                        else {
+                                            rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                        }
+                                    }
+                                }
+                            }
+                            rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                            rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                            var newRow = "<tr id='row" + item.id + "' >" + rowContent + "</tr>";
+                            $(newRow).appendTo($("#tableData tbody"));
+                        }
+                    }
+                    // console.log(item, index);
+                    
+
+                    // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                });
+
+                //Init datatable
+                if (tableUpdating === 0) {
+                    initTable();
+                }
+
+                //update data with foreign key
+                updateTable();
+            },
+            error: function (e) {
+                //console.log(e.message);
+                initTable();
+            }
+        });
+    }
+
+    function initTable() {
+        table = $('#tableData').DataTable({
+            aLengthMenu: [
+                [100, 200, -1],
+                [100, 200, 'Tất cả']
+            ]
+        });
+
+
+
+        table.on('order.dt search.dt', function () {
+            table.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+        $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function () {
+            var title = $(this).text();
+            $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+        });
+
+        table.columns().every(function () {
+            var that = this;
+
+            $('input', this.footer()).on('keyup change', function () {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
+    }
+
+    function editItem(id) {
+        //debugger;
+        updatingItemID = id;
+        $("#modal-id").modal('show');
+
+        let obj = getItemById(id);
+        $("#postCategoryId").val(id > 0 ? obj.id : "");
+        $("#postCategoryActive").val(id > 0 ? obj.active : "");
+        $("#postCategoryName").val(id > 0 ? obj.name : "");
+        $("#PostCategoryParentID").val(id > 0 ? obj.parentID : "");
+        $("#postCategoryName2").val(id > 0 ? obj.name2 : "");
+        $("#postCategorySlug").val(id > 0 ? obj.slug : "");
+        $("#postCategorySlug2").val(id > 0 ? obj.slug2 : "");
+        $("#postCategoryColor").val(id > 0 ? obj.color : "");
+        $("#postCategoryDescription").val(id > 0 ? obj.description : "");
+        $("#postCategoryPhoto").val(id > 0 ? obj.photo : "");
+        $("#postCategoryCreatedTime").val(id > 0 ? obj.createdTime : "");
+        $('#PostCategoryParentID').trigger('change');
+        $("#postCount").val(id > 0 ? obj.postCount : 0);
+
+        // $("#postCategoryId").val(id > 0 ? obj.id : "");
+        // $("#postCategoryName").val(id > 0 ? obj.name : "");
+        // $("#postCategoryDescription").val(id > 0 ? obj.description : "");
+        // $("#postCategoryCreatedTime").val(id > 0 ? obj.createdTime : "");
+        // $("#postCategoryActive").val(id > 0 ? obj.active : "");
+
+        if (id == 0) {
+            $("#postCategoryActive").val(1);
+            $("#postCategoryCreatedTime").val(new Date());
+        }
+        else {
+            // correcting data
+            //$('#buyProvinceID').val(obj.provinceID.split(", ")).trigger('change');
+
+        }
+        formatNumber();
+    }
+
+    function updateItem(id) {
+        var actionName = (id == 0 ? "Create" : "Update");
+        let obj = getItemById(id);
+        let objName = id > 0 ? obj.name : " ";
+
+        validateInputNumber();
+
+        // "id": $("#postCategoryId").val(),
+        // "name": $("#postCategoryName").val(),
+        // "description": $("#postCategoryDescription").val(),
+        // "createdTime": $("#postCategoryCreatedTime").val(),
+        // "active": $("#postCategoryActive").val()
+        var updatingObj = {
+            "id": $("#postCategoryId").val(),
+            "active": $("#postCategoryActive").val(),
+            "name": $("#postCategoryName").val(),
+            "name2": $("#postCategoryName2").val(),
+            "slug": $("#postCategorySlug").val(),
+            "slug2": $("#postCategorySlug2").val(),
+            "postCount": $("#postCount").val(),
+            "color": $("#postCategoryColor").val(),
+            "description": $("#postCategoryDescription").val(),
+            "photo": $("#postCategoryPhoto").val(),
+            "createdTime": datetimeFormat($("#postCategoryCreatedTime").val()),
+            "parentid": $("#PostCategoryParentID").val(),
+
+        };
+
+        // correcting data
+        //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Performing " + actionName + " item " + objName,
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postCategory/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Updated!',
+                                    'Item ' + objName + ' has been successfully updated!',
+                                    'success'
+                                );
+                                updateTable(id, updatingObj, "update");
+                                var updatedItemIndex = dataSource.findIndex(item => parseInt(item.id) === id);
+                                dataSource[updatedItemIndex] = updatingObj;
+
+                                var url = window.location.href;
+                                window.location.href = url;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' update item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                };
+
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}postCategory/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                Swal.fire(
+                                    'Created!',
+                                    'New item has been successfully created!',
+                                    'success'
+                                );
+                                updatingObj = responseData.data;
+                                dataSource.push(updatingObj);
+                                updateTable(0, updatingObj, "add");
+
+                                var url = window.location.href;
+                                window.location.href = url;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' create item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+    function deleteItem(id) {
+        let obj = getItemById(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}postCategory/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function (responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Deleted!',
+                                'Item ' + obj.name + ' has been deleted.',
+                                'success'
+                            );
+                            updateTable(id, 0, "delete");
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Error!',
+                            'Item ' + obj.name + ' can\'t be deleted.',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+        })
+    }
+
+    function updateTable(id, obj, action) {
+        if (action === "delete") {
+            table.row("#row" + id).remove().draw();
+        }
+
+        if (action === "add") {
+            console.log("Added:" + obj);
+
+            //var addedItems = [obj];
+            var addedItems = obj;
+            var addedValues = [];
+
+
+            addedItems.forEach(function (item, index) {
+                // console.log(item, index);
+                var rowContent = "";
+                addedValues.push("<td style='text-align: center;'></td>");
+                for (var key in item) {
+                    if (item.hasOwnProperty(key)) {
+                        // console.log(key + " -> " + item[key]);
+                        if (!hiddenItem.includes(key)) {
+                            addedValues.push("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+                        }
+                    }
+                }
+                addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+                addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                table.row.add(addedValues).draw();
+            });
+            // location.reload();
+        }
+
+        if (action === "update") {
+            // alert(id);
+            $(".row" + id + "-column").each(function () {
+                var propertyName = $(this).attr("property");
+                console.log(propertyName);
+
+                for (var key in obj) {
+                    if (key === propertyName && obj.hasOwnProperty(key)) {
+                        this.innerText = obj[key];
+                    }
+                }
+
+            });
+        }
+
+        //Update columns with foreign key
+        // var NO_FKFKUpdateSelector = 'tr';
+        // if( !(typeof(id) === 'undefined')) {
+        //     NO_FKFKUpdateSelector = '#row'+id;
+        // }
+        // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKID]').each(function(){
+        //     // debugger;
+        //     var postCategoryID = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+        //     var postCategoryObj = getItemById(postCategoryID);
+        //     var NO_FKID = parseInt(postCategoryObj.NO_FKID);
+        //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKID);
+        //     $(this).text(NO_FKObj.name);
+        //     // console.log('FK updated for Staff '+postCategoryID);
+        // });
+
+
+        formatNumber();
+    }
+
+    function getItemById(id) {
+        const result = dataSource.find(item => parseInt(item.id) === id);
+        return result;
+    }
+
+    function camelToSentenceCase(input) {
+        var text = input;
+        var result = text.replace(/([A-Z])/g, " $1");
+        var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+        return finalResult;
+    }
+     
+</script>

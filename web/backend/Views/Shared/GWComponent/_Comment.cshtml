@@ -1,0 +1,342 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .comment-author >img{
+        max-width:unset!important;
+    }
+</style>
+<div class="comments-section single-entry-section">
+    <div id="comments" class="comments-area">
+        <h2 class="comments-title">
+            @ViewBag.lblTitleBinhLuan
+        </h2>
+        <!-- End Comment Area Title -->
+        <!-- Start Comment List -->
+        @*Bình luận 1 tầng, hiện tại dùng cái này nhé Tráng*@
+        <ol class="comment-list">
+            <li id="comment-71" class="comment byuser comment-author-perrywatkins even thread-even depth-1">
+                <div id="NovaticComment" class="comment-body">
+
+                    @*<footer class="comment-meta">
+                            <div class="comment-author vcard">
+                                <img alt='' src='http://1.gravatar.com/avatar/7d2f8da15be86c6a28d2c77e167473b3?s=60&amp;d=mm&amp;r=g' class='avatar avatar-60 photo' height='60' width='60' />
+                                <b>
+                                    <span class="comment-author-name">Perry Watkins</span>
+                                </b>
+                                <span class="says">says:</span>
+                            </div>
+                            <div class="comment-metadata">
+                                <a href="index.html#comment-71" class="comment-timestamp">20 July, 2018 at 4:16 am</a>
+                                <span class="edit-link"></span>
+                            </div>
+                        </footer>*@
+                    @{
+                        foreach (var obj in ViewBag.ListCommentViewModel)
+                        {
+                            if (obj.PostId == ViewBag.CurrentPostId)
+                            {
+                                <footer class="comment-meta">
+                                    <div class="comment-author vcard">
+                                        <img alt='' src='@obj.Photo' class='avatar avatar-60 photo' height='60' width='60' />
+                                        <b>
+                                            <span class="comment-author-name">@obj.Name</span>
+                                        </b>
+                                        <span class="says">says:</span>
+                                    </div>
+                                    <div class="comment-metadata">
+                                        <a href="index.html#comment-71" class="comment-timestamp">@obj.CreatedTime</a>
+                                        <span class="edit-link"></span>
+                                    </div>
+                                </footer>
+
+                                <div class="comment-content">
+                                    <p>@obj.Text</p>
+                                </div>
+                            }
+
+                        }
+                    }
+                    <!-- .comment-meta -->
+                    @*<div class="comment-content">
+                            <p>Malorum similique no nec, eu iisque quaestio salutandi cum, aliquam bonorum eu duo. Summo intellegat eos eu, eu lucilius similique intellegebat cum. Cum te viris equidem dolorum. Omnes postea vidisse vis an, esse accumsan apeirian id vix. Ei sapientem similique incorrupte nam.</p>
+                        </div>*@
+
+
+                    @*<div class="reply">
+                            <a rel='nofollow' class='comment-reply-link' href='index616c.html?replytocom=71#respond' onclick='return addComment.moveForm( "comment-71", "71", "respond", "1885" )' aria-label='Reply to Perry Watkins'>Reply</a>
+                        </div>*@
+                </div>
+                <!-- </li> is added by WordPress automatically -->
+            </li>
+            <nav class="mnmd-pagination text-center">
+                <a onclick="NextView();" id="NextViewID" class="btn btn-default">Xem thêm bình luận<i class="mdicon mdicon-arrow_forward mdicon--last"></i></a>
+            </nav>
+            <!-- #comment-## -->
+            @*Đây là bình luận có chứ bình luận con,
+                nhưng db mình chưa có parentID nên comment lại để dùng sau*@
+
+
+            @*<li id="comment-72" class="comment byuser comment-author-ashleygardner odd alt thread-odd thread-alt depth-1">
+                    <div id="div-comment-72" class="comment-body">
+                        <footer class="comment-meta">
+                            <div class="comment-author vcard">
+                                <img alt='' src='http://1.gravatar.com/avatar/1205bb7420f3644616a5ef96662e87b5?s=60&amp;d=mm&amp;r=g' srcset='http://1.gravatar.com/avatar/1205bb7420f3644616a5ef96662e87b5?s=120&#038;d=mm&#038;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' /> <b><span class="comment-author-name">Ashley Gardner</span></b>
+                                <span class="says">says:</span>
+                            </div>
+                            <div class="comment-metadata">
+                                <a href="index.html#comment-72" class="comment-timestamp">20 July, 2018 at 4:17 am</a>
+                                <span class="edit-link">
+                                </span>
+                            </div>
+                        </footer>
+                        <!-- .comment-meta -->
+                        <div class="comment-content">
+                            <p>Elit argumentum eum ad, ne quidam postulant eam. Affert nonumes ut est. Quando gubergren ei mel, ad eum tollit erroribus suscipiantur. Sea in iudicabit gubergren, pri reprimique contentiones te. Cu vim iisque detracto, eu mel splendide percipitur suscipiantur, mei graeci consequat ad.</p>
+                        </div>
+                        <div class="reply">
+                            <a rel='nofollow' class='comment-reply-link' href='indexdb9d.html?replytocom=72#respond' onclick='return addComment.moveForm( "comment-72", "72", "respond", "1885" )' aria-label='Reply to Ashley Gardner'>Reply</a>
+                        </div>
+                    </div>
+                    <!-- </li> is added by WordPress automatically -->
+                    <ol class="children">
+                        <li id="comment-75" class="comment byuser comment-author-bkninja bypostauthor even depth-2">
+                            <div id="div-comment-75" class="comment-body">
+                                <footer class="comment-meta">
+                                    <div class="comment-author vcard">
+                                        <img alt='' src='http://0.gravatar.com/avatar/662a272c8be177be19f47db7acac0cb9?s=60&amp;d=mm&amp;r=g' srcset='http://0.gravatar.com/avatar/662a272c8be177be19f47db7acac0cb9?s=120&#038;d=mm&#038;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' /> <b><span class="comment-author-name">bkninja</span></b>
+                                        <span class="says">says:</span>
+                                    </div>
+                                    <div class="comment-metadata">
+                                        <a href="index.html#comment-75" class="comment-timestamp">20 July, 2018 at 4:20 am</a>
+                                        <span class="edit-link">
+                                        </span>
+                                    </div>
+                                </footer>
+                                <!-- .comment-meta -->
+                                <div class="comment-content">
+                                    <p>Animal noluisse assueverit eu eos. Wisi dicam ea nec, ponderum theophrastus in has. Ea vim debet erroribus, atqui voluptaria eu est. Ne has meis solum causae. Mel an debitis delicatissimi. Has quis eros eu, partiendo iracundia inciderint sit eu.</p>
+                                </div>
+                                <div class="reply">
+                                    <a rel='nofollow' class='comment-reply-link' href='index7693.html?replytocom=75#respond' onclick='return addComment.moveForm( "comment-75", "75", "respond", "1885" )' aria-label='Reply to bkninja'>Reply</a>
+                                </div>
+                            </div>
+                            <!-- </li> is added by WordPress automatically -->
+                        </li>
+                        <!-- #comment-## -->
+                    </ol>
+                    <!-- .children -->
+                </li>*@
+            <!-- #comment-## -->
+        </ol>
+        <!-- .comment-list -->
+        <!-- End Comment List -->
+
+
+
+
+
+
+
+
+
+        <div id="respond" class="comment-respond">
+            <h3 id="reply-title" class="comment-reply-title">@ViewBag.lblTraLoiBinhLuan <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel reply</a></small></h3>
+            @*<form action="" method="post" id="commentform" class="comment-form">*@
+            <div class='apsl-login-networks theme-1 clearfix'>
+                <span class='apsl-login-new-text'>@ViewBag.lblChiaSeQuaMangXaHoi:</span>
+                <div class='social-networks'>
+                    <a href="../wp-login99b8.php?apsl_login_id=facebook_login&amp;state=cmVkaXJlY3RfdG89aHR0cCUzQSUyRiUyRnRoZW5leHRtYWcuYmstbmluamEuY29tJTJGZGVmYXVsdA==" title='Login with facebook'>
+                        <div class="apsl-icon-block icon-facebook">
+                            <i class="fa fa-facebook"></i>
+                            <span class="apsl-login-text">Login</span>
+                            <span class="apsl-long-login-text">Login with facebook</span>
+                        </div>
+                    </a>
+                    <a href="https://api.twitter.com/oauth/authenticate?oauth_token=ItH6EgAAAAAA3xiwAAABbRnRHlk" title='Login with twitter'>
+                        <div class="apsl-icon-block icon-twitter">
+                            <i class="fa fa-twitter"></i>
+                            <span class="apsl-login-text">Login</span>
+                            <span class="apsl-long-login-text">Login with twitter</span>
+                        </div>
+                    </a>
+                    <a href="../wp-loginea79.php?apsl_login_id=google_login&amp;state=cmVkaXJlY3RfdG89aHR0cCUzQSUyRiUyRnRoZW5leHRtYWcuYmstbmluamEuY29tJTJGZGVmYXVsdA==" title='Login with google'>
+                        <div class="apsl-icon-block icon-google">
+                            <i class="fa fa-google"></i>
+                            <span class="apsl-login-text">Login</span>
+                            <span class="apsl-long-login-text">Login with google</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <p class="comment-notes">
+                <span id="email-notes">@ViewBag.lblDiaChiEmailCuaBan</span>
+            </p>
+            <p class="comment-form-comment">
+                <label for="comment">@ViewBag.lblTitleBinhLuan</label>
+                <textarea id="commentContent" name="comment" cols="45" rows="8" aria-required="true"></textarea>
+            </p>
+            <p class="comment-form-author novaticHiddenComment">
+                <label for="author">@ViewBag.lblTen <span class="required">*</span></label>
+                <input id="authorComment" name="author" type="text" size="30" maxlength="245" aria-required='true' />
+            </p>
+            <!--
+            -->
+            <p class="comment-form-email novaticHiddenComment">
+                <label for="email">Email <span class="required">*</span></label>
+                <input id="email" name="email" size="30" maxlength="100" type="text" aria-required='true' />
+            </p>
+            <!--
+            -->
+            <p class="comment-form-url novaticHiddenComment">
+                <label for="url">Website</label>
+                <input id="url" name="url" size="30" maxlength="200" type="text">
+            </p>
+            <p class="form-submit">
+                <input name="submit" type="submit" id="comment-submit" onclick="commentSm()" class="submit" value="@ViewBag.lblDangBinhLuan" />
+                <input type='hidden' name='comment_post_ID' value='1844' id='comment_post_ID' />
+                <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+            </p>
+            @*</form>*@
+        </div>
+        <!-- #respond -->
+    </div>
+    <!-- #comments .comments-area -->
+</div>
+<!-- End Comment Box -->
+
+
+<script>
+    $(document).ready(function () {
+        //debugger;
+        console.log("@ViewBag.ListAllCommentCount");
+        var x = "@ViewBag.UserID";
+        if (x != 0 ) {
+            $(".comment-form-email").attr("style","display:none;")
+            $(".comment-form-author").attr("style","display:none;")
+        }
+        var count = "@ViewBag.ListAllCommentCount";
+        if ( count <=20) {
+                $("#NextViewID").attr("style","display:none;")
+            }
+
+    })
+    var currentPageIndex = 2;
+    function NextView() {
+        //debugger;
+        //var currentSearchKeyword = "@ViewBag.currentSearchKeyword";
+        var currentPostId = "@ViewBag.CurrentPostId";
+        var count="@ViewBag.ListAllCommentCount";
+
+        var currentPageSize = 20;
+        //api/ListPaging/Search/{authorUsername}/{pageIndex}/{pageSize}
+        $.get("/Comment/api/ListPaging/"+currentPostId+"/" + currentPageIndex + "/" + currentPageSize + "/" , function (data) {
+            var arrList = data.data;
+            var totalCountComment = currentPageIndex * currentPageSize + 5;
+            //debugger;
+            if (arrList.length < 20 || count == totalCountComment.toString()) {
+                $("#NextViewID").attr("style","display:none;")
+            }
+            console.log(arrList);
+            for (var i = 0; i < arrList.length; i++) {
+                if (arrList[i].commentCount == null) {
+                    arrList[i].commentCount = 0;
+                }
+
+
+                $("#NovaticComment").append(`
+                      <footer class="comment-meta">
+                                <div class="comment-author vcard">
+                                    <img alt="" src=" `+ arrList[i].photo +`" class="avatar avatar-60 photo" height="60" width="60" />
+                                    <b>
+                                        <span class="comment-author-name">`+ arrList[i].name +`</span>
+                                    </b>
+                                    <span class="says">says:</span>
+                                </div>
+                                <div class="comment-metadata">
+                                    <a href="index.html#comment-71" class="comment-timestamp">`+ arrList[i].createdTime +`</a>
+                                    <span class="edit-link"></span>
+                                </div>
+                            </footer>
+
+                            <div class="comment-content">
+                                <p>`+ arrList[i].text +`</p>
+                            </div>
+                `);
+            }
+        });
+
+        currentPageIndex++;
+    }
+
+
+
+
+
+
+
+
+     function commentSm() {
+         //debugger;
+         var dt = new Date();
+         var name = "";
+         var email = "";
+         if ("@ViewBag.CurrentUsername" == "Annomymous") {
+             name = $("#authorComment").val();
+             email = $("#email").val();
+         }
+         else {
+             name = "@ViewBag.CurrentUsername";
+             email = "@ViewBag.Email";
+         }
+
+        var obj = {
+                "id": 0,
+                "postID": "@ViewBag.CurrentPostId",
+                "accountID":"@ViewBag.CurrentUserId",
+                "active": 1,
+                "approve": 0,
+                "name": name,
+                "description": "",
+                "email": email,
+                "text": $("#commentContent").val(),
+                "website": $("#url").val(),
+                "createdTime": dt,
+         };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/Comment/api/Add",
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.status == 201 && responseData.message === "CREATED") {
+                    localStorage.setItem("currentLoggedInUser", JSON.stringify(responseData.data[0]));
+                    Swal.fire({
+                        title: 'Bình luận thành công!',
+                        type: 'thành công',
+                        showCancelButton: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        @*if (result.value) {
+                            window.location.href = "@Url.Action("Index", "Home")";
+                        }*@
+                        $("#commentContent").val("");
+                        window.location.href = "@Url.Action("postDetaiVietNam", "Home")";
+                    })
+
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                Swal.fire(
+                    'Bình luận thất bại',
+                    'Vui lòng điền đầy đủ thông tin!',
+                    'error'
+                );
+            }
+        });
+    }
+</script>

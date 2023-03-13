@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #Screen2 {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-color: #F1FDFF;
+    }
+</style>
+<style>
+    @@media screen and (min-width: 320px) and (max-width: 425px) {
+        .button_introduction{
+            display:none !important;
+        }
+    }
+</style>
+<div class="container-fluid" id="Screen2">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <img src="~/images/Frame.png"  style="width:100%;" data-aos="zoom-out-down"/>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <p style="font-size: 18px;font-family: My Custom Regular;letter-spacing: 1px;">@ViewBag.lblGioiThieuDuAn</p>
+                <p style="font-size: 31px;font-family: My Custom Bold;">@ViewBag.lblIntroductionProjectHeader1</p>
+                <p style="font-size: 31px;font-family: My Custom Bold;color: orange;">@ViewBag.lblIntroductionProjectHeader2</p>
+                <p style="font-size: 15px;font-family: My Custom Regular;">
+                    @ViewBag.lblProjectIntroductionContent1
+                </p>
+                <p> </p>
+                <p style="font-size: 15px;font-family: My Custom Regular;">
+                    @ViewBag.lblProjectIntroductionContent2
+                </p>
+                <button class="btn btn-warning"
+                        style="color: white;width: 193px;height: 36px;font-family: My Custom Regular;font-size: 14px;letter-spacing: 3%;line-height: 20px;background-image: linear-gradient(to left,#E4750E,rgba(228,117,14,0)) !important;" onclick="window.location.href='/aboutus'">
+                    @ViewBag.lblXemThem
+                </button>
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 button_introduction" style="font-family: My Custom Regular">
+                <button class="btn btn-warning"><i class="fa fa-comment"></i>CHAT</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

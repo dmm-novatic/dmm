@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #tnm_news_ticker-5d773d13a6d40{
+        margin-bottom:0px !important;
+
+    }
+</style>
+<div class="mnmd-block mnmd-block--fullwidth mnmd-block--contiguous single-billboard single-billboard--video">
+    <div class="single-billboard__background background-img blurred-more" style="background-image: url('/files/frontend/images/upload/pexels-photo-171568-1-1200x600.jpg');"></div>
+    <div class="container">
+        <div class="row">
+            <div class="mnmd-main-col">
+                <div class="mnmd-responsive-video">
+                    <iframe width="1050" height="591" src="@ViewBag.Video" allowFullScreen></iframe>
+                </div>
+            </div>
+            <div class="mnmd-sub-col">
+                <div class="block-heading block-heading--inverse">
+                    <h2 class="block-heading__title" style="color:white!important;" >Watch next</h2>
+                </div>
+
+                <ul class="list-unstyled list-space-md inverse-text">
+                    @foreach (var obj in ViewBag.ListVideoSidebar)
+                    {
+                        <li>
+                            <article class="post post--horizontal post--horizontal-xs">
+                                <div class="post__thumb ">
+                                    <a href="~/@obj.Url"><img width="400" height="225" src="@obj.Photo" class="attachment-tnm-xs-16_9 400x225 size-tnm-xs-16_9 400x225 wp-post-image" alt="" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                    <!-- close a tag -->
+                                </div>
+                                <div class="post__text " >
+                                    <h3 class="post__title typescale-0"><a class="ellipsis3" href="~/@obj.Url">@obj.Name</a></h3>
+
+                                </div>
+                            </article>
+                        </li>
+                    }
+                    @*
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a href="../the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html"><img width="400" height="225" src="/files/frontend/images/upload/pexels-photo-356808-1-400x225.jpg" class="attachment-tnm-xs-16_9 400x225 size-tnm-xs-16_9 400x225 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-356808-1-400x225.jpg 400w, /files/frontend/images/upload/pexels-photo-356808-1-300x169.jpg 300w, /files/frontend/images/upload/pexels-photo-356808-1-768x432.jpg 768w, /files/frontend/images/upload/pexels-photo-356808-1-1024x576.jpg 1024w, /files/frontend/images/upload/pexels-photo-356808-1-600x338.jpg 600w, /files/frontend/images/upload/pexels-photo-356808-1-800x450.jpg 800w, /files/frontend/images/upload/pexels-photo-356808-1-1200x675.jpg 1200w, /files/frontend/images/upload/pexels-photo-356808-1-1600x900.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                <h3 class="post__title typescale-0"><a href="../the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html">The couple that quit their jobs to go on a six months’ road trip</a></h3>
+
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a href="../the-top-trends-for-summer-wedding-dressing/index.html"><img width="400" height="225" src="/files/frontend/images/upload/pexels-photo-916340-1-400x225.jpg" class="attachment-tnm-xs-16_9 400x225 size-tnm-xs-16_9 400x225 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-916340-1-400x225.jpg 400w, /files/frontend/images/upload/pexels-photo-916340-1-300x169.jpg 300w, /files/frontend/images/upload/pexels-photo-916340-1-768x432.jpg 768w, /files/frontend/images/upload/pexels-photo-916340-1-1024x576.jpg 1024w, /files/frontend/images/upload/pexels-photo-916340-1-600x338.jpg 600w, /files/frontend/images/upload/pexels-photo-916340-1-800x450.jpg 800w, /files/frontend/images/upload/pexels-photo-916340-1-1200x675.jpg 1200w, /files/frontend/images/upload/pexels-photo-916340-1-1600x900.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                <h3 class="post__title typescale-0"><a href="../the-top-trends-for-summer-wedding-dressing/index.html">The Top Trends For Summer Wedding Dressing</a></h3>
+
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a href="../phone-photography-101-how-to-take-good-pictures-with-your-phone/index.html"><img width="400" height="225" src="/files/frontend/images/upload/pexels-photo-65090-1-400x225.jpg" class="attachment-tnm-xs-16_9 400x225 size-tnm-xs-16_9 400x225 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-65090-1-400x225.jpg 400w, /files/frontend/images/upload/pexels-photo-65090-1-300x169.jpg 300w, /files/frontend/images/upload/pexels-photo-65090-1-768x432.jpg 768w, /files/frontend/images/upload/pexels-photo-65090-1-1024x576.jpg 1024w, /files/frontend/images/upload/pexels-photo-65090-1-600x338.jpg 600w, /files/frontend/images/upload/pexels-photo-65090-1-800x450.jpg 800w, /files/frontend/images/upload/pexels-photo-65090-1-1200x675.jpg 1200w, /files/frontend/images/upload/pexels-photo-65090-1-1600x900.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                <h3 class="post__title typescale-0"><a href="../phone-photography-101-how-to-take-good-pictures-with-your-phone/index.html">Phone Photography 101: How to Take Good Pictures With Your Phone</a></h3>
+
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a href="../weather-journal-winter-may-yet-have-an-ace-to-play/index.html"><img width="400" height="225" src="/files/frontend/images/upload/pexels-photo-48698-1-400x225.jpg" class="attachment-tnm-xs-16_9 400x225 size-tnm-xs-16_9 400x225 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-48698-1-400x225.jpg 400w, /files/frontend/images/upload/pexels-photo-48698-1-300x169.jpg 300w, /files/frontend/images/upload/pexels-photo-48698-1-768x432.jpg 768w, /files/frontend/images/upload/pexels-photo-48698-1-1024x576.jpg 1024w, /files/frontend/images/upload/pexels-photo-48698-1-600x338.jpg 600w, /files/frontend/images/upload/pexels-photo-48698-1-800x450.jpg 800w, /files/frontend/images/upload/pexels-photo-48698-1-1200x675.jpg 1200w, /files/frontend/images/upload/pexels-photo-48698-1-1600x900.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                <h3 class="post__title typescale-0"><a href="../weather-journal-winter-may-yet-have-an-ace-to-play/index.html">Weather Journal: Winter may yet have an ace to play</a></h3>
+
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a href="../motocross-elite-head-to-norfolk-for-lyngs-annual-extravaganza/index.html"><img width="400" height="225" src="/files/frontend/images/upload/pexels-photo-564096-400x225.jpg" class="attachment-tnm-xs-16_9 400x225 size-tnm-xs-16_9 400x225 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-564096-400x225.jpg 400w, /files/frontend/images/upload/pexels-photo-564096-300x169.jpg 300w, /files/frontend/images/upload/pexels-photo-564096-768x432.jpg 768w, /files/frontend/images/upload/pexels-photo-564096-1024x576.jpg 1024w, /files/frontend/images/upload/pexels-photo-564096-600x338.jpg 600w, /files/frontend/images/upload/pexels-photo-564096-800x450.jpg 800w, /files/frontend/images/upload/pexels-photo-564096-1200x675.jpg 1200w, /files/frontend/images/upload/pexels-photo-564096-1600x900.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" /></a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                <h3 class="post__title typescale-0"><a href="../motocross-elite-head-to-norfolk-for-lyngs-annual-extravaganza/index.html">Motocross elite head to Norfolk for Lyng’s annual extravaganza</a></h3>
+
+                            </div>
+                        </article>
+                    </li>
+                        *@
+                </ul>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+</div>
+<!-- .mnmd-block -->

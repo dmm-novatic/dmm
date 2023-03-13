@@ -1,0 +1,249 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div id="tnm_carousel_heading_aside_bg-5d773d140b251" class="mnmd-block mnmd-block--fullwidth mnmd-carousel mnmd-carousel-heading-aside has-background">
+    @*<div class="background-img " style="background-image:url('@ViewBag.SystemConfigs["TOPIC_BACKGROUND_PHOTO"].Description')!important">*@
+    <div class="background-img " style="">
+        <div class="background-svg-pattern"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <!-- INCLUDE 8 - POPULAR POST  -->
+            <div class="col-xs-6">
+                <div class="carousel-heading">
+                    <div class="block-heading block-heading--inverse block-heading--vertical">
+                        <h4 class="block-heading__title">@ViewBag.lblChuyenDe</h4>
+                        @*<span class="block-heading__subtitle">@ViewBag.lblChuyenDeCongNghe</span>*@
+                    </div>
+                    @*<div class="mnmd-carousel-nav-custom-holder" data-carouselID="carousel-5d773d140b2b1">
+                        <div class="owl-prev js-carousel-prev"><i class="mdicon mdicon-arrow_back"></i></div>
+                        <div class="owl-next js-carousel-next"><i class="mdicon mdicon-arrow_forward"></i></div>
+                    </div>*@
+                </div>
+            </div>
+
+
+            <div class="col-xs-6" style="margin-top:-15px">
+                <div class="carousel-heading" style="float:right"> 
+                    <div class="mnmd-carousel-nav-custom-holder" data-carouselID="carousel-5d773d140b2b1">
+                        <div class="owl-prev js-carousel-prev"><i class="mdicon mdicon-arrow_back"></i></div>
+                        <div class="owl-next js-carousel-next"><i class="mdicon mdicon-arrow_forward"></i></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- INCLUDE 7 - POPULAR POST  -->
+            <!-- end column -->
+            <div class="carousel-wrap col-xs-12   fullwidth-xs">
+                <div id="carousel-5d773d140b2b1" class="owl-carousel js-mnmd-carousel-heading-aside-3i-topic" data-carousel-loop="true">
+
+                    @{
+                        foreach (var obj in ViewBag.TopicList)
+                        {
+                            <div class="slide-content">
+                                <article class="post post--card post--card-sm text-center cat--not-overlap" style="height: 18rem;">
+                                    <div class="post__thumb">
+                                        <a title="@obj.Name" href="../topic/@obj.Slug">
+                                            <div class="background-img" style="background-image: url('@obj.Photo');"></div>
+                                        </a>
+                                        @*<div class="overlay-item--center-xy post-type-icon overlay-item--sm-p">
+                                        <div class="post-score-hexagon 1967">
+                                            <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                <g>
+                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                </g>
+                                            </svg><span class="post-score-value">9.1</span>
+                                        </div>
+                                    </div>*@
+                                    </div>
+                                    <div class="post__text ">
+                                        @*@{ if (obj.PostPublishStatusId == 2)
+                                        {
+                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                        }
+                                    }*@
+                                        <h3 class="post__title typescale-1">
+                                            <a title="@obj.Name" href="../topic/@obj.Slug" color="@obj.Color">
+                                                @*@{ if (obj.PostPublishStatusId == 2)
+                                                {
+                                                    <span>
+                                                        <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </span>
+                                                }
+                                            }*@
+                                                @obj.Name
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    @*<div class="post__footer text-center">
+                                        <div class="post__meta">
+                                            <time class="time published" datetime="obj.CreatedTime" title="obj.CreatedTime"><i class="mdicon mdicon-schedule"></i>obj.CreatedTime</time>
+                                            <span><a title="@obj.CommentCount Comments" href="~/obj.Url">
+                                            <i class="mdicon mdicon-chat_bubble_outline"></i>@obj.CommentCount</a>
+                                        </span>
+                                        </div>
+                                    </div>*@
+                                </article>
+                            </div>
+                        }
+                    }
+
+
+
+                    @*<div class="slide-content">
+                    <article class="post post--card post--card-sm text-center cat--not-overlap">
+                        <div class="post__thumb">
+                            <a href="dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html">
+                                <div class="background-img" style="background-image: url('/files/frontend/images/upload/Dell-XPS-13-Pattern-Image-400x225.jpg');"></div>
+                            </a>
+                            <div class="overlay-item--center-xy post-type-icon overlay-item--sm-p">
+                                <div class="post-score-hexagon 1967">
+                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                        <g>
+                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                        </g>
+                                    </svg><span class="post-score-value">9.1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post__text ">
+                            <h3 class="post__title typescale-1"><a href="dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html">Dell XPS 13 review (2018): Still the best Windows laptop</a></h3>
+                        </div>
+                        <div class="post__footer text-center">
+                            <div class="post__meta">
+                                <time class="time published" datetime="2018-03-08T03:50:42+00:00" title="March 8, 2018 at 3:50 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time><span><a title="0 Comments" href="dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+                <div class="slide-content">
+                    <article class="post post--card post--card-sm text-center cat--not-overlap">
+                        <div class="post__thumb">
+                            <a href="best-4k-camera-drones-to-create-stunning-aerial-film/index.html">
+                                <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-67699-1-400x225.jpg');"></div>
+                            </a>
+                            <div class="overlay-item--center-xy post-type-icon overlay-item--sm-p">
+                                <div class="post-score-hexagon 1812">
+                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                        <g>
+                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                        </g>
+                                    </svg><span class="post-score-value">8.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post__text ">
+                            <h3 class="post__title typescale-1"><a href="best-4k-camera-drones-to-create-stunning-aerial-film/index.html">Best 4K Camera Drones To Create Stunning Aerial Film</a></h3>
+                        </div>
+                        <div class="post__footer text-center">
+                            <div class="post__meta">
+                                <time class="time published" datetime="2018-03-07T08:52:52+00:00" title="March 7, 2018 at 8:52 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="2 Comments" href="best-4k-camera-drones-to-create-stunning-aerial-film/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>2</a></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+                <div class="slide-content">
+                    <article class="post post--card post--card-sm text-center cat--not-overlap">
+                        <div class="post__thumb">
+                            <a href="apple-iphone-x-review-the-best-iphone-challenges-you-to-think-different/index.html">
+                                <div class="background-img" style="background-image: url('/files/frontend/images/upload/iphone-x-17-1-400x225.jpg');"></div>
+                            </a>
+                            <div class="overlay-item--center-xy post-type-icon overlay-item--sm-p">
+                                <div class="post-score-hexagon 1756">
+                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                        <g>
+                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                        </g>
+                                    </svg><span class="post-score-value">9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post__text ">
+                            <h3 class="post__title typescale-1"><a href="apple-iphone-x-review-the-best-iphone-challenges-you-to-think-different/index.html">Apple iPhone X review: The best iPhone challenges you to think different</a></h3>
+                        </div>
+                        <div class="post__footer text-center">
+                            <div class="post__meta">
+                                <time class="time published" datetime="2018-03-07T08:16:51+00:00" title="March 7, 2018 at 8:16 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="0 Comments" href="apple-iphone-x-review-the-best-iphone-challenges-you-to-think-different/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+                <div class="slide-content">
+                    <article class="post post--card post--card-sm text-center cat--not-overlap">
+                        <div class="post__thumb">
+                            <a href="review-nokia-retunes-3310-for-a-new-generation/index.html">
+                                <div class="background-img" style="background-image: url('/files/frontend/images/upload/001-Nokia_3310_new-1-400x225.jpg');"></div>
+                            </a>
+                            <div class="overlay-item--center-xy post-type-icon overlay-item--sm-p">
+                                <div class="post-score-hexagon 1746">
+                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                        <g>
+                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                        </g>
+                                    </svg><span class="post-score-value">10</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post__text ">
+                            <h3 class="post__title typescale-1"><a href="review-nokia-retunes-3310-for-a-new-generation/index.html">Review: Nokia retunes 3310 for a new generation</a></h3>
+                        </div>
+                        <div class="post__footer text-center">
+                            <div class="post__meta">
+                                <time class="time published" datetime="2018-03-07T07:37:05+00:00" title="March 7, 2018 at 7:37 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="3 Comments" href="review-nokia-retunes-3310-for-a-new-generation/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>3</a></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+                <div class="slide-content">
+                    <article class="post post--card post--card-sm text-center cat--not-overlap">
+                        <div class="post__thumb">
+                            <a href="oneplus-6-review-a-big-step-closer-to-the-perfect-smartphone/index.html">
+                                <div class="background-img" style="background-image: url('/files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-400x225.jpg');"></div>
+                            </a>
+                            <div class="overlay-item--center-xy post-type-icon overlay-item--sm-p">
+                                <div class="post-score-hexagon 1971">
+                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                        <g>
+                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                        </g>
+                                    </svg><span class="post-score-value">8.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post__text ">
+                            <h3 class="post__title typescale-1"><a href="oneplus-6-review-a-big-step-closer-to-the-perfect-smartphone/index.html">OnePlus 6 review: A big step closer to the perfect smartphone</a></h3>
+                        </div>
+                        <div class="post__footer text-center">
+                            <div class="post__meta">
+                                <time class="time published" datetime="2018-03-06T04:02:55+00:00" title="March 6, 2018 at 4:02 am"><i class="mdicon mdicon-schedule"></i>March 6, 2018</time><span><a title="0 Comments" href="oneplus-6-review-a-big-step-closer-to-the-perfect-smartphone/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>*@
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- .container -->
+</div>

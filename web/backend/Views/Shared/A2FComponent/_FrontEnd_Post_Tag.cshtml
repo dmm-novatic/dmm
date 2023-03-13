@@ -1,0 +1,479 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+    <!-- Added by HTTrack -->
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+
+    <partial name="../Shared/A2FComponent/Library" />
+
+    <!-- End Library-->
+
+
+
+</head>
+
+<body>
+
+    @RenderBody()
+
+    <!-- Starts Header -->
+
+    <partial name="../Shared/A2FComponent/_Header" />
+
+    <!-- Ends Header -->
+    <!-- Starts Banner Header-->
+    <partial name="../Shared/A2FComponent/_BannerHeader" />
+    <!-- Ends Banner Header --
+
+
+    <!-- Body Category Start -->
+
+    <style>
+        /*style for navigator*/
+
+
+        /* NAVIGATION */
+
+        nav.tag {
+            width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0px 1px 0px #dedede;
+        }
+
+            nav.tag ul {
+                list-style: none;
+                text-align: center;
+            }
+
+                nav.tag ul li {
+                    display: inline-block;
+                }
+
+                    nav.tag ul li a {
+                        display: block;
+                        padding: 10px;
+                        text-decoration: none;
+                        color: #aaa;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        margin: 0 10px;
+                        font-size: 16px;
+                    }
+
+                        nav.tag ul li a,
+                        nav.tag ul li a:after,
+                        nav.tag ul li a:before {
+                            transition: all .5s;
+                        }
+
+                            nav.tag ul li a:hover {
+                                color: white;
+                                text-decoration: none !important;
+                            }
+
+                            nav.tag ul li a:hover {
+                                color: white;
+                                text-decoration: none !important;
+                            }
+
+                            nav.tag ul li a:focus {
+                                color: inherit !important;
+                            }
+            /* stroke */
+
+            nav.stroke ul li a,
+            nav.fill ul li a {
+                position: relative;
+            }
+
+                nav.stroke ul li a:after,
+                nav.fill ul li a:after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 0%;
+                    content: '.';
+                    color: transparent;
+                    background: #aaa;
+                    height: 1px;
+                }
+
+                nav.stroke ul li a:hover:after {
+                    width: 100%;
+                }
+
+            nav.fill ul li a {
+                transition: all 2s;
+            }
+
+                nav.fill ul li a:after {
+                    text-align: left;
+                    content: '.';
+                    margin: 0;
+                    opacity: 0;
+                }
+
+                nav.fill ul li a:hover {
+                    color: white;
+                    z-index: 1;
+                }
+
+                    nav.fill ul li a:hover:after {
+                        z-index: -10;
+                        animation: fill 1s forwards;
+                        -webkit-animation: fill 1s forwards;
+                        -moz-animation: fill 1s forwards;
+                        opacity: 1;
+                    }
+
+                nav.fill ul li a: {
+                    color: white !important;
+                }
+    </style>
+    <nav class="stroke tag">
+        <ul style="
+    background-color: #0D3D68;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+">
+            @for (int i = 0; i < ViewBag.TagListSlide.Count; i++)
+            {
+                var item = ViewBag.TagListSlide[i];
+                <li><a href="/tag/@item.Slug">@item.Name</a></li>
+            }
+        </ul>
+    </nav>
+
+    <div class="container">
+        <style>
+            /* responsive for Category Detail*/
+            /* This to display only three line on news */
+
+            .text-news {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                /* number of lines to show */
+                line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            /* Responsive for container - trang chu/ tin tuc */
+
+            @@media (maxwidth: 322px) {
+                div.container h4 {
+                    font-size: 26px !important;
+                }
+            }
+
+            .text-time-news {
+                color: white;
+                font-size: 12px;
+                position: absolute;
+                bottom: 6px;
+            }
+
+            @@media (max-width: 767px) {
+                .container {
+                    margin-left: 0;
+                    margin-right: 0;
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+
+                .div-container-news {
+                    padding-left: 5vh !important;
+                    padding-right: 5vh !important;
+                }
+            }
+
+            .center-category {
+                margin-left: auto;
+                margin-right: auto;
+                /* text-size */
+                line-height: 40px;
+                font-size: 32px;
+                font-weight: 400;
+                color: #265178;
+            }
+
+            .container-category {
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            .no-padding-category {
+                padding: unset;
+            }
+
+            /*text for newest category news*/
+            .div-container-news {
+                padding-left: 2vh !important;
+                padding-right: 2vh !important;
+                padding-top: 315px;
+            }
+
+            .page-heading-title {
+                font-size: 2.8rem !important;
+                font-weight: 700;
+                    text-transform: uppercase;
+                line-height: 1.2;
+            }
+
+            .page-heading-subtitle {
+                max-width: 40em;
+                margin-top: 0.6em;
+                color: rgba(0, 0, 0, 0.4);
+                font-size: 1.5rem;
+            }
+        </style>
+
+
+        <!-- Tag panel start -->
+        <div class="container-category" style="margin-bottom:20px ; text-align : left !important;">
+            <div class="container" style="padding-left : 0">
+                <h2 class="page-heading-title">Tag: @ViewBag.TagName </h2>
+                <div class="page-heading-subtitle">Tổng số có @ViewBag.ListSize kết quả</div>
+            </div>
+        </div>
+        <!-- Tag panel ends -->
+        <!-- News Category Start -->
+        <div class="container " style="padding-bottom: 50px; margin-top: 35px; padding-left : 0px;padding-right : 0px">
+
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" style="margin-top: -30px">
+                <!-- Những bài viết mới(trừ 3 bài đầu) bài viết mới nhất - Category start -->
+
+
+                <style>
+                    /* Doing Responsive for New Category Menu */
+                    /* This to display only three line on news */
+
+                    .text-news {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        /* number of lines to show */
+                        line-clamp: 3 !important;
+                        -webkit-box-orient: vertical;
+                    }
+
+                    @@media (max-width: 400px) {
+                        .spanDayReleaseBlue,
+                        .buttonCategoryOfNews,
+                        .time-category-menu {
+                            display: none;
+                        }
+                    }
+                </style>
+
+                <style>
+                    .buttonViewMore {
+                        background: linear-gradient(271.67deg, #E4750E 3.49%, rgba(228, 117, 14, 0) 134.77%), linear-gradient(0deg, #FFB526, #FFB526);
+                        border-radius: 0;
+                    }
+
+                    .buttonCategoryOfNews {
+                        width: auto;
+                        height: 23px;
+                        padding: 0 5px 0 5px;
+                        font-size: 15px;
+                        line-height: 15px;
+                        font-weight: 400;
+                        border-radius: 0;
+                        background-color: #06308E;
+                    }
+
+                    .spanDayReleaseBlue {
+                        float: left;
+                        line-height: 15px;
+                        font-size: 15px;
+                        font-weight: 400;
+                        color: #265178;
+                        position: absolute;
+                        bottom: 0;
+                    }
+
+                    .newsTitle {
+                        display: block;
+                        height: 60px;
+                        line-height: 21px;
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #265178;
+                    }
+                </style>
+
+                 <style>
+        /* Zoom when hover to picture */
+        .geeks { 
+            overflow: hidden;
+            /*display :   inline-block; */
+            padding :0px;
+            margin : 0px;
+        }
+      .zoom { 
+          transition: transform .2s; 
+          margin: 0 auto;
+  
+        }
+
+        .zoom:hover {
+          -ms-transform: scale(1.1); /* IE 9 */
+          -webkit-transform: scale(1.1); /* Safari 3-8 */
+          transform: scale(1.1); 
+        }
+    </style>
+
+
+                @for (int i = 0; i < ViewBag.ListPostTag.Count; i++)
+                {
+                    var item = ViewBag.ListPostTag[i];
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0;">
+                            <div onclick="location.href='/chi-tiet-tin-tuc/@item.Url'" class="geeks" style="cursor : pointer">
+                                <img  src="@item.Photo" style="width: 100%; padding: unset; height: 175px" class="img-responsive zoom" alt="Image">
+                            </div>
+                            
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="padding-right: 0;">
+                            <p class="time-category-menu" style="line-height: 15px; font-size: 12px; color: #265178">@item.PublishedTime</p>
+                            <a href="/chi-tiet-tin-tuc/@item.Url" style="font-size: 18px; font-weight: 700;color: #265178;">
+                                <span class="text-news">
+                                    @item.Name
+                                </span>
+
+                            </a>
+                            <p class="text-news" style="line-height: 23.25px; font-size: 15px; font-weight: 400;">
+                                @item.Description
+                            </p>
+                        </div>
+                    </div>
+                }
+                <div id="next-view"> </div>
+
+                <div id="Nextview-button" style="text-align: center; margin-top: 50px; margin-bottom: 50px" class="row">
+                    <button id="NextViewID" onclick="NextView();" style="padding-left: 120px; padding-right: 120px; background-color: #11335A; color: #FFFFFF" type="button" class="btn btn-default">@ViewBag.lblXemTiep</button>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        console.log("");
+                        if (0 == 1) {
+                            $("#NextViewID").attr("style", "display:none;")
+                        }
+                    });
+                    var currentpageIndex = 2;
+
+                    function NextView() {
+                        debugger;
+                        var currentTag = "@ViewBag.currentTagSlug";
+                        var currentpageSize = 4;
+                        var currentIDBigest = 47500;
+                        var SameCategoryListCount = "";
+                        var dataSource = [];
+                        $.ajax({
+                            type: "GET",
+                            contentType: "application/json",
+                            url: '/Post/api/Listpaging/tag/' + currentTag + '/' + currentpageIndex  + '/' + currentpageSize + '/' + currentIDBigest,
+                            success: function (result) {
+                                console.log("arrList: " + result.data);
+                                dataSource = result.data;
+                                for (var i = 0; i < dataSource.length; i++) {
+                                    dataSource[i].publishedTime = new Date(dataSource[i].publishedTime);
+                                    dataSource[i].publishedTime = dataSource[i].publishedTime.toLocaleDateString('en-GB') + " " + dataSource[i].publishedTime.toLocaleTimeString();
+                                    $("#next-view").append(`    <div class="row" style="margin-top: 20px">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left: 0">
+                        <div class="geeks" onclick="location.href='/chi-tiet-tin-tuc/`+ dataSource[i].url + `'" style="cursor : pointer">
+
+                            <img  src="`+ dataSource[i].photo + `" style="width: 100%; padding: unset; height: 175px" class="img-responsive zoom"
+                                 alt="Image">
+                                 </div>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="padding-right: 0;">
+                            <p class="time-category-menu" style="line-height: 15px; font-size: 12px; color: #265178"> `+ dataSource[i].publishedTime + `</p>
+                            <a href="/chi-tiet-tin-tuc/`+ dataSource[i].url + `" style="font-size: 18px; font-weight: 700;color: #265178;">
+                                <span class="text-news">
+                                    `+ dataSource[i].name + `
+                                </span>
+
+                            </a>
+                            <p class="text-news" style="line-height: 23.25px; font-size: 15px; font-weight: 400;">
+                                `+ dataSource[i].description + `
+                            </p>
+                        </div>
+                    </div>`);
+                                }
+
+                            },
+                            error: function (result) {
+                                $('#Nextview-button').hide();
+                                $("#next-view").append(`<p style="text-align: center; font-size: 15px">@ViewBag.lblXemHetBaiViet<p> `);
+                            }
+                        });
+                        currentpageIndex++;
+                    }
+                </script>
+                <!-- Những bài viết mới(trừ 3 bài đầu) bài viết mới nhất - New Category End -->
+            </div>
+
+            <!-- Những bài viết nổi bật -->
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 " style="padding-right : 0px">
+
+
+                <div style="background-color: #154183;">
+                    <h5 style="color: white; line-height: 30px; font-size: 18px; font-weight: 400; padding-left: 20px;">Tin tức nổi bật</h5>
+                </div>
+
+                @for (int i = 0; i < ViewBag.PopularList.Count; i++)
+                {
+                    var item = ViewBag.PopularList[i];
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-right: unset;">
+                             <a href="/chi-tiet-tin-tuc/@item.Url">
+                                 <img src="@item.Photo" style="width: 112px; height: 80px; padding: unset;" class="img-responsive" alt="Image">
+                             </a>
+                            
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <a class="text-news" href="/chi-tiet-tin-tuc/@item.Url" style="font-weight: 700; line-height: 21px; font-size: 14px;">@item.Name</a>
+                        </div>
+                    </div>
+                }
+                <!-- Newest news end -->
+                <!-- survey barrr -->
+                @*<partial name="../Shared/A2FComponent/_SurveyBar" />*@
+            </div>
+        </div>
+    </div>
+    <!-- Body Category Ends -->
+    <!-- STARTS FOOTER -->
+
+    <partial name="../Shared/A2FComponent/_Footer" />
+
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+
+
+
+
+</body>
+
+</html>
+

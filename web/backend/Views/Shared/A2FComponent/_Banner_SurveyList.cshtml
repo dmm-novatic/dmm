@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!--CSS start-->
+<style>
+    #RemovePadding {
+        color: white;
+        font-size: 40px;
+        padding: 0% 10%;
+    }
+</style>
+<!--Responsive Start-->
+<!--Iphone 5-->
+<style>
+    @@media only screen and (max-width:320px) {
+        #RemovePadding {
+            padding: 0;
+        }
+    }
+</style>
+<!--Iphone 5 end-->
+<!--Iphone 6/7/8/X start-->
+<style>
+    @@media only screen and (min-width:321px) and (max-width: 425px) {
+        #RemovePadding {
+            padding: 0;
+        }
+    }
+</style>
+<!--Iphone 6/7/8/X end-->
+<!--Iphone 6/7/8/X+ Start-->
+<style>
+    @@media only screen and (min-width:426px) and (max-width: 767px) {
+        #RemovePadding {
+            padding: 0;
+        }
+    }
+</style>
+<!--Iphone 6/7/8/X+ End-->
+<!--Ipad Start-->
+<style>
+    @@media only screen and (min-width:768px) and (max-width: 1023px) {
+        #RemovePadding {
+            padding: 0;
+        }
+    }
+</style>
+<!--Ipad End-->
+<div class="container-fluid" style="background-image: linear-gradient(rgba(7, 30, 64, 0.8),rgba(7, 30, 64, 0.8)),url('/images/image 32.png'); background-size: 100% 100%; text-align: center;">
+    <p data-aos="zoom-in-down" data-aos-duration="800" style="color: #F6A01F;font-size: 20px;letter-spacing: 5px;margin-top: 5%;text-transform:uppercase;">@ViewBag.lblCongCuTaiChinh1</p>
+    <p data-aos="zoom-in-down" data-aos-duration="800" data-aos-delay="400" id="RemovePadding" style="margin-bottom: 5%" >@ViewBag.lblMieuTaBannerCongCuDanhGia</p>
+</div>
+

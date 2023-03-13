@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    
+    <!-- CSS container for the page : Start -->
+    <style>       
+        body {
+            background-color: #F1FDFF;
+        }
+
+        .container-page {
+            padding-bottom: 5vh !important;
+
+        }        
+
+        a.link-privacy-location {
+            padding: 10px; font-size: 15px; line-height: 14.06px; font-weight: 400; color: #4B4F5F;
+        }
+
+        /* Doing responsive : Start */
+
+        @@media (min-width : 1600px) {
+             .container-page {
+                    width: 1350px;
+                }
+        }
+
+
+        /* Doing responsive : End */
+
+    </style>
+    <!-- CSS End -->
+
+    
+    <!-- Privacy Content Page Start -->
+    <div class="container container-page">
+        <!-- _Tittle_Location : Start -->
+        <div style=" margin : 30px 0 30px 2.5%">
+            <a class="link-privacy-location" href="home">@ViewBag.lblTrangChu</a> / <a  class="link-privacy-location"  href="account-setting">@ViewBag.lblThongTinTaiKhoan</a>
+        </div>
+        <!-- _Tittle_Location : End -->
+
+        <partial name="../Shared/A2FComponent/_TabBar_AccountSetting" />
+        
+    </div>
+    <!-- Privacy Content Page End -->
+
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+
+</body>
+</html>

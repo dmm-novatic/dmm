@@ -1,0 +1,197 @@
+﻿
+@{
+    Layout = null;
+}
+
+<style>
+    #news-list .nav-tabs li.active a::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+        transition: all .5s;
+    }
+    #news-list .nav-tabs li a::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+        transition: all .5s;
+    }
+    #news-list .nav-tabs li a:hover::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+        transition: all .5s;
+    }
+    #news-list .nav-tabs > li > a {
+        padding:10px 10px;
+    }
+    #news-list .nav-tabs li a:hover {
+        background: #fff;
+    }
+    .News {
+        position: relative;
+    }
+
+        .News > img {
+            position: absolute;
+            top: 30px;
+            right: 0;
+        }
+
+        .News > .row > div {
+            padding-left: 11%;
+            padding-top: 3%;
+        }
+
+        .News .row div span {
+            padding-right: 1%;
+        }
+
+    .News_Item {
+        border-bottom-style: dashed;
+        border-bottom-color: #d3d5d9;
+        padding: 13px 0px 13px 0px;
+        border-width:2px;
+    }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        color: #265178;
+    }
+</style>
+<div class="container-fluid News">
+    <div class="container" style="width: 100%; padding: 2% 15% 0 15%; margin: 0; ">
+        @*<img src="~/images/Group 256.png" />*@
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="news-list">
+                <div>
+                    <p style="font-size: 30px; color: #265178; font-family: My Custom Bold; padding-left: 15px; letter-spacing: 1px;">@ViewBag.lblTinTucCapNhat</p>
+                    <p style="color: #FF9900; font-size: 40px; font-family: Roboto Medium; padding-left: 15px;">@ViewBag.lblDongHanhCungDoanhNghiep</p>
+                </div>
+                <div>
+                    <ul class="nav nav-tabs" style="padding-top:1%;padding-bottom:1%;border:none;text-align:unset">
+                        <li class="active"><a data-toggle="tab" href="#th" style="font-size: 18px; border: none; font-family: My Custom Bold; text-transform: uppercase;">@ViewBag.lblTinTongHop</a></li>
+                        <li><a data-toggle="tab" href="#dntc" style="font-size: 18px; border: none; text-transform: uppercase; font-family: My Custom Bold ">@ViewBag.lblTinTucDoanhNghiepVaTaiChinh</a></li>
+                        <li><a data-toggle="tab" href="#cstc" style="font-size: 18px; border: none; text-transform: uppercase; font-family: My Custom Bold ">@ViewBag.lblTinTucCacChinhSachTaiChinhChinhThong</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="th" class="tab-pane fade in active">
+                            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 preview-news" style="">
+                                <img src="@ViewBag.list5HottestNew[0].Photo" href="/chi-tiet-tin-tuc/@ViewBag.list5HottestNew[0].Url" style="width:95%;" />
+                                <a class="ellipsis3" href="/chi-tiet-tin-tuc/@ViewBag.list5HottestNew[0].Url" style="font-size: 25px; font-family:My Custom Regular;">@ViewBag.list5HottestNew[0].Name</a>
+                                <p class="ellipsis4" style="font-size: 20px;font-family:My Custom Regular;padding-bottom: 1%;">
+                                    @ViewBag.list5HottestNew[0].Description
+                                </p>
+                                <a href="/chi-tiet-tin-tuc/@ViewBag.list5HottestNew[0].Url" style="font-size: 20px; font-family:My Custom Bold;">@ViewBag.lblDocThem</a>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 preview-news" style="padding-left: 3%;padding-top: 1%;">
+                                @for (int i = 1; i < 5; i++)
+                                {
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 News_Item">
+                                        <p style="color: #4B4F5F; font-style: normal; font-weight: normal; font-size: 13px; line-height: 155%; letter-spacing: 0.15em;">@ViewBag.list5HottestNew[i].PublishedTime.ToString("dd/MM/yyyy")</p>
+                                        <a href="/chi-tiet-tin-tuc/@ViewBag.list5HottestNew[i].Url" style="font-size: 22px;font-family:My Custom Regular;color: #265178;">@ViewBag.list5HottestNew[i].Name</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <div id="dntc" class="tab-pane fade">
+
+                            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 preview-news" style="">
+                                <img src="@ViewBag.list4NewsOfficialFinancialPolicies[0].Photo" href="/chi-tiet-tin-tuc/@ViewBag.list4NewsOfficialFinancialPolicies[0].Url" style="width:95%;" />
+                                <a class="ellipsis3" href="/chi-tiet-tin-tuc/@ViewBag.list4NewsOfficialFinancialPolicies[0].Url" style="font-size: 25px; font-family:My Custom Regular;">@ViewBag.list4NewsOfficialFinancialPolicies[0].Name</a>
+                                <p class="ellipsis4" style="font-size: 20px;font-family:My Custom Regular;padding-bottom: 1%;">
+                                    @ViewBag.list4NewsOfficialFinancialPolicies[0].Description
+                                </p>
+                                <a href="/chi-tiet-tin-tuc/@ViewBag.list4NewsOfficialFinancialPolicies[0].Url" style="font-size: 20px; font-family:My Custom Bold;">@ViewBag.lblDocThem</a>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 preview-news" style="padding-left: 3%;padding-top: 1%;">
+                                @for (int i = 1; i < 5; i++)
+                                {
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 News_Item">
+                                        <p style="color: #4B4F5F; font-style: normal; font-weight: normal; font-size: 13px; line-height: 155%; letter-spacing: 0.15em; ">@ViewBag.list4NewsOfficialFinancialPolicies[i].PublishedTime.ToString("dd/MM/yyyy")</p>
+                                        <a href="/chi-tiet-tin-tuc/@ViewBag.list4NewsOfficialFinancialPolicies[i].Url" style="font-size: 22px;font-family:My Custom Regular;color: #265178;">@ViewBag.list4NewsOfficialFinancialPolicies[i].Name</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div id="cstc" class="tab-pane fade">
+                            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 preview-news" style="">
+                                <img src="@ViewBag.list4NewsCorporateandFinancial[0].Photo" href="/chi-tiet-tin-tuc/@ViewBag.list4NewsCorporateandFinancial[0].Url" style="width:95%;" />
+                                <a class="ellipsis3" href="/chi-tiet-tin-tuc/@ViewBag.list4NewsCorporateandFinancial[0].Url" style="font-size: 25px; font-family:My Custom Regular;">@ViewBag.list4NewsCorporateandFinancial[0].Name</a>
+                                <p class="ellipsis4" style="font-size: 20px;font-family:My Custom Regular;padding-bottom: 1%;">
+                                    @ViewBag.list4NewsCorporateandFinancial[0].Description
+                                </p>
+                                <a href="/chi-tiet-tin-tuc/@ViewBag.list4NewsCorporateandFinancial[0].Url" style="font-size: 20px; font-family:My Custom Bold;">@ViewBag.lblDocThem</a>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 preview-news" style="padding-left: 3%;padding-top: 1%;">
+                                @for (int i = 1; i < 5; i++)
+                                {
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 News_Item">
+                                        <p style="color: #4B4F5F; font-style: normal; font-weight: normal; font-size: 13px; line-height: 155%; letter-spacing: 0.15em; ">@ViewBag.list4NewsCorporateandFinancial[i].PublishedTime.ToString("dd/MM/yyyy")</p>
+                                        <a href="/chi-tiet-tin-tuc/@ViewBag.list4NewsCorporateandFinancial[i].Url" style="font-size: 22px;font-family:My Custom Regular;color: #265178;">@ViewBag.list4NewsCorporateandFinancial[i].Name</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:center;padding-top:3%;">
+                        <button style="width: 193px;height: 36px; color: white;text-align: center; background-color: #265178;border-radius: 3px 3px 3px 3px;margin-bottom:3%; border : none" id="Redirect_Button">@ViewBag.lblXemHet</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var target = "#th";
+                if (target == "#th") {
+                    $("#Redirect_Button").click(function () {
+                        window.location.href = '/tin-tuc';
+                    })
+                }
+                $(function () {
+                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                        target = $(e.target).attr("href");
+                        if (target == "#th") {
+                            $("#Redirect_Button").click(function () {
+                                window.location.href = '/tin-tuc';
+                            })
+                        } else if (target == "#dntc") {
+                            $("#Redirect_Button").click(function () {
+                                window.location.href = '/category/Doanh-nghiep-tai-chinh';
+                            })
+                        } else if (target == "#cstc") {
+                            $("#Redirect_Button").click(function () {
+                                window.location.href = '/category/Chinh-sach-tai-chinh';
+                            })
+                        } else {
+                            $("#Redirect_Button").click(function () {
+                                window.location.href = '/tin-tuc';
+                            })
+                        }
+                    });
+                })
+            </script>
+        </div>
+    </div>
+</div>

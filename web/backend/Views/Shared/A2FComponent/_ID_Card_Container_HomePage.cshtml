@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .Contact_Us {
+        height: auto;
+    }
+
+    .ID_Card {
+        margin-bottom: 10%;
+        position: relative;
+        background-color: #313e4c;
+        height: 347px;
+    }
+
+        .ID_Card .row div img {
+            position: absolute;
+        }
+
+        .ID_Card .row div span {
+            margin-right: 40px;
+        }
+
+    .Event_Image {
+        position: relative;
+        padding-left: 10.5%;
+        height: 219px;
+    }
+
+        .Event_Image img {
+            position: absolute;
+        }
+
+            .Event_Image img:nth-child(2) {
+                top: 6%;
+                left: 29%;
+            }
+
+            .Event_Image img:first-of-type {
+                width: 350px;
+                height: 220px;
+            }
+    .group-image-id-card {
+        width:30%;
+    }
+</style>
+<div class="container Contact_Us">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ID_Card">
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 group-image-id-card">
+                <img id="img-background-contact-us" src="~/images/Group 194.png" style="color: grey; top: -233px; right: -39%;" />
+                <img id="img-contact-us" src="~/images/image 19 (1).png" style="position: absolute; top: 42px; right: 0%; width: 90%;" />
+            </div>
+
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <p style="font-size: 18px;color: white;margin-top: 11%;">@ViewBag.lblDangKyNhanHoTro</p>
+                <p style="font-size: 40px;color: #2AD9FF;">@ViewBag.lblKetNoiVoiChungToi</p>
+                <p style="font-size: 15px;color: white;margin-bottom: 7%;">@ViewBag.lblMoTaSurvey</p>
+                <button style="width: 193px;height: 36px;background-image: linear-gradient(to right,#FFB526,#E4750E);color: white;border-radius: 5px 5px 5px 5px;" onclick="window.location.href='/Survey-list'">@ViewBag.lblKhaoSatToanDien.ToUpper()</button>
+            </div>
+            <div class="logo-contact-us" style="position: absolute;top: 104%;left: 40%;">
+                <span>
+                    <img src="~/images/Frame (1).png" />
+                </span>
+                <span>
+                    <img src="~/images/Frame (2).png" style="left:190%" />
+                </span>
+                <span>
+                    <img src="~/images/Frame (3).png" style="left: 309%;" />
+                </span>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

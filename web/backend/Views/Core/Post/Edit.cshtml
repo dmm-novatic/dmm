@@ -1,0 +1,1264 @@
+﻿@model Novatic.ViewModel.PostViewModel;
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_NovaticAdmin.cshtml";
+}
+
+<style>
+    .novaticeditForm {
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+</style>
+<div class="" id="">
+    <div class="modal-dialog modal-lg novaticeditForm">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-edit"></i> <span id="updateTitle">Chi tiết bài viết</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class='form-group row selectContainer'>
+                            <label class=''>Danh mục bài viết</label><span class='required'>*</span>
+                            <div class='col-sm-12'>
+                                <select name='select' required id='postPostCategoryID'
+                                        class='form-control fill dataSelect  input-postCategoryID'
+                                        style=' border: 1px solid #e9ecef; '>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class='form-group row selectContainer'>
+                            <label class=''>Layout template</label><span class='required'>*</span>
+                            <div class='col-sm-12'>
+                                <select name='select' required id='postPostLayoutID'
+                                        class='form-control fill dataSelect  input-postLayoutID'
+                                        style=' border: 1px solid #e9ecef; '>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="">Video</label>
+                            <input type="text" class="form-control  input-video"
+                                   id="postVideo" placeholder="">
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="">Trạng thái xuất bản</label><span class='required'>*</span>
+
+                            <select class="form-control input-postPublishStatusID"
+                                    id="postPostPublishStatusID" required>
+                                <option value="0">Private</option>
+                                <option value="1">Public</option>
+                                <option value="2">Membership only</option>
+                            </select>
+
+                            @*<input type="number" class="form-control input-postPublishStatusID" value="0"  id="postPostPublishStatusID" required placeholder="">*@
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="">Trạng thái bình luận</label><span class='required'>*</span>
+
+                            <select class="form-control input-postCommentStatusID"
+                                    id="postPostCommentStatusID" required>
+                                <option value="0">Tắt</option>
+                                <option value="1">Bật</option>
+                            </select>
+
+                            <!-- <input type="number" class="form-control input-postCommentStatusID" value="0" id="postPostCommentStatusID" required placeholder="">-->
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="col-sm-4">
+                        <div class='form-group row selectContainer'>
+                            <label class=''>Tác giả</label><span class='required'>*</span>
+                            <div class='col-sm-12'>
+                                <select name='select' required id='postPostAccountID'
+                                        class='form-control fill dataSelect  input-postAccountID'
+                                        style=' border: 1px solid #e9ecef; '>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group row" style="padding-left:unset">
+                            @*<div class="col-sm-4">
+                    <label for="">Photo</label>
+                    <input style="font-size:10px" type="file" class="form-control  input-photo"
+                           placeholder="" onchange="UploadFile(event)">
+                </div>*@
+                            <div class="col-sm-11">
+                                <label for="">Photo</label>
+                                <input type="text" class="form-control  input-photo"
+                                       id="postPhoto" placeholder="">
+
+                                <span class="glyphicon glyphicon-open form-control-feedback input-photo"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-sm-2">
+
+                        <div class="form-group">
+                            <label for="">Số lượt xem</label>
+                            <input type="number" class="form-control input-viewCount"
+                                   value="0" id="postViewCount" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+
+                        <div class="form-group">
+                            <label for="">Số lượt thích</label>
+                            <input type="number" class="form-control input-likeCount"
+                                   value="0" id="postLikeCount" placeholder="">
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-7">
+
+                        <div class='form-group row selectContainer'>
+                            <label class=''>Tag</label><span class='required'></span>
+                            <div class='col-sm-12'>
+                                <select name='select' multiple="multiple" id='postTagID'
+                                        class='form-control fill dataSelectTag  input-postTagID'
+                                        style=' border: 1px solid #e9ecef; '>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <img id="input-photo-thumbnail" class="input-photo-thumbnail"
+                                 src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png"
+                                 style="margin-bottom:-30px; min-height:80px;width:100%" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="FileUploadForLibrary">
+
+                        <div class="form-group row" style="padding-left:unset">
+                            @*<div class="col-sm-4">
+                    <label for="">Photo</label>
+                    <input style="font-size:10px" type="file" class="form-control  input-photo"
+                           placeholder="" onchange="UploadFile(event)">
+                </div>*@
+                            <div class="col-sm-11">
+                                <label for="">File tài liệu để download</label>
+                                <input type="text" class="form-control  input-file"
+                                       id="postFileUrl" placeholder="">
+
+                                <span class="glyphicon glyphicon-open form-control-feedback input-file"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3" id="divPostOpenTime" style="display:none;">
+                        <div class='form-group'>
+                            <label for=''>Ngày bắt đầu sự kiện</label>
+                            <div class='input-group date datetimepicker  input-publishedTime'
+                                 id='postPublishedTimeDiv'>
+                                <input type='text' id="postOpenTime"
+                                       class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" id="divPostCloseTime" style="display:none;">
+                        <div class='form-group'>
+                            <label for=''>Ngày kết thúc sự kiện </label>
+                            <div class='input-group date datetimepicker  input-publishedTime'
+                                 id='postPublishedTimeDiv'>
+                                <input type='text' id="postClosedTime"
+                                       class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" id="divPostEventAddress" style="display:none;">
+                        <div class="form-group">
+                            <label for="">Địa điểm sự kiện</label>
+                            <input type="text" class="form-control  input-url"
+                                   id="postEventAddress" placeholder="">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group" style="display:none ">
+                            <label for="">Số lượt bình luận</label>
+                            <input type="number" class="form-control input-commentCount"
+                                   value="0" id="postCommentCount" placeholder="">
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="col-sm-4">
+
+
+                    </div>
+
+
+                    <div class="col-sm-4">
+
+
+                    </div>
+
+
+                    <div class="col-sm-4">
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="form-group" style="display:none ">
+                    <label for="">ID</label><span class='required'>*</span>
+                    <input type="number" class="form-control input-active" value="0"
+                           id="postId" required placeholder="">
+                </div>
+
+
+                <div class="form-group" style="display: none">
+                    <label for="">GuID</label>
+                    <input type="text" class="form-control  input-guID" id="postGuID"
+                           placeholder="">
+                </div>
+                <div class="form-group" style="display:none ">
+                    <label for="">Active</label><span class='required'>*</span>
+                    <input type="number" class="form-control input-active" value="0"
+                           id="postActive" required placeholder="">
+                </div>
+                <div class='form-group row selectContainer' style="display:none">
+                    <label class=''>Loại bài viết</label><span class='required'>*</span>
+                    <div class='col-sm-12'>
+                        <select name='select' required id='postPostTypeID'
+                                class='form-control fill dataSelect  input-postTypeID'
+                                style=' border: 1px solid #e9ecef; '>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none ">
+                    <label for="">Active</label><span class='required'>*</span>
+                    <input type="number" class="form-control input-active" value="0"
+                           id="postActive" required placeholder="">
+                </div>
+
+
+
+
+
+
+
+
+                @*tabbed pane*@
+
+                <div class="container-fluid" style="padding:0">
+
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#home">
+                                Tiếng Việt &nbsp;
+                                <img style="margin-top:-3px; height: 20px"
+                                     src="https://icons.iconarchive.com/icons/wikipedia/flags/128/VN-Vietnam-Flag-icon.png"
+                                     alt="Tiếng Việt (vi)">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#menu1">
+                                Tiếng Anh &nbsp;
+                                <img style="margin-top:-3px; height: 20px"
+                                     src="https://icons.iconarchive.com/icons/wikipedia/flags/128/GB-United-Kingdom-Flag-icon.png"
+                                     alt="English (en)">
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active"
+                             style="border: 1px solid #dddddd7a; padding: 5px">
+                            <br />
+                            <div class="form-group">
+                                <label for="">Tiêu đề</label><span class='required'>*</span>
+                                <input type="text" class="form-control  input-name"
+                                       id="postName" required placeholder="">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="">URL</label>
+                                <input type="text" class="form-control  input-url"
+                                       id="postUrl" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Mô tả</label>
+                                <textarea class="form-control  input-description "
+                                          rows="2" id="postDescription"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Nội dung</label>
+                                <textarea class="form-control  input-text " rows="2"
+                                          id="postText"></textarea>
+                            </div>
+
+
+
+                        </div>
+                        <div id="menu1" class="tab-pane fade"
+                             style="border: 1px solid #dddddd7a; padding: 5px">
+                            <br />
+                            <div class="form-group">
+                                <label for="">Tiêu đề tiếng Anh</label>
+                                <input type="text" class="form-control  input-name2"
+                                       id="postName2" placeholder="">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="">URL2</label>
+                                <input type="text" class="form-control  input-url2"
+                                       id="postUrl2" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Mô tả tiếng Anh</label>
+                                <textarea class="form-control  input-description2 "
+                                          rows="2" id="postDescription2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Nội dung tiếng Anh</label>
+                                <textarea class="form-control  input-text2 " rows="2"
+                                          id="postText2"></textarea>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <div class='form-group'>
+                            <label for=''>Ngày xuất bản </label>
+                            <div class='input-group date datetimepicker  input-publishedTime'
+                                 id='postPublishedTimeDiv'>
+                                <input type='text' id="postPublishedTime"
+                                       class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class='form-group'>
+                            <label for=''>Ngày tạo </label><span class='required'>*</span>
+                            <div class='input-group date datetimepicker  input-createdTime'
+                                 id='postCreatedTimeDiv'>
+                                <input type='text' id="postCreatedTime" required
+                                       readonly class="form-control" required />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <input style="display:none" id="hiddenSubmit" type="submit"
+                       class="btn btn-default" value="Save changes">
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="display:none" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="btnUpdateItem"
+                        onclick="updateItem();">
+                    Save
+                    changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var UploadFile = function (e) {
+        console.log(e);
+        console.log(e.target.files[0].name);
+        var file = e.target.files[0];
+        var formData = new FormData();
+        formData.append("file", file);
+        axios.post("/Topic/api/SingleFile", formData);
+        $("#postPhoto").val("@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}files/frontend/images/upload/" + e.target.files[0].name);
+        setTimeout(function () { $("#input-photo-thumbnail").attr("src", $("#postPhoto").val()); }, 1000);
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        //$("#modal-id").modal('show');
+        $('.datetimepicker').datetimepicker({
+            format: 'DD-MM-YYYY HH:mm:ss'
+        });
+
+        $('.dataSelect').select2();
+
+        $(".datetimepicker").on('dp.change', function (e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("DD-MM-YYYY HH:mm:ss");
+            // console.log(this.value);
+        })
+
+        $("#postPhoto").change(function () {
+            var url = this.value;
+            //validate data
+
+            //set new pic
+            $("#input-photo-thumbnail").attr("src", url);
+        });
+
+
+    });
+</script>
+
+<script>
+    var postTextEditor;
+    //var postTextEditor = CKEDITOR.replace("postText", {height:700});
+    //ClassicEditor
+    //    .create(document.querySelector('#postText'))
+    //    .then(editor => {
+    //        // console.log( 'Editor was initialized', editor );
+    //        postTextEditor = editor;
+    //        editor.model.document.on('change:data', (evt, data) => {
+    //            // debugger;
+    //            // console.log('Updated:'+ data );
+    //            $('#postText').val(postTextEditor.getData());
+    //        });
+    //    })
+    //    .catch(err => {
+    //        console.error(err.stack);
+    //    });
+</script>
+
+<script>
+    var postText2Editor;
+    //var postText2Editor = CKEDITOR.replace("postText2", {height:700});
+    //ClassicEditor
+    //    .create(document.querySelector('#postText2'))
+    //    .then(editor => {
+    //        // console.log( 'Editor was initialized', editor );
+    //        postText2Editor = editor;
+    //        editor.model.document.on('change:data', (evt, data) => {
+    //            // debugger;
+    //            // console.log('Updated:'+ data );
+    //            $('#postText2').val(postText2Editor.getData());
+    //        });
+    //    })
+    //    .catch(err => {
+    //        console.error(err.stack);
+    //    });
+</script>
+
+<script>
+    var currentUpdatingObj;
+    $(document).ready(function () {
+        setTimeout(function () {
+            //debugger;
+            loadCurrentSelectedPostTag(@Model.Id);
+            let id = @Model.Id;
+
+            if (id == 0) {
+                postTextEditor = CKEDITOR.replace("postText", {height:700, filebrowserBrowseUrl: 'https://file.novatic.vn/fileManagerDotNet.php'});
+                postText2Editor = CKEDITOR.replace("postText2", { height: 700, filebrowserBrowseUrl: 'https://file.novatic.vn/fileManagerDotNet.php' });
+                setUpCKServerButton();
+            }
+
+            var obj;
+            $.ajax({
+                url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}post/api/detail/" +@Model.Id,
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    //debugger;
+                    obj = responseData.data[0];
+                    currentUpdatingObj = obj;
+                    $("#postId").val(id > 0 ? obj.id : "");
+                    //$("#postPostTypeID").val(id > 0 ? obj.postTypeId : "");
+                    //$("#postPostAccountID").val(id > 0 ? obj.postAccountId : "");
+                    $("#postPostTypeID").val(10001);
+                    $("#postPostAccountID").val(10001);
+                    $("#postPostCategoryID").val(id > 0 ? obj.postCategoryId : "");
+                    $("#postPostLayoutID").val(id > 0 ? obj.postLayoutId : "");
+                    $("#postPostPublishStatusID").val(id > 0 ? obj.postPublishStatusId : "");
+                    $("#postPostCommentStatusID").val(id > 0 ? obj.postCommentStatusId : "");
+                    $("#postGuID").val(id > 0 ? obj.guId : "");
+                    $("#postPhoto").val(id > 0 ? obj.photo : "");
+                    $("#postFileUrl").val(id > 0 ? obj.fileUrl : "");
+                    $("#postVideo").val(id > 0 ? obj.video : "");
+                    $("#postViewCount").val(id > 0 ? obj.viewCount : "");
+                    $("#postCommentCount").val(id > 0 ? obj.commentCount : "");
+                    $("#postLikeCount").val(id > 0 ? obj.likeCount : "");
+                    $("#postActive").val(id > 0 ? obj.active : "");
+                    $("#postUrl").val(id > 0 ? obj.url : "");
+                    $("#postUrl2").val(id > 0 ? obj.url2 : "");
+                    $("#postName").val(id > 0 ? obj.name : "");
+                    $("#postDescription").val(id > 0 ? obj.description : "");
+                    $("#postText").val(id > 0 ? obj.text : "");
+                    $("#postName2").val(id > 0 ? obj.name2 : "");
+                    $("#postDescription2").val(id > 0 ? obj.description2 : "");
+                    $("#postText2").val(id > 0 ? obj.text2 : "");
+                    $("#postPublishedTime").val(id > 0 ? obj.publishedTime : "");
+                    $("#postOpenTime").val(id > 0 ? obj.openTime : "");
+                    $("#postClosedTime").val(id > 0 ? obj.closedTime : "");
+                    $("#postEventAddress").val(id > 0 ? obj.eventAddress : "");
+                    $("#postCreatedTime").val(id > 0 ? obj.createdTime : "");
+                    $('#postPostTypeID').trigger('change');
+                    $('#postPostAccountID').trigger('change');
+                    $('#postPostCategoryID').trigger('change');
+                    $('#postPostLayoutID').trigger('change');
+                    postTextEditor = CKEDITOR.replace("postText", { height: 700, filebrowserBrowseUrl: 'https://file.novatic.vn/fileManagerDotNet.php' });
+                    postText2Editor = CKEDITOR.replace("postText2", { height: 700, filebrowserBrowseUrl: 'https://file.novatic.vn/fileManagerDotNet.php' });
+                    postTextEditor.setData((id > 0 ? obj.text : ''));
+                    postText2Editor.setData((id > 0 ? obj.text2 : ''));
+
+
+
+
+
+                    $("#input-photo-thumbnail").attr("src", obj.photo);
+
+                    // $("#postId").val(id > 0 ? obj.id : "");
+                    // $("#postName").val(id > 0 ? obj.name : "");
+                    // $("#postDescription").val(id > 0 ? obj.description : "");
+                    // $("#postCreatedTime").val(id > 0 ? obj.createdTime : "");
+                    // $("#postActive").val(id > 0 ? obj.active : "");
+                    $("#updateTitle").text("Cập nhật bài viết: " + obj.name);
+
+
+                    $("#postGuID").attr("readonly", false);
+                    $("#postUrl").attr("readonly", false);
+                    $("#postUrl2").attr("readonly", false);
+                    // correcting data
+                    //$('#buyProvinceID').val(obj.provinceID.split(", ")).trigger('change');
+
+                    formatNumber();
+
+                },
+                error: function (e) {
+                    console.log("Failed when load Post detail!");
+                    if (id == 0) {
+                        var date = new Date();
+                        var currentDateTime = date.getDate() + '/' + (date.getMonth() + 1) + '/' + (1900 + date.getYear()) + " " + (date.getUTCHours() + 7).toString().replace("24", "00") + ":" + date.getMinutes() + ":" + date.getSeconds();
+                        $("#postPublishedTime").val(currentDateTime);
+                        $("#postCreatedTime").val(currentDateTime);
+                    }
+                }
+            });
+
+        }, 500);
+
+    })
+
+</script>
+
+<script>
+    var postCategoryData = [];
+    function loadDataSelectPostCategory() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postCategory/api/listByNews',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded postCategory');
+                // debugger;
+                var data = responseData.data;
+                postCategoryData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostCategoryID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectPostCategory();
+    });
+</script>
+
+<script>
+    var postLayoutData = [];
+    function loadDataSelectPostLayout() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/PostLayout/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded postLayout');
+                // debugger;
+                var data = responseData.data;
+                postLayoutData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostLayoutID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectPostLayout();
+    });
+</script>
+
+<script>
+    var accountData = [];
+    function loadDataSelectAccount() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/account/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                // debugger;
+                var data = responseData.data;
+                accountData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostAccountID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectAccount();
+    });
+</script>
+
+
+<script>
+    var tagData = [];
+    function loadDataSelecttag() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/tag/api/ListPaging?pageSize=300&pageIndex=1',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded tag');
+                // debugger;
+                var data = responseData.data;
+                tagData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postTagID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+
+
+    var postTagData = [];
+    function loadCurrentSelectedPostTag(postID) {
+        $('#postTagID').empty().trigger('change');
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postTag/api/DetailPost/'+postID,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded tag');
+                // debugger;
+                var data = responseData.data;
+                tagData = data;
+                var selectedData = [];
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.tagId,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postTagID').append(newOption).trigger('change');
+                    selectedData.push(item.tagId);
+                });
+                $('#postTagID').val(selectedData);
+                $('#postTagID').trigger('change');
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    function searchDataSelecttag(keyword) {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/tag/api/search?keyword='+keyword,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded tag');
+                // debugger;
+                var data = responseData.data;
+                tagData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    //Check if not existing then add
+                    if ($('#postTagID').find("option[value='"+item.id+"']").length == 0) {
+                        var newOption = new Option(data.text, data.id, false, false);
+                        $('#postTagID').append(newOption).trigger('change');
+                    }
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    function updatePostTag(postID) {
+        var dataList = $("#postTagID").val().join("|");
+        if (dataList.length < 5) return;
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postTag/api/updatePostTag?postId='+postID+'&tagData='+dataList,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log('updated tag data');
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('.dataSelectTag').select2({
+            //minimumInputLength: 2
+        });
+    });
+
+    $(document).on('keyup keydown', 'input.select2-search__field', function (e) {
+        if (e.keyCode == 32) {
+            //debugger;
+            //$('#postTagID').empty().trigger("change");
+            var keyword = $(this).val();
+            searchDataSelecttag(keyword);
+        }
+    });
+</script>
+
+<script>
+    function updateItemOld(id) {
+        //var actionName = (id == 0 ? "Create" : "Update");
+        //let obj = getItemById(id);
+        //let obj = currentUpdatingObj;
+        let objName = $("#postName").val();
+
+        validateInputNumber();
+         // fix upload sai / \
+         // check if photo != null then update split
+         
+
+         var link ="";
+        if($("#postPhoto").val() != "") {
+            var photo = $("#postPhoto").val();
+            var split = photo.split("\\");
+            link = "/upload/" + split[1];
+        }
+        
+        var link2 ="";
+        if($("#postFileUrl").val() != "") {
+            var docu = $("#postFileUrl").val();
+            var splitz = docu.split("\\");
+            link2 = "/upload/" + splitz[1];
+        }
+        // "id": $("#postId").val(),
+        // "name": $("#postName").val(),
+        // "description": $("#postDescription").val(),
+        // "createdTime": $("#postCreatedTime").val(),
+        // "active": $("#postActive").val()
+        var updatingObj = {
+            "id": $("#postId").val(),
+            "postTypeID": $("#postPostTypeID").val(),
+            "postAccountID": $("#postPostAccountID").val(),
+            "postCategoryID": $("#postPostCategoryID").val(),
+            "postLayoutID": $("#postPostLayoutID").val(),
+            "postPublishStatusID": $("#postPostPublishStatusID").val(),
+            "postCommentStatusID": $("#postPostCommentStatusID").val(),
+            "guID": $("#postGuID").val(),
+            "photo": link,
+            "video": $("#postVideo").val(),
+            "viewCount": $("#postViewCount").val(),
+            "commentCount": $("#postCommentCount").val(),
+            "likeCount": $("#postLikeCount").val(),
+            "active": $("#postActive").val(),
+            "url": $("#postUrl").val(),
+            "url2": $("#postUrl2").val(),
+            "name": $("#postName").val(),
+            "description": $("#postDescription").val(),
+            "text": postTextEditor.getData(),
+            "name2": $("#postName2").val(),
+            "description2": $("#postDescription2").val(),
+            "text2": postText2Editor.getData(),
+            "publishedTime": datetimeFormat($("#postPublishedTime").val().replace("-", "/")),
+            "openTime": datetimeFormat($("#postOpenTime").val().replace("-", "/")),
+            "closedTime": datetimeFormat($("#postClosedTime").val().replace("-", "/")),
+            "createdTime": datetimeFormat($("#postCreatedTime").val()),
+            "eventAddress": $("#postEventAddress").val(),
+            "fileUrl": link2,
+
+        };
+
+        // correcting data
+        //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Performing update item " + objName,
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Updated!',
+                                    'Item ' + objName + ' has been successfully updated!',
+                                    'success'
+                                );
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' update item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+
+                    //update PostTag
+                    updatePostTag(id);
+                };
+
+            }
+        })
+    }
+</script>
+
+
+<script>
+    var postId = @Model.Id;
+
+    function updateItem() {
+        var id = postId;
+        var actionName = (id == 0 ? "Create" : "Update");
+        //let obj = getItemById(id);
+        //let obj = currentUpdatingObj;
+        let objName = id > 0 ? $("#postName").val() : " ";
+
+        validateInputNumber();
+
+        var link = "";
+        var link2 = "";
+
+        var photo = $("#postPhoto").val();
+        if (photo.length > 0) {
+            var split = photo.split("\\");
+            link = "/upload/" + split[1];
+        }
+        else {
+            link = photo;
+        }
+
+        var docu = $("#postFileUrl").val();
+        if (docu.length > 0) {
+            var splitz = docu.split("\\");
+            link2 = "/upload/" + splitz[1];
+        }
+        else {
+            link2 = docu;
+        }
+
+        var updatingObj = {
+            "id": $("#postId").val(),
+            "postTypeID": $("#postPostTypeID").val(),
+            "postAccountID": $("#postPostAccountID").val(),
+            "postCategoryID": $("#postPostCategoryID").val(),
+            "postLayoutID": $("#postPostLayoutID").val(),
+            "postPublishStatusID": $("#postPostPublishStatusID").val(),
+            "postCommentStatusID": $("#postPostCommentStatusID").val(),
+            "guID": $("#postGuID").val(),
+            "photo": link,
+            "video": $("#postVideo").val(),
+            "viewCount": $("#postViewCount").val(),
+            "commentCount": $("#postCommentCount").val(),
+            "likeCount": $("#postLikeCount").val(),
+            "active": $("#postActive").val(),
+            "url": $("#postUrl").val(),
+            "url2": $("#postUrl2").val(),
+            "name": $("#postName").val(),
+            "description": $("#postDescription").val(),
+            "text": postTextEditor.getData(),
+            "name2": $("#postName2").val(),
+            "description2": $("#postDescription2").val(),
+            "text2": postText2Editor.getData(),
+            "publishedTime": datetimeFormat($("#postPublishedTime").val().replace("-", "/")),
+            "openTime": datetimeFormat($("#postOpenTime").val().replace("-", "/")),
+            "closedTime": datetimeFormat($("#postClosedTime").val().replace("-", "/")),
+            "createdTime": datetimeFormat($("#postCreatedTime").val()),
+            "eventAddress": $("#postEventAddress").val(),
+            "fileUrl": link2,
+
+        };
+
+        // correcting data
+        //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Performing " + actionName + " item " + objName,
+            type: 'info',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                //Swal.fire(
+                                //    'Updated!',
+                                //    'Item ' + objName + ' has been successfully updated!',
+                                //    'success'
+                                //);
+
+
+                                Swal.fire({
+                                    title: '<strong>Đã cập nhật bài viết</strong>',
+                                    icon: 'success',
+                                    html:
+                                        'Đã cập nhật bài viết!',
+                                    //showCloseButton: true,
+                                    //showCancelButton: true,
+                                    focusConfirm: false,
+                                    //confirmButtonText:
+                                    //    '<a target="_blank" style="font-size:unset; color: unset;" href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/'+id+'-preview"><i class="fa fa-thumbs-up"></i> Preview </a>',
+                                    //confirmButtonAriaLabel: 'Preview',
+                                    //cancelButtonText:
+                                    //    'OK',
+                                    //cancelButtonAriaLabel: 'OK'
+                                });
+
+                               
+                                
+                                //updateTable(id, updatingObj, "update");
+                                //var updatedItemIndex = dataSource.findIndex(item => parseInt(item.id) === id);
+                                //dataSource[updatedItemIndex] = updatingObj;
+                                $.ajax({
+                                    url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/postCategory/api/UpdatePostCategoryPostCount/" + updatingObj.postCategoryID + "/" + currentUpdatingObj.postCategoryId,
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    success: function (result) {
+                                        console.log("Success when change Postcount in PostCategory table");
+                                    },
+                                    error: function (e) {
+                                        console.log("Can't change PostCount in PostCategory table");
+                                    }
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' update item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+
+                    //update PostTag
+                    updatePostTag(id);
+                };
+
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") { 
+
+                                updatingObj = responseData.data;
+                                //dataSource.push(updatingObj);
+                                //updateTable(0, updatingObj, "add");
+                                postId = updatingObj[0].id;
+
+                                Swal.fire({
+                                    title: '<strong>Tạo bài viết thành công</strong>',
+                                    icon: 'success',
+                                    html:
+                                        'Đã đăng bài viết!',
+                                    //showCloseButton: true,    
+                                    //showCancelButton: true,
+                                    focusConfirm: false,
+                                    //confirmButtonText:
+                                    //    '<a target="_blank" style="font-size:unset; color: unset;" href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/'+postId+'-preview"><i class="fa fa-thumbs-up"></i> Preview </a>',
+                                    //confirmButtonAriaLabel: 'Preview',
+                                    //cancelButtonText:
+                                    //    'OK',
+                                    //cancelButtonAriaLabel: 'OK'
+                                });
+
+
+
+                                //update PostTag
+                                updatePostTag(postId);
+                                $.ajax({
+                                    url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/postCategory/api/UpdatePostCategoryPostCount/" + updatingObj[0].postCategoryId + "/0",
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    success: function (result) {
+                                        console.log("Success when change Postcount in PostCategory table");
+                                    },
+                                    error: function (e) {
+                                        console.log("Can't change PostCount in PostCategory table");
+                                    }
+                                });
+
+
+
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' create item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+</script>
+
+<script>
+    var postTypeData = [];
+    function loadDataSelectPostType() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/PostType/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded postType');
+                // debugger;
+                var data = responseData.data;
+                postTypeData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostTypeID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectPostType();
+    });
+
+    function previewPost(id) { 
+        Swal.fire({
+            title: '<strong>Đã cập nhật!</strong>',
+            icon: 'info',
+            html:
+                'Bạn có muốn xem bài viết này ngay bây giờ?',
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText:
+                '<a target="_blank" style="font-size:unset; color: unset;" href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/'+id+'-preview"><i class="fa fa-thumbs-up"></i> Preview </a>',
+            confirmButtonAriaLabel: 'Preview',
+            cancelButtonText:
+                'OK',
+            cancelButtonAriaLabel: 'OK'
+        });
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        setUpCKServerButton();
+    });
+    $("#postPostCategoryID").on("change", function () {
+        var value = $("#postPostCategoryID :selected").val();
+        if (value == 10297) {
+            $("#divPostOpenTime").css("display", "block");
+            $("#divPostCloseTime").css("display", "block");
+            $("#divPostEventAddress").css("display", "block");
+            
+        }
+        else {
+            $("#divPostOpenTime").css("display", "none");
+            $("#divPostCloseTime").css("display", "none");
+            $("#divPostEventAddress").css("display", "none");
+        }
+
+        if (value == 10299 || value == 10300 || value == 10301) {
+            $("#FileUploadForLibrary").css("display", "block");
+        }
+        else {
+            $("#FileUploadForLibrary").css("display", "none");
+        }
+
+    });
+</script>

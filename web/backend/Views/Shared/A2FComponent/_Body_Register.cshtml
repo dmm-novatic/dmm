@@ -1,0 +1,667 @@
+﻿@{
+    Layout = null;
+}
+<script>
+    if (@ViewBag.UserID != 0) {
+        window.location.href = '/'
+    }
+</script>
+<style>
+    input::-ms-reveal,
+    input::-ms-clear {
+        display: none;
+    }
+</style>
+<style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    .required {
+        color: red;
+        padding-left: 0.5%;
+    }
+
+    #body-login {
+        /* background-image: url(/image/Rectangle167.png); */
+        background-image: url(/images/Frame286.png);
+        background-size: cover;
+        /* background-color: blue; */
+        padding: 100px;
+        width: 100%;
+        position: relative;
+    }
+
+    @@media (max-width: 1025px) {
+        #body-login {
+            padding: 20px;
+        }
+    }
+
+    .form-login-modal {
+        width: 100%;
+        height: 100%;
+        /* background-color: red; */
+        position: relative;
+    }
+
+    .form-group-inner {
+        height: 100%;
+    }
+
+    .login {
+        border-radius: 20px;
+        background-color: rgb(0 0 0 / 50%);
+        height: auto;
+        top: 15%;
+        padding: 30px;
+    }
+
+        .login h3 {
+            color: #2AD9FF;
+        }
+
+        .login h5 {
+            color: white;
+        }
+
+    label {
+        color: white;
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+    .field-icon {
+        float: right;
+        margin-right: 10px;
+        margin-top: -25px;
+        position: relative;
+        z-index: 2;
+    }
+
+    #lost-password {
+        float: right;
+    }
+
+    .login .btn {
+        width: 100%;
+        background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), #FFB526;
+    }
+
+    .footer-form {
+        float: left;
+        color: white;
+        width: 100%;
+        margin-top: 34px;
+    }
+
+    #register-modal {
+        color: #FF9900;
+    }
+
+    .logo-social {
+        float: right;
+    }
+
+    .fa-name-shape-o-direction:hover {
+        box-shadow: 0px 0px 0px 7px rgb(255 255 255 / 30%);
+        border-radius: 50%;
+        -webkit-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+</style>
+<style>
+    /* RAdio button css */
+    .radio {
+        display: inline-block;
+        margin-left : 10px ;
+    }
+
+    .radio-center {
+        text-align: center;
+    }
+
+    .accountType.active {
+        background-color: #265178 !important;
+    }
+
+        .accountType.active span {
+            color: white !important;
+        }
+
+    input[type=checkbox], input[type=radio] {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0;
+        border: 1.33333px solid #265178;
+    }
+
+    input[type=checkbox], input[type=radio] {
+        margin: 4px 0 0;
+        margin-top: 1px \9;
+        line-height: normal;
+        width: 15px;
+        height: 15px;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        position: relative;
+        background-color: white;
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid white;
+        font-family: "Font Awesome 5 Pro" !important;
+        content: "\f00c" !important;
+    }
+
+    .modal.fade.in {
+        background-color: rgb(0 0 0 / 50%);
+    }
+
+    .modal-title {
+        color: #265178;
+    }
+
+    .modal-header .close {
+        margin-top: -30px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), #FFB526;
+        border-radius: 4px;
+        min-width: 200px;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), #FFB526;
+            border-radius: 4px;
+        }
+
+    @@media (max-width: 320px) {
+        .logo-social i {
+            margin: 0px !important;
+        }
+
+        .radio {
+            margin: 0px 10px;
+        }
+    }
+
+    .accountType {
+        background-color: #F0F6FC;
+        padding: 15px 15px 0px 15px;
+        border-radius: 4px;
+        border: 1px solid;
+    }
+    .accountType.active img {
+        filter:brightness(2.5);
+    }
+    .accountType img {
+        filter: brightness(0.3);
+    }
+    .modal {
+        text-align: center;
+    }
+
+    @@media screen and (min-width: 768px) {
+        .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+        }
+    }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fas fa-eye-slash");
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    });
+</script>
+<script>
+
+    function Register() {
+        $("#name,#username,#email,#password").each(function () {
+            if ($(this).val() == '') {
+                var title = $(this).attr('placeholder') + " sai định dạng";
+                var text = $(this).attr('placeholder') + " không được để trống";
+                Swal.fire({
+                    title: title,
+                    type: 'warning',
+                    text: text
+                });
+            }
+        });
+        if ($("#password").val() != $("#confirm-password").val()) {
+            Swal.fire({
+                title: 'Không khớp mật khẩu',
+                type: 'warning',
+                text: 'Xác nhận mật khẩu không khớp với mật khẩu được nhập'
+            });
+        }
+        function validateLengthPass(e) {
+            var pass = e;
+            if (pass.length < 8) {
+                Swal.fire({
+                    title: 'Sai định dạng mật khẩu',
+                    type: 'warning',
+                    text: 'Mật khẩu phải dài hơn 8 ký tự'
+                });
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function validateEmail(e) { return /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(e).toLowerCase()) }
+        if (validateEmail($("#email").val()) == false) {
+            Swal.fire({
+                title: 'Sai định dạng email',
+                type: 'warning',
+                text: 'Email không đúng định dạng vui lòng nhập lại email(VD: abc@abc.abc)'
+            });
+        }
+        if ($("#name,#username,#email,#password") != '' && $("#password").val() == $("#confirm-password").val() && $("#password").val() != "" && validateEmail($("#email").val()) == true && validateLengthPass($("#password").val()) == true) {
+            var valueAccountType;
+            if($('#radio1').is(':checked') == true){
+                valueAccountType = 10002;
+            }
+            else if ($('#radio2').is(':checked') == true){
+                 valueAccountType = 10003;
+            }
+            var obj = {
+                "accountTypeId": valueAccountType,
+                "active": 1,
+                "name": $("#name").val(),
+                "username": $("#username").val(),
+                "email": $("#email").val(),
+                "password": $("#password").val(),
+                "IdCardNumber": $("#IdCardNumber").val(),
+                "CompanyName": $("#CompanyName").val(),
+                "CompanyNumber": $("#CompanyNumber").val(),
+                "Phone": $("#PhoneNumber").val(),
+                "address": "",
+                "Description": "",
+                "Info": "",
+                "IsActivated": 1,
+                "Photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSgiBXKS7_rYOPdUxh1W9sSbmg-0y5MeIxXQImvfmGmRvjz5q-&s"
+            }
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Account/api/Add",
+                data: JSON.stringify(obj),
+                success: function (responseData) {
+                    if (responseData.status == 201 && responseData.message == "CREATED") {
+                        localStorage.setItem("currentLoggedInUser", JSON.stringify(responseData.data[0]));
+                        Swal.fire({
+                            title: 'Đăng ký thành công!',
+                            html: '<div style="text-align:left"><p> Xin chào ' + responseData.data[0].username + '</p>' +
+                                '<p>Để hoàn thành đăng ký tài khoản, bạn cần vào Email đã đăng ký để xác minh.</p>' +
+                                '<p>Vui lòng kiểm tra Email: <b>' + responseData.data[0].email + '</b> và nhấp vào liên kết để xác minh tài khoản</p>' +
+                                '<p>Trong vòng 24 giờ, nếu bạn không nhận được bất kỳ email nào từ chúng tôi, vui lòng liên hệ với bộ phận Hỗ trợ kỹ thuật qua email <strong> A2F@BUSINESS.GOV.VN </strong></p>' +
+                                '<p>Xin chân thành cảm ơn bạn!</p></div>',
+                            type: 'success',
+                            showCancelButton: false,
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            window.location.href = "/";
+                        })
+                        InsertNotification($("#username").val(), "Register");
+                    }
+                    if (responseData.status == 202 && responseData.message === "EMAILEXIST") {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Email đã được sử dụng!',
+                            text: 'Hãy thử lại hoặc nhấn vào quên mật khẩu!'
+                        })
+                    }
+                    if (responseData.status == 203 && responseData.message === "USENAMEEXIST") {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Tên đăng nhập đã được sử dụng!',
+                            text: 'Hãy thử lại với tên đăng nhập khác!'
+                        })
+                    }
+                },
+                error: function (e) {
+
+                }
+            });
+        }
+
+
+    }
+</script>
+<div class="container" id="body-login">
+    <div class="form-login-modal">
+        <div class="form-group-inner">
+            <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 login">
+                <h3 style="color: #FF9900;">@ViewBag.lblDangKyTaiKhoan</h3>
+
+                <h5>
+                    @ViewBag.lblNoiDungDangKy
+                </h5>
+                <div class="radio-center">
+                    <div class="radio">
+                        <input id="radio1" name="radios" type="radio" value="radio1" checked="" style="left : 16px">
+                        <label for="radio1" class="radio-label">@ViewBag.lblCaNhan</label>
+                    </div>
+                    <div class="radio">
+                        <input id="radio2" name="radios" type="radio" value="radio2" style="left : 16px">
+                        <label for="radio2" class="radio-label">@ViewBag.lblDoanhNghiep</label>
+                    </div>
+                </div>
+
+                <form method="POST" role="form" action="">
+                    <div class="form-group">
+                        <label for="name">@ViewBag.lblHoVaTen</label><span class="required">*</span>
+                        <input type="text" class="form-control" id="name" placeholder="@ViewBag.lblHoVaTen">
+                        <label for="username">@ViewBag.lblTenDangNhap1</label><span class="required">*</span>
+                        <input type="text" class="form-control" id="username" placeholder="@ViewBag.lblNhapTenDangNhap1">
+                        <label for="username">@ViewBag.lblDiaChiEmail</label><span class="required">*</span>
+                        <input type="text" class="form-control" id="email" placeholder="@ViewBag.lblNhapEmail">
+                        <label for="password">@ViewBag.lblMatKhau</label><span class="required">*</span>
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="@ViewBag.lblNhapMatKhau">
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <label for="password">@ViewBag.lblNhapLaiMatKhau</label><span class="required">*</span>
+                        <input type="password" class="form-control" name="confirmpassword" id="confirm-password"
+                               placeholder="@ViewBag.lblNhapLaiMatKhau">
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password1"></span>
+                        <label for="PhoneNumber">@ViewBag.lblSoDienThoai</label>
+                        <input type="text" class="form-control" id="PhoneNumber" placeholder="@ViewBag.lblNhapSoDienThoai">
+                        <label for="IdCardNumber">@ViewBag.lblChungMinhThu</label>
+                        <input type="text" class="form-control" id="IdCardNumber" placeholder="@ViewBag.lblNhapSoChungMinhThu">
+                        <label for="CompanyName" class="form-hiden">@ViewBag.lblTenDoanhNghiep<span class="required">*</span></label>
+                        <input type="text" class="form-control form-hiden" id="CompanyName" placeholder="@ViewBag.lblNhapTenDoanhNghiep">
+                        <label for="CompanyNumber " class="form-hiden">@ViewBag.lblSoDangKyKinhDoanh<span class="required">*</span></label>
+                        <input type="text" class="form-control form-hiden" id="CompanyNumber" placeholder="@ViewBag.lblNhapSoDangKyKinhDoanh">
+                    </div>
+                    <button type="button" class="btn btn-warning" onclick="Register()">@ViewBag.lblDangKyTaiKhoan.ToUpper()</button>
+                    <div class="footer-form">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0 !important;">
+
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="padding: 0 !important;">
+                                <p class="control-label">
+                                    @ViewBag.lblDaCoTaiKhoan <a id="register-modal" href="/dang-nhap">@ViewBag.lblDangNhap</a>
+                                </p>
+                            </div>
+
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0 !important;">
+                                <div class="logo-social">
+                                    <i class="fa fa-name-shape-o-direction" onclick="loginBySocial('google')" style="cursor:pointer;margin:0 5px;">
+                                        <img src="~/images/Group278.png" height="30" width="30" alt="">
+                                    </i>
+                                    <i class="fa fa-name-shape-o-direction" onclick="loginBySocial('facebook')" style="cursor:pointer;margin:0 5px;">
+                                        <img src="/images/Group277.png" height="30" width="30" alt="">
+                                    </i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade in" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="false" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 10px 20px 10px 20px">
+                <h3 class="modal-title" id="exampleModalLongTitle">Chọn loại tài khoản đăng ký</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row" style="padding: 10px 20px 0px 20px;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 accountType" id="accountType-10002" style="">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <input class="checked-accountType" type="radio" id="type-individual" name="fav_language" value="10002">
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                <label for="type-individual" style="color: #265178;">
+                                    <span style="font-size:20px;">Đăng ký tài khoản cá nhân</span><br>
+                                    <span>Tài khoản người dùng cá nhân không gắn với doanh nghiệp</span>
+                                </label>
+                            </div>
+                            <img class="register-individual" src="~/images/Union.png" style="width:16%" />
+
+                            @*<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding:10px">
+                                <img class="register-individual" src="~/images/Union.png" style="width:100%" />
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="row" style="padding:20px;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 accountType" id="accountType-10003" style="">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <input class="checked-accountType" type="radio" id="type-partner" name="fav_language" value="10003">
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                <label for="type-partner" style="color: #265178;">
+                                    <span style="font-size:20px;">Đăng ký tài khoản theo tổ chức</span><br>
+                                    <span>Tài khoản người dùng gắn với doanh nghiệp nhất định đã được đăng ký với Bộ KHĐT</span>
+                                </label>
+                            </div>
+                            <img class="register-partner" src="~/images/Vector-2.png" style="width: 16%" />
+
+                            @*<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding:10px">
+                                <img class="register-partner" src="~/images/Vector-2.png" style="width:100%" />
+                            </div>*@
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>*@
+                <button type="button" class="btn btn-primary btn-loginsocial">Tiếp tục</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Script for the eye in password
+
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye-slash");
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    });
+    $(".toggle-password1").click(function () {
+        $(this).toggleClass("fa-eye-slash");
+        var x = document.getElementById("confirm-password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    });
+    var url = location.href;
+    var paramsUrl = new URL(url);
+    var homeUrl = paramsUrl.origin;
+    function LoginGoogle() {
+        var accountTypeId = $(".checked-accountType:checked").val();
+        if (accountTypeId != "" && accountTypeId != undefined) {
+            location.href = "/account/api/RegisterWithGoogle?returnUrl=" + homeUrl + "&accountTypeId=" + accountTypeId;
+        }
+        else {
+            Swal.fire({
+                title: 'Đăng ký không thành công',
+                type: 'warning',
+                text: 'Vui lòng chọn loại tài khoản cá nhân hoặc doanh nghiệp để hoàn tất đăng ký'
+            });
+        }
+    }
+</script>
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '988035435083398',
+            cookie: true,
+            xfbml: true,
+            version: 'v13.2'
+        });
+        FB.AppEvents.logPageView();
+    };
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+        if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+            LoginFaceBook(response);
+        }
+    }
+    function checkLoginState() {               // Called when a person is finished with the Login Button.
+        FB.login(function (response) {   // See the onlogin handler
+            statusChangeCallback(response);
+        });
+    }
+    function LoginFaceBook(response, accountTypeId) {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: 'https://graph.facebook.com/me?fields=id,name,email,picture.width(720).height(720).as(picture)&access_token=' + response.authResponse.accessToken + '',
+            success: function (responseData) {
+                debugger;
+                var email = "";
+                var photo = "";
+                if (responseData.email == undefined) {
+                    email = "";
+                }
+                else {
+                    email = responseData.email;
+                }
+                if (responseData.picture.data.url != "" || responseData.picture.data.url != undefined) {
+                    photo = responseData.picture.data.url.toString();
+                }
+                else {
+                    photo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSgiBXKS7_rYOPdUxh1W9sSbmg-0y5MeIxXQImvfmGmRvjz5q-&s";
+                }
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json",
+                    url: 'Account/api/LoginWithFaceBook?userID=' + responseData.id + '&name=' + responseData.name + '&photo=' + photo + '&email=' + email + '&accountTypeId=' + accountTypeId + '&returnUrl=' + homeUrl,
+                    success: function (responseData) {
+                        location.href = homeUrl;
+                    }
+                });
+            }
+        });
+    }
+    function loginBySocial(value) {
+        $("#exampleModalCenter").modal("show");
+        if (value == "facebook") {
+            $(".btn-loginsocial").attr("onclick", "loginByFacebook()");
+        }
+        else {
+            $(".btn-loginsocial").attr("onclick", "LoginGoogle()");
+        }
+
+    }
+    function loginByFacebook() {
+        var accountTypeId = $(".checked-accountType:checked").val();
+        if (accountTypeId != "" && accountTypeId != undefined) {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    FacebookLoggedIn(response, accountTypeId);
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            },
+                //{ scope: 'user_birthday,user_about_me,user_hometown,user_location,email,publish_stream' });
+                { scope: 'user_birthday,user_hometown,user_location,email,user_link,user_gender,user_photos' });
+        }
+        else {
+            Swal.fire({
+                title: 'Đăng ký không thành công',
+                type: 'warning',
+                text: 'Vui lòng chọn loại tài khoản cá nhân hoặc doanh nghiệp để hoàn tất đăng ký'
+            });
+        }
+
+
+    }
+    function FacebookLoggedIn(response, accountTypeId) {
+        if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+            LoginFaceBook(response, accountTypeId);
+        }
+    }
+</script>
+
+
+<script>
+    /* ratio button script */
+    debugger;
+    $(document).ready(function () {
+        var radios = document.getElementsByName("radios");
+        //var radio1 = document.getElementsById("radio1");
+        //var radio2 = document.getElementsById("radio2");
+        var form1 = document.getElementsByClassName("form-hiden");
+
+        for (var i = 0; i < form1.length; i++) {
+            form1[i].style.display = 'none';   // hide
+        }
+        for (var i = 0; i < radios.length; i++) {
+            radios[i].onclick = function () {
+                var val = this.value;
+                if (val == 'radio1') {
+                    for (var j = 0; j < form1.length; j++) {
+                        form1[j].style.display = 'none';   // hide
+                    }
+                }
+                else if (val == 'radio2') {
+                    for (var j = 0; j < form1.length; j++) {
+                        form1[j].style.display = 'block';   // hide
+                    }
+                }
+
+            }
+        }
+
+    });
+    var curentFlag = "";
+    $(".checked-accountType").on("change", function () {
+        $(".accountType").each(function () {
+            $(this).removeClass("active");
+        });
+        $("#accountType-" + $(this).val() + "").addClass("active");
+    });
+</script>

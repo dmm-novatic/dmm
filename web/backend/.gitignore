@@ -1,0 +1,7 @@
+storage.ide-shm
+storage.ide-wal
+obj
+.vs
+bin
+objappsettings.json
+api.txt

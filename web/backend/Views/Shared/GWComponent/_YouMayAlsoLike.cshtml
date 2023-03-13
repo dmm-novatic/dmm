@@ -1,0 +1,278 @@
+﻿
+@{
+    Layout = null;
+
+    <style>
+        .post--horizontal .post__thumb > a > img.youMayAlsoLike {
+            height: 80px;
+        }
+
+        .post--horizontal .post__title a {
+            min-height: 72px;
+        }
+    </style>
+}
+
+<!-- như 1 đống cứt -->
+<!-- Posts navigation -->
+<div class="posts-navigation single-entry-section clearfix">
+    <div class="posts-navigation__prev">
+        <article class="post--overlay post--overlay-bottom post--overlay-floorfade">
+            <div title="@ViewBag.YouMayAlsoLikeList[0].Name" class="background-img" style="background-image: url('@ViewBag.YouMayAlsoLikeList[0].Photo');"></div>
+            <div class="post__text inverse-text">
+                <div class="post__text-wrap">
+                    <div class="post__text-inner">
+                        @*@if (@ViewBag.YouMayAlsoLikeList[0].PostPublishStatusId == 2)
+                            {
+                                <a title="@ViewBag.YouMayAlsoLikeList[0].Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.YouMayAlsoLikeList[0].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                            }*@
+                        <h3 title="@ViewBag.YouMayAlsoLikeList[0].Name" class="post__title typescale-1">
+                            @{ if (@ViewBag.YouMayAlsoLikeList[0].PostPublishStatusId == 2)
+                                {
+                                    <span>
+                                        <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                <g>
+                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                </g>
+                                            </svg>
+                                            <span class="post-score-value">
+                                                <i class="mdicon mdicon-star "></i>
+                                            </span>
+                                        </div>
+                                    </span>
+                                }
+                            }
+                            @ViewBag.YouMayAlsoLikeList[0].Name
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <a href="~/@ViewBag.YouMayAlsoLikeList[0].Url" class="link-overlay"></a>
+        </article><a class="posts-navigation__label" href="~/@ViewBag.YouMayAlsoLikeList[0].Url"><span><i class="mdicon mdicon-arrow_back"></i>@ViewBag.lblBaiTruoc</span></a>
+    </div>
+    <div class="posts-navigation__next">
+        <article class="post--overlay post--overlay-bottom post--overlay-floorfade">
+            <div title="@ViewBag.YouMayAlsoLikeList[1].Name" class="background-img" style="background-image: url('@ViewBag.YouMayAlsoLikeList[1].Photo');"></div>
+            <div class="post__text inverse-text">
+                <div class="post__text-wrap">
+                    <div class="post__text-inner">
+                        @*@if (@ViewBag.YouMayAlsoLikeList[1].PostPublishStatusId == 2)
+                            {
+                                <a title="@ViewBag.YouMayAlsoLikeList[1].Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.YouMayAlsoLikeList[1].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                            }*@
+                        <h3 title="@ViewBag.YouMayAlsoLikeList[1].Name" class="post__title typescale-1">
+                            @{ if (@ViewBag.YouMayAlsoLikeList[1].PostPublishStatusId == 2)
+                                {
+                                    <span>
+                                        <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                <g>
+                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                </g>
+                                            </svg>
+                                            <span class="post-score-value">
+                                                <i style="margin-right: 7px !important;" class="mdicon mdicon-star "></i>
+                                            </span>
+                                        </div>
+                                    </span>
+                                }
+                            }
+                            @ViewBag.YouMayAlsoLikeList[1].Name
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <a href="~/@ViewBag.YouMayAlsoLikeList[1].Url" class="link-overlay"></a>
+        </article><a class="posts-navigation__label" href="~/@ViewBag.YouMayAlsoLikeList[1].Url"><span>@ViewBag.lblBaiSau<i class="mdicon mdicon-arrow_forward"></i></span></a>
+    </div>
+</div>
+
+<!-- Posts navigation -->
+<div class="related-posts single-entry-section">
+    <div class="block-heading ">
+        <h4 class="block-heading__title">@ViewBag.lblBaiVietTuongTu</h4>
+    </div>
+    <div class="posts-list">
+        <div class="row row--space-between">
+            <div class="col-xs-12 col-sm-6">
+                <ul class="list-space-md list-unstyled list-seperated">
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a title="@ViewBag.YouMayAlsoLikeList[2].Name" href="~/@ViewBag.YouMayAlsoLikeList[2].Url">
+                                    <img width="180" height="180" src="@ViewBag.YouMayAlsoLikeList[2].Photo" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image youMayAlsoLike" alt="" />
+                                </a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                @*@if (@ViewBag.YouMayAlsoLikeList[2].PostPublishStatusId == 2)
+                                    {
+                                        <a title="@ViewBag.YouMayAlsoLikeList[2].Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.YouMayAlsoLikeList[2].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                    }*@
+                                <h3 class="post__title typescale-1">
+                                    <a class="ellipsis3" title="@ViewBag.YouMayAlsoLikeList[2].Name" href="~/@ViewBag.YouMayAlsoLikeList[2].Url">
+                                        @{ if (@ViewBag.YouMayAlsoLikeList[2].PostPublishStatusId == 2)
+                                            {
+                                                <span>
+                                                    <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                        <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                            <g>
+                                                                <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <span class="post-score-value">
+                                                            <i class="mdicon mdicon-star "></i>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                            }
+                                        }
+                                        @ViewBag.YouMayAlsoLikeList[2].Name
+                                    </a>
+                                </h3>
+                                <div class="post__meta">
+                                    <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@ViewBag.YouMayAlsoLikeList[2].PostAccountURL">@ViewBag.YouMayAlsoLikeList[2].PostAccountName</a></span>
+                                    <time class="time published" datetime="@ViewBag.YouMayAlsoLikeList[2].PublishedTime" title="@ViewBag.YouMayAlsoLikeList[2].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.YouMayAlsoLikeList[2].PublishedTime</time><span><a title="0 Comments" href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>@ViewBag.YouMayAlsoLikeList[2].CommentCount</a></span>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a title="@ViewBag.YouMayAlsoLikeList[3].Name" href="~/@ViewBag.YouMayAlsoLikeList[3].Url">
+                                    <img width="180" height="180" src="@ViewBag.YouMayAlsoLikeList[3].Photo" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image youMayAlsoLike" alt="" />
+                                </a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                @*@if (@ViewBag.YouMayAlsoLikeList[3].PostPublishStatusId == 2)
+                                    {
+                                        <a title="@ViewBag.YouMayAlsoLikeList[3].Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.YouMayAlsoLikeList[3].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                    }*@
+                                <h3 class="post__title typescale-1">
+                                    <a class="ellipsis3" title="@ViewBag.YouMayAlsoLikeList[3].Name" href="~/@ViewBag.YouMayAlsoLikeList[3].Url">
+                                        @{ if (@ViewBag.YouMayAlsoLikeList[3].PostPublishStatusId == 2)
+                                            {
+                                                <span>
+                                                    <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                        <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                            <g>
+                                                                <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <span class="post-score-value">
+                                                            <i class="mdicon mdicon-star "></i>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                            }
+                                        }
+                                        @ViewBag.YouMayAlsoLikeList[3].Name
+                                    </a>
+                                </h3>
+                                <div class="post__meta">
+                                    <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@ViewBag.YouMayAlsoLikeList[3].PostAccountURL">@ViewBag.YouMayAlsoLikeList[3].PostAccountName</a></span>
+                                    <time class="time published" datetime="@ViewBag.YouMayAlsoLikeList[3].PublishedTime" title="@ViewBag.YouMayAlsoLikeList[3].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.YouMayAlsoLikeList[3].PublishedTime</time><span><a title="0 Comments" href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>@ViewBag.YouMayAlsoLikeList[3].CommentCount</a></span>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+                <!-- End List -->
+            </div>
+            <!-- Close Column-->
+            <div class="col-xs-12 col-sm-6">
+                <ul class="list-space-md list-unstyled list-seperated">
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a title="@ViewBag.YouMayAlsoLikeList[4].Name" href="~/@ViewBag.YouMayAlsoLikeList[4].Url">
+                                    <img width="180" height="180" src="@ViewBag.YouMayAlsoLikeList[4].Photo" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image youMayAlsoLike" alt="" />
+                                </a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                @*@if (@ViewBag.YouMayAlsoLikeList[4].PostPublishStatusId == 2)
+                                    {
+                                        <a title="@ViewBag.YouMayAlsoLikeList[4].Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.YouMayAlsoLikeList[4].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                    }*@
+                                <h3 class="post__title typescale-1">
+                                    <a class="ellipsis3" title="@ViewBag.YouMayAlsoLikeList[4].Name" href="~/@ViewBag.YouMayAlsoLikeList[4].Url">
+                                        @{ if (@ViewBag.YouMayAlsoLikeList[4].PostPublishStatusId == 2)
+                                            {
+                                                <span>
+                                                    <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                        <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                            <g>
+                                                                <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <span class="post-score-value">
+                                                            <i class="mdicon mdicon-star "></i>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                            }
+                                        }
+                                        @ViewBag.YouMayAlsoLikeList[4].Name
+                                    </a>
+                                </h3>
+                                <div class="post__meta">
+                                    <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@ViewBag.YouMayAlsoLikeList[4].PostAccountURL">@ViewBag.YouMayAlsoLikeList[4].PostAccountName</a></span>
+                                    <time class="time published" datetime="@ViewBag.YouMayAlsoLikeList[4].PublishedTime" title="@ViewBag.YouMayAlsoLikeList[4].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.YouMayAlsoLikeList[4].PublishedTime</time><span><a title="0 Comments" href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>@ViewBag.YouMayAlsoLikeList[4].CommentCount</a></span>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="post post--horizontal post--horizontal-xs">
+                            <div class="post__thumb ">
+                                <a title="@ViewBag.YouMayAlsoLikeList[5].Name" href="~/@ViewBag.YouMayAlsoLikeList[5].Url">
+                                    <img width="180" height="180" src="@ViewBag.YouMayAlsoLikeList[5].Photo" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image youMayAlsoLike" alt="" />
+                                </a>
+                                <!-- close a tag -->
+                            </div>
+                            <div class="post__text ">
+                                @*@if (@ViewBag.YouMayAlsoLikeList[5].PostPublishStatusId == 2)
+                                    {
+                                        <a title="@ViewBag.YouMayAlsoLikeList[5].Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.YouMayAlsoLikeList[5].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                    }*@
+                                <h3 class="post__title typescale-1">
+                                    <a title="@ViewBag.YouMayAlsoLikeList[5].Name" href="~/@ViewBag.YouMayAlsoLikeList[5].Url">
+                                        @{ if (@ViewBag.YouMayAlsoLikeList[5].PostPublishStatusId == 2)
+                                            {
+                                                <span>
+                                                    <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                        <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                            <g>
+                                                                <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <span class="post-score-value">
+                                                            <i class="mdicon mdicon-star "></i>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                            }
+                                        }
+                                        @ViewBag.YouMayAlsoLikeList[5].Name
+                                    </a>
+                                </h3>
+                                <div class="post__meta">
+                                    <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@ViewBag.YouMayAlsoLikeList[5].PostAccountURL">@ViewBag.YouMayAlsoLikeList[5].PostAccountName</a></span>
+                                    <time class="time published" datetime="@ViewBag.YouMayAlsoLikeList[5].PublishedTime" title="@ViewBag.YouMayAlsoLikeList[5].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.YouMayAlsoLikeList[5].PublishedTime</time><span><a title="0 Comments" href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>@ViewBag.YouMayAlsoLikeList[5].CommentCount</a></span>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+                <!-- End List -->
+            </div>
+            <!-- Close Column-->
+        </div>
+    </div>
+</div>
+
+<!-- như 1 đống cứt -->

@@ -1,0 +1,578 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js" integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+    <style>
+        body {
+            background-color: #F1FDFF
+        }
+
+        .navbar-default {
+            background-color: #FFFFFF !important;
+        }
+
+        .SurveyDetail {
+            background-color: white;
+            position: relative;
+            z-index: 2;
+            top: -107px;
+            margin: auto;
+            box-shadow: 0px 0px 25px #000000;
+            text-align: center;
+            width: 50%;
+        }
+
+            .SurveyDetail img {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+            }
+
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+
+        table.dataTable thead th, table.dataTable thead td {
+            padding: 10px 18px;
+            border-bottom: 1px solid #111;
+            white-space: nowrap;
+        }
+
+        h3 {
+            color: #265178;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: #5A6990;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .collapsible.active:after {
+            content: "\2212";
+            color: #5A6990;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .Score {
+            background-color: #ECF9FB;
+            text-align: left;
+            margin-top: 2%;
+            margin-bottom: 5%;
+        }
+        .Score_Text p {
+            color: #5A6990;
+            font-size: 15px;
+        }
+        .Score_Score p {
+            color: #265178;
+            font-size: 15px;
+        }
+        .Recomment_Content {
+            text-align: left;
+            padding-left: 12%;
+            padding-right: 12%
+        }
+    </style>
+    <!--Responsive Start-->
+    <!--Iphone 5-->
+    <style>
+        @@media only screen and (max-width:320px) {
+            .SurveyDetail{
+                top:unset;
+                width:100%;
+                box-shadow:unset;
+                z-index:unset;
+            }
+            .Score_Text p{
+                font-size:12px;
+            }
+            .Score_Score p{
+                font-size:12px;
+            }
+            #MyTable_wrapper{
+                overflow-x:auto;
+            }
+            .Recomment_Content{
+                padding:0px;
+            }
+        }
+    </style>
+    <!--Iphone 5 end-->
+    <!--Iphone 6/7/8/X start-->
+    <style>
+        @@media only screen and (min-width:321px) and (max-width: 425px) {
+            .SurveyDetail {
+                top: unset;
+                width: 100%;
+                box-shadow: unset;
+                z-index: unset;
+            }
+            #MyTable_wrapper {
+                overflow-x: auto;
+            }
+            .Score_Text p {
+                font-size: 12px;
+            }
+
+            .Score_Score p {
+                font-size: 12px;
+            }
+            .Recomment_Content {
+                padding: 0px;
+            }
+        }
+    </style>
+    <!--Iphone 6/7/8/X end-->
+    <!--Iphone 6/7/8/X+ Start-->
+    <style>
+        @@media only screen and (min-width:426px) and (max-width: 767px) {
+            .SurveyDetail {
+                top: unset;
+                width: 100%;
+                box-shadow: unset;
+                z-index: unset;
+            }
+
+            #MyTable_wrapper {
+                overflow-x: auto;
+            }
+
+            .Score_Text p {
+                font-size: 12px;
+            }
+
+            .Score_Score p {
+                font-size: 12px;
+            }
+
+            .Recomment_Content {
+                padding: 0px;
+            }
+        }
+    </style>
+    <!--Iphone 6/7/8/X+ End-->
+    <!--Ipad Start-->
+    <style>
+        @@media only screen and (min-width:768px) and (max-width: 1023px) {
+            .Recomment_Content {
+                padding: 0px;
+            }
+            .SurveyDetail {
+                top: -50px;
+                width: 90%;
+            }
+        }
+    </style>
+    <!--Ipad End-->
+    <!--Ipad PRO Start-->
+    <style>
+        @@media only screen and (min-width:1024px) and (max-width:1219px) {
+            .Recomment_Content {
+                padding: 0px;
+            }
+
+            .SurveyDetail {
+                top: -50px;
+                width: 90%;
+            }
+        }
+    </style>
+    <!--Ipad PRO End-->
+</head>
+@RenderBody()
+<body>
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <partial name="../A2FComponent/_Banner_SurveyResult.cshtml" />
+
+    <div class="container SurveyDetail">
+        <img src="~/images/image 18 (1).png" />
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 success_icon">
+
+
+                <div class="animate__animated animate__bounceIn animate__slower" style="position: relative;display: inline-block;width: 155px;height:155px;border-radius: 77px;background-color: #F5FCFB;margin-top: 7.6%;z-index: -1;padding:20px;">
+                    <div class="animate__animated animate__bounceIn animate__slow" style="display: -webkit-inline-box;width: 115px;height: 115px;position: relative;border-radius: 80px;background: #E3F9F3;z-index:1;padding:18px;">
+                        <i class="fas fa-check animate__animated animate__bounceIn" style="
+    background: linear-gradient(135.52deg, rgba(56, 226, 167, 0) 3.36%, #22A9D3 95.87%),
+linear-gradient(0deg, #3FD5A8, #3FD5A8);
+    color: white;
+    border-radius: 1000px;
+    font-size: 80px;
+    position: relative;
+    z-index: 2;
+"></i>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+
+            <p style="color: #265178;font-size: 25px; font-family: sans-serif;padding-top: 5%;text-transform: uppercase;">@ViewBag.lblKetQuaDanhGia @ViewBag.SurveyAccount[0].CreatedTime.ToString("dd/MM/yyyy")</p>
+            <p style="font-size: 15px;color: #5A6990;">@ViewBag.lblCamOnBanDaThucHienDanhGia</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+
+            </div>
+
+            <div class="col-xs-8 col-sm-6 col-md-6 col-lg-6 Score">
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 Score_Text" style="padding-top: 2.5%;">
+                    <p>@ViewBag.lblTongDiem:</p>
+                    @*<p style="color: #5A6990;font-size: 13px;">Tình trạng doanh nghiệp:</p>
+                        <p style="color: #5A6990;font-size: 13px;">Khuyến nghị:</p>*@
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 Score_Score" style="padding-top: 2.5%;text-align: right;">
+                    <p>@ViewBag.SurveyAccountFinalScore</p>
+                    @*<p style="color: #265178;font-size: 13px;">Tình trạng rất tốt</p>
+                        <p style="color: #0EC986;font-size: 13px;">Chưa cần hỗ trợ</p>*@
+                </div>
+
+            </div>
+
+            <div class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 5%;">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+
+        </div>
+        <script>
+            $(document).ready(function () {
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+
+                for (i = 0; i < coll.length; i++) {
+                    coll[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        //var content = this.nextElementSibling;
+                        //if (content.style.maxHeight) {
+                        //    content.style.maxHeight = null;
+                        //}
+                    });
+                }
+            });
+        </script>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="Recomment_Content">
+                    <h3>@*<span class="collapsible collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">*@1. @ViewBag.lblChiTietDiemTungHangMuc @*</span>*@</h3>
+                    @*<div class="collapse" id="collapseExample">
+        <div class="card card-body">*@
+                    <table id="MyTable">
+                        <thead style="vertical-align: top;">
+                            <tr>
+                                <th>@ViewBag.lblMucDanhGia</th>
+                                <th>@ViewBag.lblDiemCuaBan</th>
+                                <th>@ViewBag.lblDanhGia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < ViewBag.SurveySectionAccountNotByPercent.Count; i++)
+                            {
+                                var item = ViewBag.SurveySectionAccountNotByPercent[i];
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td style="text-align: center;">@item.Score</td>
+                                    <td>@item.ListRecomment</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @*</div>
+        </div>*@
+                    @*<div>
+            <table id="MyTable">
+                <thead style="vertical-align: top;">
+                    <tr>
+                        <th>Mục đánh giá</th>
+                        <th>Điểm của bạn</th>
+                        <th>Đánh giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.SurveySectionAccountNotByPercent.Count; i++)
+                    {
+                        var item = ViewBag.SurveySectionAccountNotByPercent[i];
+                        <tr>
+                            <td>@item.Name</td>
+                            <td style="text-align: center;">@item.Score</td>
+                            <td>Nhu cầu tái cấu trúc tài chính doanh nghiệp cấp thiết, các phương án huy động thêm nguồn lực tài chính cần được thiết lập song hành với phương án kinh doanh phù hợp để củng cố tài chính doanh nghiệp</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>*@
+                    <script>
+                        $(document).ready(function () {
+                            $('#MyTable').dataTable({
+                                "bPaginate": false,
+                                "bLengthChange": false,
+                                "bFilter": true,
+                                "bInfo": false,
+                                "bAutoWidth": false,
+                                "searching": false,
+                            });
+                        });
+                    </script>
+
+
+                    <h3>2. @ViewBag.lblNhanDinh</h3>
+                    <p style="font-size: 15px; white-space: pre-wrap;">@ViewBag.surveyAccountText[0].Name</p>
+                    @if (@ViewBag.SurveyAccount[0].SurveyId == 1000001)
+                    {
+                        <h3>3. @ViewBag.lblKhaNangTiepCanVonNganHang</h3>
+                    }
+                    else
+                    {
+                        <h3>3. @ViewBag.lblKhuyenNghi</h3>
+                    }
+                    <p style="font-size: 15px; white-space: pre-wrap;">@ViewBag.SurveyAccountDescription[0].Name</p>
+                    <h3>4. @ViewBag.lblDangKyHoTro</h3>
+                    <p style="font-size:18px;">@ViewBag.lblHoTroTuPhiaChungToi <a onclick="GetContact()" style="cursor:pointer">@ViewBag.lblDay</a></p>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 15%; margin-top: 40px">
+                <div>
+                    <button style="background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%),
+            linear-gradient(0deg, #FFB526, #FFB526);color: white;text-transform: uppercase;width: 244px;height: 45px;margin-bottom: 2%;
+            " onclick="window.location.href='/Liet-ke-cac-khao-sat'">
+                        @ViewBag.lblTroVeTrangDanhGia
+                    </button>
+                </div>
+                <div>
+                    <a href="/Liet-ke-ket-qua-khao-sat/@ViewBag.SurveyObj[0].SurveyTypeId" style="font-size: 16px;
+            font-style: normal;
+            line-height: 19px;
+            letter-spacing: 0.05em;
+            text-align: center;
+            color: #265178;"><span><i class="fas fa-history" style="font-size: 15px; padding-right: 0.5%;"></i></span>@ViewBag.lblXemLichSuDanhGia</a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <script>
+
+
+    let myChart = document.getElementById('myChart').getContext('2d');
+    const DATA_COUNT = 4;
+    const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+    var dataRender = @Html.Raw(ViewBag.SurveySectionAccountParse);
+    var SurveySectionName = [];
+    var SurveySectionCore = [];
+
+        function addData(chart) {
+            for (var i = 0; i < dataRender.length; i++) {
+                var item = dataRender[i];
+                chart.data.labels.push(formatLabel(item.Name, 25));
+                chart.data.datasets.forEach((dataset) => {
+                    dataset.data.push(item.Score);
+                });
+                chart.update();
+            }
+        }
+        setTimeout(function () {
+            addData(massPopChart);
+        }, 500);
+    //for (var i = 0; i < dataRender.length; i++) {
+    //    var item = dataRender[i];
+    //    SurveySectionName.push(item.Name);
+    //    SurveySectionCore.push(item.Score);
+    //}
+/*    setTimeout(function () {*/
+        let massPopChart = new Chart(myChart, {
+            type: 'radar',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Kết quả đánh giá theo tỷ lệ phần trăm',
+                        data: [],
+
+                        borderColor: 'rgba(255, 153, 0, 1)',
+                        backgroundColor: 'rgba(255, 231, 194, 0.5)',
+                    },
+                ]
+            },
+            options: {
+                plugins: { // 'legend' now within object 'plugins {}'
+                    legend: {
+                        labels: {
+                            color: "#265178", // not 'fontColor:' anymore
+                            font: {
+                                size: 13 // 'size' now within object 'font {}'
+                            },
+                        },
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 11,
+                            },
+                            color: "#265178",
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            },
+        });
+
+
+
+        function formatLabel(str, maxwidth) {
+            var sections = [];
+            var words = str.split(" ");
+            var temp = "";
+
+            words.forEach(function (item, index) {
+                if (temp.length > 0) {
+                    var concat = temp + ' ' + item;
+
+                    if (concat.length > maxwidth) {
+                        sections.push(temp);
+                        temp = "";
+                    }
+                    else {
+                        if (index == (words.length - 1)) {
+                            sections.push(concat);
+                            return;
+                        }
+                        else {
+                            temp = concat;
+                            return;
+                        }
+                    }
+                }
+
+                if (index == (words.length - 1)) {
+                    sections.push(item);
+                    return;
+                }
+
+                if (item.length < maxwidth) {
+                    temp = item;
+                }
+                else {
+                    sections.push(item);
+                }
+
+            });
+
+            return sections;
+        }
+        /*    },1000)*/
+function GetContact() {
+            Swal.fire({
+                title: "Xác nhận gửi xin yêu cầu hỗ trợ, tư vấn",
+                type: "question",
+                text: "Bạn muốn gửi yêu cầu xin hỗ trợ, tư vấn từ các chuyên gia của A2F không?",
+                showConfirmButton: true,
+                confirmButtonText: "Xác nhận",
+                showCancelButton: true,
+                cancelButtonText: "Hủy",
+                footer: "Chúng tôi sẽ sớm phải hồi lại bạn trong thời gian sớm nhất!",
+            }).then(function (result) {
+                if (result.value) {
+                    debugger;
+                    var obj = {
+                        "AccountId": '@ViewBag.UserID',
+                        "SurveyAccountId": '@ViewBag.surveyAccountId',
+                        "Name": '@Html.Raw(ViewBag.UserFullname)',
+                        "Email": '@ViewBag.Email',
+                        "Phone": '@ViewBag.Phone',
+                        "CompanyNumber": '@ViewBag.CompanyNumber',
+                        "CompanyName": '@ViewBag.CompanyName',
+                        "Description": 'Cần liên hệ',
+                        "Active" : 1
+                    }
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: '/Contact/api/Add',
+                        data: JSON.stringify(obj),
+                        success: function (responseData) {
+                            if (responseData.status == 201 && responseData.message == "CREATED") {
+                                localStorage.setItem("currentLoggedInUser", JSON.stringify(responseData.data[0]));
+                                Swal.fire({
+                                    title: 'Gửi liên hệ thành công!',
+                                    text:'Chúng tôi sẽ liên lạc với bạn sớm nhất có thể',
+                                    type: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    window.location.href = "/";
+                                })
+                            }
+                        }
+                    })
+                } else if (result.dismiss == 'cancel') {
+
+                }
+
+            })
+        }
+    </script>
+
+
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+</body>
+
+</html>

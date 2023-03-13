@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+    <style>
+        @@media only screen and (max-width: 480px) {
+            #latesNewsPC {
+                display: none;
+            }
+        }
+
+        #latesNewsPC ul li{
+            padding: 10px 0px !important;
+        }
+
+    </style>
+}
+
+
+<div class="col-xs-12 col-md-4 col-lg-3" id="latesNewsPC">
+    <div class="block-heading block-heading--line-first">
+        <h4 class="block-heading__title">@ViewBag.lblBaiVietMoiNhat</h4>
+    </div>
+
+
+
+    <ul class="list-space-sm list-unstyled list-seperated">
+        @{
+            foreach (var obj in ViewBag.LatestNews)
+            {
+                <li>
+                    <article class="post post--horizontal post--horizontal-xxs">
+                        <div class="post__thumb ">
+                            <a title="@obj.Name" href="/@obj.Url"><img width="180" height="180" style="height:70px; width:100px;" src="@obj.Photo" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                            <!-- close a tag -->
+                        </div>
+                        <div class="post__text ">
+                            @*@{ if (obj.PostPublishStatusId == 2)
+                                    {
+                                        <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                    }
+                                }*@
+
+                            <h3 class="post__title typescale-0">
+                                <a title="@obj.Name" class="ellipsis3" href="/@obj.Url">
+                                    @{ if (obj.PostPublishStatusId == 2)
+                                        {
+                                            <span>
+                                                <div class="post-score-hexagon 1967 novaticStarInList">
+                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                        <g>
+                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <span class="post-score-value">
+                                                        <i class="mdicon mdicon-star "></i>
+                                                    </span>
+                                                </div>
+                                            </span>
+                                        }
+                                    }
+                                    @obj.Name
+                                </a>
+                            </h3>
+                            <div class="post__meta">
+                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+
+            }
+        }
+        @*
+            <li>
+                <article class="post post--horizontal post--horizontal-xxs">
+                    <div class="post__thumb ">
+                        <a href="family-owned-florist-business-looks-to-bloom-in-chestertown/index.html"><img width="180" height="180" src="/files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-180x180.jpg" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-180x180.jpg 180w, /files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-150x150.jpg 150w, /files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-400x400.jpg 400w, /files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-600x600.jpg 600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                        <!-- close a tag -->
+                    </div>
+                    <div class="post__text ">
+                        <h3 class="post__title typescale-0"><a href="family-owned-florist-business-looks-to-bloom-in-chestertown/index.html">Family-owned florist business looks to bloom in Chestertown</a></h3>
+                        <div class="post__meta">
+                            <time class="time published" datetime="2018-03-08T08:12:29+00:00" title="March 8, 2018 at 8:12 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                        </div>
+                    </div>
+                </article>
+            </li>
+            <!-- end small item -->
+            <li>
+                <article class="post post--horizontal post--horizontal-xxs">
+                    <div class="post__thumb ">
+                        <a href="the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html"><img width="180" height="180" src="/files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-180x180.jpg" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-180x180.jpg 180w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-150x150.jpg 150w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-400x400.jpg 400w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-600x600.jpg 600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                        <!-- close a tag -->
+                    </div>
+                    <div class="post__text ">
+                        <h3 class="post__title typescale-0"><a href="the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html">The best laptop stands: elevate your system and keep it running quick and cool</a></h3>
+                        <div class="post__meta">
+                            <time class="time published" datetime="2018-03-08T08:07:27+00:00" title="March 8, 2018 at 8:07 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                        </div>
+                    </div>
+                </article>
+            </li>
+            <!-- end small item -->
+            <li>
+                <article class="post post--horizontal post--horizontal-xxs">
+                    <div class="post__thumb ">
+                        <a href="the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html"><img width="180" height="180" src="/files/frontend/images/upload/pexels-photo-356808-1-180x180.jpg" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-356808-1-180x180.jpg 180w, /files/frontend/images/upload/pexels-photo-356808-1-150x150.jpg 150w, /files/frontend/images/upload/pexels-photo-356808-1-400x400.jpg 400w, /files/frontend/images/upload/pexels-photo-356808-1-600x600.jpg 600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                        <!-- close a tag -->
+                    </div>
+                    <div class="post__text ">
+                        <h3 class="post__title typescale-0"><a href="the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html">The couple that quit their jobs to go on a six months’ road trip</a></h3>
+                        <div class="post__meta">
+                            <time class="time published" datetime="2018-03-08T07:54:46+00:00" title="March 8, 2018 at 7:54 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                        </div>
+                    </div>
+                </article>
+            </li>
+            <!-- end small item -->
+            <li>
+                <article class="post post--horizontal post--horizontal-xxs">
+                    <div class="post__thumb ">
+                        <a href="asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html"><img width="180" height="180" src="/files/frontend/images/upload/negative-space-checking-timetable-train-station-1-180x180.jpg" class="attachment-tnm-xxs-1_1 size-tnm-xxs-1_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/negative-space-checking-timetable-train-station-1-180x180.jpg 180w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-150x150.jpg 150w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-400x400.jpg 400w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-600x600.jpg 600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                        <!-- close a tag -->
+                    </div>
+                    <div class="post__text ">
+                        <h3 class="post__title typescale-0"><a href="asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html">Asian stocks pull back on U.S. tech declines, eurozone worries</a></h3>
+                        <div class="post__meta">
+                            <time class="time published" datetime="2018-03-08T07:23:55+00:00" title="March 8, 2018 at 7:23 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                        </div>
+                    </div>
+                </article>
+            </li>
+            <!-- end small item -->
+
+        *@
+    </ul>
+</div>

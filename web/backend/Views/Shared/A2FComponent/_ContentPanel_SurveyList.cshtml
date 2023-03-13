@@ -1,0 +1,302 @@
+﻿@{
+    Layout = null;
+}
+
+<!-- CSS Start -->
+<style>
+    .survey-tool {
+        margin: 50px auto;
+        height: 360px;
+        width: 85%;
+        left: 0px;
+        top: 0px;
+        border-radius: 10px;
+    }
+
+        .survey-tool.survey-bg {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+
+        .survey-tool .wrapping-container {
+            padding: 48px 200px 20px 80px;
+        }
+
+    div.wrapping-container h3 {
+        font-size: 36px;
+        font-style: normal;
+        line-height: 47px;
+        color: #2AD9FF;
+    }
+
+    div.wrapping-container p {
+        color: #FFFFFF;
+        margin-bottom: 30px;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.03em;
+        text-align: left;
+        padding-right: 20px;
+    }
+
+    div.wrapping-container button.btn-survey {
+        background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), linear-gradient(0deg, #FFB526, #FFB526);
+        padding: 7px 20px;
+        margin-right: 37px;
+    }
+
+    div.wrapping-container a {
+        font-size: 16px;
+        font-style: normal;
+        line-height: 19px;
+        letter-spacing: 0.05em;
+        text-align: center;
+        color: #FFFFFF;
+    }
+</style>
+<!--Responsive Start-->
+<!--Responsive for ip5-->
+<style>
+    @@media only screen and (max-width:991px) {
+        #image_right_description {
+            display: none
+        }
+        #surveyDescriptionDiv {
+            height: 100px !important;
+        }
+    }
+    @@media only screen and (min-width: 1026px )and (max-width:1200px) {
+        #surveyDescriptionDiv {
+            height: 150px !important;
+        }
+    }
+
+    @@media only screen and (max-width:481px) {
+        .surveyDescription {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+        .toolDescription {
+            font-size: 16px !important;
+        }
+    }
+    @@media only screen and (max-width:359px) {
+        .toolDescription {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    }
+    @@media only screen and (min-width:511px) and (max-width:991px) {
+        .survey-tool .wrapping-container {
+            padding: 20px 20px 20px 20px !important;
+        }
+    }
+    @@media only screen and (max-width:510px) {
+        .survey-tool .wrapping-container {
+            padding: 5px 5px 5px 5px !important;
+        }
+    }
+
+    @@media only screen (max-width:511px) {
+        .survey-tool .wrapping-container {
+            padding: 5px 5px 5px 5px !important;
+        }
+    }
+
+
+        @@media only screen and (max-width:320px) {
+            .survey-tool {
+                width: 100%;
+            }
+
+            .wrapping-container {
+                padding: 0px !important;
+            }
+
+            .btn-survey {
+                margin-right: 80px !important;
+                margin-bottom: 5%;
+            }
+        }
+</style>
+<!--Responsive for ip6/7/8/x-->
+<style>
+    @@media only screen and (min-width:321px) and (max-width:376px) {
+        .survey-tool {
+            width: 100%;
+        }
+
+        .wrapping-container {
+            padding: 0px !important;
+        }
+
+        .btn-survey {
+            margin-right: 150px !important;
+            margin-bottom: 5%;
+        }
+    }
+</style>
+<!--Responsive for ip 6/7/8+-->
+<style>
+    @@media only screen and (min-width:377px) and (max-width:426px){
+        .survey-tool {
+            width: 100%;
+        }
+
+        .wrapping-container {
+            padding: 0px !important;
+        }
+
+        .btn-survey {
+            margin-right: 200px !important;
+            margin-bottom: 5%;
+        }
+    }
+</style>
+<!--Responsive for Ipad-->
+<style>
+    @@media only screen and (min-width:427px) and (max-width:769px){
+        .survey-tool {
+            width: 100%;
+        }
+
+        .wrapping-container {
+            padding-right:120px !important;
+        }
+    }
+</style>
+<!--Responsive for Ipad pro-->
+<style>
+    @@media only screen and (min-width: 770px) and (max-width: 1025px){
+        .survey-tool {
+            width: 100%;
+        }
+    }
+</style>
+<div class="container survey-tool survey-bg" style="height: 250px; margin-top: 30px" id="surveyDescriptionDiv">
+<div class="row">
+    <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7">
+        <p class="toolDescription" style="font-size: 18px; color: #232940">
+            @ViewBag.lblMieuTaChoAnhCongCuDanhGia
+        </p>
+        <p class="toolDescription" style="font-size: 18px; color: #232940">@ViewBag.lblMoiLamBaiDanhGia</p>
+
+    </div>
+    <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5" style="bottom: 100px">
+        <img id="image_right_description" src="~/images/Banner_SurveyList.png" class="img-responsive">
+   </div>
+</div>
+</div>
+<!--Responsive End-->
+<!-- CSS End -->
+<!-- Content Page : Start -->
+
+<!-- gioi thieu cong cu danh gia-->
+ 
+
+@for (int i = 0; i < ViewBag.listSurvey.Count; i++)
+{
+    var item = ViewBag.listSurvey[i];
+
+    <div class="container survey-tool survey-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(@item.Photo)">
+        <div class="wrapping-container">
+            <h3 style="font-size: 28px" class="ellipsis2 titleSurveyName">@item.Name</h3>
+            <p class="surveyDescription"@*class="ellipsis3"*@>@item.Description</p>
+            <button onclick="checkSignUpforSurvey(@ViewBag.UserID , @item.Id)" class="btn btn-warning btn-survey">@ViewBag.lblThucHienDanhGia</button>
+            <a style="cursor: pointer;" onclick="watchSurveyHistoryList(@item.SurveyTypeId)"><i class="fas fa-history"></i> @ViewBag.lblXemLichSuDanhGia</a>
+        </div>
+    </div>
+}
+
+@*<div class="container survey-tool survey-bg-2">
+        <div class="wrapping-container">
+            <h3 class="ellipsis2">Đánh giá nội lực Doanh nghiệp SME</h3>
+            <p class="ellipsis3">Vietnam’s business community has been hit hard by COVID-19. Many businesses,</p>
+            <button class="btn btn-warning btn-survey">THỰC HIỆN ĐÁNH GIÁ</button>
+            <a href="#"><i class="fas fa-history"></i> XEM LỊCH SỬ ĐÁNH GIÁ</a>
+        </div>
+
+    </div>*@
+<!-- Content Page : End -->
+<script>
+        function watchSurveyHistoryList(SurveyTypeId) {
+        if(@ViewBag.UserID == 0 && @ViewBag.UserTypeID == 0) {
+            Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập tài khoản doanh nghiệp để xem lịch sử đánh giá",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+        }else if(@ViewBag.UserTypeID == 10002) {
+                Swal.fire({
+                    title: 'Tài khoản của bạn không có quyền',
+                    html: "Hãy tạo một tài khoản doanh nghiệp để thực hiện đánh giá",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Xác nhận',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/Home";
+                    }
+                });
+            } else {
+            location.href = "/Liet-ke-ket-qua-khao-sat/" + SurveyTypeId;
+        }
+
+    }
+        function checkSignUpforSurvey(UserID, Id) {
+
+            if(UserID == 0) {
+                Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập để làm bài khảo sát",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+            }else if(@ViewBag.UserTypeID == 10002) {
+                Swal.fire({
+                    title: 'Tài khoản của bạn không có quyền',
+                    html: "Hãy tạo một tài khoản doanh nghiệp để thực hiện đánh giá",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Xác nhận',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/Home";
+                    }
+                });
+            }else
+                 window.open('chi-tiet-khao-sat/' + Id);
+        }
+</script>

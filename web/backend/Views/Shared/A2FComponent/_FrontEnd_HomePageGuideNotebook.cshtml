@@ -1,0 +1,1234 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+    <style>
+        #TargetBuilding div img {
+            width: 30%;
+        }
+
+        #TargetBuilding div p:nth-child(2) {
+            font-size: 28px;
+            color: #265178;
+        }
+
+        #TargetBuilding .div p:nth-child(3) {
+            font-size: 16px;
+            color: #232940;
+        }
+    </style>
+    <style>
+        .Mobile_VersionGuideNoteBook{
+            display:none;
+        }
+        .ContentText p:first-child{
+            color: #265178;
+            font-size: 30px;
+            margin-top: 5%;
+            width: 90%;
+            text-transform: uppercase
+        }
+        .ContentText p:nth-child(2) {
+            font-size: 18px;
+            width: 86%;
+            margin-bottom: 3%;
+            margin-top: 3%;
+        }
+        .ContentText p:nth-child(3) {
+            font-size: 18px;
+            width: 86%;
+        }
+        .Message {
+            background-color: #F0F6FC;
+            height: 550px;
+            position: relative;
+        }
+        .Message>img:first-child{
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+        }
+        .Signature {
+            position: absolute;
+            text-align: center;
+            right: 40%;
+        }
+        #TargetBuildingContent {
+            margin-top: 60px;
+            padding: 0 200px 0 200px;
+        }
+        #TargetBuilding {
+            text-align: center;
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+        .BuildingSolution {
+            margin-left: 20%;
+        }
+            .BuildingSolution p {
+                font-size: 18px;
+                padding-right: 39%;
+                color: #232940;
+            }
+        .Item {
+            height: 350px;
+        }
+        .Content_TEXT img {
+            float: right;
+        }
+        .LessionTitle p{
+            color: #3B5377;
+            font-size: 35px;
+        }
+        .PC_VersionGuideNoteBook {
+            background-color: #1474AA;
+            position: relative;
+        }
+        .Mobile_VersionGuideNoteBook {
+            background-color: #1474AA;
+            position: relative;
+        }
+        .faq-button {
+            border: 0;
+            width: 100%;
+            background-color: #F1FDFF;
+            border-radius: 4px;
+            text-align: left;
+            color: white;
+            background: linear-gradient(90deg, #0D9CC9 0%, rgba(13, 156, 201, 0) 57.78%), linear-gradient(0deg, #125FA6, #125FA6);
+            margin-bottom: 2%;
+            box-shadow: none;
+            outline: none;
+            padding: 0 !important;
+            height: 50px;
+        }
+
+        .collapse div {
+            background-color: transparent;
+        }
+
+        .card p {
+            color: white;
+            font-size: 12px;
+        }
+
+        .TargetUseHandBook {
+            padding-top: 5%;
+            background-image: linear-gradient(to right,#0F142600,#1A223E);
+        }
+
+            .TargetUseHandBook button span {
+                margin-left: 3%;
+            }
+
+        .btn.focus, .btn:focus, .btn:hover {
+            color: white;
+        }
+
+        .btn.active, .btn:active {
+            background: linear-gradient(90deg, #0D9CC9 0%, rgba(13, 156, 201, 0) 57.78%), linear-gradient(0deg, #125FA6, #125FA6);
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: #5A6990;
+            font-weight: bold;
+            float: right;
+            margin-right: 5%;
+            font-size: 15px;
+            color: #2AD9FF;
+        }
+
+        .collapsible.active:after {
+            content: "\2212";
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .NumberTab img {
+            width: 100%;
+        }
+
+        .ContentTab p {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10%;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            color: #265178;
+            background-color: transparent;
+            border: none;
+        }
+
+        .nav-tab-header {
+            text-transform: uppercase;
+            color: #8BA3BA;
+            font-size: 16px;
+        }
+
+            .nav-tab-header:first-child {
+                padding-left: 0px;
+            }
+
+        .nav-tab-head {
+            border: none;
+        }
+
+        .Content_IMG {
+            padding-left: 0px;
+        }
+
+            .Content_IMG img {
+                width: 100%;
+                padding-left: 0px;
+                height: 260px;
+            }
+
+        .Content_TEXT {
+            padding-left: 0px;
+        }
+
+            .Content_TEXT p {
+                padding-top: 2%;
+                padding-left: 0px;
+                font-size: 12px;
+            }
+
+            .Content_TEXT a {
+                padding-left: 0px;
+                font-size: 16px;
+            }
+
+        .Item {
+            margin-top: 3%;
+            padding-left: 0;
+        }
+
+        .nav-tab-header:hover {
+            background-color: transparent !important;
+            border: none;
+        }
+
+        .BuildingWayImg img:first-child {
+            z-index: 3;
+            top: 167px;
+            width: 40%;
+            position: absolute;
+            left: 0%;
+        }
+
+        .BuildingWayImg img:nth-child(2) {
+            z-index: 2;
+            position: absolute;
+            left: 25%;
+            width: 42%;
+            top: 60px;
+        }
+
+        .BuildingWayImg img:nth-child(3) {
+            z-index: 1;
+            top: 130px;
+            left: 16%;
+            position: absolute;
+        }
+
+        .BuildingWayImg img:nth-child(4) {
+            z-index: 1;
+            top: 310px;
+            right: 50%;
+            position: absolute;
+        }
+
+        .TargetUseHandBookCover {
+            background-image: url('/images/Rectangle 323.png');
+            background-size: 100% 100%;
+            height: auto;
+            min-height: 500px;
+            max-height: 700px;
+        }
+    </style>
+    <!--Responsive Start-->
+    <!--Iphone 5-->
+    <style>
+        @@media only screen and (max-width:320px) {
+            .ContentText{
+                float:none;
+            }
+            .ContentText p:first-child{
+                font-size:20px;
+            }
+            .ContentText p:nth-child(2){
+                width:auto;
+                font-size:15px;
+            }
+            .ContentText p:nth-child(3) {
+                width: auto;
+                font-size: 15px;
+                padding-bottom:10%;
+            }
+            .Message{
+                height:auto;
+            }
+            .Message img:first-child {
+                width: 20%;
+            }
+            .Signature{
+                display:none;
+            }
+            #TargetBuilding{
+                padding:0;
+            }
+            #TargetBuilding div img{
+                width:50%;
+            }
+            #TargetBuildingContent{
+                padding:0px;
+                margin-top:0px;
+            }
+            .BuildingWayImg{
+                display:none;
+            }
+            .BuildingSolution {
+                margin-left: 0;
+            }
+                .BuildingSolution p {
+                    padding-right: 0;
+                }
+            .ImageSubMenu{
+                display:none;
+            }
+            .Item{
+                height:auto;
+            }
+           .Content_TEXT img{
+               float:left;
+           }
+            .Content_IMG img{
+                height:auto;
+            }
+            .LessionTitle p {
+                font-size: 25px;
+                font-weight:700;
+            }
+            .PC_VersionGuideNoteBook{
+                display:none;
+            }
+            .Mobile_VersionGuideNoteBook {
+                display:block;
+            }
+        }
+    </style>
+    <!--Iphone 5 end-->
+    <!--Iphone 6/7/8/X start-->
+    <style>
+        @@media only screen and (min-width:321px) and (max-width: 425px) {
+            .ContentText {
+                float: none;
+            }
+
+                .ContentText p:first-child {
+                    font-size: 20px;
+                }
+
+                .ContentText p:nth-child(2) {
+                    width: auto;
+                    font-size: 15px;
+                }
+
+                .ContentText p:nth-child(3) {
+                    width: auto;
+                    font-size: 15px;
+                    padding-bottom: 10%;
+                }
+
+            .Message {
+                height: auto;
+            }
+
+                .Message img:first-child {
+                    width: 50%;
+                }
+
+            .Signature {
+                display: none;
+            }
+
+            #TargetBuilding {
+                padding: 0;
+            }
+
+                #TargetBuilding div img {
+                    width: 20%;
+                }
+
+            #TargetBuildingContent {
+                padding: 0px;
+                margin-top: 0px;
+            }
+
+            .BuildingWayImg {
+                display: none;
+            }
+
+            .BuildingSolution {
+                margin-left: 0;
+            }
+
+                .BuildingSolution p {
+                    padding-right: 0;
+                }
+
+            .ImageSubMenu {
+                display: none;
+            }
+
+            .Item {
+                height: auto;
+            }
+
+            .Content_IMG img {
+                height: auto;
+            }
+
+            .LessionTitle p {
+                font-size: 25px;
+                font-weight: 700;
+            }
+
+            .PC_VersionGuideNoteBook {
+                display: none;
+            }
+
+            .Mobile_VersionGuideNoteBook {
+                display: block;
+            }
+            .NumberTab img{
+                width:70%;
+            }
+        }
+    </style>
+    <!--Iphone 6/7/8/X end-->
+    <!--Iphone 6/7/8/X+ Start-->
+    <style>
+        @@media only screen and (min-width:426px) and (max-width: 767px) {
+            .BuildingWayImg{
+                display:none;
+            }
+            .Signature{
+                right:0;
+            }
+            .Signature img{
+                width:60%;
+            }
+            .Message{
+                height:670px;
+            }
+            #TargetBuildingContent{
+                padding:0;
+            }
+            .PC_VersionGuideNoteBook{
+                display:none;
+            }
+            .Mobile_VersionGuideNoteBook{
+                display:block;
+            }
+            .NumberTab img{
+                width:70%;
+            }
+            .LessionTitle p{
+                font-size:34px;
+            }
+            .BuildingSolution{
+                margin-left:0;
+            }
+            .BuildingSolution p{
+                padding-right:0;
+            }
+            .ImageSubMenu img{
+                display:none;
+            }
+            #step-button-tracuu-sotay {
+                margin-top :22px;
+            }
+        }
+    </style>
+    <!--Iphone 6/7/8/X+ End-->
+    <!--Ipad Start-->
+    <style>
+        @@media only screen and (min-width:768px) and (max-width: 1023px) {
+             .BuildingSolution p{
+                 padding-right:0;
+             }
+             #TargetBuildingContent{
+                 padding:0;
+             }
+             #TargetBuilding button{
+                 margin: 15% 0%;
+             }
+             .Message{
+                 height:645px;
+             }
+             .Signature{
+                 right:0;
+             }
+             .BuildingSolution{
+                 margin-left:15%;
+             }
+             .BuildingSolution h2{
+                 font-size:35px;
+             }
+             .BuildingWayImg img:first-child{
+                 top:167px;
+                 width:70%;
+                 left:0%;
+             }
+            .BuildingWayImg img:nth-child(2) {
+                top: 60px;
+                width: 70%;
+                left: 25%;
+            }
+            .BuildingWayImg img:nth-child(3) {
+                top: 135px;
+                width: 80%;
+                left: 10%;
+            }
+            .BuildingWayImg img:nth-child(4) {
+                top: 238px;
+                width: 80%;
+                right:18%;
+            }
+            .ImageSubMenu img{
+                margin-top:10%;
+            }
+            .nav-tab-head{
+                width:111%;
+            }
+            .nav-tab-head>li a{
+                font-size:small;
+            }
+            .Content_IMG img{
+                height:130px;
+            }
+            .Content_TEXT img{
+                float:none;
+            }
+        }
+    </style>
+    <!--Ipad End-->
+    <!--Ipad PRO Start-->
+    <style>
+        @@media only screen and (min-width:1024px) and (max-width:1219px){
+            .Message{
+                height:580px;
+            }
+            #TargetBuildingContent{
+                padding:0;
+            }
+            .BuildingWayImg img:nth-child(3) {
+                top: 135px;
+                width: 50%;
+                left: 16%;
+            }
+
+            .BuildingWayImg img:nth-child(4) {
+                top: 205px;
+                width: 50%;
+                right: 50%;
+            }
+            .Content_IMG img {
+                height: 180px;
+            }
+
+            .Content_TEXT img {
+                float: none;
+            }
+        }
+    </style>
+    <!--Ipad PRO End-->
+    <style>
+        @@media only screen and (min-width:1220px) and (max-width:1440px) {
+            .BuildingWayImg img:nth-child(3) {             
+                width: 50%;
+            }
+
+            .BuildingWayImg img:nth-child(4) {
+                top: 250px;
+                width: 50%;
+            }
+           
+        }
+
+        /* Updated responsive for Phu-luc-5*/
+        @@media (max-width : 1199px) and (min-width : 768px) {
+            div.phu-luc-wrap {
+                height : 360px ;
+            }
+        }
+
+        @@media (max-width : 589px) {
+            .phu-luc-wrap .inner-wrapper {
+                
+                margin-left : 20px!important;
+                margin-top : 10px!important;
+            }
+            .phu-luc-wrap span.title-2 {
+                font-size : 26px !important;
+            }
+
+            .phu-luc-wrap span.description {
+                font-size : 16px;
+            }
+
+            div.phu-luc-wrap {
+                height : 300px;
+            }
+
+            div.ImageSubMenu {
+                display : none;
+            }
+        }
+    </style>
+
+    <!-- Style for nav cộng trừ mở data trong nội dung -->
+    <style>
+                    .faq-button {
+                        border: 0;
+                        width: 100%;
+                        border-bottom: 0.5px #265178 solid;
+                        background-color: #F1FDFF;
+                        border-radius: 0 !important;
+                        color: #5A6990;
+                        text-align: left;
+                    }
+
+                    .collapsible:after {
+                        content: '\002B';
+                        color: #5A6990;
+                        font-weight: bold;
+                        float: right;
+                        margin-left: 5px;
+                    }
+
+                    .collapsible.active:after {
+                        content: "\2212";
+                    }
+
+                    .content {
+                        padding: 0 18px;
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.2s ease-out;
+                        background-color: #f1f1f1;
+                    }
+                </style>
+                <script>
+                    $(document).ready(function() {
+                        var coll = document.getElementsByClassName("collapsible");
+                        var i;
+
+                        for (i = 0; i < coll.length; i++) {
+                            coll[i].addEventListener("click", function() {
+                                this.classList.toggle("active");
+                                var content = this.nextElementSibling;
+                                if (content.style.maxHeight) {
+                                    content.style.maxHeight = null;
+                                }
+                            });
+                        }
+                    });
+                </script>
+
+</head>
+
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <partial name="../Shared/A2FComponent/_Banner_GuideNotebook" />
+
+    <!--<div class="container-fluid Message">
+        <img src="~/images/image 34.png" style="width:30%" />
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+
+        </div>
+
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 ContentText">
+            <p>
+                @ViewBag.lblLoiMoDau
+            </p>
+            <p>@ViewBag.lblIntroduction1</p>-->
+            @*<p>@ViewBag.lblIntroduction2</p>*@
+            <!--<div class="Signature">
+                <img src="~/images/image 35.png" />
+                <p>@ViewBag.lblCucTruong</p>
+                <p><b style="font-size: 18px">LÊ MẠNH HÙNG</b></p>
+            </div>
+
+        </div>
+
+    </div>-->
+
+    <div class="container-fluid" id="TargetBuilding">
+        <p style="color: #3B5377;font-size: 40px;margin-top: 2%;">@ViewBag.lblMucTieuXayDung</p>
+        @*<p style="color: #2E354F;font-size: 18px;padding-left: 25%;padding-right: 25%;">@ViewBag.lblMucTieuXayDungDes</p>*@
+        <div id="TargetBuildingContent">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="text-align: left;">
+                <img src="~/images/ic-1.png" />
+                <p>@ViewBag.lblMucTieuXayDung1</p>
+                <p style="font-size: 18px">@ViewBag.lblMucTieuXayDungDes1</p>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="text-align: left;">
+                <img src="~/images/ic-2.png" />
+                <p>@ViewBag.lblMucTieuXayDung2</p>
+                <p style="font-size: 18px">@ViewBag.lblMucTieuXayDungDes2</p>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="text-align: left;">
+                <img src="~/images/ic-3.png" />
+                <p>@ViewBag.lblMucTieuXayDung3</p>
+                <p style="font-size: 18px">@ViewBag.lblMucTieuXayDungDes3</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-12">
+            <button  style="color: white;background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%),
+        linear-gradient(0deg, #FFB526, #FFB526); width: 211px; height: 45px;font-size: 15px;letter-spacing: 1px;border-radius: 4px;margin:3% 0%; border : none" onclick="checkLoginSotay(@ViewBag.UserID)">
+                @ViewBag.lblTraCuuTrucTuyen
+            </button>
+        </div>
+
+    </div>
+
+    <div class="container-fluid" style="background-color: #DEF4F9;position: relative; height: 500px;">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 BuildingSolution">
+                <h2 style="font-size: 32px; margin-top: 15%; color: #3B5377;text-transform:uppercase;">@ViewBag.lblPhuongPhapXayDung</h2>
+                <p>@ViewBag.lblPhuongPhapXayDungDes</p>
+                <button style="text-transform: uppercase; background-color: #265178;color: white; margin-top: 3%;width: 193px;height: 50px;border-radius: 3px;margin-bottom: 23%; border : none; display : none">@ViewBag.lblTimHieuThem</button>
+            </div>
+
+            <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 BuildingWayImg">
+                <img src="~/images/image 20.png"  />
+                <img src="~/images/image 19(2).png" />
+                <img src="~/images/image 21.png" />
+                <img src="~/images/image 22.png" />
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div style="display: none" class="container-fluid TargetUseHandBookCover">
+
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+
+        </div>
+
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 TargetUseHandBook">
+            <p style="font-size: 35px;color: #2AD9FF;margin-bottom: 5%;">Đối tượng sử dụng sổ tay</p>
+            <button class="btn collapsible faq-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <span>DOANH NGHIỆP SIÊU NHỎ</span>
+            </button>
+
+            <div class="collapse TitleCollap" id="collapseExample">
+                <div class="card card-body">
+                    <p>
+                        <i class="fas fa-circle" style="font-size: 1px;"></i><b> Doanh nghiệp ngành Nông nghiệp, lâm nghiệp, thủy sản, công nghiệp, xây dựng</b>. Số lao động tham gia BHXH bình quân năm
+                        không quá 10 người. Tổng doanh thu của năm không quá 3 tỷ đồng hoặc tổng nguồn vốn không quá 3 tỷ đồng.
+                    </p>
+                    <p>
+                        <i class="fas fa-circle" style="font-size: 1px;"></i><b> Doanh nghiệp ngành Thương mại, dịch vụ</b>. Số lao động tham gia BHXH bình quân năm
+                        không quá 10 người
+                        . Tổng doanh thu của năm không quá 3 tỷ đồng hoặc tổng nguồn vốn không quá 10 tỷ đồng.
+                    </p>
+                </div>
+            </div>
+
+
+            <button class="btn collapsible faq-button" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                <span>DOANH NGHIỆP NHỎ</span>
+            </button>
+
+            <div class="collapse TitleCollap" id="collapseExample1">
+                <div class="card card-body">
+                    <p>
+                        <i class="fas fa-circle" style="font-size: 1px;"></i><b> Doanh nghiệp ngành Nông nghiệp, lâm nghiệp, thủy sản, công nghiệp, xây dựng</b>. Số lao động tham gia BHXH bình quân năm
+                        không quá 10 người. Tổng doanh thu của năm không quá 3 tỷ đồng hoặc tổng nguồn vốn không quá 3 tỷ đồng.
+                    </p>
+                    <p>
+                        <i class="fas fa-circle" style="font-size: 1px;"></i><b>Doanh nghiệp ngành Thương mại, dịch vụ</b>. Số lao động tham gia BHXH bình quân năm
+                        không quá 10 người
+                        . Tổng doanh thu của năm không quá 3 tỷ đồng hoặc tổng nguồn vốn không quá 10 tỷ đồng.
+                    </p>
+                </div>
+            </div>
+
+
+            <button class="btn collapsible faq-button" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                <span>DOANH NGHIỆP VỪA</span>
+            </button>
+
+            <div class="collapse TitleCollap" id="collapseExample2">
+                <div class="card card-body">
+                    <p>
+                        <i class="fas fa-circle" style="font-size: 1px;"></i><b> Doanh nghiệp ngành Nông nghiệp, lâm nghiệp, thủy sản, công nghiệp, xây dựng</b>. Số lao động tham gia BHXH bình quân năm
+                        không quá 10 người. Tổng doanh thu của năm không quá 3 tỷ đồng hoặc tổng nguồn vốn không quá 3 tỷ đồng.
+                    </p>
+                    <p>
+                        <i class="fas fa-circle" style="font-size: 1px;"></i><b>Doanh nghiệp ngành Thương mại, dịch vụ</b>. Số lao động tham gia BHXH bình quân năm
+                        không quá 10 người
+                        . Tổng doanh thu của năm không quá 3 tỷ đồng hoặc tổng nguồn vốn không quá 10 tỷ đồng.
+                    </p>
+                </div>
+            </div>
+            <p style="color: white;"><i>Chi tiết phân loại doanh nghiệp theo Nghị định 80/2021/NĐ-CP được trình bày tại <a>Phụ lục 1</a>.</i></p>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid PC_VersionGuideNoteBook">
+        <img src="~/images/VectorGuideNotebook.png" alt="" style="position: absolute;bottom: 0;right: 0;width: 40%;" />
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+            <p style="color: white; margin-top: 4%; font-size: 29px; margin-bottom: 2%; text-transform: uppercase;">@ViewBag.lblHuongDan <b> @ViewBag.lblSuDungSoTay</b></p>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <div class="row">
+
+                    <div class="col-xs-0 col-sm-2 col-md-3 col-lg-5">
+
+                    </div>
+
+                    <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447.png" />
+                    </div>
+
+                    <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc1</p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-5 col-sm-2 col-md-3 col-lg-5">
+                    </div>
+                    <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (2).png" />
+                    </div>
+
+                    <div class="col-xs-6 col-sm-8 col-md-7 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc3</p>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-5 col-sm-2 col-md-3 col-lg-5">
+
+                    </div>
+                    <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (3).png" />
+                    </div>
+
+                    <div class="col-xs-6 col-sm-8 col-md-7 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc4</p>
+                        <button onclick="checkLoginSotay(@ViewBag.UserID)" style="background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%),
+              linear-gradient(0deg, #FFB526, #FFB526);
+              width: 211px;height: 45px;color: white;border-radius: 4px; border: none">
+                            @ViewBag.lblTraCuuTrucTuyen
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (1).png" />
+                    </div>
+
+                    <div class="col-xs-5 col-sm-8 col-md-7 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc2</p>
+                    </div>
+                    <div class="col-xs-5 col-sm-2 col-md-3 col-lg-5">
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-1 col-sm-2 col-md-2 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (4).png" />
+                    </div>
+
+                    <div class="col-xs-6 col-sm-8 col-md-7 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc5</p>
+
+                    </div>
+                    <div class="col-xs-5 col-sm-2 col-md-3 col-lg-5">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="container-fluid Mobile_VersionGuideNoteBook">
+        <img src="~/images/VectorGuideNotebook.png" alt="" style="position: absolute;bottom: 0;right: 0;width: 40%;" />
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+            <p style="color: white;margin-top: 4%;font-size: 26px;margin-bottom: 2%;text-transform:uppercase;">@ViewBag.lblHuongDan <b> @ViewBag.lblSuDungSoTay</b></p>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <div class="row">
+
+                    <div class="col-xs-0 col-sm-5 col-md-5 col-lg-5">
+
+                    </div>
+
+                    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447.png" />
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc1</p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-0 col-sm-5 col-md-5 col-lg-5">
+                    </div>
+                    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (1).png" />
+                        
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc2</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-0 col-sm-5 col-md-5 col-lg-5">
+
+                    </div>
+                    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (2).png" />
+                        
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc3</p>
+                        
+                       
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <div class="row">
+                    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (3).png" />
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc4</p>
+                    </div>
+                    <div class="col-xs-0 col-sm-5 col-md-5 col-lg-5">
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1 NumberTab">
+                        <img src="~/images/Frame 447 (4).png" />
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ContentTab">
+                        <p>@ViewBag.lblBuoc5</p>
+
+                    </div>
+                    <div class="col-xs-0 col-sm-5 col-md-5 col-lg-5">
+
+                    </div>
+
+                    <button id="step-button-tracuu-sotay" onclick="checkLoginSotay(@ViewBag.UserID)" style="background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%),
+              linear-gradient(0deg, #FFB526, #FFB526);
+              width: 211px;height: 45px;color: white;border-radius: 4px; margin-bottom:5%;">
+                        @ViewBag.lblTraCuuTrucTuyen
+                    </button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    
+
+    <div class="container-fluid" style="padding-left: 10%;padding-right: 10%;background-color:#F0F6FC ;">
+
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 LessionTitle" style="margin-top: 3%;">
+            <p>Bài học kinh nghiệm</p>
+        </div>
+
+        @*<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 3%;">
+                <button style="background-color: #265178;width: 193px;height: 36px;color: white;">XEM TẤT CẢ</button>
+            </div>*@
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-bottom:3%;">
+
+            <ul class="nav nav-tabs nav-tab-head">
+                <li class="active"><a data-toggle="tab" href="#home" class="nav-tab-header">Hồ sơ pháp lý</a></li>
+                <li><a data-toggle="tab" href="#menu1" class="nav-tab-header">Hồ sơ hoạt động và tài chính</a></li>
+                <li><a data-toggle="tab" href="#menu2" class="nav-tab-header">Ưu đãi, hình thức, mục đích cho tài trợ vốn</a></li>
+            </ul>
+
+            <div class="tab-content" style="padding-bottom:5%;">
+                <div id="home" class="tab-pane fade in active">
+                    @foreach (var item in ViewBag.ListLegalrecords)
+                    {
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Item ">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Content_IMG">
+                                <img src="@item.Photo" />
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Content_TEXT">
+                                <p class="ellipsis2" style="font-size:14px;"><a href="/chi-tiet-bai-hoc-kinh-nghiem/@item.Url">@item.Name</a></p>
+                                <p style="float: left;">@item.CreatedTime.ToString("dd/MM/yyyy hh:mm:ss tt")</p>
+                                <img src="~/images/Group 265 (2).png" />
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    @foreach (var item in ViewBag.ListOperationalandfinancialrecords)
+                    {
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Item">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Content_IMG">
+                                <img src="@item.Photo" />
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Content_TEXT">
+                                <p class="ellipsis2"><a href="/chi-tiet-bai-hoc-kinh-nghiem/@item.Url">@item.Name</a></p>
+                                <p style="float: left;">@item.CreatedTime</p>
+                                <img src="~/images/Group 265 (2).png" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    @foreach (var item in ViewBag.ListIncentivesformsandpurposesforcapitalfinancing)
+                    {
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Item">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Content_IMG">
+                                <img src="@item.Photo" />
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Content_TEXT">
+                                <p class="ellipsis2"><a href="/chi-tiet-bai-hoc-kinh-nghiem/@item.Url">@item.Name</a></p>
+                                <p style="float: left;">@item.CreatedTime</p>
+                                <img src="~/images/Group 265 (2).png" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Phụ lục - sổ tay tài chính : start -->
+    <style>
+        .phu-luc-wrap {
+            height: 350px; /*
+            width: 1110px;*/
+            left: 0px;
+            top: 26px;
+            border-radius: 8px;
+            background-color: #E4EDF8;
+            width: 100%;
+            margin: 70px 0;
+            padding-left: 1%;padding-right: 1%; 
+        }
+
+            .phu-luc-wrap .inner-wrapper {
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+
+            .phu-luc-wrap span.title {
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 47px;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #06308E;
+            }
+
+            .phu-luc-wrap span.title-2 {
+                font-size: 40px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 47px;
+                letter-spacing: 0em;
+                text-align: left;
+                color: #06308E;
+            }
+
+            .phu-luc-wrap span.description {
+                font-size: 18px;
+                padding-top : 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 25px;
+                letter-spacing: 0em;
+                text-align: left;
+                color: gray;
+            }
+    </style>
+    <div class="container-fluid " style="padding-left: 10%;padding-right: 10%;">
+        <div class="phu-luc-wrap">
+
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <div class="inner-wrapper">
+                    <span class="title">Phụ lục 5 </span>
+                    <br />
+                    <span class="title-2">Sổ tay tài chính</span>
+                    <br />
+                    <span class="description ellipsis2 ">Một số ví dụ cho Doanh nghiệp nhằm đáp ứng điều kiện có ảnh hưởng đến quyết định tài trợ vốn của Tổ chức tài chính</span>
+                    <br />
+                    <button onclick="window.location.href='/phu-luc-5'" style="background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%),
+              linear-gradient(0deg, #FFB526, #FFB526); margin-top : 10px;
+              width: 160px;height: 45px;color: white;border-radius: 4px; border: none">
+                        @ViewBag.lblTimHieuThem
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-xs-0 col-sm-5 col-md-5 col-lg-5 ImageSubMenu">
+                <img src="~/images/Phu-luc-5-frame.png" style="left: 0;
+    width: 67%;
+    margin-top: -4px;
+    margin-left: 125px;" />
+            </div>
+        </div>
+
+
+    </div>
+    <!-- Phụ lục - sổ tay tài chính : end -->
+
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    @*<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>*@
+</body>
+</html>
+    <script>
+        //$('.collapsible').click(function () {
+        //    $('.collapsible.active').each(function () {
+        //        $(this).removeClass("active");
+
+        //    });
+        //    $(this).addClass('active');
+        //    var id = $(this).data('target');
+        //    $('.TitleCollap.in').each(function () {
+        //        if ("#" + $(this).attr("id") != id) {
+        //            $(this).removeClass("in");
+        //            $(this).css('height', '0px');
+        //            $(this).addClass("collapse");
+        //        }
+        //        else {
+        //            $('.collapsible.active').each(function () {
+        //                $(this).removeClass("active");
+
+        //            });
+        //        }
+
+        //    });
+
+        //});
+
+
+
+        /* check  in đăng nhập trước khi tra cứu sổ tay */  
+        function checkLoginSotay(UserID) {
+            debugger;
+            if(UserID == 0) {
+                Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập để truy cập tra cứu sổ tay trực tuyến",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+            }else if(UserID == 10002) {
+                Swal.fire({
+                    title: 'Tài khoản của bạn là tài khoản cá nhân vì vậy không thể truy cập',
+                    html: "Hãy đăng nhập tài khoản doanh nghiệp để truy cập",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+            }else
+                window.location.href='/tra-cuu-truc-tuyen';
+    }
+    </script>

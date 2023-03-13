@@ -1,0 +1,275 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!-- Subscribe modal -->
+<div class="modal fade subscribe-modal" id="subscribe-modal" tabindex="-1" role="dialog" aria-labelledby="subscribe-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10005;</span></button>
+
+                <h4 class="modal-title" id="subscribe-modal-label">@ViewBag.lblDangKi</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="subscribe-form subscribe-form--horizontal text-center max-width-sm">
+                    <script>
+                        (function () {
+                            if (!window.mc4wp) {
+                                window.mc4wp = {
+                                    listeners: [],
+                                    forms: {
+                                        on: function (event, callback) {
+                                            window.mc4wp.listeners.push({
+                                                event: event,
+                                                callback: callback
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        })();
+                    </script>
+                    <!-- MailChimp for WordPress v4.2.4 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+                    <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1927" method="post" data-id="1927" data-name="Sidebar form">
+                        <div class="mc4wp-form-fields">
+                            <h3>@ViewBag.lblDangKiNhanThongBao</h3>
+                            <p>@ViewBag.lblNhapEmailCuaBan</p>
+                            <p>
+                                <input type="email" name="EMAIL" placeholder="@ViewBag.lblDiaChiEmailCuaBanSubscribe" required="" id="subscribeEmail">
+                            </p>
+                            <p>
+                                <input type="button" id="submitSubscribe" onclick="submitEmail()" value="@ViewBag.lblDangKi" class="btn btn-primary">
+                            </p>
+                            <small>@ViewBag.lblDungLoLang</small>
+                        </div>
+                        <label style="display: none !important;">
+                            Leave this field empty if you're human:
+                            <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+                        </label>
+                        <input type="hidden" name="_mc4wp_timestamp" value="1568095936" />
+                        <input type="hidden" name="_mc4wp_form_id" value="1927" />
+                        <input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
+                        <div class="mc4wp-response"></div>
+                    </form>
+                    <!-- / MailChimp for WordPress Plugin -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Subscribe modal -->
+<!--  Forgot password modal -->
+<div class="modal fade subscribe-modal" id="forgotPassword-modal" tabindex="-1" role="dialog" aria-labelledby="subscribe-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10005;</span></button>
+
+                <h4 class="modal-title" id="subscribe-modal-label">Quên mật khẩu</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="subscribe-form subscribe-form--horizontal text-center max-width-sm">
+                    <script>
+                        (function () {
+                            if (!window.mc4wp) {
+                                window.mc4wp = {
+                                    listeners: [],
+                                    forms: {
+                                        on: function (event, callback) {
+                                            window.mc4wp.listeners.push({
+                                                event: event,
+                                                callback: callback
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        })();
+                    </script>
+                    <!-- MailChimp for WordPress v4.2.4 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+                    <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1927" method="post" data-id="1927" data-name="Sidebar form">
+                        <div class="mc4wp-form-fields">
+                            <h3>Khôi phục mật khẩu</h3>
+                            <p>Nhập email của bạn!</p>
+                            <p>
+                                <input type="email" name="EMAIL" placeholder="@ViewBag.lblDiaChiEmailCuaBanSubscribe" required="" id="subForgotPassword">
+                            </p>
+                            <p>
+                                <input type="button" id="forgotPassword" onclick="submitForgotPassword()" value="Xác nhận" class="btn btn-primary">
+                            </p>
+                            <small>Chúng tôi sẽ gửi mật khẩu đến email của bạn </small>
+                        </div>
+                        <label style="display: none !important;">
+                            Leave this field empty if you're human:
+                            <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+                        </label>
+                        <input type="hidden" name="_mc4wp_timestamp" value="1568095936" />
+                        <input type="hidden" name="_mc4wp_form_id" value="1927" />
+                        <input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
+                        <div class="mc4wp-response"></div>
+                    </form>
+                    <!-- / MailChimp for WordPress Plugin -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Forgot password modal -->
+
+
+
+
+
+
+
+
+
+<script>
+    function submitEmail() {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if ($("#subscribeEmail").val().length < 1) {
+
+            Swal.fire(
+                '@ViewBag.lblError',
+                '@ViewBag.lblErrorDetail',
+                'info'
+            );
+        }
+        else if (!filter.test($("#subscribeEmail").val())) {
+
+            Swal.fire(
+                '@ViewBag.lblError',
+                '@ViewBag.lblErrorEmailFormat',
+                'info'
+            );
+        }
+
+        else {
+            addEmail($("#subscribeEmail").val());
+        }
+    }
+
+
+    function addEmail(email) {
+        var obj = {
+            "active": 1,
+            "name": email,
+            "description": "",
+            "createdTime": "2019-01-01 00:00:00",
+
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}subscribe/api/AddEmail",
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                debugger;
+                if (responseData.status == 201 && responseData.message === "CREATED") {
+                    Swal.fire(
+                        '@ViewBag.lblThanhCong',
+                        '@ViewBag.lblThanhCongDetail',
+                        'success'
+                    );
+
+                }
+                if (responseData.status == 200 && responseData.message === "ALREADY_EXIST") {
+                    Swal.fire(
+                        '@ViewBag.lblAlreadyExists',
+                        '@ViewBag.lblEmailAlreadyExists',
+                        'info'
+                    );
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                Swal.fire(
+                    '@ViewBag.lblError',
+                    '@ViewBag.lblCheckData',
+                    'error'
+                );
+            }
+        });
+    }
+
+    function submitForgotPassword() {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if ($("#subForgotPassword").val().length < 1) {
+
+            Swal.fire(
+                '@ViewBag.lblError',
+                '@ViewBag.lblErrorDetail',
+                'info'
+            );
+        }
+        else if (!filter.test($("#subForgotPassword").val())) {
+
+            Swal.fire(
+                '@ViewBag.lblError',
+                '@ViewBag.lblErrorEmailFormat',
+                'info'
+            );
+        }
+        else {
+            var objForgotPassword = {
+            "id": 1,
+            "accountTypeID": 1,
+            "active": 1,
+            "name": "",
+            "email": $("#subForgotPassword").val(),
+            "username": "",
+            "password": "",
+            "photo": "",
+            "description":"",
+            "info": "",
+            "createdTime": "2019-01-01 00:00:00",
+            "phone": "",
+            "address": ""
+
+        };
+        console.log(objForgotPassword)
+        debugger;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/Account/api/ForgotPassword",
+            data: JSON.stringify(objForgotPassword),
+            success: function (responseData) {
+                debugger;
+                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    Swal.fire(
+                        '@ViewBag.lblThanhCong',
+                        'Thông tin tài khoản của bạn đã được gửi về địa chỉ email đăng ký!',
+                        'success'
+                    );
+
+                }
+                if (responseData.status == 200 && responseData.message === "EMAIL_INCORRECT") {
+                    Swal.fire(
+                        '@ViewBag.lblError',
+                        'Tên email bạn nhập không chính xác !',
+                        'error'
+                    );
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                Swal.fire(
+                    '@ViewBag.lblError',
+                    '@ViewBag.lblCheckData',
+                    'error'
+                );
+            }
+        });
+        }
+
+    }
+
+</script>

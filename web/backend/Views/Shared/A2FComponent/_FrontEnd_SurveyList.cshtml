@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <partial name="../Shared/A2FComponent/_Banner_SurveyList" />
+    <!-- CSS container for the page : Start -->
+    <style>
+        body {
+            background-color: #F1FDFF;
+        }
+
+        /* fix navbar header color :*/
+        .navbar.navbar-default {
+            background-color: #ffffff !important;
+        }
+
+        .container-page {
+            padding-bottom: 5vh !important;
+        }
+
+        a.link-privacy-location {
+            padding: 10px 15px;
+            font-size: 15px;
+            line-height: 14.06px;
+            font-weight: 400;
+            color: #4B4F5F;
+        }
+
+        .container-page .container-title-header {
+            margin: 30px 0 30px 2.5%;
+        }
+
+        .container-page h4 {
+            line-height: 40px;
+            font-size: 32px;
+            font-weight: 400;
+            float: left;
+            color: #265178;
+        }
+
+        .container-page img.logo-image {
+            float: left;
+            padding: 0;
+            margin-left: 18px;
+            margin-top: 10px;
+            height: 37.29629898071289px;
+            width: 35.185184478759766px;
+        }
+
+        /* Doing responsive : Start */
+
+        @@media (min-width : 1600px) {
+            .container-page {
+                width: 1350px;
+            }
+
+            .container-title-header {
+                margin: 30px 90px !important;
+            }
+        }
+
+        @@media only screen and (max-width:320px) {
+            h4 {
+                font-size: 30px !important;
+            }
+        }
+
+        /* Doing responsive : End */
+
+    </style>
+    <!-- CSS End -->
+    <!-- Privacy Content Page Start -->
+    <div class="container container-page">
+        <!-- _Tittle_Location : Start -->
+        <div class="container-title-header">
+            <a class="link-privacy-location" href="home">@ViewBag.lblTrangChu</a> / <a class="link-privacy-location" href="survey-list">@ViewBag.lblCongCuDanhGia1</a>
+            <div class="container-fluid">
+                <h4>
+                    @ViewBag.lblCongCuDanhGia1
+                </h4>
+                <img src="~/images/logo1.bmp" class="img-responsive logo-image" alt="Image-Logo-A2F">
+            </div>
+
+        </div>
+        <!-- _Tittle_Location : End -->
+
+        <partial name="../Shared/A2FComponent/_ContentPanel_SurveyList" />
+
+    </div>
+    <!-- Privacy Content Page End -->
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!--Responsive for ip5-->
+<style>
+    @@media only screen and (max-width:320px){
+        #ContentBanner{
+            font-size:35px;
+        } 
+    }
+</style>
+<div class="container-fluid" style="background: linear-gradient(88.75deg, #2F205B 12.71%, rgba(49, 65, 125, 0) 107.84%),url('/images/Group331.png'); height: auto; color: #FFFFFF; text-align: center; padding-bottom: 10%; background-size: cover; position: relative;">
+    <p id="ContentBanner"style="font-size: 45px;text-align: center;padding-top: 3%;">@ViewBag.SurveyAccount[0].Name</p>
+    <span><i class="fas fa-history" style="font-size: 15px;"></i></span><a href="/Liet-ke-ket-qua-khao-sat/@ViewBag.SurveyAccount[0].SurveyId" style="font-size: 15px;color: white;">@ViewBag.lblXemLichSuDanhGia</a>
+</div>

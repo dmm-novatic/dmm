@@ -1,0 +1,251 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = null;
+}
+<style>
+    .detailDes {
+        font-size: 16px;
+        /*font-style: italic;*/
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+        border-radius: 5px;
+        padding: 15px;
+        background: #EBF6F9;
+    }
+</style>
+
+
+<style>
+    /* Responsive : start */
+     @@media (max-width : 644px) {
+         .wrapper-step3 {
+             width : 97% !important;
+         }
+
+         /*.img-logo-step3 {
+             display : none;
+         }*/
+
+         .wrapper-step3 {
+             height : max-content !important;
+         }
+     }
+
+    @@media screen and (min-width:644px) and (max-width : 992px) {
+        .header-title-step3 {
+            font-size: 15px;
+        }
+
+        .wrapper-step3 {
+            height: 467px !important;
+        }
+
+        .logo-company {
+            height: 160px !important;
+        }
+    }
+    /* Responsive : end */
+</style>
+
+
+
+<h3>Thông tin nguồn cung cấp</h3>
+<div id="FinancialProductName">
+
+</div>
+<h4 style="font-weight: 600">1. Mô tả</h4>
+<div id="description" style="font-size: 16px">
+
+</div>
+<div class="KeepOrDel">
+    <h4 style="font-weight: 600">2. Hồ sơ và điều kiện</h4>
+    <div id="profileAndCondition" style="font-size: 16px">
+
+    </div>
+</div>
+
+<h4 style="font-weight: 600" id="ChangeText"></h4>
+<div id="BankInfo">
+
+</div>
+
+<script>
+    //window.onload(function () {
+    //    var CurrentURL = window.location.href;
+    //    var GetStep = CurrentURL.split("#");
+    //    if (GetStep[1] != 'step1') {
+    //        window.location.href = "/tra-cuu-truc-tuyen#step-1";
+    //    }
+    //});
+    let Bank_Count = '';
+    function validateEmail(e) { return /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(e).toLowerCase()) }
+    function hiddenSubmit(id) {
+        $(".KeepOrDel").css("display", "block");
+        $("#ChangeText").html("3. Thông tin tổ chức cung cấp");
+        $("#BankInfo").html("");
+        var sid = id.toString();
+        const HoldItemChose = sid.split(".");
+        var html = "";
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/Organization/api/ListByOrganizationTypeId/" + HoldItemChose[0],
+            success: function (responseData) {
+                if (responseData.status == 200 && responseData.message == "SUCCESS") {
+                    dataSource = responseData.data;
+                    for (var i = 0; i < dataSource.length; i++) {
+                        const spilt = dataSource[i].description.toString().split("-");
+                        var getAddress = "";
+                        var checkphone = "";
+                        if (spilt.length == 1) {
+                            getAddress = spilt[0];
+                        } else {
+                            for (var j = dataSource[i].description.length; j > 0; j--) {
+                                if (dataSource[i].description.charAt(j) == '-') {
+                                    getAddress = dataSource[i].description.substring(0, j);
+                                    break;
+                                }
+                            }
+                            var isPhone = spilt[spilt.length - 1].trim();
+                            isPhone = isPhone.replaceAll(" ", "");
+                            if (!validateEmail(isPhone)) {
+                                checkphone = '<span><i class="fas fa-phone-volume" style="margin: 0 3% 0 0"></i></span>' +
+                                    ' <span><a href="tel:' + spilt[spilt.length - 1] + '">' + spilt[spilt.length - 1] + '</a></span>';
+                            } else {
+                                checkphone = '<span> <i class="far fa-envelope" style="margin: 0 3% 0 0"></i></span>' +
+                                    ' <span><a href="mailto:' + spilt[spilt.length - 1] + '">' + spilt[spilt.length - 1] + '</a></span>';
+                            }
+                        }
+                        html = '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 wrapper-step3" style="height:280px;box-shadow:0px 1px 16px #00000012;margin-top:2%;margin-right:2%;margin-left:2%;width:46%;margin-bottom:2%;border-radius: 10px;padding:15px;">' +
+                            '<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 img-logo-step3">' +
+                            '<img class="logo-company" src="' + dataSource[i].photo + '" style="margin-top:20px;float: right;width:100%;" />' +
+                            '</div>' +
+                            '<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">' +
+                            ' <a href="' + dataSource[i].text + '" target="_blank"><h3 class="header-title-step3" style = "font-size:20px">' + dataSource[i].name + '</h3></a>' +
+                            '<span><i class="fas fa-map-marker-alt" style="margin-right: 3%"></i></span>' +
+                            '<span>' + getAddress + '</span>' +
+                            '<div>' +
+                            '<span><i class="fas fa-globe" style="margin: 0 3% 10px 0"></i></span>' +
+                            '<span><a href="' + dataSource[i].text + '" target="_blank">' + dataSource[i].text + '</a></span>' +
+                            '</div>' +
+                            '<div>' +
+                            checkphone +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        $("#BankInfo").append(html);
+                    }
+                    Bank_Count = dataSource.length;
+                }
+            }
+        })
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/FinancialProductDetail/api/ListByOrganizationTypeId/" + HoldItemChose[0] + '-' + HoldItemChose[1],
+            success: function (responseData) {
+                if (responseData.status == 200 && responseData.message == "SUCCESS") {
+                    dataSource = responseData.data;
+                    $("#profileAndCondition").html("");
+                    if (dataSource[0].text == '') {
+                        $("#profileAndCondition").append("Đang cập nhật");
+                    }
+                    else {
+                        $("#profileAndCondition").append(dataSource[0].text);
+                    }
+
+                    $("#description").html("");
+                    if (dataSource[0].description == '') {
+                        $("#description").append("Đang cập nhật");
+                    }
+                    else {
+                        $("#description").append(dataSource[0].description);
+                    }
+
+                    $("#FinancialProductName").html("");
+                    $("#FinancialProductName").append('<h5 style="color: black">Danh sách ' + Bank_Count + ' ngân hàng cung cấp dịch vụ: <b> ' + dataSource[0].financialProductName + '</b> của <b>' + dataSource[0].organizationTypeName + '</b></h5>');
+                }
+            }
+        })
+
+        window.location.href = '/tra-cuu-truc-tuyen#step-3';
+    }
+    function PreferentialProductSubmit(id) {
+        var ppdid = id;
+        $(".KeepOrDel").css("display", "none");
+        $("#ChangeText").html("2. Thông tin tổ chức cung cấp");
+        $("#FinancialProductName").html("");
+        $("#BankInfo").html("");
+        $("#profileAndCondition").html("");
+        $("#description").html("");
+        $("#profileAndCondition").append("Đang cập nhật");
+        $.ajax({
+            type: "GET",
+            contentType: "application/JSON",
+            url: "/PreferentialProductDetail/api/GetPreferentialProductDetailViewModel/" + ppdid,
+            success: function (responseData) {
+                if (responseData.status == 200 && responseData.message == "SUCCESS") {
+                    dataSource = responseData.data;
+                    for (var i = 0; i < dataSource.length; i++) {
+                        if (dataSource[i].description == "" || dataSource[i].description.length == 0) {
+                            $("#description").append("Đang cập nhật");
+                        } else {
+                            $("#description").append(dataSource[i].description);
+                        }
+                       
+                        const spilt = dataSource[i].organizationDescription.toString().split("-");
+                        var getAddress = "";
+                        var checkphone = "";
+                        if (spilt.length == 1) {
+                            getAddress = spilt[0];
+                        } else {
+                            for (var j = dataSource[i].organizationDescription.length; j > 0; j--) {
+                                if (dataSource[i].organizationDescription.charAt(j) == '-') {
+                                    getAddress = dataSource[i].organizationDescription.substring(0, j);
+                                    break;
+                                }
+                            }
+                            var isPhone = spilt[spilt.length - 1].trim();
+                            isPhone = isPhone.replaceAll(" ", "");
+                            if (!validateEmail(isPhone)) {
+                                checkphone = '<span><i class="fas fa-phone-volume" style="margin: 0 3% 0 0"></i></span>' +
+                                    ' <span><a href="tel:' + spilt[spilt.length - 1] + '">' + spilt[spilt.length - 1] + '</a></span>';
+                            } else {
+                                checkphone = '<span> <i class="far fa-envelope" style="margin: 0 3% 0 0"></i></span>' +
+                                    ' <span><a href="mailto:' + spilt[spilt.length - 1] + '">' + spilt[spilt.length - 1] + '</a></span>';
+                            }
+                        }
+                        
+
+                        html = '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 wrapper-step3" style="height:280px;box-shadow:0px 1px 16px #00000012;margin-top:2%;margin-right:2%;margin-left:2%;width:46%;margin-bottom:2%;border-radius: 10px;padding:15px;">' +
+                            '<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 img-logo-step3" >' +
+                            '<img class="logo-company" src="' + dataSource[i].organizationPhoto + '" style="margin-top:20px;float: right;width:100%;" />' +
+                            '</div>' +
+                            '<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">' +
+                            ' <a href="' + dataSource[i].organizationText + '" target="_blank"><h3 class="header-title-step3" style = "font-size:20px">' + dataSource[i].organizationName + '</h3></a>' +
+                            '<span><i class="fas fa-map-marker-alt" style="margin-right: 3%"></i></span>' +
+                            '<span>' + getAddress + '</span>' +
+                            '<div>' +
+                            '<span><i class="fas fa-globe" style="margin: 0 3% 10px 0"></i></span>' +
+                            '<span><a href="' + dataSource[i].organizationText + '" target="_blank">' + dataSource[i].organizationText + '</a></span>' +
+                            '</div>' +
+                            '<div>' +
+                            checkphone +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        $("#BankInfo").append(html);
+                    }
+                    
+                }
+            }
+        })
+        window.location.href = '/tra-cuu-truc-tuyen#step-3';
+    }
+    </script>

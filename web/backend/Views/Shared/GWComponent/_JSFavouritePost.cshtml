@@ -1,0 +1,256 @@
+﻿
+@{
+    ViewData["Title"] = "_JSFavouritePost";
+    <style>
+        #novaticLikePost {
+            text-shadow: 0 0 0px #000 !important;
+            margin-right: 0em !important;
+        }
+
+        @@media only screen and (max-width: 767px) {
+            #ParentnovaticLikePost {
+                position: absolute;
+                right: 4.8rem !important;
+            }
+        }
+    </style>
+}
+
+@*<h1>_JSFavouritePost</h1>*@
+
+<script>
+    var isLike = 0;
+    $(document).ready(function () {
+        isLike = "@ViewBag.IsLikePost";
+        if (isLike == "1") {
+            $("#novaticLikePost").attr("style", "color:green;");
+        }
+    });
+    function LikePost() {
+        //debugger;
+        var dt = new Date();
+        var currentUserID = "@ViewBag.CurrentUserId";
+        var currentLike = "";
+        if (currentUserID == "10018") {
+            Swal.fire('Yêu cầu đăng nhập');
+        }
+        else {
+            if (isLike == 1) {
+                currentLike = "1";
+                var obj = {
+                    "id": 0,
+                    "postID": "@ViewBag.CurrentPostId",
+                    "accountID":"@ViewBag.CurrentUserId",
+                    "active": 1,
+                    "name": "",
+                    "description": currentLike,
+                    "createdTime": dt,
+                };
+                //console.log(obj);
+                //debugger;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/FavouritePost/api/LikePost",
+                    data: JSON.stringify(obj),
+                    success: function (responseData) {
+                        //debugger;
+                        //responseData = JSON.parse(responseData)
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire('Đã xoá bài viết khỏi danh sách yêu thích');
+                            $("#novaticLikePost").attr("style", "color:white;");
+                            isLike = 0;
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire('Lỗi! Vui lòng thử lại');
+                    }
+                });
+            }
+            else {
+                currentLike = "0";
+                var obj = {
+                    "id": 0,
+                    "postID": "@ViewBag.CurrentPostId",
+                    "accountID":"@ViewBag.CurrentUserId",
+                    "active": 1,
+                    "name": "",
+                    "description": currentLike,
+                    "createdTime": dt,
+                };
+                //console.log(obj);
+                //debugger;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/FavouritePost/api/LikePost",
+                    data: JSON.stringify(obj),
+                    success: function (responseData) {
+                        console.log(responseData);
+                        console.log(responseData.data);
+                        //debugger;
+                        //responseData = JSON.parse(responseData)
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire('Đã thêm bài viết vào danh sách yêu thích');
+                            $("#novaticLikePost").attr("style", "color:green;");
+                            isLike = 1;
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire('Lỗi! Vui lòng thử lại');
+                    }
+                });
+            }
+
+        }
+    }
+
+
+
+    //thay đổi ngôn ngữ
+    $(document).ready(function () {
+        $(".novatic-Language-Vi").attr("style", "border-bottom:black;border-bottom-style:solid;");
+        var languageCode = "@ViewBag.LanguageCode";
+        console.log(languageCode);
+        if (languageCode == "vi") {
+            $(".novatic-Language-Vi").attr("style", "border-bottom:black;border-bottom-style:solid;");
+            $(".novatic-Language-En").attr("style", "border-bottom:unset;border-bottom-style:unset;");
+        }
+        if (languageCode == "en") {
+            $(".novatic-Language-Vi").attr("style", "border-bottom:unset;border-bottom-style:unset;");
+            $(".novatic-Language-En").attr("style", "border-bottom:black;border-bottom-style:solid;");
+        }
+        $("#novaticButtonLoginOrUpgrade").hover(function () {
+            $(this).css("background-color","black");
+            $(this).css("color","#e9b229");
+        }, function () {
+            $(this).css("background-color","#e9b229");
+            $(this).css("color","black");
+        })
+    });
+
+    function ChangeVI() {
+        //$("#menu-Language-EN").attr("style", "display:none;")
+        //$("#menu-Language-VI").removeAttr("style")
+        var dt = new Date();
+        var obj = {
+            "id": 0,
+            "name": "a",
+            "name2": "a",
+            "active":1,
+            "code": "LanguageCode",
+            "description": "vi",
+            "createdTime": dt,
+        };
+        //console.log(obj);
+        //debugger;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/LanguageConfig/api/SetLanguage",
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    //window.location.href = "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description";
+                    location.reload();
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                console.log("Failed");
+            }
+        });
+
+    }
+
+    function ChangeEN() {
+        //$("#menu-Language-VI").attr("style", "display:none;")
+        //$("#menu-Language-EN").removeAttr("style")
+        var dt = new Date();
+        var obj = {
+            "id": 0,
+            "name": "a",
+            "name2": "a",
+            "active":1,
+            "code": "LanguageCode",
+            "description": "en",
+            "createdTime": dt,
+        };
+        //console.log(obj);
+        //debugger;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/LanguageConfig/api/SetLanguage",
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    //window.location.href = "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description";
+                    location.reload();
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                console.log("Failed");
+            }
+        });
+    }
+
+    function InsertNotification(Name, Type) {
+        //debugger;
+        var dt = new Date();
+        var nameNotification = "";
+        if (Type == "Comment") {
+            nameNotification = "Tài khoản "+ Name + " đã thêm một bình luận.";
+        }
+        if (Type == "Subscribe") {
+            nameNotification = "Email "+ Name + " đã đăng kí theo dõi website";
+        }
+        if (Type == "Register") {
+            nameNotification = "Tài khoản " + Name + " đã được tạo";
+        }
+        var objNotification = {
+            "active": 1,
+            "name": nameNotification,
+            "description": "",
+            "createdTime": dt,
+            "viewStatusId": 10001
+        }
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/Notification/api/Add",
+            data: JSON.stringify(objNotification),
+            success: function (dataNotification) {
+                if (dataNotification.status == 201 && dataNotification.message === "CREATED") {
+                    console.log("Insert success in Notification");
+                }
+            },
+            error: function (e) {
+                alert("something wrong when insert in Notification");
+            }
+        });
+    }
+
+    function loginOrUpgrade() {
+        if (@ViewBag.UserID == 0) {
+            window.location.href = "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}Login";
+        }
+        else {
+            Swal.fire(
+              'Thành viên VIP ?',
+              'Bài viết chỉ dành cho thành viên VIP! Vui lòng nâng cấp tài khoản để đọc bài viết này',
+              'question'
+            ).then(function() {
+            window.location.href = "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}Login";
+            });
+        }
+    }
+
+</script>

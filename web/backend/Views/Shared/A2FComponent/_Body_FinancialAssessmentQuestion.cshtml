@@ -1,0 +1,222 @@
+﻿@{ 
+
+    Layout = null; 
+
+} 
+<!-- Include SmartWizard CSS -->
+<link href="https://www.jquery-az.com/boots/css/smartWizard/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Optional SmartWizard theme -->
+<link href="https://www.jquery-az.com/boots/css/smartWizard/smart_wizard_theme_circles.min.css" rel="stylesheet" type="text/css" />
+<link href="https://www.jquery-az.com/boots/css/smartWizard/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+<link href="https://www.jquery-az.com/boots/css/smartWizard/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="https://www.jquery-az.com/boots/js/smartWizard/jquery.smartWizard.min.js"></script>
+
+            @*<div class="modal-header bg-gradient-info">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><i class="fa fa-edit"></i> Chi tiết khảo sát</h4>
+            </div>*@
+
+<style>
+    .sw-btn-next, .sw-btn-next:hover, .sw-btn-next:focus, .sw-btn-next:active {
+        background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), #FFB526;
+        color: white;
+        border: 0px;
+        font-weight: normal;
+        outline: none !important;
+        border-radius: 4px;
+        border-top-left-radius: 4px !important;
+        border-bottom-left-radius: 4px !important;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    .sw-btn-prev, .sw-btn-prev:hover, .sw-btn-prev:focus, .sw-btn-prev:active {
+        background: none;
+        border: 0;
+        color: #265178;
+        font-weight: normal;
+        outline: none !important;
+        background: #f5f5f5;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    .sw-btn-prev.disabled, .sw-btn-next.disabled {
+        display: none;
+    }
+
+    .container.container-wrapper-handbook {
+        background-color: white;
+        height: auto;
+        position: inherit;
+        z-index: 2;
+        top: -107px;
+        margin: auto;
+        background: #FFFFFF;
+        box-shadow: 0px 8px 20px rgba(32, 51, 73, 0.15);
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding-bottom: 30px;
+    }
+    .sw-toolbar-top  {
+        display : none;
+    }
+
+    .sw-container.tab-content {
+        height : max-content !important;
+    }
+
+    #smartwizard h3 {
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #265178;
+
+    }
+
+    #smartwizard h5 {
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+        color : gray;
+    }
+
+    .sw-theme-arrows>ul.step-anchor>li>a {
+            padding: 10px 50px;
+    }
+</style>
+
+<partial name="../Shared/A2FComponent/_Banner_GuideNotebook" />
+<div class="container container-wrapper-handbook" >
+
+
+        <!-- SmartWizard html -->
+        <div id="smartwizard" class="sw-main sw-theme-arrows">
+            <ul class="nav nav-tabs step-anchor" id= "step-ul-anchor">
+                <li><a href="#step-1">Bước 1<br /><small>Doanh nghiệp & nhu cầu</small></a></li>
+                <li><a href="#step-2">Bước 2<br /><small>Nguồn tài chính</small></a></li>
+                <li><a href="#step-3">Bước 3<br /><small>Thông tin nguồn tài chính</small></a></li>
+                @*<li><a href="#step-4">Step 4<br /><small>Step 4 description</small></a></li>*@
+            </ul>
+
+            <div>
+                <div id="step-1">
+                    <div style="margin-left:45px">
+                    <h3>Doanh nghiệp & nhu cầu</h3>
+                    <h5 style="">Xác định giai đoạn phát triển của doanh nghiệp và nhu cầu về tài trợ vốn</h5>
+                    </div>
+
+                    <partial name="../Shared/A2FComponent/_Step1_FinancialAccessmentQuestion" />  
+
+                </div>
+
+                <div id="step-2">
+
+                    @*<h3>Nguồn tài chính</h3>
+                    <h5>Xác định nguồn và sản phẩm tài chính phù hợp</h5>*@
+
+                    <partial name="../Shared/A2FComponent/_Step2_FinancialAccessmentQuestion" />  
+
+                </div>
+                <div id="step-3" >
+                    <h3 style="display:none">Thông tin nguồn tài chính phù hợp</h3>
+                    @*<h5>Danh sách nguồn tài chính, mô tả sản phẩm, điều kiện/hồ sơ phù hợp với tình trạng và nhu cầu tài chính của DN</h5>*@
+                    <partial name="../Shared/A2FComponent/_Step3_FinancialAccessmentQuestion" />  
+                </div>
+
+                @*<div id="step-4" class="">
+                    <h2>Step 4 Content</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">My Details</div>
+                        <table class="table">
+                            <tbody>
+                                <tr> <th>Name:</th> <td>Your Name</td> </tr>
+                                <tr> <th>Email:</th> <td>abc@example.com</td> </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>*@
+
+            </div>
+        </div>
+
+
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Smart Wizard
+        $('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'default',
+            transitionEffect: 'slide',
+            //toolbarSettings: {
+            //    toolbarPosition: 'both',
+            //    toolbarExtraButtons: [
+            //        { label: 'Summit', css: 'btn-success', onClick: function () { alert('Finish Clicked'); } },
+            //        //{ label: 'Cancel', css: 'btn-warning', onClick: function () { $('#smartwizard').smartWizard("reset"); } }
+            //    ]
+            //}
+        });
+
+
+        // External Button Events
+        $("#reset-btn").on("click", function () {
+            // Reset wizard
+            $('#smartwizard').smartWizard("reset");
+            return true;
+        });
+
+        $("#prev-btn").on("click", function () {
+            // Navigate previous
+            $('#smartwizard').smartWizard("prev");
+            return true;
+        });
+
+        $("#next-btn").on("click", function () {
+            // Navigate next
+            $('#smartwizard').smartWizard("next");
+            return true;
+        });
+
+        $('#smartwizard').smartWizard("theme", "arrows");
+
+    });
+</script>  
+
+<script>
+    /* adding step 3 on ul tag */
+    
+    $(document).ready(function(){
+/*        $("#step-ul-anchor").append("<li><a>Step 3<br /><small>Thông tin nguồn tài chính</small></a></li>");*/
+        $(".sw-btn-prev").text("QUAY LẠI");
+        $(".sw-btn-next").text("TIẾP TỤC");
+    });
+
+    /* if user don't answer question then can't go to the next page */
+
+</script>

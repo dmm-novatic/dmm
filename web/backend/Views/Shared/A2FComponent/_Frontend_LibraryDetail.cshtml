@@ -1,0 +1,424 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+    <!-- Added by HTTrack -->
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+
+    <partial name="../Shared/A2FComponent/Library" />
+
+    <!-- End Library-->
+
+
+
+</head>
+
+<body>
+
+    @RenderBody()
+
+    <!-- Starts Header -->
+
+    <partial name="../Shared/A2FComponent/_Header" />
+
+    <!-- Ends Header -->
+    @* <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-9" style="padding-bottom: 50px">
+        <!-- Start Location -->
+        <partial name="../Shared/A2FComponent/_Title_Location" />
+        <!-- Ends Location -->
+        <!-- Start New Detail Information -->
+        <partial name="../Shared/A2FComponent/_NewDetail_Information" />
+        <!-- Ends New Detail Information -->
+
+        <!-- Start Comment -->
+        <partial name="../Shared/A2FComponent/_Comment_NewDetail" />
+        <!-- Start Comment -->
+
+        <!-- Start Most Viewed Information -->
+        <partial name="../Shared/A2FComponent/_MostViewed" />
+        <!-- Ends Most Viewed Information -->
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3" style="margin-top: 50px;">
+        <!-- Start Related News Information -->
+        <partial name="../Shared/A2FComponent/_Related_News" />
+        <!-- Ends Related News Information -->
+        <!-- Starts SurveyBar -->
+        <partial name="../Shared/A2FComponent/_SurveyBar" />
+        <!-- Ends SurveyBar -->
+        </div>
+        </div>
+        </div>*@
+
+
+
+
+    <!-- Content : Start -->
+    <style>
+        @@media only screen and (max-width: 880px) {
+            #ContentView {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+            #title-name {
+                font-size: 20px !important;
+            }
+            #nameEach {
+                font-size: 18px !important;
+            }
+
+            #content-title-library {
+                font-size : 20px !important;
+            }
+        }
+
+        @@media (max-width : 465px ) {
+            .hide-library-detail {
+                display : none;
+            }
+        }
+
+        @@media (min-width : 466px ) {
+            .col-padding-library-detail {
+                padding : 0px;
+            }
+        }
+
+        /* Event-container responsive */
+        @@media (min-width: 1200px) and (max-width : 1600px) {
+            .event-container {
+                width: 640px;
+            }
+        }
+        @@media only screen and (max-width: 1600px) {
+            #ContentView {
+                width: 100% !important;
+            }
+        }
+
+        div.container p {
+            text-align: justify;
+        }
+
+        /* Video css : start */
+        .video-container {
+            border-radius: 4px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0px 8px 20px rgba(black, 0.4);
+        }
+
+        background {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        /* Video css : end */
+
+        /* Video-button play css : start  */
+        .play-button-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: auto;
+            pointer-events: none;
+        }
+
+        #circle-play-b {
+            pointer-events: auto;
+        }
+
+        svg {
+            width: 100px;
+            height: 100px;
+            fill: #fff;
+            stroke: #fff;
+            background-color: rgba(black, 0.2);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        /* Video-button play css : End */
+    </style>
+
+    <style>
+        /* Video infomation below : Start */
+        .spanDayReleaseBlue {
+            float: left;
+            line-height: 15px;
+            font-size: 12px;
+            color: #265178;
+        }
+
+        .buttonCategoryOfNews {
+            border-radius: 5;
+            border: 0px solid transparent;
+            padding: 1rem 2rem !important;
+            line-height: 1rem !important;
+        }
+
+        .button-join-event {
+            background-color: #fb8557 !important;
+            background-image: linear-gradient(to bottom right, #efcd90, #ff9752c7, #e37c19d2) !important;
+        }
+
+        .button-can-not-join-event {
+            background-color: gray !important;
+            background-image: linear-gradient(to bottom right, #8d8d8d, #a19999c7, #6a6060) !important;
+        }
+        /* Video infomation below : End */
+
+
+        /*  Button 'Đang Diễn Ra' : Start */
+        .button-on-going-event {
+            background-color: yellow;
+            background-image: linear-gradient(to bottom right, #c5f3e5, #41d3a7c7, #008104);
+        }
+
+        .button-end-event {
+            background-color: gray;
+            background-image: linear-gradient(to bottom right, #e9f4f5, #a19999c7, #6a6060);
+        }
+
+        .button-will-event {
+            background-color: #ffd86c;
+            ;
+            background-image: linear-gradient(to bottom right, #efcd90, #ff9752c7, #e37c19d2)
+        }
+
+        .button-76 {
+            border: 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.125rem;
+            /* 18px */
+            font-weight: 600;
+            line-height: 1.75rem;
+            /* 28px */
+            padding: 1rem 1.25rem;
+            text-align: center;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+            .button-76:hover {
+                box-shadow: none;
+            }
+
+        @@media (min-width: 1024px) {
+            .button-76 {
+                font-size: 1.5rem;
+                /* 24px */
+                padding: 1rem 3rem;
+                line-height: 0.5rem;
+                /* 32px */
+            }
+        }
+
+
+        /*  Button 'Đang Diễn Ra' : End */
+    </style>
+
+    <style>
+        div#content-row img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <style>
+        .big-event-container div.row {
+            width: 99%;
+        }
+    </style>
+    <!-- Main Layout : Start -->
+    <!-- Image background and Video : Start -->
+    <div style="background-color: #E9F4F5; width: 100%; position: relative; background-repeat: no-repeat;background-size: contain;">
+        <div style="background-image: url('/images/Group331.png'); width: 100%; position: relative; background-repeat: no-repeat;background-size: contain;">
+            <div id="ContentView" class="container event-container" style="text-align: center; padding-left: 80px; padding-right: 80px;">
+                <!-- Quote : Start -->
+                <div class="container-fluid" style="width: 100%;    position: relative">
+                    <h2 id="title-name" style="margin: auto; font-size: 38px; color: white; margin-bottom: 30px; padding-top: 5%; font-weight : 200 !important;">
+                        @foreach (var item in ViewBag.DataList)
+                        {
+                            @item.Name
+                        }
+                    </h2>
+                </div>
+                <!-- Quote : End -->
+                <!-- Video : Start -->
+                <div class="video-wrapper">
+                    <div class="video-container" id="video-container">
+
+                        <div class="embed-responsive embed-responsive-16by9">
+                            @foreach (var item in ViewBag.DataList)
+                            {
+                                if (item.Video != "")
+                                {
+                                    <iframe id="video-event" class="embed-responsive-item" src="@item.Video"></iframe>
+                                }
+                                else
+                                {
+                                    @*<img src="@item.Photo" style="width : 100%" />*@
+                                    <div id="content-row-pptx" style="font-size : 18px; width: 100%">
+                                        @Html.Raw(Model.Text)
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        <div class="row" style="margin-top: 15px;">
+
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="right: -7px; margin-top: 3px">
+                                <p style="padding-bottom : 0.25em"><i class="fas fa-calendar-day" style="font-size : 18px;"></i></p>
+                                <p>
+                                    <i class="far fa-eye"></i>
+                                </p>
+                            </div>
+
+                            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-padding-library-detail" >
+                                <p style="text-align: left; font-size : 18px;"><span id='openTimeId'>@Model.CreatedTime.ToString("dd/MM/yyyy")</span></p>
+
+                                <p style="text-align: left; font-size : 18px;">
+                                        @foreach (var item in ViewBag.DataList)
+                                        {
+                                            @item.ViewCount
+
+                                        } <span> Lượt xem</span>
+                                </p>
+                            </div>
+                            @foreach (var item in ViewBag.DataList)
+                            { 
+                                @if(item.Video == "") {
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 hide-library-detail" style="right: 15px; padding-right : 0px">
+                                <div class="vn-blue " style="text-align: center;cursor: pointer; position : relative; float :right">
+                                    
+                                            @if(item.Id == 47198 || item.Id == 47199)
+                                            {
+                                                <a onclick="location.href='/@item.FileUrl'" class="btn-wrap">DOWNLOAD</a>
+                                            } else
+                                            {
+                                                 <a onclick="location.href='@item.FileUrl'" class="btn-wrap">DOWNLOAD</a>
+                                            }
+
+                                </div>
+                                </div>
+                            } }
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Video : End -->
+                <div class="container-fluid" style="color: #6C7A9C; font-size : 14px; padding : 0;">
+                    <h6 id="content-title-library" style="color: #154183;text-align: left; font-size: 29px; margin-top : 0px !important">
+                        @ViewBag.lblNoiDung
+                    </h6>
+                    <div id="content-row" style="font-size : 18px; width: 100%;text-align: left;">
+                        @Html.Raw(Model.Description)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Image background and Video : Start -->
+    
+    <!-- Content : End -->
+    <div class="container" style="">
+        <h3 style="padding-top:1em; padding-bottom:1em; font-weight:600; padding-left : 15px">@ViewBag.lblTaiLieuKhac</h3>
+        <partial name="../A2FComponent/_Group_Item_Library_Going_On.cshtml" />
+    </div>
+
+
+
+    @*<div class="container big-event-container" style="padding-bottom: 65px">
+            <partial name="../A2FComponent/_Big_Event_HomePage.cshtml" />
+        </div>*@
+    <!-- STARTS FOOTER -->
+
+    <partial name="../Shared/A2FComponent/_Footer" />
+
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+</body>
+
+</html> 
+
+<style>
+    .vn-blue a:before {
+        content : "\2193" !important;
+        font-size : 20px !important;
+    }
+
+    #content-row-pptx iframe:first-child {
+            width : 100%;
+        }
+
+
+
+    /* Download button css */
+    @@import "https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
+a:link{text-decoration:none}
+
+.vn-blue a{
+background-color:#2980b9;
+  display:inline-block;
+  position:relative;
+      /*margin: 0px 5px 30px 149px;*/
+  padding:15px 20px 13px 80px;
+  color:#fff;
+  transition:all 0.4s ease
+}
+
+.vn-blue a:before{
+  content:"\f019";
+  font-family:fontAwesome;
+  position:absolute;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size:28px;
+  border-radius:0 20px 0 0;
+  color:#000;
+  background-color:#fff;
+  opacity:0.3;
+  padding:10px 20px;
+  top:0;
+  left:0
+}
+
+.vn-blue a:hover{
+  background:#2c3e50
+}
+
+</style>

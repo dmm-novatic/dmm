@@ -1,0 +1,420 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Tài khoản";
+    Layout = "_NovaticAdmin";
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    .form-group label{
+        font-size:15px;
+    }
+    .form-group{
+        padding: 0 2% 0 2%;
+    }
+    #button-box {
+        text-align: center;
+        margin-top: 5%;
+    }
+    #button-box button {
+        display: inline-block;
+    }
+    .editbtn {
+        margin-top: 0.5em;
+        background: linear-gradient( 278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), #FFB526;
+        margin-bottom: 50px;
+        color: #fff;
+        border-color: #eea236;
+        width: 20%;
+        height: 45px;
+    }
+    .ChangePassbtn {
+        background: linear-gradient( -87deg, #28a0ff 0, #1171ef 100%) !important;
+        margin-top: 0.5em;
+        margin-bottom: 50px;
+        color: #fff;
+        border-color: #49a1cd;
+        width: 20%;
+        height: 45px;
+    }
+    .avatar-wrapper {
+        position: relative;
+        height: 150px;
+        width: 150px;
+        margin: 0px auto 20px auto;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 1px 1px 15px -5px black;
+        transition: all 0.3s ease;
+    }
+
+        .avatar-wrapper:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+            .avatar-wrapper:hover .profile-pic {
+                opacity: 0.5;
+            }
+
+        .avatar-wrapper .profile-pic {
+            height: 100%;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+            .avatar-wrapper .profile-pic:after {
+                font-family: FontAwesome;
+                content: "\f007";
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                font-size: 190px;
+                background: #ecf0f1;
+                color: #34495e;
+                text-align: center;
+            }
+
+        .avatar-wrapper .upload-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+            .avatar-wrapper .upload-button .fa-arrow-circle-up {
+                position: absolute;
+                font-size: 234px;
+                top: -17px;
+                left: 0;
+                text-align: center;
+                opacity: 0;
+                transition: all 0.3s ease;
+                color: #34495e;
+            }
+
+            .avatar-wrapper .upload-button:hover .fa-arrow-circle-up {
+                opacity: 0.9;
+            }
+    i.icon-change-picture {
+        font-size: 157px !important;
+        top: -4px !important;
+        left: -4px !important;
+    }
+    .toogle-icon {
+        float: right;
+        position: relative;
+        top: -23px;
+        left: -21px;
+    }
+    .no-padding {
+        padding: 0 !important;
+    }
+</style>
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Thông tin tài khoản</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="card">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#AccountInfo">Thông tin tài khoản</a></li>
+                        <li><a data-toggle="tab" href="#ChangePassword">Đổi mật khẩu</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="AccountInfo" class="tab-pane fade in active">
+                            <div class="card-block novaticContainer">
+                                <div class="row" style="margin : 0;">
+                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                        <div class="form-group">
+                                            <input type="hidden" id="id" />
+                                            <label for="username">@ViewBag.lblDiaChiEmail</label><span class="required">*</span>
+                                            <input type="text" class="form-control" id="email" placeholder="@ViewBag.lblNhapEmail">
+
+                                            <label for="name">@ViewBag.lblHoVaTen</label><span class="required">*</span>
+                                            <input type="text" class="form-control" id="name" placeholder="@ViewBag.lblHoVaTen">
+
+                                            <label for="username">@ViewBag.lblTenDangNhap1</label><span class="required">*</span>
+                                            <input type="text" class="form-control" id="username" placeholder="@ViewBag.lblNhapTenDangNhap1">
+
+                                            <label for="PhoneNumber">@ViewBag.lblSoDienThoai</label>
+                                            <input type="text" class="form-control" id="PhoneNumber" placeholder="@ViewBag.lblNhapSoDienThoai">
+
+                                            <label for="IdCardNumber">@ViewBag.lblChungMinhThu</label>
+                                            <input type="text" class="form-control" id="IdCardNumber" placeholder="@ViewBag.lblNhapSoChungMinhThu">
+
+                                            @if (@ViewBag.UserTypeID != 10002)
+                                            {
+                                                <label for="CompanyName">@ViewBag.lblTenDoanhNghiep</label>
+                                                <input type="text" class="form-control" id="CompanyName" placeholder="@ViewBag.lblNhapTenDoanhNghiep">
+
+                                                <label for="CompanyNumber">@ViewBag.lblSoDangKyKinhDoanh</label>
+                                                <input type="text" class="form-control" id="CompanyNumber" placeholder="@ViewBag.lblNhapSoDangKyKinhDoanh">
+                                            }
+                                            <div id="button-box">
+                                                <button class="editbtn" onclick="edititem()">Cập nhật thông tin</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <div class="avatar-wrapper">
+                                            <img id="imageAvatar" class="profile-pic" src="" alt="unknown" />
+                                            <div class="upload-button">
+                                                <i class="fas fa-arrow-circle-up icon-change-picture" aria-hidden="true"></i>
+                                            </div>
+                                            <input class="file-upload" type="file" accept="image/*" />
+                                        </div>
+                                        <p style="text-align: center">@ViewBag.lblAnhDaiDien</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="ChangePassword" class="tab-pane fade">
+                            <div class="card-block novaticContainer">
+                                <div class="row" style="margin : 0;">
+                                    <h3 style="margin-left:2.2%">@ViewBag.lblDoiMatKhau </h3>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 ">
+
+                                        <div class="form-group">
+
+                                            <label for="current-password">@ViewBag.lblNhapMatKhauHienTai</label><span class="required">*</span>
+
+                                            <input type="password" class="form-control" name="current-password" id="Oldpassword" placeholder="@ViewBag.lblNhapMatKhauHienTai">
+
+                                            <span id="oldIcon" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password toogle-icon"></span>
+
+                                            <label for="new-password-retype">@ViewBag.lblMatKhauMoi</label><span class="required">*</span>
+
+                                            <input type="password" class="form-control" name="new-password-retype" id="NewPassword" placeholder="@ViewBag.lblNhapMatKhauMoi">
+
+                                            <span id="newsIcon" toggle="#confirmpassword-field" class="fa fa-fw fa-eye field-icon toggle-confirmpassword toogle-icon"></span>
+
+                                            <label for="new-password">@ViewBag.lblNhapLaiMatKhauMoi</label><span class="required">*</span>
+
+                                            <input type="password" class="form-control" name="new-password" id="ConfirmNewPassword" placeholder="@ViewBag.lblNhapLaiMatKhauMoi">
+
+                                            <span id="confirmIcon" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password toogle-icon"></span>
+                                            <div id="button-box">
+                                                <button class="ChangePassbtn" onclick="ChangePassword()">Thay đổi mật khẩu</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-4 col-md-4 col-lg-4 no-padding lock-img-acount-setting">
+                                        <img class="img-responsive " src="/images/CreatePasswordIcon.bmp" style="padding: 0px !important">
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var account = JSON.parse(localStorage.getItem("currentLoggedInUser"));
+        $("#username").val(account.username);
+        $("#email").val(account.email);
+        $("#name").val(account.name);
+        $("#PhoneNumber").val(account.phone);
+        $("#IdCardNumber").val(account.idCardNumber);
+        $("#CompanyName").val(account.companyName);
+        $("#CompanyNumber").val(account.companyNumber);
+        $("#imageAvatar").attr("src", account.photo);
+        $("#id").val(account.id);
+    }
+    function edititem() {
+            var account = JSON.parse(localStorage.getItem("currentLoggedInUser"));
+            var updatingObj = {
+                "username": $("#username").val(),
+                "email": $("#email").val(),
+                "name": $("#name").val(),
+                "phone": $("#PhoneNumber").val(),
+                "idCardNumber": $("#IdCardNumber").val(),
+                "companyName": $("#CompanyName").val(),
+                "companyNumber": $("#CompanyNumber").val(),
+                "id": account.id,
+                "accountTypeID": account.accountTypeID,
+                "active": 1,
+                "password": account.password,
+                "description": account.description,
+                "info": account.info,
+                "createdTime": account.createdTime,
+                "address": account.address,
+                "isActivated": 1,
+                "photo": $('#imageAvatar').attr('src'),
+                "googleId": account.googleId,
+                "facebookId": account.facebookId,
+            }
+             $.ajax({
+                 url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}account/api/update",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(updatingObj),
+                success: function (responseData) {
+                    // debugger;
+                    if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                        Swal.fire(
+                            'Updated!',
+                            'Account has been successfully updated!',
+                            'success'
+                        );
+
+                        localStorage.setItem("currentLoggedInUser", JSON.stringify(updatingObj));
+                        document.location.reload();
+
+                    }
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    Swal.fire(
+                        'Error!',
+                        'Could\' update item, please check your data',
+                        'error'
+                    );
+                }
+            });
+    }
+    function ChangePassword() {
+        var account = JSON.parse(localStorage.getItem("currentLoggedInUser"));
+        var OldPassword = $("#Oldpassword").val();
+        var NewPassword = $("#NewPassword").val();
+        var ConfirmNewPassword = $("#ConfirmNewPassword").val();
+        if (NewPassword != ConfirmNewPassword) {
+            Swal.fire(
+                'Lỗi',
+                'Mật khẩu mới không trùng với mật khẩu xác nhận',
+                'warning'
+            )
+        } else if (OldPassword == "" || NewPassword == "" || ConfirmNewPassword == "" || NewPassword.length < 8) {
+            Swal.fire(
+                'Lỗi',
+                'Các trường có dấu đỏ không được để trống và mật khẩu mới phải đạt 8 ký tự trở lên',
+                'warning'
+            )
+        } else {
+            var obj = {
+                "id": account.id,
+                "accountTypeID": account.accountTypeID,
+                "active": 1,
+                "name": "",
+                "email": "",
+                "username": "",
+                "password": NewPassword,
+                "photo": "",
+                "description": OldPassword,
+                "info": "",
+                "createdTime": account.createdTime,
+                "phone": "",
+                "address": ""
+
+            };
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Account/api/ChangePassword",
+                data: JSON.stringify(obj),
+                success: function (responseData) {
+                    if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                        Swal.fire(
+                            'Thành công',
+                            'Cập nhật mật khẩu thành công!',
+                            'success'
+                        );
+                    }
+                    if (responseData.status == 200 && responseData.message === "INCORRECT") {
+                        Swal.fire(
+                            'Lỗi',
+                            'Mật khẩu không chính xác.',
+                            'error'
+                        );
+
+                    }
+
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    Swal.fire(
+                        'Lỗi',
+                        'Vui lòng kiểm tra lại thông tin đã nhập',
+                        'error'
+                    );
+                }
+            });
+        }
+    }
+    $(document).ready(function () {
+
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+    });
+    $("#oldIcon").click(function () {
+        $(this).toggleClass("fa-eye-slash");
+        var x = document.getElementById("oldPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    });
+
+    // Script for the eye in password
+
+    $("#newsIcon").click(function () {
+        $(this).toggleClass("fa-eye-slash");
+        var x = document.getElementById("newsPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    });
+
+    // Script for the eye in password
+
+    $("#confirmIcon").click(function () {
+        $(this).toggleClass("fa-eye-slash");
+        var x = document.getElementById("confirmPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    });
+</script>

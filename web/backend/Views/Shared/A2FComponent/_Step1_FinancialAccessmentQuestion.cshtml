@@ -1,0 +1,768 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using A2F.Util;
+@{
+    Layout = null;
+}
+
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<!-- CSS : Starts -->
+<style>
+    .selectPreferentialProduct {
+        margin-left: 2%
+    }
+    .titlePreferentialType {
+        margin-left: 2%
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #337ab7 !important;
+        border: 1px solid #337ab7 !important;
+        color: white !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: white !important;
+    }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+            background-color:white;
+            color:black !important;
+        }
+        .collapsible {
+            font-size: 17px;
+            color: #265178;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+        .collapsible:after {
+            content: '\002B';
+            font-weight: bold;
+            /*float: left;*/
+            font-size: 28px;
+            color: #265178;
+            margin-left: 5px;
+        }
+
+    .collapsible.active:after {
+        content: "\2212";
+    }
+    /*input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: white;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid #d1d3d1;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #3085d6;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid white;*/
+        /*  font-family: "Font Awesome 5 Pro" !important;
+        content: "\f00c" !important;
+        color:white;
+        font-weight:900;*/
+    /*}*/
+
+    .rounded-list .questionactive::before {
+        font-family: "Font Awesome 5 Pro" !important;
+        content: "\f00c" !important;
+        display: inline-block !important;
+        padding: 0px 5px !important;
+        vertical-align: middle !important;
+        font-weight: 900;
+        background: linear-gradient(135.52deg, rgba(56, 226, 167, 0) 3.36%, #22A9D3 95.87%), linear-gradient(0deg, #3FD5A8, #3FD5A8) !important;
+        animation: zoom 0.5s linear normal;
+    }
+
+    @@keyframes zoom {
+        0% {
+            transform: scale(.5);
+            opacity: 0
+        }
+
+        50% {
+            opacity: 0.5
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1)
+        }
+    }
+
+
+    .title-survey {
+        background: linear-gradient(90deg, #0D9CC9 0%, rgba(13, 156, 201, 0) 80.23%), linear-gradient(0deg, #125FA6, #125FA6);
+        height: 50px;
+        border-radius: 4px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+        .title-survey p {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #FFFFFF;
+            padding: 13px 20px;
+            /*display : inline;*/
+        }
+
+            .title-survey p span {
+                float: right;
+                font-size: 15px !important;
+            }
+
+    p.question-survey {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .answer-question {
+        text-align: left;
+        /*padding-left: 70px;*/
+    }
+
+        .answer-question span {
+            padding: 1px 0px 0px 0px;
+            display: inline-flex;
+        }
+
+
+        .answer-question label {
+            padding-left: 5px;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+            width: 90%;
+        }
+
+    ol {
+        counter-reset: li; /* Initiate a counter */
+        list-style: none; /* Remove default numbering */
+        *list-style: decimal; /* Keep using default numbering for IE6/7 */
+
+        padding: 0;
+        margin-bottom: 4em;
+    }
+
+        ol ol {
+            margin: 0 0 0 2em; /* Add some left margin for inner lists */
+        }
+
+    .rounded-list p {
+        /*position: absolute;*/
+        padding-left: 60px !important;
+        padding: .4em .4em .4em 1em;
+    }
+
+        .rounded-list p:before {
+            content: counter(li);
+            counter-increment: li;
+            background: linear-gradient( 289.54deg, #E4750E -6.67%, rgba(228, 117, 14, 0) 103.74%), linear-gradient( 0deg, #FFB526, #FFB526);
+            color: #ffffff;
+            line-height: 1.5em;
+            border-radius: 50%;
+            /* padding: 2px 8px; */
+            position: absolute;
+            left: 39px;
+                height: 28px;
+            width: 28px;
+            padding-left: 9px;
+        }
+
+
+
+    /* Container result show : Starts */
+    .container-result-show {
+        background-color: #ECF9FB;
+        left: 291px;
+        top: 1635px;
+        background: #ECF9FB;
+        border: 1px solid #BDE4EB;
+        box-sizing: border-box;
+        border-radius: 4px;
+        margin-bottom: 40px;
+    }
+
+        .container-result-show div {
+            float: right;
+            padding: 20px;
+        }
+
+            .container-result-show div span {
+                margin-right: 40px;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 28px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+
+                .container-result-show div span b {
+                    font-weight: 700;
+                    color: #0E9CC9;
+                }
+
+    .btn-grad {
+        background-image: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%)
+    }
+
+    .btn-grad {
+        padding: 12px 28px;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+    }
+
+        .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+
+    /* Container result show : Ends*/
+
+    .question-footer {
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+        left: 0px;
+        top: 104px;
+        border-radius: 5px;
+        padding: 15px;
+        background: #EBF6F9;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 10px
+    }
+
+        .question-footer b {
+            font-size: 14px;
+            font-style: italic;
+            font-weight: 700;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+
+    .question-footer-2 {
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: gray;
+        margin-left: 50px;
+        margin-top: 10px;
+    }
+</style>
+
+<style>
+
+    input[type=text].topnav {
+        padding: 8px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+        border: 1px solid #CCCCCC;
+        box-sizing: border-box;
+        border-radius: 6px;
+        width: 40%;
+    }
+
+    button.topnav {
+        right: 42px;
+        padding: 8px 10px;
+        position: relative;
+        background: #ddd;
+        font-size: 17px;
+        cursor: pointer;
+        border: 1px solid #CCCCCC;
+        box-sizing: border-box;
+        border-radius: 6px;
+    }
+
+        button.topnav:hover {
+            background: #ccc;
+        }
+
+    @@media screen and (max-width: 600px) {
+
+        button.topnav {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+
+        input[type=text].topnav {
+            border: 1px solid #ccc;
+        }
+    }
+</style>
+
+<!-- CSS : Ends -->
+
+<!-- Responsive : Start -->
+<style>
+    @@media (max-width : 661px) {
+        #step-ul-anchor {
+            display : none;
+        }
+
+        .no-padding {
+            padding : 0 ;
+        }
+
+        .rounded-list p {
+            padding-left: 35px !important;
+        }
+
+        .question-footer {
+            margin : auto 0;
+        }
+
+        #step-1 div:first-child {
+            margin-left: 0!important;
+        }
+
+        .rounded-list p:before {
+            left: 2px;
+        }
+
+        .titlePreferentialType {
+            margin-left:0px !important;
+        }
+        .selectPreferentialProduct {
+            margin-left: 0px !important;
+        }
+        .select2-option {
+            padding: 5px !important;
+        }
+    }
+</style>
+<!-- Responsive : End -->
+
+
+
+<div class="container-fluid no-padding">
+    <div class="question-footer">
+        <b>Vui lòng trả lời thời gian hoạt động và doanh thu trung bình của quý doanh nghiệp (Ưu tiên theo doanh thu)</b>
+    </div>
+    <ol class="rounded-list">
+        @foreach (var item in ViewBag.DataListViewModel)
+        {
+            <li>
+                <p class="question-survey" id="@item.Id-@item.NameQuestion">@item.NameQuestion</p>
+
+
+                <div class="answer-question container">
+                    <div class="col-md-12">
+                        @foreach (var item2 in ViewBag.listAnswer)
+                        {
+                            @if (item2.QuestionId == item.IdQuestion)
+                            {
+                                <div class="col-md-3">
+                                    <span class="answer">
+                                        <input class="radio-checked" type="radio" id="@item2.Name-@item2.Id" name="@item.Id-@item.NameQuestion" value="@item2.Score" required>
+                                        <label for="@item2.Name-@item2.Id">@item2.Name <br><b style="font-size: 14px;">@item2.Description</b></label>
+                                    </span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </li>
+        }
+        <!-- Search -->
+    <li>
+        <p class="question-survey" id="Id2">Lĩnh vực, đối tượng ưu tiên (Nếu có)</p>
+        @*<div class="question-footer">
+            <b>Danh sách ngành, lĩnh vực, đối tượng ưu tiên của các tổ chức tài chính. Vui lòng lựa chọn lĩnh vực phù hợp với lĩnh vực hoạt động hiện tại của doanh nghiệp</b>
+        </div>*@
+    @*<div class="col-md-12">*@
+        @for (int i = 0; i < ViewBag.listPreferentialType.Count; i++)
+        {
+            var item = ViewBag.listPreferentialType[i];
+            if (item.Id == 1000001)
+            {
+                <div class="question-footer">
+                    <b>Doanh nghiệp thuộc các lĩnh vực ưu tiên nào dưới đây? (Nếu có hãy chọn các lĩnh vực phù hợp với thực tế hoạt động của Doanh nghiệp)</b>
+                </div>
+                <div class="select2-option" style="padding: 0 35px 0 35px">
+                    <h4 class="collapsible titlePreferentialType" data-toggle="collapse" data-target="#collapseOne_@i" href="#collapseOne_@i" style="font-weight: 500; color: black; cursor: pointer">@item.Name</h4>
+                    <div id="collapseOne_@i" class="panel-collapse collapse TitleCollap selectPreferentialProduct">
+                        <select style="width: 100%" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            @foreach (var item2 in ViewBag.listPreferentialProduct)
+                            {
+                                if (item2.PreferentialTypeId == item.Id)
+                                {
+                                    <option value="@item2.Id">@item2.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+            else if (item.Id == 1000002)
+            {
+                <div class="question-footer">
+                    <b>Doanh nghiệp thuộc đối tượng ưu tiên nào dưới đây? (Nếu có hãy chọn vào mục phù hợp với thực tế hoạt động của Doanh nghiệp)</b>
+                </div>
+                <div class="select2-option" style="padding: 0 35px 0 35px">
+                    <h4 class="collapsible titlePreferentialType" data-toggle="collapse" data-target="#collapseOne_@i" href="#collapseOne_@i" style="font-weight: 500; color: black; cursor: pointer">@item.Name</h4>
+                    <div id="collapseOne_@i" class="panel-collapse collapse TitleCollap selectPreferentialProduct">
+                        <select style="width: 100%" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            @foreach (var item2 in ViewBag.listPreferentialProduct)
+                            {
+                                if (item2.PreferentialTypeId == item.Id)
+                                {
+                                    <option value="@item2.Id">@item2.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="select2-option" style="padding: 0 35px 0 35px">
+                    <h4 class="collapsible titlePreferentialType" data-toggle="collapse" data-target="#collapseOne_@i" href="#collapseOne_@i" style="font-weight: 500; color: black; cursor: pointer">@item.Name</h4>
+                    <div id="collapseOne_@i" class="panel-collapse collapse TitleCollap selectPreferentialProduct">
+                        <select style="width: 100%" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            @foreach (var item2 in ViewBag.listPreferentialProduct)
+                            {
+                                if (item2.PreferentialTypeId == item.Id)
+                                {
+                                    <option value="@item2.Id">@item2.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+
+        }
+
+    @*</div>*@
+        <script>
+            $('.collapsible').click(function () {
+                $(this).toggleClass('active');
+            });
+        </script>
+
+
+        @*<div class="answer-question container">
+            <div class="col-md-12">
+                <input class="topnav" type="text" placeholder="Tìm kiếm theo từ khóa.." name="search">
+                <button class="topnav"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="question-footer-2">
+            Danh sách ngành, lĩnh vực, đối tượng ưu tiên của các tổ chức tài chính
+            Vui lòng lựa chọn lĩnh vực phù hợp với lĩnh vực hoạt động hiện tại của doanh nghiệp
+        </div>*@
+    </li>
+
+    </ol>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2({
+            placeholder: "Nhấn vào đây để chọn",
+            allowClear: true
+        });
+    });
+</script>
+@*end item*@
+@*<div class="container-fluid container-result-show">
+        <div>
+            <span >Tổng điểm tạm tính: <b class="totalScore">0</b></span> <button class="btn btn-warning btn-grad" onclick="checkAnswer()">XEM KẾT QUẢ ĐÁNH GIÁ</button>
+        </div>
+
+    </div>*@
+
+<script>
+    var currentEnterpriseTypeId = 0;
+    $(".answer .radio-checked").click(function () {
+        var totalScore = 0;
+            $(".answer .radio-checked:checked").each(function () {
+                var score = parseFloat($(this).val());
+                var questionId = $(this).data("questionid");
+                $("#question-" + questionId + "").addClass("questionactive");
+                totalScore += score;
+            });
+    if (totalScore == 1) {
+        currentEnterpriseTypeId = @SystemConstant.ENTERPRISEID_0;
+    }
+    else if (totalScore == 2) {
+        currentEnterpriseTypeId = @SystemConstant.ENTERPRISEID_1;
+    }
+    else if (totalScore == 3) {
+        currentEnterpriseTypeId = @SystemConstant.ENTERPRISEID_2;
+    }
+    else if (totalScore == 4) {
+        currentEnterpriseTypeId = @SystemConstant.ENTERPRISEID_3;
+    }
+    });
+
+    var ArrayPreferentialSelected = [];
+    $('.js-example-basic-multiple').on('change', function () {
+        var ArraySelect = [];
+        $('.js-example-basic-multiple').each(function () {
+            var data = $(this).val();
+            if (data != null) {
+                for (var i = 0; i < data.length; i++){
+                     ArraySelect.push((data[i]));
+                 }
+
+            }
+        });
+        ArrayPreferentialSelected = ArraySelect;
+    });
+
+
+
+</script>
+
+
+
+@*<script>
+        $(".answer .radio-checked").click(function () {
+            var totalScore = 0;
+            var totalSurveySection = 0;
+            $(".answer .radio-checked:checked").each(function () {
+                var score = parseFloat($(this).val());
+                var questionId = $(this).data("questionid");
+                $("#question-" + questionId + "").addClass("questionactive");
+                totalScore += score;
+            });
+
+            $(".surveySection").each(function () {
+                var totalScoreSurveySection = 0;
+                var surveySectionId = $(this).data("value");
+                var promotionScore = $(this).data("promotionccore");
+                $(".answer .radio-checked:checked").each(function () {
+                    var dataSurveySectionId = $(this).data("surveysectionid");
+                    var scoreQuestion = $(this).data("scorequestion");
+                    var score = parseFloat($(this).val());
+                    if (surveySectionId == dataSurveySectionId) {
+                        if (@ViewBag.SurveyDetailObj[0].SurveyTypeId == 1000001) {
+                            totalScoreSurveySection += (((score * scoreQuestion / 100) * (promotionScore / 100)) * 100);
+                        }
+                        else {
+                            totalScoreSurveySection += (((score / 100) * (promotionScore / 100)) * 100);
+                        }
+                    }
+                });
+                totalSurveySection += totalScoreSurveySection;
+            });
+            $(".totalScore").text(totalSurveySection.toFixed(2));
+        });
+        function TotalScore() {
+                var updatingObj = {};
+            var totalScore = 0;
+            var JsonSurveyAccount = [];
+            var JsonOfQuestion = [];
+            var dataOfQuestion = "";
+            $(".answer .radio-checked:checked").each(function (index) {
+                var score = parseFloat($(this).val());
+                var questionId = $(this).data("questionid");
+                var answerId = $(this).data("answerid");
+                var promotionScore = $(this).data("promotionccore");
+                var scoreQuestion = $(this).data("scorequestion");
+                if (@ViewBag.SurveyDetailObj[0].SurveyTypeId == 1000001) {
+                    totalScore += (((score * scoreQuestion / 100) * (promotionScore / 100)) * 100);
+                }
+                else {
+                    totalScore += (((score / 100) * (promotionScore / 100)) * 100);
+                }
+
+                dataOfQuestion = '{"questionId": "' + questionId + '","answerId": "' + answerId + '","score": ' + score+'},'
+                JsonOfQuestion += dataOfQuestion;
+            });
+            JsonSurveyAccount = '{"surveyId":' +@ViewBag.SurveyId+',"score":' + totalScore + ',"name":"' + $(".nameSurvey").text()+'"}';
+            var data = "";
+            var JsonOfSurveySectionAccount = [];
+            $(".surveySection").each(function () {
+                var totalScoreSurveySection = 0;
+                var surveySectionId = $(this).data("value");
+                var surveySectionName = $(this).text();
+                $(".answer .radio-checked:checked").each(function () {
+                    var dataSurveySectionId = $(this).data("surveysectionid");
+                    var score = parseFloat($(this).val());
+                    var scoreQuestion = $(this).data("scorequestion");
+                    if (surveySectionId == dataSurveySectionId) {
+                        if (@ViewBag.SurveyDetailObj[0].SurveyTypeId == 1000001) {
+                            totalScoreSurveySection += score * scoreQuestion;
+                        }
+                        else {
+                            totalScoreSurveySection += score;
+                        }
+                    }
+                });
+                data = '{"score": ' + totalScoreSurveySection + ', "name": "' + surveySectionName + '","description":"' + surveySectionId+'"},'
+                JsonOfSurveySectionAccount += data;
+            });
+            var dataJsonOfSurveySectionAccount = "[" + JsonOfSurveySectionAccount + "]";
+            var dataJsonOfQuestion = "[" + JsonOfQuestion + "]";
+            updatingObj.JsonSurveyAccount = JsonSurveyAccount;
+            updatingObj.JsonOfSurveySectionAccount = JSON.parse(dataJsonOfSurveySectionAccount.replace(",]","]"));
+            updatingObj.JsonOfQuestion = JSON.parse(dataJsonOfQuestion.replace(",]", "]"));
+            $("#loader").show();
+            var apiSurveyAccountMultiple = $.ajax({
+                url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}surveyAccount/api/AddMultiple",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(updatingObj),
+                success: function (responseData) {
+                    // debugger;
+                    if (responseData.status == 201 && responseData.message === "CREATED") {
+                        $("#loader").hide();
+                        var dataResponse = responseData.data;
+                        console.log("Created SurveyAccount");
+                        Swal.fire({
+                            title: 'Bạn đã hoàn thành bài khảo sát',
+                            html: "Vui lòng nhấn vào nút <b>Xem kết quả khảo sát</b> để xem tổng quan đánh giá khảo sát của bạn",
+                            type: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#FF512F',
+                            cancelButtonColor: '#777',
+                            confirmButtonText: 'Xem kết quả khảo sát',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.value == true) {
+                                location.href = "/ket-qua-khao-sat/" + dataResponse[0].id;
+                            }
+
+
+                        });
+                    }
+                },
+                error: function (e) {
+                    $("#loader").hide();
+                    Swal.fire({
+                        title: 'Bạn chưa đăng nhập',
+                        html: "Vui lòng đăng nhập để làm bài khảo sát",
+                        type: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#FF512F',
+                        cancelButtonColor: '#777',
+                        confirmButtonText: 'Đến trang đăng nhập',
+                        cancelButtonText: 'Hủy'
+                    }).then((result) => {
+                        if (result.value == true) {
+                            location.href = "/dang-nhap";
+                        }
+                    });
+                    console.log(e.message);
+                }
+            });
+        }
+    </script>*@
+
+@*<script>
+        function checkAnswer() {
+            // check if user does not answer all question
+            if ($('div.answer-question:not(:has(:radio:checked))').length) {
+                Swal.fire({
+                        title: 'Bạn chưa điền hết các câu hỏi',
+                        html: 'Bạn vẫn còn ít nhất 1 câu hỏi chưa điền, bạn chắc chắn vẫn muốn đánh giá kết quả?',
+                        footer: 'Điền tất cả các câu trả lời để có một bài đánh giá chính xác nhất!',
+                        type: 'warning',
+                        showConfirmButton: true,
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        confirmButtonColor: '#FF512F',
+                        cancelButtonColor: '#777',
+                        confirmButtonText: 'Có, xem kết quả',
+                        cancelButtonText: 'Làm tiếp khảo sát'
+                    }).then((result) => {
+                        if (result.value == true) {
+                            TotalScore();
+                        }
+                    });
+            } else {
+                TotalScore();
+            }
+
+        }
+    </script>*@
+
+@*<script>
+        const btn = document.querySelector('#btn');
+        // handle button click
+        btn.onclick = function () {
+            const rbs = document.querySelectorAll('input[name="Id1"]');
+            let selectedValue;
+            for (const rb of rbs) {
+                if (rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+            alert(selectedValue);
+        };
+    </script>*@
+
+<!-- Survey 1 : Ends -->
+
+<script>
+    /* Nếu người dùng k trả lời bất kì câu hỏi nào sẽ hiện ra sweetalert */
+    setTimeout(function () {
+    $('.sw-btn-next').on('click', function(event) { 
+        if($(':radio:checked').length == 0 && ArrayPreferentialSelected.length == 0) {
+            Swal.fire({
+                        title: 'Bạn chưa trả lời câu hỏi',
+                        html: "Vui lòng trả lời câu hỏi để chuyển sang bước tiếp theo",
+                        type: 'info', 
+                    });
+            // hiện ra thông báo và không cho chuyển trang
+            $('.sw-btn-next').addClass("disabled");
+            window.location.href = "/tra-cuu-truc-tuyen#step-1";
+        } else {
+             // người dùng có trả lời câu hỏi
+             
+        }
+    });
+    
+    },1000);
+</script>

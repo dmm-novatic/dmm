@@ -1,0 +1,253 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <div class="container-fluid" style="background-color: #F1FDFF; padding-top: 0.9%; padding-bottom: 0.5%; font-size: 12px; ">
+        <div class="container">
+            <p style="font-size: 19px; margin : 20px 0"><a href="Home" style="color:black;">@ViewBag.lblTrangChu</a><span>&nbsp / &nbsp</span><a href="tim-kiem" style="color:black;">@ViewBag.lblSearch</a></p>
+        </div>
+    </div>
+    <!--Search Box Start-->
+    <partial name="../A2FComponent/_SearchBox_FAQ.cshtml">
+        <!--Search Box End-->
+        <style>
+            .EventContext {
+                margin-bottom: 2%;
+                height:220px;
+            }
+
+                .EventContext p:nth-child(3) {
+                    display: inline-block;
+                    padding-right: 1%;
+                    font-size: 18px;
+                }
+
+                .EventContext p:last-of-type {
+                    display: inline-block;
+                    padding-right: 1%;
+                    font-size: 18px;
+                }
+
+                .EventContext a:first-of-type {
+                    color: #265178;
+                    font-size: 28px;
+                    font-family: sans-serif;
+                }
+
+                .EventContext p:nth-child(2) {
+                    color: #5A6990;
+                    font-size: 15px;
+                    font-family: sans-serif;
+                }
+
+                .EventContext span {
+                    color: #54555A;
+                    font-size: 18px;
+                    font-family: sans-serif;
+                }
+
+            .Event_Image {
+                position: relative;
+                height: 219px;
+            }
+
+                .Event_Image img {
+                    position: absolute;
+                }
+
+                    .Event_Image img:nth-child(2) {
+                        top: 6%;
+                        left: -1%;
+                    }
+
+                    .Event_Image img:first-of-type {
+                        width: 350px;
+                        height: 220px;
+                    }
+            .Button_SearchResult {
+                padding-left: 120px;
+                padding-right: 120px;
+                background-color: #11335A;
+                color: #FFFFFF;
+            }
+                .Button_SearchResult:hover,.Button_SearchResult:active {
+                    padding-left: 120px;
+                    padding-right: 120px;
+                    background-color: #11335A;
+                    color: #FFFFFF;
+                }
+        </style>
+
+        <style>
+            /* Responsive : Start */
+            @@media (max-width : 992px) {
+                .justify-search-result {
+                    display : none;
+                }
+            }
+
+            @@media (max-width : 1199px) {
+                .Event_Image {
+                    display: grid; 
+                }
+
+                .Event_Image img:first-child  {
+                    width : 100% !important;
+                }
+            }
+
+
+            @@media (max-width : 768px) {
+                .Event_Image img:first-child, .EventContext, .Event_Image {
+                        height: 140px;
+                }
+
+                .EventContext a:first-child {
+                        font-size: 19px;
+                }
+
+                .Button_SearchResult  {
+                    margin-top : 5%;
+                    margin-bottom : 5%;
+                    padding : 0 !important;
+                    height: 30px;
+                    width : 120px;
+                }
+            }
+            /* Responsive : End */
+        </style>
+        <script>
+            var currentpageIndex = 2;
+            function NextPage() {
+                debugger;
+                var currentpageSize = 4;
+                var currentIDBiggest = "99999";
+                var keyword = '@Html.Raw(ViewBag.Keyword)';
+                var dataSource = [];
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: '/Post/api/ListPaging/Search/' + keyword + '/' + currentpageIndex + '/' + currentpageSize + '/' + currentIDBiggest,
+                success: function (result) {
+                    console.log("arrList: " + result.data);
+                    dataSource = result.data;
+                    var html = "";
+                    for (var i = 0; i < dataSource.length; i++) {
+                        if (dataSource[i].postCategoryId == 10296) {
+                            html =
+                                `<img class="img-responsive" src="` + dataSource[i].photo + `" />
+                                                <img class="img-responsive" src="/images/Group 265 (2).png" />`;
+                        }
+                        else if (dataSource[i].postCategoryId == 10295) {
+                            html = ` <img class="img-responsive" src="` + dataSource[i].photo + `" />
+                                                <img class="img-responsive" src="/images/Group 265 (3).png" />`;
+                                               
+                        }
+                        else {
+                            html = `  <img class="img-responsive" src="` + dataSource[i].photo + `" />`;
+                          
+                        }
+                        $("#next-view").append(`<div class="row">
+                                                    <div class="col-xs-5 col-sm-5 col-md-4 col-lg-4 Event_Image">
+                                                   `+ html+`
+                                                </div>
+                                        <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 EventContext">
+
+                                            <a class="ellipsis2" href="../chi-tiet-tin-tuc/` + dataSource[i].url + `">` + dataSource[i].name + `</a>
+                                            <p class="ellipsis3">
+                                                ` + dataSource[i].description + `
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>`
+                        );
+                    }
+                },
+                error: function (result) {
+                    $(".Button_SearchResult").hide();
+                    $("#next-view").append(`<p style="text-align: center; font-size: 15px">@ViewBag.lblXemHetBaiViet<p>`);
+                }
+            });
+                currentpageIndex = currentpageIndex + 1;
+        }
+        </script>
+
+        <div class="container">
+            <p style="font-size: 25px; color: #98999C;padding-top: 3%;padding-bottom: 3%;">
+                @ViewBag.lblTimThay @ViewBag.NumberSearch @ViewBag.lblTextResultSearch "<span style="color: #6a83bb;" id="keyword">@ViewBag.Keyword</span>"
+            </p>
+        </div>
+        <div class="container">
+            @if (ViewBag.NumberSearch == 0)
+            {
+
+            }
+            else
+            {
+                @for (int i = 0; i < ViewBag.ListSearchPost.Count; i++)
+                {
+                    if (i < 4)
+                    {
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-5 col-md-4 col-lg-4 Event_Image">
+                                @if (ViewBag.ListSearchPost[i].PostCategoryId == 10296)
+                                {
+                                    <img class="img-responsive" src="@ViewBag.ListSearchPost[i].Photo" />
+                                    <img class="img-responsive" src="~/images/Group 265 (2).png" />
+                                }
+                                else if (ViewBag.ListSearchPost[i].PostCategoryId == 10295)
+                                {
+                                    <img class="img-responsive" src="@ViewBag.ListSearchPost[i].Photo" />
+                                    <img class="img-responsive" src="~/images/Group 265 (3).png" />
+                                }
+                                else
+                                {
+                                    <img class="img-responsive" src="@ViewBag.ListSearchPost[i].Photo" />
+                                }
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 EventContext">
+
+                                <a class="ellipsis2" href="../chi-tiet-tin-tuc/@ViewBag.ListSearchPost[i].Url">@ViewBag.ListSearchPost[i].Name</a>
+                                <p class="ellipsis3">
+                                    @ViewBag.ListSearchPost[i].Description
+                                </p>
+                                @*<p><i class="fas fa-calendar"></i></p><span id="time"></span><br />*@
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            @if (ViewBag.NumberSearch == 0)
+            {
+
+            }
+            else
+            {
+                <div id="next-view"></div>
+                <div class="container" style="text-align:center;padding-bottom:2%;padding-top:2%;">
+                    <button class="Button_SearchResult btn btn-default" onclick="NextPage()">@ViewBag.lblXemTiep</button>
+                </div>
+            }
+        </div>
+        
+        <!-- STARTS FOOTER -->
+        <partial name="../Shared/A2FComponent/_Footer" />
+        <!-- ENDS FOOTER -->
+        @*<partial name="Auction/FrontEnd/_Javascript" />*@
+</body>
+</html>

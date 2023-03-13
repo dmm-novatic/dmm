@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="mnmd-block mnmd-block--fullwidth mnmd-block--contiguous single-billboard js-overlay-bg">
+    <div class="background-img hidden-xs hidden-sm" style="background-image: url('@ViewBag.Photo');"></div>
+    <div class="background-img background-img--darkened hidden-md hidden-lg" style="background-image: url('@ViewBag.Photo');"></div>
+    <div class="single-billboard__inner">
+        <header class="single-header">
+            <div class="container">
+                <div class="single-header__inner inverse-text js-overlay-bg-sub-area">
+                    <div class="background-img background-img--dimmed blurred-more hidden-xs hidden-sm js-overlay-bg-sub" style="background-image: url('@ViewBag.Photo');"></div>
+                    <div class="single-header__content">
+                        <a class="cat-193 post__cat post__cat--bg cat-theme-bg" href="../category/@ViewBag.PostCategoryURL">@ViewBag.PostCategoryName</a>
+                        @if (@ViewBag.PostPublishStatusId == 2)
+                        {
+                            <a class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="#"><i class="mdicon mdicon-star"></i>Membership</a>
+                        }
+                        <h1 class="entry-title entry-title--lg">
+                            @if (@ViewBag.PostPublishStatusId == 2)
+                            {
+                                <span>
+                                    <div class="post-score-hexagon 1967 novaticStarInTitle">
+                                        <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 184 210">
+                                            <g>
+                                                <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                            </g>
+                                        </svg>
+                                        <span class="post-score-value">
+                                            <i class="mdicon mdicon-star "></i>
+                                        </span>
+                                    </div>
+                                </span>
+                            }
+                            @ViewBag.Title
+                        </h1>
+
+                        <div class="entry-teaser hidden-xs">
+                            @*The tourism industry is booming as travellers find ever more intrepid ways of exploring the globe and receding security fears revive old favourites.*@
+                            @ViewBag.Description
+                        </div>
+
+                        <!-- Entry meta -->
+                        <div class="entry-meta">
+                            <span class="entry-author entry-author--with-ava">
+                                <img alt='gappingworld' src='@ViewBag.PostAccountPhoto' class='avatar avatar-34 photo entry-author__avatar' height='34' width='34' />@ViewBag.lblBoi <a class="entry-author__name" title="Posts by @ViewBag.PostAccountName" rel="author" href="../author/@ViewBag.PostAccountURL">@ViewBag.PostAccountName</a>
+                            </span>
+                            <time class="time published" datetime="@ViewBag.PublishedTime" title="@ViewBag.PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.PublishedTime</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>

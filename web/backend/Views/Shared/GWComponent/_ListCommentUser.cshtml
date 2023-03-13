@@ -1,0 +1,345 @@
+﻿
+<style>
+    .item-Title {
+        margin-left: 50px;
+        margin-top: 50px;
+    }
+
+    .list-item {
+        border-bottom: 1px solid #E5E5E5;
+        margin-top: 30px;
+        width: 90%;
+        font: 400 12px arial;
+        text-align: left;
+    }
+
+    /*#item-body {
+        width: 80%;
+        height: 100vh;
+        margin-left: 200px;
+        border: 1px solid #E5E5E5;
+        padding-left: 100px;
+    }*/
+    .comment-meta{
+        margin-left:50px;
+    }
+    .comment-content{
+        margin-left:50px;
+    }
+    .title{
+        font-weight:bold;
+    }
+</style>
+
+
+
+<section class="user-page section-padding" style="padding: 1rem 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-xs-12">
+                <div class="user-profile-box">
+                    <div class="header clearfix">
+                        <h2 style="font-family: unset; letter-spacing: 2px">@ViewBag.UserFullname</h2>
+                        <h4>@ViewBag.AccountTypeName</h4>
+                        <img src="@ViewBag.UserPhoto" alt="avatar" class="img-fluid profile-img">
+                    </div>
+                    <div class="detail clearfix">
+                        <ul>
+
+                            <li>
+                                <a class="active" href="/profile">
+                                    <i class="fa fa-user"></i>Hồ sơ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/advancedSearch">
+                                    <i class="fa fa-flag" aria-hidden="true"></i>Tìm kiếm nâng cao
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/readed">
+                                    <i class="fa fa-list" aria-hidden="true"></i>Bài viết đã đọc
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/bookmark">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>Bài viết yêu thích
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/comment">
+                                    <i class="fa fa-list" aria-hidden="true"></i>Danh sách bình luận
+                                </a>
+                            </li>
+                            @*<li>
+            <a href="MyReport.aspx">
+                <i class="fa fa-flag" aria-hidden="true"></i>Báo cáo của bạn
+            </a>
+        </li>
+        <li>
+            <a href="MySurvey.aspx">
+                <i class="fa fa-edit" aria-hidden="true"></i>Bài khảo sát đã làm
+            </a>
+        </li>*@
+
+                            <li>
+                                <a href="/user/changePassword">
+                                    <i class="fa fa-lock"></i>Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout2">
+                                    <i class="fa fa-sign-out"></i>Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-12 col-xs-12">
+                <div class="dashborad-box">
+                    <h4 class="title">Thống kê</h4>
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <div class="icon">
+                                        <i class="mdicon mdicon-favorite" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="number">2019</h6>
+                                        <p class="type ml-1">Bài đã đọc</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <div class="icon">
+                                        <i class="mdicon mdicon-favorite"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="number">2019</h6>
+                                        <p class="type ml-1">Bài đã bình luận</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="item mb-0">
+                                    <div class="icon">
+                                        <i class="mdicon mdicon-favorite"></i>
+                                    </div>
+                                    <div class="info">
+                                        <h6 class="number">2019</h6>
+                                        <p class="type ml-1">Bài yêu thích</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-12 col-xs-12">
+                <div class="dashborad-box mb-0">
+
+                    <h4 class="title">Danh sách bình luận của bạn</h4>
+
+                    <div id="item-body">
+                        @*<div class="list-item">
+                        <footer class="comment-meta">
+                            <div class="comment-author vcard">
+                                <img alt='' src='http://1.gravatar.com/avatar/7d2f8da15be86c6a28d2c77e167473b3?s=60&amp;d=mm&amp;r=g' class='avatar avatar-60 photo' height='60' width='60' />
+                                <b>
+                                    <span class="comment-author-name">Perry Watkins</span>
+                                </b>
+                                <span class="says">says:</span>
+                            </div>
+                            <div class="comment-metadata">
+                                <a href="index.html#comment-71" class="comment-timestamp">20 July, 2018 at 4:16 am</a>
+                                <span class="edit-link"></span>
+                            </div>
+                        </footer>
+                        <div class="comment-content">
+                            <p>Malorum similique no nec,. accumsan apeirian id vix. Ei sapientem similique incorrupte nam.</p>
+                        </div>
+
+                        <div class="item-Title">
+                            <h4 style="font-weight:bold">Malorum similique no nec,. similique incorrupte nam.</h4>
+                        </div>
+                    </div>*@
+
+
+
+
+                    </div>
+
+
+                    <nav class="mnmd-pagination text-center">
+                        <a onclick="NextView();" id="NextViewID" class="btn btn-default">Xem thêm bình luận<i class="mdicon mdicon-arrow_forward mdicon--last"></i></a>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@*<div id="item-body">
+
+        <div class="list-item">
+            <footer class="comment-meta">
+                <div class="comment-author vcard">
+                    <img alt='' src='http://1.gravatar.com/avatar/7d2f8da15be86c6a28d2c77e167473b3?s=60&amp;d=mm&amp;r=g' class='avatar avatar-60 photo' height='60' width='60' />
+                    <b>
+                        <span class="comment-author-name">Perry Watkins</span>
+                    </b>
+                    <span class="says">says:</span>
+                </div>
+                <div class="comment-metadata">
+                    <a href="index.html#comment-71" class="comment-timestamp">20 July, 2018 at 4:16 am</a>
+                    <span class="edit-link"></span>
+                </div>
+            </footer>
+            <div class="comment-content">
+                <p>Malorum similique no nec,. accumsan apeirian id vix. Ei sapientem similique incorrupte nam.</p>
+            </div>
+
+            <div class="item-Title">
+                <h4 style="font-weight:bold">Malorum similique no nec,. similique incorrupte nam.</h4>
+            </div>
+        </div>
+
+
+        <div class="list-item">
+            <footer class="comment-meta">
+                <div class="comment-author vcard">
+                    <img alt='' src='http://1.gravatar.com/avatar/7d2f8da15be86c6a28d2c77e167473b3?s=60&amp;d=mm&amp;r=g' class='avatar avatar-60 photo' height='60' width='60' />
+                    <b>
+                        <span class="comment-author-name">Perry Watkins</span>
+                    </b>
+                    <span class="says">says:</span>
+                </div>
+                <div class="comment-metadata">
+                    <a href="index.html#comment-71" class="comment-timestamp">20 July, 2018 at 4:16 am</a>
+                    <span class="edit-link"></span>
+                </div>
+            </footer>
+            <div class="comment-content">
+                <p>Malorum similique no nec,. accumsan apeirian id vix. Ei sapientem similique incorrupte nam.</p>
+            </div>
+
+            <div class="item-Title">
+                <h4 style="font-weight:bold">Malorum similique no nec,. similique incorrupte nam.</h4>
+            </div>
+        </div>
+
+    </div>*@
+
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var curentUserId = "@ViewBag.CurrentUserId";
+        var currentPageIndex = 1;
+        var currentPageSize = 20;
+        var curentUserId = "@ViewBag.CurrentUserId";
+        var count = "@ViewBag.ListAllCommentCount2";
+        var totalCount = currentPageIndex * currentPageSize ;
+
+        //api/ListPaging/Search/{authorUsername}/{pageIndex}/{pageSize}
+        $.get("/Comment/api/ListPagingUser/"+curentUserId+"/" + currentPageIndex + "/" + currentPageSize + "/" , function (data) {
+            var arrList = data.data;
+            debugger;
+            if (arrList.length < 20 || (count == totalCount.toString())) {
+                $("#NextViewID").attr("style","display:none;")
+            }
+            console.log(arrList);
+            for (var i = 0; i < arrList.length; i++) {
+                if (arrList[i].commentCount == null) {
+                    arrList[i].commentCount = 0;
+                }
+                $("#item-body").append(`
+                     <div class="list-item">
+                            <footer class="comment-meta">
+                                <div class="comment-author vcard">
+                                    <img alt='' src='`+ arrList[i].photo +`' class='avatar avatar-60 photo' height='60' width='60' />
+                                    <b>
+                                        <span class="comment-author-name">`+ arrList[i].accountName +`</span>
+                                    </b>
+                                    <span class="says">says:</span>
+                                </div>
+                                <div class="comment-metadata">
+                                    <a href="index.html#comment-71" class="comment-timestamp">`+ arrList[i].createdTime +`</a>
+                                    <span class="edit-link"></span>
+                                </div>
+                            </footer>
+                            <div class="comment-content">
+                                <p>`+arrList[i].text+`</p>
+                            </div>
+
+                            <div class="item-Title">
+                                <h4 style="font-weight:bold">`+ arrList[i].postName +`</h4>
+                            </div>
+                      </div>
+                `);
+            }
+        });
+
+
+    })
+    var currentPageIndex = 2;
+    function NextView() {
+        var curentUserId = "@ViewBag.CurrentUserId";
+        var count = "@ViewBag.ListAllCommentCount";
+        var currentPageSize = 20;
+        var totalCount = currentPageIndex * currentPageSize +5;
+        //api/ListPaging/Search/{authorUsername}/{pageIndex}/{pageSize}
+        $.get("/Comment/api/ListPagingUser/"+curentUserId+"/" + currentPageIndex + "/" + currentPageSize + "/" , function (data) {
+            var arrList = data.data;
+            debugger;
+            if (arrList.length < 20 || (count == totalCount.toString())) {
+                $("#NextViewID").attr("style","display:none;")
+            }
+            console.log(arrList);
+            for (var i = 0; i < arrList.length; i++) {
+                if (arrList[i].commentCount == null) {
+                    arrList[i].commentCount = 0;
+                }
+
+
+                $("#item-body").append(`
+                     <div class="list-item">
+                            <footer class="comment-meta">
+                                <div class="comment-author vcard">
+                                    <img alt='' src='`+ arrList[i].photo +`' class='avatar avatar-60 photo' height='60' width='60' />
+                                    <b>
+                                        <span class="comment-author-name">`+ arrList[i].accountName +`</span>
+                                    </b>
+                                    <span class="says">says:</span>
+                                </div>
+                                <div class="comment-metadata">
+                                    <a href="index.html#comment-71" class="comment-timestamp">`+ arrList[i].createdTime +`</a>
+                                    <span class="edit-link"></span>
+                                </div>
+                            </footer>
+                            <div class="comment-content">
+                                <p>`+arrList[i].text+`</p>
+                            </div>
+
+                            <div class="item-Title">
+                                <h4 style="font-weight:bold">`+ arrList[i].postName +`</h4>
+                            </div>
+                      </div>
+                `);
+            }
+        });
+
+        currentPageIndex++;
+    }
+
+</script>
+

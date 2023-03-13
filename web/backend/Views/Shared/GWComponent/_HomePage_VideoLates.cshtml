@@ -1,0 +1,222 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!-- GOOGLE ADS  -->
+<div class="mnmd-layout-split mnmd-block mnmd-block--fullwidth" style="margin-bottom:30px">
+    <div class="container">
+        <div class="row">
+            <div class="" id="googleAdsHomepageBanner2" style="background:transparent; border: 1px solid transparent;">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Homepage Banner 2 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9498518197328948"
+                     data-ad-slot="8189806350"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!-- GOOGLE ADS ENDS -->
+
+<div style="display:none" id="tnm_carousel_heading_aside_bg-5d773d14d56a0" class="mnmd-block mnmd-block--fullwidth mnmd-carousel mnmd-carousel-heading-aside has-background">
+    <div class="background-img" style="background-image:url('@ViewBag.SystemConfigs["VIDEO_BACKGROUND_PHOTO"].Description')!important">
+        <div class="background-svg-pattern"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="carousel-heading">
+                    <div class="block-heading block-heading--inverse block-heading--vertical">
+                        <h4 class="block-heading__title">@ViewBag.lblVideoMoiNhat</h4>
+                        @*<span class="block-heading__subtitle">@ViewBag.lblXemGiHomNay</span>*@
+                    </div>
+                    <div class="mnmd-carousel-nav-custom-holder" data-carouselID="carousel-5d773d14d5709">
+                        <div class="owl-prev js-carousel-prev"><i class="mdicon mdicon-arrow_back"></i></div>
+                        <div class="owl-next js-carousel-next"><i class="mdicon mdicon-arrow_forward"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end column -->
+            <div class="carousel-wrap col-xs-12 col-sm-8 col-md-9 fullwidth-xs">
+                <div id="carousel-5d773d14d5709" class="owl-carousel js-mnmd-carousel-heading-aside-3i" data-carousel-loop="true">
+
+                    @{
+                        foreach (var obj in ViewBag.LatestVideoList)
+                        {
+                            <div class="slide-content">
+                                <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                    <div class="post__thumb">
+                                        <a title="@obj.Name" href="~/@obj.Url">
+                                            <div class="background-img" style="background-image: url('@obj.Photo');"></div>
+                                            <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                        </a>
+
+                                    </div>
+                                    <div class="post__text ">
+                                        @*@{ if (obj.PostPublishStatusId == 2)
+                                                {
+                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                }
+                                            }*@
+                                        <h3 class="post__title typescale-1">
+                                            <a title="@obj.Name" href="~/@obj.Url">
+                                                @{ if (obj.PostPublishStatusId == 2)
+                                                    {
+                                                        <span>
+                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                    <g>
+                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                    </g>
+                                                                </svg>
+                                                                <span class="post-score-value">
+                                                                    <i class="mdicon mdicon-star "></i>
+                                                                </span>
+                                                            </div>
+                                                        </span>
+                                                    }
+                                                }
+                                                @obj.Name
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="post__footer text-center">
+                                        <div class="post__meta">
+                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time><span><a title="@obj.CommentCount Comments" href="~/@obj.Url"><i class="mdicon mdicon-chat_bubble_outline"></i>@obj.CommentCount</a></span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        }
+                    }
+
+                    @*<div class="slide-content">
+                            <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                <div class="post__thumb">
+                                    <a href="the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html">
+                                        <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-356808-1-400x225.jpg');"></div>
+                                    </a>
+                                    <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                </div>
+                                <div class="post__text ">
+                                    <h3 class="post__title typescale-1"><a href="the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html">The couple that quit their jobs to go on a six months’ road trip</a></h3>
+                                </div>
+                                <div class="post__footer text-center">
+                                    <div class="post__meta">
+                                        <time class="time published" datetime="2018-03-08T07:54:46+00:00" title="March 8, 2018 at 7:54 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time><span><a title="0 Comments" href="the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                        <div class="slide-content">
+                            <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                <div class="post__thumb">
+                                    <a href="the-top-trends-for-summer-wedding-dressing/index.html">
+                                        <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-916340-1-400x225.jpg');"></div>
+                                    </a>
+                                    <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                </div>
+                                <div class="post__text ">
+                                    <h3 class="post__title typescale-1"><a href="the-top-trends-for-summer-wedding-dressing/index.html">The Top Trends For Summer Wedding Dressing</a></h3>
+                                </div>
+                                <div class="post__footer text-center">
+                                    <div class="post__meta">
+                                        <time class="time published" datetime="2018-03-07T10:46:27+00:00" title="March 7, 2018 at 10:46 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="0 Comments" href="the-top-trends-for-summer-wedding-dressing/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                        <div class="slide-content">
+                            <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                <div class="post__thumb">
+                                    <a href="texas-mens-tennis-team-sweeps-pennsylvania/index.html">
+                                        <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-171568-1-400x225.jpg');"></div>
+                                    </a>
+                                    <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                </div>
+                                <div class="post__text ">
+                                    <h3 class="post__title typescale-1"><a href="texas-mens-tennis-team-sweeps-pennsylvania/index.html">Texas men’s tennis team sweeps Pennsylvania</a></h3>
+                                </div>
+                                <div class="post__footer text-center">
+                                    <div class="post__meta">
+                                        <time class="time published" datetime="2018-03-07T08:57:38+00:00" title="March 7, 2018 at 8:57 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="0 Comments" href="texas-mens-tennis-team-sweeps-pennsylvania/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                        <div class="slide-content">
+                            <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                <div class="post__thumb">
+                                    <a href="phone-photography-101-how-to-take-good-pictures-with-your-phone/index.html">
+                                        <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-65090-1-400x225.jpg');"></div>
+                                    </a>
+                                    <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                </div>
+                                <div class="post__text ">
+                                    <h3 class="post__title typescale-1"><a href="phone-photography-101-how-to-take-good-pictures-with-your-phone/index.html">Phone Photography 101: How to Take Good Pictures With Your Phone</a></h3>
+                                </div>
+                                <div class="post__footer text-center">
+                                    <div class="post__meta">
+                                        <time class="time published" datetime="2018-03-07T08:49:21+00:00" title="March 7, 2018 at 8:49 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="0 Comments" href="phone-photography-101-how-to-take-good-pictures-with-your-phone/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                        <div class="slide-content">
+                            <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                <div class="post__thumb">
+                                    <a href="weather-journal-winter-may-yet-have-an-ace-to-play/index.html">
+                                        <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-48698-1-400x225.jpg');"></div>
+                                    </a>
+                                    <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                </div>
+                                <div class="post__text ">
+                                    <h3 class="post__title typescale-1"><a href="weather-journal-winter-may-yet-have-an-ace-to-play/index.html">Weather Journal: Winter may yet have an ace to play</a></h3>
+                                </div>
+                                <div class="post__footer text-center">
+                                    <div class="post__meta">
+                                        <time class="time published" datetime="2018-03-07T08:46:57+00:00" title="March 7, 2018 at 8:46 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time><span><a title="0 Comments" href="weather-journal-winter-may-yet-have-an-ace-to-play/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                        <div class="slide-content">
+                            <article class="post post--card post--card-sm text-center cat--not-overlap">
+                                <div class="post__thumb">
+                                    <a href="motocross-elite-head-to-norfolk-for-lyngs-annual-extravaganza/index.html">
+                                        <div class="background-img" style="background-image: url('/files/frontend/images/upload/pexels-photo-564096-400x225.jpg');"></div>
+                                    </a>
+                                    <div class="post-type-icon overlay-item--center-xy post-type-icon overlay-item--sm-p"><i class="mdicon mdicon-play_circle_outline"></i></div>
+                                </div>
+                                <div class="post__text ">
+                                    <h3 class="post__title typescale-1"><a href="motocross-elite-head-to-norfolk-for-lyngs-annual-extravaganza/index.html">Motocross elite head to Norfolk for Lyng’s annual extravaganza</a></h3>
+                                </div>
+                                <div class="post__footer text-center">
+                                    <div class="post__meta">
+                                        <time class="time published" datetime="2018-02-06T07:58:42+00:00" title="February 6, 2018 at 7:58 am"><i class="mdicon mdicon-schedule"></i>February 6, 2018</time><span><a title="0 Comments" href="motocross-elite-head-to-norfolk-for-lyngs-annual-extravaganza/index.html"><i class="mdicon mdicon-chat_bubble_outline"></i>0</a></span>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container -->
+</div>

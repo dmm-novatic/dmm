@@ -1,0 +1,1891 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Bài viết";
+    Layout = "_NovaticAdmin";
+}
+
+<style>
+    .modal-lg {
+        width: 90% !important;
+    }
+
+    .ck-content {
+        min-height: 200px !important;
+    }
+
+    .input-photo-thumbnail {
+        /*width: 250px;*/
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+    }
+
+    #tableData tbody tr td:nth-last-child(3), #tableData thead tr th:nth-last-child(3) {
+        text-align: center;
+        width: 40px;
+    }
+    #tableData{
+        width: 100% !important;
+    }
+</style>
+
+<script>
+    var dataSource = [];
+</script>
+
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Bài viết - Phụ lục 5</h3>
+            </div>
+        </div>
+
+        <a href="#" id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm">
+                <i class="fa fa-plus"></i>
+                <span class='hideOnMobile'>Thêm mới</span>
+            </a>
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>ID</th>
+                                        <th>Tác giả</th>
+                                        <th>Danh mục bài viết</th>
+                                        <th>Layout template</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Trạng thái</th>
+                                        @*<th>Sửa nhanh</th>*@
+                                        <th>Chi tiết</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </thead>
+
+                                <tfoot>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>ID</th>
+                                        <th>Tác giả</th>
+                                        <th>Danh mục bài viết</th>
+                                        <th>Layout template</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Trạng thái</th>
+                                        @*<th>Sửa nhanh</th>*@
+                                        <th>Chi tiết</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title">
+                                                <i class="fa fa-edit"></i> <span id="updateTitle">Chi tiết</span>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <form action="" method="POST"
+                                                  onsubmit='updateItem(updatingItemID); return false;' role="form">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <div class='form-group row selectContainer'>
+                                                            <label class=''>Danh mục bài viết</label><span class='required'>*</span>
+                                                            <div class='col-sm-12'>
+                                                                <select name='select' required id='postPostCategoryID'
+                                                                        class='form-control fill dataSelect  input-postCategoryID'
+                                                                        style=' border: 1px solid #e9ecef; '>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                        <div class='form-group row selectContainer'>
+                                                            <label class=''>Layout template</label><span class='required'>*</span>
+                                                            <div class='col-sm-12'>
+                                                                <select name='select' required id='postPostLayoutID'
+                                                                        class='form-control fill dataSelect  input-postLayoutID'
+                                                                        style=' border: 1px solid #e9ecef; '>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label for="">Video</label>
+                                                            <input type="text" class="form-control  input-video"
+                                                                   id="postVideo" placeholder="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label for="">Trạng thái xuất bản</label><span class='required'>*</span>
+
+                                                            <select class="form-control input-postPublishStatusID"
+                                                                    id="postPostPublishStatusID" required>
+                                                                <option value="0">Private</option>
+                                                                <option value="1">Public</option>
+                                                                <option value="2">Membership only</option>
+                                                            </select>
+
+                                                            @*<input type="number" class="form-control input-postPublishStatusID" value="0"  id="postPostPublishStatusID" required placeholder="">*@
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group">
+                                                            <label for="">Trạng thái bình luận</label><span class='required'>*</span>
+
+                                                            <select class="form-control input-postCommentStatusID"
+                                                                    id="postPostCommentStatusID" required>
+                                                                <option value="0">Tắt</option>
+                                                                <option value="1">Bật</option>
+                                                            </select>
+
+                                                            <!-- <input type="number" class="form-control input-postCommentStatusID" value="0" id="postPostCommentStatusID" required placeholder="">-->
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+
+
+                                                    <div class="col-sm-4">
+                                                        <div class='form-group row selectContainer'>
+                                                            <label class=''>Tác giả</label><span class='required'>*</span>
+                                                            <div class='col-sm-12'>
+                                                                <select name='select' required id='postPostAccountID'
+                                                                        class='form-control fill dataSelect  input-postAccountID'
+                                                                        style=' border: 1px solid #e9ecef; '>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-4">
+
+                                                        <div class="form-group row" style="padding-left:unset">
+                                                            <div class="col-sm-11">
+                                                                <label for="">Photo</label>
+                                                                <input type="text" class="form-control  input-photo" id="postPhoto" placeholder="">
+
+                                                                <span class="glyphicon glyphicon-open form-control-feedback input-photo"></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="col-sm-2">
+
+                                                        <div class="form-group">
+                                                            <label for="">Số lượt xem</label>
+                                                            <input type="number" class="form-control input-viewCount"
+                                                                   value="0" id="postViewCount" placeholder="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+
+                                                        <div class="form-group">
+                                                            <label for="">Số lượt thích</label>
+                                                            <input type="number" class="form-control input-likeCount"
+                                                                   value="0" id="postLikeCount" placeholder="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-sm-7">
+
+                                                        <div class='form-group row selectContainer'>
+                                                            <label class=''>Tag</label><span class='required'></span>
+                                                            <div class='col-sm-12'>
+                                                                <select name='select' multiple="multiple" id='postTagID'
+                                                                        class='form-control fill dataSelectTag  input-postTagID'
+                                                                        style=' border: 1px solid #e9ecef; '>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="col-sm-1">
+                                                        <div class="form-group">
+                                                            <img id="input-photo-thumbnail" class="input-photo-thumbnail"
+                                                                 src="https://x.kinja-static.com/assets/images/logos/placeholders/default.png"
+                                                                 style="margin-bottom:-30px; min-height:80px;width:100%" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4" id="FileUploadForLibrary">
+
+                                                        <div class="form-group row" style="padding-left:unset">
+                                                            @*<div class="col-sm-4">
+                    <label for="">Photo</label>
+                    <input style="font-size:10px" type="file" class="form-control  input-photo"
+                           placeholder="" onchange="UploadFile(event)">
+                </div>*@
+                                                            <div class="col-sm-11">
+                                                                <label for="">File tài liệu để download</label>
+                                                                <input type="text" class="form-control  input-file"
+                                                                       id="postFileUrl" placeholder="">
+
+                                                                <span class="glyphicon glyphicon-open form-control-feedback input-file"></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-sm-3" id="divPostOpenTime" style="display:none;">
+                                                        <div class='form-group'>
+                                                            <label for=''>Ngày bắt đầu sự kiện</label>
+                                                            <div class='input-group date datetimepicker  input-publishedTime'
+                                                                 id='postPublishedTimeDiv'>
+                                                                <input type='text' id="postOpenTime"
+                                                                       class="form-control" />
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3" id="divPostCloseTime" style="display:none;">
+                                                        <div class='form-group'>
+                                                            <label for=''>Ngày kết thúc sự kiện </label>
+                                                            <div class='input-group date datetimepicker  input-publishedTime'
+                                                                 id='postPublishedTimeDiv'>
+                                                                <input type='text' id="postClosedTime"
+                                                                       class="form-control" />
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6" id="divPostEventAddress" style="display:none;">
+                                                        <div class="form-group">
+                                                            <label for="">Địa điểm sự kiện</label>
+                                                            <input type="text" class="form-control  input-url"
+                                                                   id="postEventAddress" placeholder="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+
+                                                        <div class="form-group" style="display:none ">
+                                                            <label for="">Số lượt bình luận</label>
+                                                            <input type="number" class="form-control input-commentCount"
+                                                                   value="0" id="postCommentCount" placeholder="">
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-4">
+
+
+                                                    </div>
+
+
+                                                    <div class="col-sm-4">
+
+
+                                                    </div>
+
+
+                                                    <div class="col-sm-4">
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+                                                <div class="form-group" style="display:none ">
+                                                    <label for="">ID</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="postId" required placeholder="">
+                                                </div>
+
+
+                                                <div class="form-group" style="display: none">
+                                                    <label for="">GuID</label>
+                                                    <input type="text" class="form-control  input-guID" id="postGuID"
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="postActive" required placeholder="">
+                                                </div>
+                                                <div class='form-group row selectContainer' style="display:none">
+                                                    <label class=''>Loại bài viết</label><span class='required'>*</span>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' required id='postPostTypeID'
+                                                                class='form-control fill dataSelect  input-postTypeID'
+                                                                style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="postActive" required placeholder="">
+                                                </div>
+
+
+
+
+
+
+
+
+                                                @*tabbed pane*@
+
+                                                <div class="container-fluid" style="padding:0">
+
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active">
+                                                            <a data-toggle="tab" href="#home">
+                                                                Tiếng Việt &nbsp;
+                                                                <img style="margin-top:-3px; height:20px"
+                                                                     src="https://icons.iconarchive.com/icons/wikipedia/flags/128/VN-Vietnam-Flag-icon.png"
+                                                                     alt="Tiếng Việt (vi)">
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="tab" href="#menu1">
+                                                                Tiếng Anh &nbsp;
+                                                                <img style="margin-top:-3px; height:20px"
+                                                                     src="https://icons.iconarchive.com/icons/wikipedia/flags/128/GB-United-Kingdom-Flag-icon.png"
+                                                                     alt="English (en)">
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+
+
+                                                    <div class="tab-content">
+                                                        <div id="home" class="tab-pane fade in active"
+                                                             style="border: 1px solid #dddddd7a; padding: 5px">
+                                                            <br />
+                                                            <div class="form-group">
+                                                                <label for="">Tiêu đề</label><span class='required'>*</span>
+                                                                <input type="text" class="form-control  input-name"
+                                                                       id="postName" required placeholder="">
+                                                            </div>
+
+
+                                                            <div class="form-group">
+                                                                <label for="">URL</label>
+                                                                <input type="text" class="form-control  input-url"
+                                                                       id="postUrl" placeholder="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="">Mô tả</label>
+                                                                <textarea class="form-control  input-description "
+                                                                          rows="2" id="postDescription"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Nội dung</label>
+                                                                <textarea class="form-control  input-text " rows="2"
+                                                                          id="postText"></textarea>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                        <div id="menu1" class="tab-pane fade"
+                                                             style="border: 1px solid #dddddd7a; padding: 5px">
+                                                            <br />
+                                                            <div class="form-group">
+                                                                <label for="">Tiêu đề tiếng Anh</label>
+                                                                <input type="text" class="form-control  input-name2"
+                                                                       id="postName2" placeholder="">
+                                                            </div>
+
+
+                                                            <div class="form-group">
+                                                                <label for="">URL2</label>
+                                                                <input type="text" class="form-control  input-url2"
+                                                                       id="postUrl2" placeholder="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="">Mô tả tiếng Anh</label>
+                                                                <textarea class="form-control  input-description2 "
+                                                                          rows="2" id="postDescription2"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Nội dung tiếng Anh</label>
+                                                                <textarea class="form-control  input-text2 " rows="2"
+                                                                          id="postText2"></textarea>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+
+                                                        <div class='form-group'>
+                                                            <label for=''>Ngày xuất bản </label>
+                                                            <div class='input-group date datetimepicker  input-publishedTime'
+                                                                 id='postPublishedTimeDiv'>
+                                                                <input type='text' id="postPublishedTime" 
+                                                                       class="form-control" />
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+
+                                                        <div class='form-group'>
+                                                            <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                            <div class='input-group date datetimepicker  input-createdTime'
+                                                                 id='postCreatedTimeDiv'>
+                                                                <input type='text' id="postCreatedTime" required 
+                                                                       readonly class="form-control" required />
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit"
+                                                       class="btn btn-default" value="Save changes">
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Đóng
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem"
+                                                    onclick="document.getElementById('hiddenSubmit').click();">
+                                               Lưu thông tin
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var UploadFile = function (e) {
+        console.log(e);
+        console.log(e.target.files[0].name);
+        var file = e.target.files[0];
+        var formData = new FormData();
+        formData.append("file", file);
+        axios.post("/Topic/api/SingleFile", formData);
+        $("#postPhoto").val("@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}files/frontend/images/upload/" + e.target.files[0].name);
+        setTimeout(function () { $(".input-photo-thumbnail").attr("src", $("#postPhoto").val()); }, 1000);
+    }
+</script>
+<script>
+    var postTextEditor;
+    //ClassicEditor
+    //    .create(document.querySelector('#postText'))
+    //    .then(editor => {
+    //        // console.log( 'Editor was initialized', editor );
+    //        postTextEditor = editor;
+    //        editor.model.document.on('change:data', (evt, data) => {
+    //            // debugger;
+    //            // console.log('Updated:'+ data );
+    //            $('#postText').val(postTextEditor.getData());
+    //        });
+    //    })
+    //    .catch(err => {
+    //        console.error(err.stack);
+    //    });
+</script>
+
+<script>
+    var postText2Editor;
+    //ClassicEditor
+    //    .create(document.querySelector('#postText2'))
+    //    .then(editor => {
+    //        // console.log( 'Editor was initialized', editor );
+    //        postText2Editor = editor;
+    //        editor.model.document.on('change:data', (evt, data) => {
+    //            // debugger;
+    //            // console.log('Updated:'+ data );
+    //            $('#postText2').val(postText2Editor.getData());
+    //        });
+    //    })
+    //    .catch(err => {
+    //        console.error(err.stack);
+    //    });
+</script>
+<script>
+    var postLayoutData = [];
+    function loadDataSelectPostLayout() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/PostLayout/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded postLayout');
+                // debugger;
+                var data = responseData.data;
+                postLayoutData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostLayoutID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectPostLayout();
+    });
+</script>
+<script>
+    var postCategoryData = [];
+    function loadDataSelectPostCategory() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postCategory/api/ListByPhuluc5',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded postCategory');
+                // debugger;
+                var data = responseData.data;
+                postCategoryData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostCategoryID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectPostCategory();
+    });
+</script>
+
+<script>
+    var accountData = [];
+    function loadDataSelectAccount() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/account/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                // debugger;
+                var data = responseData.data;
+                accountData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostAccountID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectAccount();
+    });
+</script>
+<script>
+    var postTypeData = [];
+    function loadDataSelectPostType() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/PostType/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded postType');
+                // debugger;
+                var data = responseData.data;
+                postTypeData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postPostTypeID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+    $(document).ready(function () {
+        loadDataSelectPostType();
+    });
+</script>
+
+
+
+<script>
+    var tagData = [];
+    function loadDataSelecttag() {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/tag/api/ListPaging?pageSize=300&pageIndex=1',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded tag');
+                // debugger;
+                var data = responseData.data;
+                tagData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postTagID').append(newOption).trigger('change');
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+
+    
+    var postTagData = [];
+    function loadCurrentSelectedPostTag(postID) {
+        $('#postTagID').empty().trigger('change');
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postTag/api/DetailPost/'+postID,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded tag');
+                // debugger;
+                var data = responseData.data;
+                tagData = data;
+                var selectedData = [];
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.tagId,
+                        text: item.name
+                    };
+                    var newOption = new Option(data.text, data.id, false, false);
+                    $('#postTagID').append(newOption).trigger('change');
+                    selectedData.push(item.tagId);
+                });
+                $('#postTagID').val(selectedData);
+                $('#postTagID').trigger('change');
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    function searchDataSelecttag(keyword) {
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/tag/api/search?keyword='+keyword,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded tag');
+                // debugger;
+                var data = responseData.data;
+                tagData = data;
+                data.forEach(function (item, index) {
+                    var data = {
+                        id: item.id,
+                        text: item.name
+                    };
+                    //Check if not existing then add
+                    if ($('#postTagID').find("option[value='"+item.id+"']").length == 0) {
+                        var newOption = new Option(data.text, data.id, false, false);
+                        $('#postTagID').append(newOption).trigger('change');
+                    }
+                });
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    function updatePostTag(postID) {
+        if ($("#postTagID").val() === null) return;
+        var dataList = $("#postTagID").val().join("|");
+        if (dataList.length < 5) return;
+        $.ajax({
+            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/postTag/api/updatePostTag?postId='+postID+'&tagData='+dataList,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log('updated tag data'); 
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('.dataSelectTag').select2({
+            //minimumInputLength: 2
+        });
+    });
+
+    $(document).on('keyup keydown', 'input.select2-search__field', function (e) {
+        if (e.keyCode == 32) {
+            //debugger;
+            //$('#postTagID').empty().trigger("change");
+            var keyword = $(this).val();
+            searchDataSelecttag(keyword);
+        }
+    });
+</script>
+
+<script>
+    var hiddenItem = ["active", "publishedTime", "readedPost", "postPublishStatusId", "name2", "color", "postAccount", "postCategory", "postLayout", "postType", "comment", "favouritePost", "postMeta", "postTag", "xxx", "xxx", "xxx", "postCommentStatusId", "postTypeId", "description", "description2", "text2", "text", "url2", "url", "guId", "commentCount", "viewCount", "likeCount", "photo", "video"];
+    var currentUpdatingObj;
+    var updatingItemID = 0;
+    var tableUpdating = 0;
+    var table;
+    var ckEditorInitFlag = 0; 
+
+
+    // nuclear testing field
+    $(document).ready(function () {
+        //$.fn.dataTable.moment("DD/MM/YYYY HH:mm:ss");
+        //$.fn.dataTable.moment("DD/MM/YYYY");
+        //debugger;
+        table = $("#tableData").DataTable({
+            // Design Assets
+            stateSave: true,
+            autoWidth: true,
+            // ServerSide Setups
+            processing: true,
+            serverSide: true,
+            // Paging Setups
+            paging: true,
+            // Searching Setups
+            searching: { regex: true },
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            // Ajax Filter
+            ajax: {
+                url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/post/api/LoadTablePhuluc5",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: function (d) {
+                    //debugger;
+                    //clear filter when 1st init
+                    var columnFilterFlag = 0;
+                    $('#tableData tfoot input').each(function () {
+                        if ( $(this).val().length > 0 ) columnFilterFlag = 1;
+                    });
+                    if (columnFilterFlag == 0) {
+                        for (var i = 0; i < 10; i++) {
+                            d.columns[i].search.value = "";
+                        }
+                    }
+                    return JSON.stringify(d);
+                    //d.start = 2;
+                    //d.length = 10;
+                }
+            },
+            // Columns Setups
+            columns: [
+                { data: 'id',
+                    render: function (data, type, row, meta) {
+                        //debugger;
+                        var info = table.page.info();
+                        return meta.row + 1 + info.page * info.length; // This contains the row index
+                    }
+                }, 
+                {
+                    data: "id",
+                    render: function (data) {
+                        return `
+                            <td style="width:50px;" class='row` + data + `-column column-" + id + "' property='" + id + "'>
+                                <a target='_blank' style='font-weight: bold' href ='@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description` + data + `-preview'>` + data + `</a>
+                            </td>`;
+                    }
+                },
+                {
+                    data: "postAccountName",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-postAccountName'>`+data+`<span>`;
+                    }
+                },
+                {
+                    data: "postCategoryName",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-postCategoryName'>`+data+`<span>`;
+                    }
+                },
+                {
+                    data: "postLayoutName",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-postLayoutName'>`+data+`<span>`;
+                    }
+                },
+                {
+                    data: "name",
+                    render: function (data, type, row, meta) {
+                        return `<span id='row`+row.id+`-column-name'>`+data+`<span>`;
+                    }
+                }, 
+                {
+                    data: "createdTime",
+                    render: function (data) {
+                        var tempDate = new Date(data);
+                        var displayValue = tempDate.toLocaleTimeString() + '<br/>' + tempDate.toLocaleDateString();
+                        return displayValue;
+                    }
+                },
+                {
+                    data: "postPublishStatusId",
+                    render: function (data, type, row, meta) {
+                        if (data == "0") {
+                            return `<span id='row`+row.id+`-column-postPublishStatus'><button style="width:130px" type='button' class='btn btn-danger'>Private</button><span>`;
+                        }
+                        if (data == "1") {
+                            return `<span id='row`+row.id+`-column-postPublishStatus'><button style="width:130px" type='button' class='btn btn-success'>Public</button><span>`;
+                        }
+                        else {
+                            return `<span id='row`+row.id+`-column-postPublishStatus'><button style="width:130px" type='button' class='btn btn-warning'>Membership</button><span>`;
+                        }
+                    }
+                }, 
+                {
+                    data: "id",
+                    render: function (data) {
+                        var displayValue = `
+                        <td style='text-align: center;'>
+                            <a onclick='editItem(` + data+ `)'>
+                                <i class='fa fa-edit fa-2x' style='color:#0d910f'></i>
+                            </a>
+                        </td>`;
+                        return displayValue;
+                    }
+                },
+                //{
+                //    data: "id",
+                //    render: function (data) {
+                //        var displayValue = `
+                //        <td style='text-align: center;'>
+                //            <a target='_blank' href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}post/admin/edit/` + data+ `'>
+                //                <i class='fa fa-newspaper-o fa-2x' style='color:#03a9f4'></i>
+                //            </a>
+                //        </td>
+                //        `;
+                //        return displayValue;
+                //    }
+                //},
+                {
+                    data: "id",
+                    render: function (data) {
+                        var displayValue = `
+                            <td style='text-align: center;'>
+                                <a onclick='deleteItem(` + data+ `)'>
+                                    <i class='fa fa-trash fa-2x' style='color:#e91e63'></i>
+                                </a>
+                            </td>
+                        `;
+                        return displayValue;
+                    }
+                }
+            ],
+            // Column Definitions
+            columnDefs: [
+                { targets: "no-sort", orderable: false },
+                { targets: "no-search", searchable: false },
+                {
+                    targets: "trim",
+                    render: function (data, type, full, meta) {
+                        if (type === "display") {
+                            data = strtrunc(data, 10);
+                        }
+
+                        return data;
+                    }
+                },
+                { targets: "date-type", type: "date-eu" }
+            ],
+            initComplete: function() {
+            var api = this.api();
+  
+            // Apply the search
+            api.columns().every(function() {
+                var that = this;
+  
+                $('input', this.footer()).on('keyup change', function() {
+                if (that.search() !== this.value) {
+                    that
+                    .search(this.value)
+                    .draw();
+                }
+                });
+            });
+            }
+        });
+
+        $('#tableData tfoot th:not(:first-child):not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3))').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" value="" placeholder="Tìm kiếm ' + title + '" />');
+        });
+
+        //table.on( 'order.dt search.dt', function () {
+        //    table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+        //        cell.innerHTML = i+1;
+        //    } );
+        //}).draw();
+
+        //table.on( 'order.dt search.dt', function () {
+        //    table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+        //        cell.innerHTML = i+1;
+        //    } );
+        //} ).draw();
+    });
+    // nuclear testing field ends
+
+
+
+
+
+    $(document).ready(function () {
+        // Load data
+        //loadData();
+
+        initTable();
+        //setTimeout(function () { loadData(); }, 500);
+        // includeLibrary();
+
+        // Datetime picker
+        $('.datetimepicker').datetimepicker({
+            format: 'DD-MM-YYYY HH:mm:ss'
+        });
+
+        $('.dataSelect').select2();
+
+        $(".datetimepicker").on('dp.change', function (e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("DD-MM-YYYY HH:mm:ss");
+            // console.log(this.value);
+        })
+
+        $("#postPhoto").change(function () {
+            var url = this.value;
+            //validate data
+
+            //set new pic
+            $(".input-photo-thumbnail").attr("src", url);
+        })
+
+    });
+
+
+    function loadData() {
+        $.ajax({
+            url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/ListPagingPost?pageSize=100&pageIndex=1",
+            type: "GET",
+            contentType: "application/json",
+            success: function (responseData) {
+                // debugger;
+                var data = responseData.data;
+                dataSource = data;
+
+
+
+
+                data.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    var currentID = "";
+                    rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (!hiddenItem.includes(key)) {
+                                if (key === "id") {
+                                    rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><a target='_blank' style='font-weight: bold' href ='@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description" + item[key] + "-preview'>" + item[key] + "</a> </td>";
+                                    currentID = item[key];
+                                }
+                                else {
+                                    rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                }
+                            }
+                        }
+                    }
+                    rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#0d910f'></i></a></td>";
+                    rowContent += "<td style='text-align: center;'><a target='_blank' href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}post/admin/edit" + item.id + "'><i class='fa fa-newspaper-o fa-2x' style='color:#03a9f4'></i></a></td>";
+                    rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                    var newRow = "<tr id='row" + item.id + "' >" + rowContent + "</tr>";
+                    $(newRow).appendTo($("#tableData tbody"));
+
+                    // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                });
+
+                //Init datatable
+                if (tableUpdating === 0) {
+                    initTable();
+                }
+
+                //update data with foreign key
+                updateTable();
+            },
+            error: function (e) {
+                //console.log(e.message);
+                initTable();
+            }
+        });
+    }
+    function initTablePage() {
+        table = $('#tableData').DataTable({
+            aLengthMenu: [
+                //[10, 25, 50, 100, 200, -1],
+                //[10, 25, 50, 100, 200, 'Tất cả']
+                [-1, 10, 25, 50, 100, 200],
+                ['Tất cả', 10, 25, 50, 100, 200]
+            ],
+            'order': [
+                [1, 'desc']
+            ],
+            orderFixed: [[3, 'desc']],
+            'rowsGroup': [1, 7],
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            "initComplete": function (settings, json) {
+                table.on('order.dt search.dt', function () {
+                    table.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+
+                $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="tableFooterFilter" value="" placeholder="Tìm kiếm ' + title + '" />');
+                });
+
+                table.columns().every(function () {
+                    var that = this;
+                    $('input.tableFooterFilter', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+        setTimeout(function () {
+            table.page.len(10).draw();
+        }, 1000);
+    }
+    function initTable() {
+        //table = $('#tableData').DataTable({
+        //    aLengthMenu: [
+        //        [10, 25, 50, 100, 200, -1],
+        //        [10, 25, 50, 100, 200, 'Tất cả']
+        //    ],
+        //    'order': [
+        //        [1, 'desc']
+        //    ]
+        //});
+
+
+
+        //table.on('order.dt search.dt', function () {
+        //    table.column(0, {
+        //        search: 'applied',
+        //        order: 'applied'
+        //    }).nodes().each(function (cell, i) {
+        //        cell.innerHTML = i + 1;
+        //    });
+        //}).draw();
+
+        //$('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+        //});
+
+        //table.columns().every(function () {
+        //    var that = this;
+
+        //    $('input', this.footer()).on('keyup change', function () {
+        //        if (that.search() !== this.value) {
+        //            that
+        //                .search(this.value)
+        //                .draw();
+        //        }
+        //    });
+        //});
+    }
+
+    async function editItem(id) {
+        updatingItemID = id;
+        $("#modal-id").modal('show');
+        //let obj = await getItemById(id);
+
+        if (ckEditorInitFlag == 0) {
+            postTextEditor = CKEDITOR.replace("postText", {height:700, filebrowserBrowseUrl: 'https://file.novatic.vn/fileManagerDotNet.php'});
+            postText2Editor = CKEDITOR.replace("postText2", { height: 700, filebrowserBrowseUrl: 'https://file.novatic.vn/fileManagerDotNet.php' });
+            
+            setUpCKServerButton();
+            ckEditorInitFlag = 1;
+        }
+
+        if (id == 0) {
+            //clear
+            $("#postPhoto").val("");
+            $("#postVideo").val("");
+            $("#postUrl").val("");
+            $("#postUrl2").val("");
+            $("#postName").val("");
+            $("#postName2").val("");
+            $("#postText").val("");
+            $("#postText2").val("");
+            $(".input-photo-thumbnail").attr("src", "https://x.kinja-static.com/assets/images/logos/placeholders/default.png");
+            $("#postActive").val(1);
+            $("#postCreatedTime").val(new Date());
+            $("#postPublishedTime").val(new Date());
+            $("#postGuID").attr("readonly", "readonly");
+            $("#postUrl").attr("readonly", "readonly");
+            $("#postUrl2").attr("readonly", "readonly");
+            $("#postPostPublishStatusID").val(1);
+            $("#postPostCommentStatusID").val(1);
+
+            $("#postViewCount").val(0);
+            $("#postCommentCount").val(0);
+            $("#postLikeCount").val(0);
+
+            var date = new Date();
+            var currentDateTime = date.getDate() + '/' + (date.getMonth() + 1) + '/' + (1900 + date.getYear()) + " " + (date.getUTCHours() + 7).toString().replace("24", "00") + ":" + date.getMinutes() + ":" + date.getSeconds();
+            $("#postPublishedTime").val(currentDateTime);
+            $("#postCreatedTime").val(currentDateTime);
+
+             
+            postTextEditor.setData("");
+            postText2Editor.setData("");
+
+
+            $("#updateTitle").text("Đăng bài viết");
+
+
+            return;
+        }
+        else {
+            loadCurrentSelectedPostTag(id);
+        }
+
+         debugger;
+        let obj = await getItemById(id);
+        currentUpdatingObj = obj;
+
+
+        $("#postId").val(id > 0 ? obj.id : "");
+        //$("#postPostTypeID").val(id > 0 ? obj.postTypeId : "");
+        //$("#postPostAccountID").val(id > 0 ? obj.postAccountId : "");
+        $("#postPostTypeID").val(10001);
+        $("#postPostAccountID").val(10001);
+        $("#postPostCategoryID").val(id > 0 ? obj.postCategoryId : "");
+        $("#postPostLayoutID").val(id > 0 ? obj.postLayoutId : "");
+        $("#postPostPublishStatusID").val(id > 0 ? obj.postPublishStatusId : "");
+        $("#postPostCommentStatusID").val(id > 0 ? obj.postCommentStatusId : "");
+        $("#postGuID").val(id > 0 ? obj.guId : "");
+        $("#postPhoto").val(id > 0 ? obj.photo : "");
+        $("#postVideo").val(id > 0 ? obj.video : "");
+        $("#postViewCount").val(id > 0 ? obj.viewCount : "");
+        $("#postCommentCount").val(id > 0 ? obj.commentCount : "");
+        $("#postLikeCount").val(id > 0 ? obj.likeCount : "");
+        $("#postActive").val(id > 0 ? obj.active : "");
+        $("#postUrl").val(id > 0 ? obj.url : "");
+        $("#postUrl2").val(id > 0 ? obj.url2 : "");
+        $("#postName").val(id > 0 ? obj.name : "");
+        $("#postDescription").val(id > 0 ? obj.description : "");
+        $("#postText").val(id > 0 ? obj.text : "");
+        $("#postName2").val(id > 0 ? obj.name2 : "");
+        $("#postDescription2").val(id > 0 ? obj.description2 : "");
+        $("#postText2").val(id > 0 ? obj.text2 : "");
+        $("#postPublishedTime").val(id > 0 ? obj.publishedTime : "");
+        $("#postOpenTime").val(id > 0 ? obj.openTime : "");
+        $("#postClosedTime").val(id > 0 ? obj.closedTime : "");
+        $("#postEventAddress").val(id > 0 ? obj.eventAddress : "");
+        $("#postFileUrl").val(id > 0 ? obj.fileUrl : "");
+        $("#postCreatedTime").val(id > 0 ? obj.createdTime : "");
+        $('#postPostTypeID').trigger('change');
+        $('#postPostAccountID').trigger('change');
+        $('#postPostCategoryID').trigger('change');
+        $('#postPostLayoutID').trigger('change');
+        postTextEditor.setData((id > 0 ? obj.text : ''));
+        postText2Editor.setData((id > 0 ? obj.text2 : ''));
+
+        $(".input-photo-thumbnail").attr("src", obj.photo);
+
+        // $("#postId").val(id > 0 ? obj.id : "");
+        // $("#postName").val(id > 0 ? obj.name : "");
+        // $("#postDescription").val(id > 0 ? obj.description : "");
+        // $("#postCreatedTime").val(id > 0 ? obj.createdTime : "");
+        // $("#postActive").val(id > 0 ? obj.active : "");
+        $("#updateTitle").text("Cập nhật bài viết: " + obj.name);
+
+
+        $("#postGuID").attr("readonly", false);
+        $("#postUrl").attr("readonly", false);
+        $("#postUrl2").attr("readonly", false);
+        // correcting data
+        //$('#buyProvinceID').val(obj.provinceID.split(", ")).trigger('change');
+
+        formatNumber();
+    }
+
+
+    function updateItem(id) {
+        var actionName = (id == 0 ? "Create" : "Update");
+        //let obj = getItemById(id);
+        let obj = currentUpdatingObj;
+        let objName = id > 0 ? obj.name : " ";
+
+        validateInputNumber();
+         // fix upload sai / \
+         // check if photo != null then update split
+         
+
+         var link ="";
+        if($("#postPhoto").val() != "") {
+            var photo = $("#postPhoto").val();
+            var split = photo.split("\\");
+            link = "/upload/" + split[1];
+        }
+        
+        var link2 ="";
+        if($("#postFileUrl").val() != "") {
+            var docu = $("#postFileUrl").val();
+            var splitz = docu.split("\\");
+            link2 = "/upload/" + splitz[1];
+        }
+        // "id": $("#postId").val(),
+        // "name": $("#postName").val(),
+        // "description": $("#postDescription").val(),
+        // "createdTime": $("#postCreatedTime").val(),
+        // "active": $("#postActive").val()
+        var updatingObj = {
+            "id": $("#postId").val(),
+            "postTypeID": $("#postPostTypeID").val(),
+            "postAccountID": $("#postPostAccountID").val(),
+            "postCategoryID": $("#postPostCategoryID").val(),
+            "postLayoutID": $("#postPostLayoutID").val(),
+            "postPublishStatusID": $("#postPostPublishStatusID").val(),
+            "postCommentStatusID": $("#postPostCommentStatusID").val(),
+            "guID": $("#postGuID").val(),
+            "photo": link,
+            "video": $("#postVideo").val(),
+            "viewCount": $("#postViewCount").val(),
+            "commentCount": $("#postCommentCount").val(),
+            "likeCount": $("#postLikeCount").val(),
+            "active": $("#postActive").val(),
+            "url": $("#postUrl").val(),
+            "url2": $("#postUrl2").val(),
+            "name": $("#postName").val(),
+            "description": $("#postDescription").val(),
+            "text": postTextEditor.getData(),
+            "name2": $("#postName2").val(),
+            "description2": $("#postDescription2").val(),
+            "text2": postText2Editor.getData(),
+            "publishedTime": datetimeFormat($("#postPublishedTime").val().replace("-", "/")),
+            "openTime": datetimeFormat($("#postOpenTime").val().replace("-", "/")),
+            "closedTime": datetimeFormat($("#postClosedTime").val().replace("-", "/")),
+            "eventAddress": $("#postEventAddress").val(),
+            "fileUrl": link2,
+            "createdTime": datetimeFormat($("#postCreatedTime").val()),
+
+        };
+
+        // correcting data
+        //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Performing " + actionName + " item " + objName,
+            type: 'info',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                //Swal.fire(
+                                //    'Updated!',
+                                //    'Item ' + objName + ' has been successfully updated!',
+                                //    'success'
+                                //);
+
+                                
+                                Swal.fire({
+                                    title: '<strong>Đã cập nhật bài viết!</strong>',
+                                    icon: 'success',
+                                    //html:
+                                    //    'Bạn có muốn xem bài viết này ngay bây giờ?',
+                                    showCloseButton: true,
+/*                                    showCancelButton: true,*/
+                                    focusConfirm: false,
+                                    @*confirmButtonText:
+                                        '<a target="_blank" style="font-size:unset; color: unset;" href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/'+id+'-preview"><i class="fa fa-thumbs-up"></i> Preview </a>',*@
+                                    confirmButtonAriaLabel: 'Preview',
+                                    cancelButtonText:
+                                        'OK',
+                                    cancelButtonAriaLabel: 'OK'
+                                });
+
+
+                                updateTable(id, updatingObj, "update");
+                                var updatedItemIndex = dataSource.findIndex(item => parseInt(item.id) === id);
+                                dataSource[updatedItemIndex] = updatingObj;
+                                $.ajax({
+                                    url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/postCategory/api/UpdatePostCategoryPostCount/" + updatingObj.postCategoryID + "/" + currentUpdatingObj.postCategoryId,
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    success: function (result) {
+                                        console.log("Success when change Postcount in PostCategory table");
+                                    },
+                                    error: function (e) {
+                                        console.log("Can't change PostCount in PostCategory table");
+                                    }
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' update item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+
+                    //update PostTag
+                    updatePostTag(id);
+                };
+
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                //Swal.fire(
+                                //    'Created!',
+                                //    'New item has been successfully created!',
+                                //    'success'
+                                //);
+
+                                Swal.fire({
+                                    title: '<strong>Đã đăng bài viết!</strong>',
+                                    icon: 'success',
+                                    //html:
+                                    //    'Bạn có muốn xem bài viết này ngay bây giờ?',
+                                    showCloseButton: true,
+/*                                    showCancelButton: true,*/
+                                    focusConfirm: false,
+                                    @*confirmButtonText:
+                                        '<a target="_blank" style="font-size:unset; color: unset;" href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}/'+responseData.data[0].id+'-preview"><i class="fa fa-thumbs-up"></i> Preview </a>',*@
+                                    confirmButtonAriaLabel: 'Preview',
+                                    cancelButtonText:
+                                        'OK',
+                                    cancelButtonAriaLabel: 'OK'
+                                });
+
+
+
+
+                                updatingObj = responseData.data;
+                                dataSource.push(updatingObj);
+                                updateTable(0, updatingObj, "add");
+                                
+                                //update PostTag
+                                updatePostTag(updatingObj.Id);
+                                $.ajax({
+                                    url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/postCategory/api/UpdatePostCategoryPostCount/" + updatingObj[0].postCategoryId + "/0",
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    success: function (result) {
+                                        console.log("Success when change Postcount in PostCategory table");
+                                    },
+                                    error: function (e) {
+                                        console.log("Can't change PostCount in PostCategory table");
+                                    }
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Could\' create item, please check your data',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+    function deleteItem(id) {
+        //let obj = getItemById(id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function (responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Deleted!',
+                                'Item has been deleted.',
+                                'success'
+                            );
+                            updateTable(id, 0, "delete");
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Error!',
+                            'Item can\'t be deleted.',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+        })
+    }
+
+    function updateTable(id, obj, action) {
+        obj.id = id;
+        if (action === "delete") {
+            table.row("#row" + id).remove().draw();
+        }
+
+        if (action === "add") {
+
+            //var addedItems = [obj];
+            //var addedItems = obj;
+            var addedValues = [];
+
+            obj = obj[0];
+            console.log("Added:" + obj);
+            var postAccountObj = accountData.find(item => parseInt(item.id) === parseInt(obj.postAccountId));
+            var postLayoutObj = postLayoutData.find(item => parseInt(item.id) === parseInt(obj.postLayoutId));
+            var postCategoryObj = postCategoryData.find(item => parseInt(item.id) === parseInt(obj.postCategoryId));
+
+            addedValues.push("<td style='text-align: center;'></td>");
+            addedValues.push("<td class='row" + id + "-column column-id'><a target='_blank' style='font-weight: bold' href ='@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description" + obj.id + "-preview'>" + obj.id + "</a></td>");
+            addedValues.push("<td class='row" + id + "-column column-postAccountId'>" + postAccountObj.name + "</td>");
+            addedValues.push("<td class='row" + id + "-column column-postCategoryName'>" + postCategoryObj.name + "</td>");
+            addedValues.push("<td class='row" + id + "-column column-postLayoutName'>" + postLayoutObj.name + "</td>");
+            addedValues.push("<td class='row" + id + "-column column-name'>" + obj.name + "</td>");
+            addedValues.push("<td class='row" + id + "-column column-createdTime'>" + obj.createdTime + "</td>");
+
+            if (obj.postPublishStatusId == 0) {
+                addedValues.push("<td class='row" + id + "-column column-name'><button style='width:130px' type='button' class='btn btn-danger'>Private</button></td>");
+            }
+            else if (obj.postPublishStatusId == 1) {
+                addedValues.push("<td class='row" + id + "-column column-name'><button style='width:130px' type='button' class='btn btn-success'>Public</button></td>");
+            }
+            else {
+                addedValues.push("<td class='row" + id + "-column column-name'><button style='width:130px' type='button' class='btn btn-warning'>Membership</button></td>");
+            }
+
+            addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + id + ")'><i class='fa fa-edit fa-2x' style='color:#0d910f'></i></a></td>");
+            addedValues.push("<td style='text-align: center;'><a target='_blank' href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}post/admin/edit" + id + "'><i class='fa fa-newspaper-o fa-2x' style='color:#03a9f4'></i></a></td>");
+            addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+            table.row.add(addedValues).draw();
+
+            //addedItems.forEach(function (item, index) {
+            //    // console.log(item, index);
+            //    var rowContent = "";
+            //    addedValues.push("<td style='text-align: center;'></td>");
+            //    for (var key in item) {
+            //        if (item.hasOwnProperty(key)) {
+            //            // console.log(key + " -> " + item[key]);
+            //            if (!hiddenItem.includes(key)) {
+            //                addedValues.push("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+            //            }
+            //        }
+            //    }
+            //    addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+            //    addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+            //    table.row.add(addedValues).draw();
+            //});
+            // location.reload();
+        }
+
+        if (action === "update") {
+            // alert(id);
+
+            $("#row" + id + " .column-id").html("<a target='_blank' style='font-weight: bold' href ='@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description" + obj.id + "-preview'>" + obj.id + "</a>");
+
+            var postAccountObj = accountData.find(item => parseInt(item.id) === parseInt(obj.postAccountID));
+            $("#row" + id + "-column-postAccountId").html(postAccountObj.name);
+
+            var postLayoutObj = postLayoutData.find(item => parseInt(item.id) === parseInt(obj.postLayoutID));
+            $("#row" + id + "-column-postLayoutName").html(postLayoutObj.name);
+
+            var postCategoryObj = postCategoryData.find(item => parseInt(item.id) === parseInt(obj.postCategoryID));
+            $("#row" + id + "-column-postCategoryName").html(postCategoryObj.name);
+            debugger;
+            if (obj.postPublishStatusID == "0") {
+                //addedValues.push("<td class='row" + id + "-column column-name'><button style='width:130px' type='button' class='btn btn-danger'>Private</button></td>");
+                $("#row" + id + "-column-postPublishStatus").html("<button style='width:130px' type='button' class='btn btn-danger'>Private</button>");
+            }
+            else if (obj.postPublishStatusID == "1") {
+                //addedValues.push("<td class='row" + id + "-column column-name'><button style='width:130px' type='button' class='btn btn-success'>Public</button></td>");
+                $("#row" + id + "-column-postPublishStatus").html("<button style='width:130px' type='button' class='btn btn-success'>Public</button>");
+            }
+            else {
+                //addedValues.push("<td class='row" + id + "-column column-name'><button style='width:130px' type='button' class='btn btn-warning'>Membership</button></td>");
+                $("#row" + id + "-column-postPublishStatus").html("<button style='width:130px' type='button' class='btn btn-warning'>Membership</button>");
+            }
+
+            $("#row" + id + "-column-name").html(obj.name);
+            $("#row" + id + "-column-createdTime").html(obj.createdTime);
+
+
+            @* $(".row" + id + "-column").each(function () {
+                var propertyName = $(this).attr("property");
+                console.log(propertyName);
+
+                for (var key in obj) {
+                    if (key === propertyName && obj.hasOwnProperty(key)) {
+                        //debugger;
+                        if (key == "id") {
+                            $("#row" + id + " .column-id").html("<a target='_blank' style='font-weight: bold' href ='@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description" + obj[key] + "-preview'>" + obj[key] + "</a>");
+                        }
+                        else if (key == "postLayoutID") {
+                            var postLayoutObj = postLayoutData.find(item => parseInt(item.id) === parseInt(obj[key]));
+                            this.innerText = postLayoutObj.name;
+                        }
+                        else {
+                            this.innerText = obj[key];
+                        }
+                    }
+                }
+
+            });*@
+        }
+
+        //Update columns with foreign key
+        // var NO_FKFKUpdateSelector = 'tr';
+        // if( !(typeof(id) === 'undefined')) {
+        //     NO_FKFKUpdateSelector = '#row'+id;
+        // }
+        // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKID]').each(function(){
+        //     // debugger;
+        //     var postID = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+        //     var postObj = getItemById(postID);
+        //     var NO_FKID = parseInt(postObj.NO_FKID);
+        //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKID);
+        //     $(this).text(NO_FKObj.name);
+        //     // console.log('FK updated for Staff '+postID);
+        // });
+
+        //var postTypeFKUpdateSelector = 'tr';
+        //if (!(typeof (id) === 'undefined')) {
+        //    // debugger;
+        //    postTypeFKUpdateSelector = '#row' + id;
+        //    var postTypeID = parseInt(obj.postTypeID);
+        //    var postTypeObj = postTypeData.find(item => parseInt(item.id) === postTypeID);
+        //    $('#tableData tbody ' + postTypeFKUpdateSelector + ' td[property=postTypeId]').text(postTypeObj.name);
+        //}
+        //else {
+        //    $('#tableData tbody ' + postTypeFKUpdateSelector + ' td[property=postTypeId]').each(function () {
+        //        // debugger;
+        //        var postID = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+        //        var postObj = getItemById(postID);
+        //        var postTypeID = parseInt(postObj.postTypeId);
+        //        var postTypeObj = postTypeData.find(item => parseInt(item.id) === postTypeID);
+        //        $(this).text(postTypeObj.name);
+        //        // console.log('FK updated for Staff '+postID);
+        //    });
+        //}
+        //var accountFKUpdateSelector = 'tr';
+        //if (!(typeof (id) === 'undefined')) {
+        //    // debugger;
+        //    accountFKUpdateSelector = '#row' + id;
+        //    var accountID = parseInt(obj.accountID);
+        //    var accountObj = accountData.find(item => parseInt(item.id) === accountID);
+        //    $('#tableData tbody ' + accountFKUpdateSelector + ' td[property=postAccountId]').text(accountObj.name);
+        //}
+        //else {
+        //    $('#tableData tbody ' + accountFKUpdateSelector + ' td[property=postAccountId]').each(function () {
+        //        //debugger;
+        //        var postID = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+        //        var postObj = getItemById(postID);
+        //        var accountID = parseInt(postObj.postAccountId);
+        //        var accountObj = accountData.find(item => parseInt(item.id) === accountID);
+        //        $(this).text(accountObj.name);
+        //        // console.log('FK updated for Staff '+postID);
+        //    });
+        //}
+        //var postCategoryFKUpdateSelector = 'tr';
+        //if (!(typeof (id) === 'undefined')) {
+        //    // debugger;
+        //    postCategoryFKUpdateSelector = '#row' + id;
+        //    var postCategoryID = parseInt(obj.postCategoryId);
+        //    var postCategoryObj = postCategoryData.find(item => parseInt(item.id) === postCategoryID);
+        //    $('#tableData tbody ' + postCategoryFKUpdateSelector + ' td[property=postCategoryId]').text(postCategoryObj.name);
+        //}
+        //else {
+        //    $('#tableData tbody ' + postCategoryFKUpdateSelector + ' td[property=postCategoryId]').each(function () {
+        //        //debugger;
+        //        var postID = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+        //        var postObj = getItemById(postID);
+        //        var postCategoryID = parseInt(postObj.postCategoryId);
+        //        var postCategoryObj = postCategoryData.find(item => parseInt(item.id) === postCategoryID);
+        //        $(this).text(postCategoryObj.name);
+        //        // console.log('FK updated for Staff '+postID);
+        //    });
+        //}
+        //var postLayoutFKUpdateSelector = 'tr';
+        //if (!(typeof (id) === 'undefined')) {
+        //    //debugger;
+        //    postLayoutFKUpdateSelector = '#row' + id;
+        //    var postLayoutID = parseInt(obj.postLayoutID);
+        //    var postLayoutObj = postLayoutData.find(item => parseInt(item.id) === postLayoutID);
+        //    $('#tableData tbody ' + postLayoutFKUpdateSelector + ' td[property=postLayoutId]').text(postLayoutObj.name);
+        //}
+        //else {
+        //    $('#tableData tbody ' + postLayoutFKUpdateSelector + ' td[property=postLayoutId]').each(function () {
+        //        // debugger;
+        //        var postID = parseInt($(this).attr('class').replace('row', '').replace('-column', ''));
+        //        var postObj = getItemById(postID);
+        //        var postLayoutID = parseInt(postObj.postLayoutId);
+        //        var postLayoutObj = postLayoutData.find(item => parseInt(item.id) === postLayoutID);
+        //        $(this).text(postLayoutObj.name);
+        //        // console.log('FK updated for Staff '+postID);
+        //    });
+        //}
+
+        formatNumber();
+    }
+
+
+    async function getItemById(id) {
+        //const result = dataSource.find(item => parseInt(item.id) === id);
+        //return result;
+
+        //AJAX
+        @*var urlRequest = '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}post/api/detail/' + id;
+        await $.ajax({
+            url: urlRequest,
+            type: 'GET',
+            async: 'false',
+            contentType: 'application/json',
+            success: function (responseData) {
+                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded detail object');
+                // debugger;
+                var data = responseData.data;
+                return data[0];
+            },
+            error: function (e) {
+                //console.log(e.message);
+            }
+        });*@
+
+         var urlRequest = '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}post/api/detail/' + id;
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: urlRequest,
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (responseData) {
+                    resolve(responseData.data[0])
+                },
+                error: function (e) {
+                    reject(e)
+                }
+            })
+        });
+    }
+
+
+    function camelToSentenceCase(input) {
+        var text = input;
+        var result = text.replace(/([A-Z])/g, " $1");
+        var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+        return finalResult;
+    }
+</script>
+
+<script>
+    $("#postPostCategoryID").on("change", function () {
+        var value = $("#postPostCategoryID :selected").val();
+        if (value == 10297) {
+            $("#divPostOpenTime").css("display", "block");
+            $("#divPostCloseTime").css("display", "block");
+            $("#divPostEventAddress").css("display", "block");
+        }
+        else {
+            $("#divPostOpenTime").css("display", "none");
+            $("#divPostCloseTime").css("display", "none");
+            $("#divPostEventAddress").css("display", "none");
+        }
+
+        if (value == 10299 || value == 10300 || value == 10301) {
+            $("#FileUploadForLibrary").css("display", "block");
+        }
+        else {
+            $("#FileUploadForLibrary").css("display", "none");
+        }
+
+    });
+</script>
+
+
+
+

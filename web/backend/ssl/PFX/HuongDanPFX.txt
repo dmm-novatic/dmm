@@ -1,0 +1,3 @@
+Mat khau cua PFX la: 1620187234
+Huong dan Import PFX: https://muassl.com/ho-tro/huong-dan-cai-dat/windows-nhap-tap-tin-pfx-thong-qua-mmc.html
+Binding vao IIS theo huong dan o day: https://muassl.com/ho-tro/huong-dan-cai-dat/iis-8-cai-dat-ssl.html#buoc2

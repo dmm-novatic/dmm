@@ -1,0 +1,179 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #Contributor_PlayButton {
+        padding: 13px 15px 13px 15px;
+        box-shadow: 0px 0px 0px 8px rgb(212 240 252 / 30%);
+        width: 45px;
+        border-radius: 55px;
+        height: 45px;
+        background-color: #2AD9FF;
+        display: inline-block;
+    }
+    #Contributor span {
+        font-size: 16px;
+        font-family: My Custom Regular;
+        padding-right: 5%;
+    }
+    #CoverContributor .container div p:first-of-type {
+        font-size: 18px;
+        letter-spacing: 2px;
+        font-family: My Custom Regular;
+        padding-top: 15%;
+    }
+
+    #CoverContributor .container div p:nth-child(2) {
+        font-size: 34px;
+        font-family: My Custom Bold;
+        padding-bottom: 5%;
+    }
+
+    #CoverContributor .container div p:nth-child(3) {
+        font-size: 15px;
+        font-family: My Custom Regular;
+        padding-bottom: 5%;
+        color: #5A6990;
+    }
+
+    #CoverContributor .container div span:nth-child(4) {
+        font-size: 15px;
+        font-family: My Custom Bold;
+        letter-spacing: 1px;
+        color: #265178;
+    }
+
+    #ContributorText span:nth-child(1) {
+        font-size: 34px;
+        font-family: My Custom Regular;
+        color: #E4750E;
+    }
+
+    #Contributor {
+        background-color: white;
+        width: 1110px;
+        height: 340px;
+        box-shadow: 0px 10px 20px rgba(25, 62, 105, 0.1);
+        margin-top: 5%;
+        border-radius: 25px;
+        text-align: center;
+        padding-top: 3%;
+        margin-bottom: 5%;
+    }
+    #CoverContributor {
+        background-image: url('/images/image 18.png');
+        padding-top: 30px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #image-group {
+        position: relative;
+        height: 462px;
+    }
+
+        #image-group img {
+            position: absolute;
+        }
+    .Group_Icon img:first-of-type {
+        padding-bottom: 20%;
+    }
+    .nav-tabs > li {
+        float: none;
+        display: inline-block;
+        zoom: 1;
+    }
+
+
+
+    .nav-tabs {
+        text-align: center;
+    }
+</style>
+<div class="container-fluid" id="CoverContributor">
+    <div class="container" style="width: 100%; padding: 0 15% 0 15%; height: 600px;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0;">
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" style="padding:0;" id="ContributorText">
+                    <p style="text-transform:uppercase">@ViewBag.lblBanDoTaiChinh</p>
+                    <p>@ViewBag.lblHotroDoanhNghiepTrongHoatDong <span style="font-weight:700">@ViewBag.lblTimKiemNguonTaiChinh</span></p>
+                    <p>
+                        @ViewBag.lblGioiThieuBanDoTaiChinh
+                    </p>
+                    <span style="padding-right:2%;text-transform:uppercase;">@ViewBag.lblNghienCuuChiTiet</span>
+                    <p id="Contributor_PlayButton"><a href="/so-tay-tai-chinh"><i class="fas fa-play" style="color: #D2F0FC;"></i></a></p>
+                </div>
+
+                <div class="col-xs-0 col-sm-7 col-md-7 col-lg-7" style="padding:0;" id="image-group">
+                    <img src="~/images/image 20.png" style=" z-index: 3; top: 34%; width: 48%; left: 12%; height: 85%; "  />
+                    <img src="~/images/image 19(2).png" style="z-index: 2; left: 52%; width: 48%; height: 86%; top: 8%; "  />
+                    <img src="~/images/image 21.png" style="z-index: 1; top: 23%; left: 40%; " />
+                    <img src="~/images/image 22.png" style="z-index: 1; top: 89%; right: 28%; " />
+                    <img src="~/images/Chart.png" style="z-index: 1; top: 100%; right: 6%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="container">
+        <div id="Contributor">
+            <div>
+                <ul class="nav nav-tabs" style="padding-top:1%;padding-bottom:1%;border:none;">
+                    <li class="active"><a data-toggle="tab" href="#home" style="font-size: 18px; border: none; color: #265178; font-family: My Custom Medium;text-transform:uppercase">@ViewBag.lblNganHang</a></li>
+                    <li><a data-toggle="tab" href="#menu1" style="font-size: 18px; border: none; font-family: My Custom Medium; text-transform: uppercase">@ViewBag.lblToChuc</a></li>
+                    <li><a data-toggle="tab" href="#menu1" style="font-size: 18px; border: none; font-family: My Custom Medium; text-transform: uppercase">@ViewBag.lblQuyDauTu</a></li>
+                    <li><a data-toggle="tab" href="#menu1" style="font-size: 18px; border: none; font-family: My Custom Medium; text-transform: uppercase">@ViewBag.lblNganSach</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 Group_Contributor">
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 Group_Icon">
+                            <img src="~/images/Bank_Icon/ic_tcb.png" />
+                            <img src="~/images/Bank_Icon/ic_seabank.png" />
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 Group_Icon">
+                            <img src="~/images/Bank_Icon/ic_kienlong_klb.png" />
+                            <img src="~/images/Bank_Icon/ic_exambank_eib.png" />
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 Group_Icon">
+                            <img src="~/images/Bank_Icon/ic_vietbank.png" />
+                            <img src="~/images/Bank_Icon/ic_quocdan_ncb.png" />
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 Group_Contributor" style="padding-left: 0px;">
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 Group_Icon">
+                            <img src="~/images/Bank_Icon/ic_vib.png" />
+                            <img src="~/images/Bank_Icon/ic_petrolimex_pgb.png" />
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 Group_Icon">
+                            <img src="~/images/Bank_Icon/ic_sacombank.png" />
+                            <img src="~/images/Bank_Icon/ic_ocb.png" />
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 Group_Icon">
+                            <img src="~/images/Bank_Icon/ic_gpbank.png" />
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <div class="container">
+                        
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>*@
+
+</div>

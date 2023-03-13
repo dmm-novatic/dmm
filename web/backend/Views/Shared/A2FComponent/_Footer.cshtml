@@ -1,0 +1,695 @@
+﻿@{
+    Layout = null;
+}
+
+<script>
+    $(document).ready(function () {
+        document.getElementById("year").innerHTML = "<span style='font-size: 28px; vertical-align: -webkit-baseline-middle; margin-right: 2px'>©</span>" +  new Date().getFullYear() + " @ViewBag.lblBanQuyen";
+    });
+
+</script>
+
+<style>
+    /*font*/
+    /*body {
+    font-family: "My Custom Regular", sans-serif;
+}*/
+    @@media only screen and (min-width: 1440px) {
+        .Containner-logo div img:nth-child(3) {
+            width: 62.2% !important;
+        }
+        .logoMpi {
+            width: 21.8% !important;
+        }
+    }
+    @@media (min-width: 992px) and (max-width: 1199px) {
+        .footer-collumn-control {
+            height: 107px;
+        }
+
+        .collumn-bottom {
+            margin-top: 30px;
+        }
+
+        .item.social {
+            float: left;
+        }
+
+        .footer-color2 .bottom_border {
+            margin : 0;
+        }
+        .Containner-logo div img:nth-child(2) {
+            width: 26%;
+        }
+
+        .Containner-logo div img:nth-child(3) {
+            margin: 0;
+            width: 70% !important;
+        }
+    }
+
+    @@media (max-width: 992px) {
+
+        /* margin 4 collumn in bottom of footer */
+
+        .footer-collumn-control {
+            height : 130px;
+        }
+
+        .collumn-bottom {
+            margin-top : 30px;
+        }
+
+        .footer-color2 .bottom_border {
+            margin : 0;
+        }
+        /* icon container change */
+        .item.social {
+            float: left;
+        }
+
+        div.item.social {
+            width: 100%;
+            text-align: left !important;
+        }
+    }
+    @@media (min-width: 1200px) and (max-width: 1440px){
+        .Containner-logo div img:nth-child(2) {
+            width: 26%;
+        }
+        .img-responsive{
+            padding: 10px !important;
+        }
+        .Containner-logo div img:nth-child(3) {
+            margin: 0;
+            width: 73.2%;
+        }
+     }
+
+     @@media (max-width : 1100px) and (min-width : 400px) {
+         .nonwrapper {
+             white-space : nowrap;
+         }
+     }
+
+    @@media (min-width: 768px) and (max-width: 992px) {
+        /* Image H2F logo */
+/*        #img-responsive-A2F {
+            height: 80px !important;
+        }*/
+        .Containner-logo div img:nth-child(2){
+            width:26%;
+        }
+        .Containner-logo div img:nth-child(3) {
+            margin: 0;
+            width: 70% !important;
+        }
+    }
+    @@media (min-width: 425px) and (max-width: 500px){
+        #footer-email {
+            width: 90% !important;
+        }
+        .Containner-logo div img:nth-child(2) {
+            width: 25%;
+        }
+        .Containner-logo div img:nth-child(3) {
+            margin: 10px;
+            width: 70%;
+        }
+        .contact img:first-child {
+            width: 70%;
+        }
+    }
+    @@media (min-width: 501px) and (max-width: 767px) {
+        #footer-email {
+            width: 90% !important;
+        }
+        .Containner-logo div img:nth-child(2) {
+            width: 15.5%;
+        }
+        .Containner-logo div img:nth-child(3) {
+            margin: 10px;
+            width: 45% !important;
+        }
+        .contact img:first-child {
+            width: 50%;
+        }
+    }
+    @@media (min-width: 321px) and (max-width: 424px) {
+        /* Image H2F logo */
+/*        #img-responsive-A2F {
+            height: 80px !important;
+            float: left;
+        }*/
+        .Containner-logo div img:nth-child(2) {
+            width: 22%;
+        }
+        #img-responsive-USAID {
+            margin: 10px;
+            width: 58%;
+        }
+        /*  Input button register to receive emails */
+        #footer-email {
+            width: 90% !important;
+        }
+         
+    }
+
+      @@media  (max-width: 424px) {
+         div.footer-clean.footer-color2>div.bottom_border-content {
+            height: 600px;
+        }
+
+        .collumn-bottom {
+            padding-top : 0px;
+        }
+         
+     }
+
+    @@media (max-width: 320px) {
+/*        #img-responsive-A2F {
+            height: 70px !important;
+            float: left;
+        }*/
+        .Containner-logo{
+            margin-left:0;
+            margin-right:0;
+        }
+        #img-responsive-USAID {
+            width:70%;
+        }
+        .Containner-logo div img:nth-child(2) {
+            width: 25.7%;
+        }
+    }
+
+    .footer-color1 {
+        padding: 30px 0;
+        background-color: #0D3D68;
+        color: white;
+        
+    }
+
+    .footer-color2 {
+        padding: 30px 0;
+        background-color: #1C3552;
+        overflow : hidden;
+        color: white;
+    }
+
+    .footer-clean h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        /*font-weight: bold;*/
+        font-size: 16px;
+    }
+
+    .footer-clean ul {
+        padding: 0;
+        list-style: none;
+        line-height: 1.6;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+        .footer-clean ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+            .footer-clean ul a:hover {
+                opacity: 1;
+            }
+
+    .footer-clean .item.social {
+        text-align: right;
+    }
+
+        .footer-clean .item.social > a {
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            text-align: center;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+            .footer-clean .item.social > a:hover {
+                opacity: 0.9;
+            }
+
+    .footer-clean .copyright {
+        margin-top: 14px;
+        margin-bottom: 0;
+        font-size: 13px;
+        opacity: 0.6;
+    }
+
+    .img-responsive {
+        padding: 10px !important;
+    }
+
+    /*#img-responsive-A2F {
+        height: 84px;
+    }*/
+
+    .contact {
+        margin-right: 0 !important;
+    }
+
+        .contact .info {
+            position: relative;
+        }
+
+            .contact .info li {
+                display: flex;
+                margin-bottom: 10px;
+            }
+
+                .contact .info li span:nth-child(1) {
+                    margin-right: 10px;
+                }
+
+    /* Credit to https://epicbootstrap.com/snippets/footer-with-columns */
+    /*footer of footer : border line */
+
+    .sp-column {
+        padding-top: 20px;
+    }
+
+    .bottom_border {
+        border-bottom: 1px solid #3a4950;
+        padding-bottom: 10px;
+    }
+
+    .foote_bottom_ul_amrc {
+        list-style-type: none;
+        padding: 0px;
+        display: table;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 10px;
+        margin-left: auto;
+    }
+
+        .foote_bottom_ul_amrc li {
+            display: inline;
+        }
+
+            .foote_bottom_ul_amrc li a {
+                font-size: 12px;
+                color: #999;
+                margin: 0 4px;
+            }
+
+                .foote_bottom_ul_amrc li a#term {
+                    color: rgb(44, 152, 185);
+                }
+
+    .social_footer_ul {
+        display: table;
+        margin: 15px auto 0 auto;
+        list-style-type: none;
+    }
+
+        .social_footer_ul li {
+            padding-left: 20px;
+            padding-top: 10px;
+            float: left;
+        }
+
+            .social_footer_ul li a {
+                color: #CCC;
+                border: 1px solid #CCC;
+                padding: 8px;
+                border-radius: 50%;
+            }
+
+            .social_footer_ul li i {
+                width: 20px;
+                height: 20px;
+                text-align: center;
+            }
+
+    .btn-circle.btn-md {
+        width: 50px;
+        height: 50px;
+        padding: 7px 10px;
+        border-radius: 25px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /*font style*/
+    .footer-font-1 {
+
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+    }
+
+    .footer-text-color-1 {
+      color: #A4AEBA;
+    }
+
+
+    .footer-text-icon-color-1 {
+        color : #21A8CF;
+    }
+    .Containner-logo div p {
+        font-size: 16px;
+    }
+
+    .Containner-logo div img:nth-child(3) {
+        width: 73.2%;
+    }
+
+</style>
+
+<style>
+    @@media(max-width : 1199px) and (min-width : 992px) {
+       #n-10067{
+            margin-top: 0 !important;
+        } 
+    }
+
+     @@media(max-width : 456px) {
+       .bottom_border {
+          padding-bottom: 39px;
+       }
+    }
+
+     
+</style>
+
+
+
+<!--Footer-->
+<footer style=" position: relative;">
+    <!--Footer button to scroll to top -->
+    <button type="button" id="back-to-top" class="btn btn-warning btn-circle btn-md"
+            style=" margin-top: -25px; position: absolute; right: 40px;">
+        <i class="fal fa-arrow-up" style="font-size: 23px;"></i>
+    </button>
+    <!-- footer background 1 : Start-->
+    <div class="footer-clean footer-color1">
+
+        <div class="container">
+
+            <div class="row Containner-logo">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <p>@ViewBag.lblCoSponsoring</p>
+                    <img src="~/images/image 24.png" class="img-responsive logoMpi" alt="MPI-Logo" style="float: left;">
+                    <img src="~/images/USAID_Horiz_Vietnamese_RGB_White 1.png" class="img-responsive" id="img-responsive-USAID" alt="USAID-Logo"/>
+                </div>
+
+
+
+
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 contact">
+                    <!--Bắt Đâu Nội Dung Liên Hệ-->
+                        <img style="margin-bottom: 10px" src="~/images/40b9af3e90425e1c0753.jpg" class="img-responsive" id="img-responsive-A2F" alt="A2F-Logo" />
+                    
+                    @*<div>
+            <img style="margin-bottom: 10px; border-radius: 200px;width:25%;" src="~/images/cd7d3cc450289f76c639.jpg" class="img-responsive" id="img-responsive-A2F" alt="A2F-Logo" />
+        </div>*@
+                    @*<img src="~/images/LogoAEDFooterText.jpg" class="img-responsive" id="img-responsive-A2F" alt="A2F-Logo" />*@
+                    <ul class="info font-1">
+                        <li>
+                            <span><i class="far fa-map-marked-alt footer-text-icon-color-1"></i></span>
+                            <span>
+                                @ViewBag.lblDiaChiChuSoHuu
+                            </span>
+                        </li>
+                        <li>
+                            <span><i class="far fa-phone-alt footer-text-icon-color-1"></i></span>
+                            <span>080.44498</span>
+                        </li>
+                        <li>
+                            <span><i class="far fa-envelope footer-text-icon-color-1"></i></span>
+                            <span>a2f@business.gov.vn</span>
+                        </li>
+
+                    </ul>
+                    <!--Kết Thúc Nội Dung Liên Hệ-->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="margin-top: 15px">
+                    <h3>@*@ViewBag.lblDangKiNhanThongBao*@
+                        @ViewBag.lblDangkyNhanTin
+                    </h3>
+                    <ul class="info">
+                        <li class="footer-text-color-1">
+                            <span>
+                                @ViewBag.lblHayDangNhapThanhVien
+                            </span>
+                        </li>
+                        <li style="margin-top: 10px;">
+                            <form>
+                                
+                                <input type="text" class="form-control" placeholder="@ViewBag.lblDiaChiEmail"
+                                       id="footer-email"
+                                       style="position: absolute;border: 0px solid; border-radius: 5px; width: 88% !important; z-index: 1000 !important" />
+                                <span class="input-group-btn" style="position: relative;">
+                                    <button type="button" class="btn btn-success"  id="dang-ky-footer"
+                                            style=" position: relative; border-radius: 5px; float: right; z-index: 1000; background-color : #1BB98F; ">
+                                        @ViewBag.lblDangKi
+                                    </button>
+                                </span>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!-- footer background 1 : End-->
+    </div>
+
+    <!-- footer background 2 : Start-->
+    <div class="footer-clean footer-color2">
+        <div class="container bottom_border bottom_border-content">
+            <div class="row justify-content-center">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+
+                    <!-- start -->
+                    @{
+                        int i = 0;
+                        foreach (var obj in ViewBag.MenuListFooter)
+                        {
+                            int hasChildfooter = 0;
+                            string childContentfooter = "";
+                            if (obj.GroupID == 2)
+                            {
+                                foreach (var obj2 in ViewBag.MenuListFooter)
+                                {
+                                    if (obj2.ParentId == obj.Id)
+                                    {
+                                        hasChildfooter = 1;
+                                        childContentfooter += "<li><a href='" + @obj2.Url + "'>" + @obj2.Name + "</a></li>";
+
+                                    }
+
+                                }
+
+                                //kiem tra la cha nhung k co con
+                                if (hasChildfooter == 0 && obj.ParentId == 0)
+                                {
+                                    i++;
+                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control collumn-bottom">
+                                        <h3>@obj.Name</h3> 
+                                    </div>
+                                } else if (hasChildfooter == 1)
+                                {
+                                    if(i>=2)
+                                    {
+                                        <div id="n-@obj.Id"  class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control collumn-bottom">
+                                            <h3>@obj.Name</h3>
+                                            <ul class="nonwrapper">
+                                                @Html.Raw(childContentfooter)
+                                            </ul>
+                                        </div>
+                                        continue;
+                                    }
+                                    i++;
+                                
+                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control">
+                                        <h3>@obj.Name</h3>
+                                        <ul class="nonwrapper">
+                                            @Html.Raw(childContentfooter)
+                                        </ul>
+                                    </div>
+                                }
+
+
+                            }
+                            
+                                  
+                        }
+
+
+                
+            }
+                    <!-- end-->
+
+                    @*<div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control">
+                        <h3>Về chúng tôi</h3>
+                        <ul>
+                            <li><a href="/AboutUs">Giới thiệu chung</a></li>
+                            <li><a href="/AboutUs">Mục tiêu dự án</a></li>
+                            <li><a href="/AboutUs">Vai trò các đơn vị</a></li>
+                            <li><a href="/AboutUs">Về LinkSME</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control">
+                        <h3>Tin tức</h3>
+                        <ul>
+                            <li><a href="/News">Tin tổng hợp</a></li>
+                            <li><a href="/News">Tin hoạt động</a></li>
+                            <li><a href="/News">Bản tin doanh nghiệp</a></li>
+                            <li><a href="/News">Tin tức thông báo</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control"
+                         id="footer-bottom-event">
+                        <h3>Sự kiện</h3>
+                        <ul>
+                            <li><a href="/Event">Sự kiện đang diễn ra</a></li>
+                            <li><a href="/Event">Sự kiện sắp diễn ra</a></li>
+                            <li><a href="/Event">Hướng dẫn</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control footer-collumn-bottom">
+                        <h3>Thư viện</h3>
+                        <ul>
+                            <li><a href="/library">Tài liệu tham khảo</a></li>
+                            <li><a href="/library">Kinh nghiệm</a></li>
+                            <li><a href="/library">Kiến thức</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control footer-collumn-bottom">
+                        <h3>Giải pháp hỗ trợ</h3>
+                        <ul>
+                            <li><a href="#">Đánh giá tình trạng tài chính</a></li>
+                            <li><a href="#">Quyết toán thuế DN</a></li>
+                            <li><a href="#">Sổ tay kế toán</a></li>
+                        </ul>
+                    </div>*@
+
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 footer-collumn-control collumn-bottom">
+                        <div class="item social">
+                            <a href="" id="facebookAED" target="_blank"><i class=" fab fa-facebook-f"></i></a>@*<a href="#">
+                                <i class=" fab fa-linkedin"></i>
+                            </a>*@<a href="" id="youtubeAED" target="_blank">
+                                <i class=" fab fa-youtube"></i>
+                            </a>@*<a href="#">
+                                <i class=" fab fa-pinterest"></i>
+                            </a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="container bottom_border">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="sp-column ">
+                            <span class="sp-copyright">
+                                <p id="year" class="sp-copyright" style="margin-bottom: 0px">
+
+                                </p>
+
+                                <!-- Ẩn thông tin ng sở hữu -->
+                                @*<span class="font-weight-light sp-copyright-disclaimer">
+                                    <small class="footer-text-color-1" >
+                                       @ViewBag.lblThongTinNguoiSoHuu
+                                    </small>
+                                </span>*@
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
+                        <div class="sp-column">
+                            <ul class="foote_bottom_ul_amrc">
+                                <li><a href="/privacy" @*id="term"*@>@ViewBag.lblQuyDinhVaDieuKhoan</a></li>
+                                <li><span>|</span></li>
+                                <li><a href="/privacy">@ViewBag.lblChinhSachBaoMat</a></li>
+                                @*<li><span>|</span></li>
+        <li><a href="/privacy">Sitemap</a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- footer background 2 : End-->
+    </div>
+
+
+</footer>
+
+
+<script>
+    window.onload = function () {
+        $.ajax({
+            TYPE: "GET",
+            contentType: "application/json",
+            url: "/SystemConfig/api/list",
+            success: function (responseData) {
+                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    dataSource = responseData.data;
+                    for (var i = 0; i < dataSource.length; i++) {
+                        if (dataSource[i].id == "10041") {
+                            $("#youtubeAED").attr("href", dataSource[i].description);
+                        }
+                        if (dataSource[i].id == "10042") {
+                            $("#facebookAED").attr("href", dataSource[i].description);
+                        }
+                    }
+                    
+                }
+            }
+        })
+    }
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 400);
+            return false;
+        });
+
+
+        $('#dang-ky-footer').click(function () {
+            Swal.fire({
+                type: 'info',
+                title : 'Tính năng đang được cập nhật',
+                showConfirmButton: true,
+                timer : 1500
+            });
+        });
+    });
+    
+</script>

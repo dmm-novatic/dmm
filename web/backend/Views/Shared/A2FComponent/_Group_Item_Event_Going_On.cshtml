@@ -1,0 +1,213 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .goingOnLogo {
+        position: absolute !important
+    }
+
+    .Event_Image {
+        position: relative;
+        height: 219px;
+        padding-left: 15px !important;
+    }
+
+        .Event_Image .imageItem {
+            position: relative !important;
+        }
+
+        .Event_Image img:nth-child(2) {
+            top: 10% !important;
+            left: -2% !important;
+        }
+
+        .Event_Image img:first-of-type {
+            width: 350px;
+            height: 220px;
+        }
+
+    .EventContext {
+        padding-bottom: 3%;
+        height: 300px;
+    }
+
+        .EventContext p:nth-child(3) {
+            display: inline-block;
+            padding-right: 1%;
+            font-size: 18px;
+        }
+
+        .EventContext p:last-of-type {
+            display: inline-block;
+            padding-right: 1%;
+            font-size: 18px;
+        }
+
+        .EventContext a:first-of-type {
+            color: #265178;
+            font-size: 28px;
+            font-family: sans-serif;
+        }
+
+        .EventContext p:nth-child(2) {
+            color: #5A6990;
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+        .EventContext span {
+            color: #54555A;
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+    /*Add class css for playButton*/
+    .PlayButton {
+        position: absolute !important;
+        top: 0% !important;
+        border-radius: 50px;
+        width: 55px;
+        height: 55px;
+        background-color: white;
+        padding-top: 18px;
+        padding-left: 21px;
+        margin-left: 38%;
+        margin-top: 22%;
+        box-shadow: 0px 0px 0px 8px rgb(255 255 255 / 30%);
+    }
+
+        .PlayButton:hover {
+            position: absolute;
+            border-radius: 55px;
+            width: 59px;
+            height: 59px;
+            background-color: white;
+            padding-top: 20px;
+            padding-left: 23px;
+            margin-left: 37.5%;
+            margin-top: 21.5%;
+            box-shadow: 0px 0px 0px 0px rgb(255 255 255 / 30%);
+            transition: all 0.2s ease;
+        }
+</style>
+<div class="container">
+    @if (ViewBag.HaveListEventsIsGoingOn == 1)
+    {
+        for (int i = 0; i < ViewBag.ListEventsIsGoingOn.Count; i++)
+        {
+            var item = ViewBag.ListEventsIsGoingOn[i];
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Event_Image" id="event-image-mobile">
+            @if (item.Photo == "")
+            {
+                <img class="imageItem" style="width: 100%" src="" />
+            }
+            else
+            {
+                <img class="imageItem" style="width: 100%" src="@item.Photo" />
+            }
+
+            <img class="goingOnLogo" src="~/images/Group 265 (1).png" />
+            <p class="PlayButton"><a href="/chi-tiet-su-kien/@item.Url"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 EventContext">
+            <a class="ellipsis3" href="/chi-tiet-su-kien/@item.Url">@item.Name</a>
+            <p class="ellipsis3">
+                @item.Description
+            </p>
+            <p><i class="fas fa-calendar"></i></p><span>@item.OpenTime.ToString("dd/MM/yyyy HH:mm:ss")    -   @item.ClosedTime.ToString("dd/MM/yyyy HH:mm:ss")</span><br />
+            <p><i class="fas fa-map-marker-alt"></i></p><span>@item.EventAddress</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Event_Image" id="event-image">
+            @if (item.Photo == "")
+            {
+                <img class="imageItem" style="width: 100%" src="" />
+            }
+            else
+            {
+                <img class="imageItem" style="width: 100%" src="@item.Photo" />
+            }
+
+            <img class="goingOnLogo" src="~/images/Group 265 (1).png" />
+            <p class="PlayButton"><a href="/chi-tiet-su-kien/@item.Url"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>
+        </div>
+
+    </div>
+        }
+    }
+    else
+            {
+                <h3 style="text-align:center; text-transform: uppercase">Hiện không có sự kiện nào đang diễn ra</h3>
+            }
+
+    <div id="next-viewEventsOn"> </div>
+</div>
+
+
+<div id="Nextview-button" style="text-align: center; padding-bottom: 50px; margin:auto;width:90%" class="row">
+    <button id="NextViewID" onclick="NextView();" style="text-transform:uppercase; padding-left: 120px; padding-right: 120px; background-color: #11335A; color: #FFFFFF" type="button" class="btn btn-default0">@ViewBag.lblXemThem</button>
+</div>
+<script>
+    var a = @ViewBag.HaveListEventsIsGoingOn;
+    if (a == 1) {
+        $('#Nextview-button').show();
+    }
+    else {
+        $('#Nextview-button').hide();
+    }
+    var currentpageIndex = 2;
+
+    function NextView() {
+        debugger;
+        var currentpageSize = 4;
+        var SameCategoryListCount = "";
+        var dataSource = [];
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: '/Post/api/ListPagingEventGoingOn/' + currentpageIndex + '/' + currentpageSize,
+            success: function (result) {
+                console.log("arrList: " + result.data);
+                dataSource = result.data;
+                for (var i = 0; i < dataSource.length; i++) {
+                    dataSource[i].openTime = new Date(dataSource[i].openTime);
+                    dataSource[i].openTime = dataSource[i].openTime.toLocaleDateString() + " " + dataSource[i].openTime.toLocaleTimeString();
+                    dataSource[i].closedTime = new Date(dataSource[i].closedTime);
+                    dataSource[i].closedTime = dataSource[i].closedTime.toLocaleDateString() + " " + dataSource[i].closedTime.toLocaleTimeString();
+                    $("#next-viewEventsOn").append(`<div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Event_Image" id="event-image-mobile">
+                <img class="imageItem" style="width: 100%" src="`+ dataSource[i].closedTime + `" />
+                <img class="goingOnLogo" src="/images/Group 265 (1).png" />
+                <p class="PlayButton"><a href="/chi-tiet-su-kien/`+ dataSource[i].closedTime + `"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 EventContext">
+                <a class="ellipsis3" href="/chi-tiet-su-kien/`+ dataSource[i].url + `">`+ dataSource[i].name + `</a>
+                <p class="ellipsis3">
+                    `+ dataSource[i].description + `
+                </p>
+                <p><i class="fas fa-calendar"></i></p><span>`+ dataSource[i].openTime + `   -   ` + dataSource[i].closedTime + `</span><br />
+                <p><i class="fas fa-map-marker-alt"></i></p><span>`+ dataSource[i].eventAddress + `</span>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 Event_Image" id="event-image">
+                <img class="imageItem" style="width: 100%" src="`+ dataSource[i].closedTime + `" />
+                <img class="goingOnLogo" src="/images/Group 265 (1).png" />
+                <p class="PlayButton"><a href="/chi-tiet-su-kien/`+ dataSource[i].closedTime + `"><i class="fas fa-play" style="font-size: 18px;"></i></a></p>
+            </div>
+
+        </div>`);
+                }
+
+            },
+            error: function (result) {
+                $('#Nextview-button').hide();
+                $("#next-viewEventsOn").append(`<p style="text-align: center; font-size: 15px">Đã xem hết các sự kiện đang diễn ra<p> `);
+            }
+        });
+        currentpageIndex++;
+    }
+</script>

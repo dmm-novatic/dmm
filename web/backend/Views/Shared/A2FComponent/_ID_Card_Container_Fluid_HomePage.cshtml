@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .Contact_Us {
+        background-color: #f1fdff;
+        height: auto;
+        padding-left: 11%;
+    }
+    #Id_Card {
+        padding-bottom:10% !important;
+    }
+    .Contact_Us_Text {
+        /*width: 45%;*/
+        margin-bottom: 14%;
+    }
+
+        .Contact_Us_Text p:first-child {
+            font-family: sans-serif;
+            font-size: 18px;
+            padding-top: 10%;
+            color: #54555A;
+            margin-bottom: 2%;
+        }
+
+        .Contact_Us_Text p:nth-child(2) {
+            font-size: 34px;
+            font-family: sans-serif;
+            padding-bottom: 3%;
+        }
+
+    .ID_Card {
+        /*padding-left: 11%;*/
+        position: relative;
+        background-color: #313e4c;
+        width: 100%;
+        height: auto;
+    }
+
+        .ID_Card .row div img {
+            position: absolute;
+        }
+
+        .ID_Card .row div span {
+            margin-right: 40px;
+        }
+        .ID_Card div span {
+            margin-right: 40px;
+        }
+</style>
+<div class="container-fluid Contact_Us" id="Id_Card" style="padding-bottom:10%;padding:0 0 10% 0;">
+    <div class="container" style="padding: 0 15% 0 15%; width: 100%; margin: 0; ">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ID_Card">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="">
+                    <img id="img-background-contact-us" src="~/images/Group 194.png" style=" color: grey; top: -217px; left: -17%; float: left; position: absolute;" />
+                    <img id="img-contact-us" src="~/images/image 19 (1).png" style="position: relative; top: 60px; right: -16%; width: 80%;" />
+                </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <p style="font-size: 18px;color: white;margin-top: 8%;">@ViewBag.lblDangKyNhanHoTro</p>
+                    <p style="font-size: 40px;color: #2AD9FF;">@ViewBag.lblKetNoiVoiChungToi</p>
+                    <p style="font-size: 15px;color: white;margin-bottom: 5%;">@ViewBag.lblMoTaSurvey</p>
+                    <button style="width: 193px;height: 36px;background-image: linear-gradient(to right,#FFB526,#E4750E);color: white;border-radius: 5px 5px 5px 5px;border: none;" onclick="window.location.href='/Survey-list'">@ViewBag.lblKhaoSatToanDien.ToUpper()</button>
+                </div>
+                <div class="logo-contact-us" style="position: absolute;top: 104%;left: 35%;">
+                    <span>
+                        <img src="~/images/Frame (1).png" />
+                    </span>
+                    <span>
+                        <img src="~/images/Frame (2).png" style="left:190%" />
+                    </span>
+                    <span>
+                        <img src="~/images/Frame (3).png" style="left: 309%;" />
+                    </span>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>

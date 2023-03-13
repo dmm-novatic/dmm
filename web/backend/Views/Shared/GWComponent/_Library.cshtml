@@ -1,0 +1,543 @@
+﻿@{
+    Layout = null;
+}
+
+@*<script type="application/javascript">
+        var ajaxurl = "http://thenextmag.bk-ninja.com/default/wp-admin/admin-ajax.php"
+    </script>
+    <link rel='dns-prefetch' href='http://thenextmag.bk-ninja.com/' />
+    <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://s.w.org/' />
+    <link rel="alternate" type="application/rss+xml" title="The Next Mag &raquo; Feed" href="../feed/index.html" />
+    <link rel="alternate" type="application/rss+xml" title="The Next Mag &raquo; Comments Feed" href="../comments/feed/index.html" />
+    <link rel="alternate" type="application/rss+xml" title="The Next Mag &raquo; Microsoft joins forces with Intel to beat Spectre Comments Feed" href="feed/index.html" />*@
+<script type="text/javascript">
+    window._wpemojiSettings = {
+        "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/",
+        "ext": ".png",
+        "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/",
+        "svgExt": ".svg",
+        "source": {
+            "concatemoji": "/files/frontend/js/wp-emoji-release.min.js?ver=4.9.11"
+        }
+    };
+    ! function (a, b, c) {
+        function d(a, b) {
+            var c = String.fromCharCode;
+            l.clearRect(0, 0, k.width, k.height), l.fillText(c.apply(this, a), 0, 0);
+            var d = k.toDataURL();
+            l.clearRect(0, 0, k.width, k.height), l.fillText(c.apply(this, b), 0, 0);
+            var e = k.toDataURL();
+            return d === e
+        }
+
+        function e(a) {
+            var b;
+            if (!l || !l.fillText) return !1;
+            switch (l.textBaseline = "top", l.font = "600 32px Arial", a) {
+                case "flag":
+                    return !(b = d([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819])) && (b = d([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]), !b);
+                case "emoji":
+                    return b = d([55358, 56760, 9792, 65039], [55358, 56760, 8203, 9792, 65039]), !b
+            }
+            return !1
+        }
+
+        function f(a) {
+            var c = b.createElement("script");
+            c.src = a, c.defer = c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c)
+        }
+        var g, h, i, j, k = b.createElement("canvas"),
+            l = k.getContext && k.getContext("2d");
+        for (j = Array("flag", "emoji"), c.supports = {
+            everything: !0,
+            everythingExceptFlag: !0
+        }, i = 0; i < j.length; i++) c.supports[j[i]] = e(j[i]), c.supports.everything = c.supports.everything && c.supports[j[i]], "flag" !== j[i] && (c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && c.supports[j[i]]);
+        c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && !c.supports.flag, c.DOMReady = !1, c.readyCallback = function () {
+            c.DOMReady = !0
+        }, c.supports.everything || (h = function () {
+            c.readyCallback()
+        }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", h, !1), a.addEventListener("load", h, !1)) : (a.attachEvent("onload", h), b.attachEvent("onreadystatechange", function () {
+            "complete" === b.readyState && c.readyCallback()
+        })), g = c.source || {}, g.concatemoji ? f(g.concatemoji) : g.wpemoji && g.twemoji && (f(g.twemoji), f(g.wpemoji)))
+    }(window, document, window._wpemojiSettings);
+</script>
+
+<link rel='stylesheet' id='login-with-ajax-css' href='~/files/frontend/css/widget9dfc.css?ver=3.1.7' type='text/css' media='all' />
+
+
+@*<link rel='stylesheet' id='fontawsome-css-css' href='~/files/frontend/css/font-awesome.minb186.css?ver=3.3.8' type='text/css' media='all' />*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' id='apsl-frontend-css-css' href='~/files/frontend/css/frontendb186.css?ver=3.3.8' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css' href='~/files/frontend/css/styles5560.css?ver=5.0.4' type='text/css' media='all' />
+<link rel='stylesheet' id='bkswcss-css' href='~/files/frontend/css/shortcode433d.css?ver=4.9.11' type='text/css' media='all' />
+<link rel='stylesheet' id='thenextmag_vendors-css' href='~/files/frontend/css/vendors433d.css?ver=4.9.11' type='text/css' media='all' />
+<link rel='stylesheet' id='thenextmag-style-css' href='~/files/frontend/css/style433d.css?ver=4.9.11' type='text/css' media='all' />
+
+<!-- theme generated css -->
+<link rel='stylesheet' href='~/files/frontend/css/themeStyle.css'>
+
+<link rel='stylesheet' id='child-theme-style-css' href='~/files/frontend/css/child-style433d.css?ver=4.9.11' type='text/css' media='all' />
+<link rel='stylesheet' id='redux-google-fonts-tnm_option-css' href='~/files/frontend/css/googleapis.css' type='text/css' media='all' />
+@*<script type='text/javascript' src='~/files/frontend/js/jqueryb8ff.js?ver=1.12.4'></script>
+    <script type='text/javascript' src='~/files/frontend/js/jquery-migrate.min330a.js?ver=1.4.1'></script>*@
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+@*<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>*@
+
+
+<script type='text/javascript' src='~/files/frontend/js/login-with-ajax.source9dfc.js?ver=3.1.7'></script>
+<script type='text/javascript' src='~/files/frontend/js/frontendb186.js?ver=3.3.8'></script>
+<link rel='https://api.w.org/' href='../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/gappingworld/Source/template/thenextmag.bk-ninja.com/default/wp-includes/wlwmanifest.xml" />
+<link rel='prev' title='Play-off needed to decide last Bradford billiards semi-finalist' href='../play-off-needed-to-decide-last-bradford-billiards-semi-finalist/index.html' />
+<link rel='next' title='Gallery Wall Layout Ideas You&#8217;ll Love: Ways to Hang Like a Pro' href='../gallery-wall-layout-ideas-youll-love-ways-to-hang-like-a-pro/index.html' />
+@*<meta name="generator" content="WordPress 4.9.11" />*@
+@*<link rel="canonical" href="index.html" />*@
+<link rel='shortlink' href='../indexcbbb.html?p=1844' />
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed7e87?url=http%3A%2F%2Fthenextmag.bk-ninja.com%2Fdefault%2Fmicrosoft-joins-forces-with-intel-to-beat-spectre%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embedca5d?url=http%3A%2F%2Fthenextmag.bk-ninja.com%2Fdefault%2Fmicrosoft-joins-forces-with-intel-to-beat-spectre%2F&amp;format=xml" />
+
+<link rel="apple-touch-icon" sizes="57x57" href="~/files/frontend/images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="~/files/frontend/images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="~/files/frontend/images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="~/files/frontend/images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="~/files/frontend/images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="~/files/frontend/images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="~/files/frontend/images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="~/files/frontend/images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="~/files/frontend/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="~/files/frontend/images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="~/files/frontend/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/files/frontend/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="~/files/frontend/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="~/files/frontend/images/favicon/manifest.json">
+@*<meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/files/frontend/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">*@
+
+
+@*<link rel="icon" href="files/frontend/images/upload/cropped-favicon-1-32x32.png" sizes="32x32" />*@
+@*<link rel="icon" href="files/frontend/images/upload/cropped-favicon-1-192x192.png" sizes="192x192" />*@
+<link rel="apple-touch-icon-precomposed" href="images/upload/cropped-favicon-1-180x180.png" />
+@*<meta name="msapplication-TileImage" content="http://thenextmag.bk-ninja.com/default/wp-content/uploads/2018/07/cropped-favicon-1-270x270.png" />*@
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+@*<script src="https://code.jquery.com/jquery-3.3.1.js"></script>*@
+
+
+<!-- Sweet alert -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
+
+<!-- Google Adsense -->
+<script data-ad-client="ca-pub-9498518197328948" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Google Adsense ends -->
+
+@*Novatic custom CSS*@
+
+<style>
+    .hidden {
+        display: none !important;
+    }
+
+    .ellipsis1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .ellipsis2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .ellipsis3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .ellipsis4 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+
+    .background-svg-pattern {
+        background-image: unset !important;
+    }
+
+    .site-content {
+        padding-top: 0px !important;
+    }
+
+    /*Style cho thẻ star strong list dang sách có hình ảnh*/
+    .novaticStarListCategory > div > svg > g > path {
+        fill: #439e1d !important;
+    }
+
+    .novaticStarListCategory > div {
+        margin-top: -15px !important;
+        margin-right: -5px !important;
+    }
+
+        .novaticStarListCategory > div > svg {
+            width: 25px !important;
+        }
+
+        .novaticStarListCategory > div > span > i {
+            font-size: 10px !important;
+            margin-bottom: 3.2px !important;
+            margin-right: 0.8px !important;
+        }
+
+    .novaticStarListLeft {
+        left: 20px !important;
+    }
+
+    /*Style cho thẻ star trên header trang category*/
+    .novaticStarTopCategory > div > svg > g > path {
+        fill: #439e1d !important;
+    }
+
+    .novaticStarTopCategory > div > span > i {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .novaticStarTopCategory > div > svg {
+        width: 40px !important;
+    }
+
+    /*Style cho thẻ membership*/
+    .novaticMembership {
+        margin: 1px 2px 1px -2px;
+        background-color: #439e1d !important;
+        color: #ffffff !important;
+    }
+
+    .novaticMembershipBackground {
+        background-color: #439e1d !important;
+    }
+
+    .post__thumb img, .entry-thumb img {
+        border: 1px solid #eeeeee85;
+    }
+
+    .post__title {
+        /*font-size:1.8rem !important;*/
+    }
+
+    .membershipTag {
+        background-color: #3cab0e !important;
+        color: #ffffff !important;
+    }
+
+    /*style cho Star trong danh sách bài viết*/
+    .novaticStarInList > svg {
+        width: 20px !important;
+    }
+
+        .novaticStarInList > svg > g > path {
+            fill: #439e1d !important;
+        }
+
+    .novaticStarInList > span {
+        font-size: 10px !important;
+        margin-left: 0.5px !important;
+    }
+
+    /*style cho Star trong title bai viet tren top*/
+    .novaticStarInListTop > svg {
+        width: 40px !important;
+    }
+
+        .novaticStarInListTop > svg > g > path {
+            fill: #439e1d !important;
+        }
+
+    .novaticStarInListTop > span {
+        font-size: 20px !important;
+    }
+
+        .novaticStarInListTop > span > i {
+            margin-bottom: 2px !important;
+        }
+
+    /*style cho Star trong Slider trang chu*/
+    .novaticStarInSlider > svg {
+        width: 25px !important;
+    }
+
+        .novaticStarInSlider > svg > g > path {
+            fill: #439e1d !important;
+        }
+
+    .novaticStarInSlider > span {
+        font-size: 13px !important;
+        margin-left: 1px !important;
+    }
+
+        .novaticStarInSlider > span > i {
+            margin-bottom: 1.5px !important;
+            margin-right: 1px !important;
+        }
+
+    .novaticLikePost {
+        margin-right: 10px;
+        font-size: 25px;
+        color: white;
+        text-shadow: 0 0 3px #000;
+    }
+
+    /*style cho Star in Title*/
+    .novaticStarInTitle > svg {
+        width: 45px !important;
+    }
+
+        .novaticStarInTitle > svg > g > path {
+            fill: #439e1d !important;
+        }
+
+    .novaticStarInTitle > span {
+        font-size: 10px !important;
+        margin-left: 0.5px !important;
+    }
+
+        .novaticStarInTitle > span > i {
+            font-size: 25px !important;
+        }
+    /*reposive image*/
+    @@media screen and (min-width: 1200px) {
+        .list-space-xl .list-item .post--horizontal .post__thumb a > img {
+            width: 260px !important;
+            height: 170px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg1 a > img {
+            width: 555px !important;
+            height: 350px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg2 a > img {
+            width: 262px !important;
+            height: 176px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xs .post--horizontal .post__thumb a > img {
+            width: 100px !important;
+            height: 68px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xl .list-item .post--horizontal .itemListCateImg1 a > img {
+            width: 370px !important;
+            height: 220px !important;
+            border: solid 1px #79554814 !important;
+        }
+    }
+
+    @@media screen and (min-width: 992px)and (max-width:1199px) {
+        .list-space-xl .list-item .post--horizontal .post__thumb a > img {
+            width: 200px !important;
+            height: 135px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg1 a > img {
+            width: 400px !important;
+            height: 250px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg2 a > img {
+            width: 185px !important;
+            height: 125px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xs .post--horizontal .post__thumb a > img {
+            width: 100px !important;
+            height: 68px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xl .list-item .post--horizontal .itemListCateImg1 a > img {
+            width: 310px !important;
+            height: 194px !important;
+            border: solid 1px #79554814 !important;
+        }
+    }
+
+    @@media screen and (max-width: 991px) and (min-width: 768px) {
+        .list-space-xl .list-item .post--horizontal .post__thumb a > img {
+            width: 236px !important;
+            height: 158px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg2 a > img {
+            width: 220px !important;
+            height: 147px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg1 a > img {
+            width: 468px !important;
+            height: 312px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xs .post--horizontal .post__thumb a > img {
+            width: 98px !important;
+            height: 66px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xl .list-item .post--horizontal .itemListCateImg1 a > img {
+            width: 345px !important;
+            height: 216px !important;
+            border: solid 1px #79554814 !important;
+        }
+    }
+
+    @@media screen and (max-width: 767px) {
+        .list-space-xl .list-item .post--horizontal .post__thumb a > img {
+            width: 107px !important;
+            height: 72px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg1 a > img {
+            width: 380px !important;
+            height: 250px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .itemImg2 a > img {
+            width: 177px !important;
+            height: 118px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xs .post--horizontal .post__thumb a > img {
+            width: 70px !important;
+            height: 48px !important;
+            border: solid 1px #79554814 !important;
+        }
+
+        .list-space-xl .list-item .post--horizontal .itemListCateImg1 a > img {
+            width: 384px !important;
+            height: 240px !important;
+            border: solid 1px #79554814 !important;
+        }
+    }
+    /*elipsis3 color-profile _8_headerVideo*/
+    .inverse-text .post--horizontal .post__title a {
+        min-height: unset !important;
+    }
+
+    .entry-tags ul li {
+        background-color: transparent !important;
+    }
+
+
+    .background-svg-pattern {
+        background-color: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .novaticLanguage:after {
+        content: none !important;
+    }
+
+    .novaticLanguage:before {
+        content: none !important;
+    }
+
+    .novaticLanguage > .submenu-toggle {
+        display: none;
+    }
+
+    .entry-tags > ul > li > a {
+        color: #000000 !important;
+    }
+
+    .post--single .single-body {
+        line-height: 1.75 !important;
+    }
+
+    #novaticButtonLoginOrUpgrade {
+        background-color: #e9b229;
+        font-weight: bold;
+        padding: 10px 30px;
+        border-radius: 5px;
+        border: 1px solid rgba(250, 250, 250, 0.59);
+    }
+
+    .block-heading__title {
+        color: #000000 !important;
+    }
+
+    .background-svg-pattern {
+        background: #fafafa !important;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+
+    #latesNewsPC .post__thumb, #latesNewsPC .post__thumb img {
+        width: 100px !important;
+    }
+
+    #bk_widget_posts_list-10 .post__thumb, #bk_widget_posts_list-10 .post__thumb img {
+        width: 100px !important;
+    }
+
+    .twoPageContainer {
+        background: rgba(229, 229, 229, 0.32);
+    }
+
+        .twoPageContainer .col-md-6 {
+            min-height: 650px;
+            padding: 35px 35px;
+        }
+
+            .twoPageContainer .col-md-6:first-child {
+                border-right: 5px solid rgb(200, 156, 36);
+            }
+
+        .twoPageContainer #email, .twoPageContainer #nameContact {
+            width: 150% !important;
+        }
+
+        .twoPageContainer #messageContent {
+            width: 100% !important;
+        }
+
+        .twoPageContainer .col-md-6 .col-sm-6 {
+            padding-right: 0px !important;
+        }
+
+        .twoPageContainer #wp-submit2, .twoPageContainer .submit {
+            background-color: #EF3A2B !important;
+            width: 90%;
+        }
+</style>

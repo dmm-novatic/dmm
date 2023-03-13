@@ -1,0 +1,172 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #IconAndNumber {
+        background-image: url('/images/image 17.png');
+        background-color: #15305D;
+        background-size: cover;
+        /* filter: brightness(30%);
+            -webkit-filter: brightness(30%); */
+        height: 30%;
+        width: 100%;
+    }
+
+        #IconAndNumber .container {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-left: 50px;
+        }
+
+            #IconAndNumber .container div i {
+                font-size: 30px;
+                color: white;
+            }
+
+            #IconAndNumber .container div p:nth-child(2) {
+                font-size: 60px;
+                font-family: My Custom Regular;
+                color: #10DB9F;
+            }
+
+            #IconAndNumber .container div p:nth-child(3) {
+                font-size: 14px;
+                font-family: My Custom Regular;
+                width: 158px;
+                color: white;
+            }
+</style>
+<!--Responsive Start-->
+<style>
+    @@media screen and (min-width: 1246px) and (max-width: 1366px) {
+
+    }
+
+    @@media screen and (min-width: 320px) and (max-width: 375px) {
+        #IconAndNumber .container div i {
+            font-size: 15px;
+        }
+
+        #IconAndNumber .container div p:nth-child(2) {
+            font-size: 30px;
+        }
+
+        #IconAndNumber .container div p:nth-child(3) {
+            font-size: 11px;
+            width: auto;
+        }
+    }
+    @@media (min-width:376px) and (max-width: 425px) {
+        #IconAndNumber .container div i {
+            font-size: 15px;
+        }
+
+        #IconAndNumber .container div p:nth-child(2) {
+            font-size: 30px;
+        }
+
+        #IconAndNumber .container div p:nth-child(3) {
+            font-size: 11px;
+            width: auto;
+        }
+
+    }
+
+    @@media screen and (max-width:768px) and (min-width: 768px) {
+
+    }
+
+    @@media screen and (min-width: 769px) and (max-width:991px) {
+
+    }
+
+    @@media screen and (min-width:426px) and (max-width: 767px) {
+        #IconAndNumber .container div i {
+            font-size: 15px;
+        }
+
+        #IconAndNumber .container div p:nth-child(2) {
+            font-size: 30px;
+        }
+
+        #IconAndNumber .container div p:nth-child(3) {
+            font-size: 11px;
+            width: auto;
+        }
+    }
+
+    @@media screen and (min-width: 991px) and (max-width:1245px) {
+
+    }
+</style>
+
+<!--Responsive End-->
+<div class="container-fluid" id="IconAndNumber">
+    <div class="container">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <i class="fa fa-building"></i>
+            <p>2896+</p>
+            <p>
+                @ViewBag.lblDoangNghiepSMEDangKiNhanTuVan
+            </p>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <i class="fa fa-handshake"></i>
+            <p>96</p>
+            <p>
+                @ViewBag.lblToChucTaiChinhCamKetThamGia
+            </p>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <i class="fa fa-globe"></i>
+            <p>126</p>
+            <p>
+                @ViewBag.lblDonViTuVanTrucTiepChoDoanhNghiep
+            </p>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <i class="fa fa-calendar-week"></i>
+            <p>@ViewBag.SumEvent</p>
+            <p>
+                @ViewBag.lblSuKienDaDuocToChuc
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function animateValue(id, start, end, duration) {
+    // assumes integer values for start and end
+    
+    var obj = document.getElementById(id);
+    var range = end - start;
+    // no timer shorter than 50ms (not really visible any way)
+    var minTimer = 50;
+    // calc step time to show all interediate values
+    var stepTime = Math.abs(Math.floor(duration / range));
+    
+    // never go below minTimer
+    stepTime = Math.max(stepTime, minTimer);
+    
+    // get current time and calculate desired end time
+    var startTime = new Date().getTime();
+    var endTime = startTime + duration;
+    var timer;
+  
+    function run() {
+        var now = new Date().getTime();
+        var remaining = Math.max((endTime - now) / duration, 0);
+        var value = Math.round(end - (remaining * range));
+        obj.innerHTML = value;
+        if (value == end) {
+            clearInterval(timer);
+        }
+    }
+    
+    timer = setInterval(run, stepTime);
+    run();
+}
+
+animateValue("value", 1, 25, 500);
+</script>

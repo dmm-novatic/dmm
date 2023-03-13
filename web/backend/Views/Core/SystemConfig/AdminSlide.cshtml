@@ -1,0 +1,839 @@
+﻿
+
+@{
+    ViewData["Title"] = "Cấu hình hệ thống";
+    Layout = "_NovaticAdmin";
+}
+<style>
+    .button-slide-homepage {
+        display: none;
+    }
+    #tableDataListButton {
+        display:none;
+    }
+</style>
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Cấu hình hệ thống</h3>
+            </div>
+        </div>
+
+        <a href="#" id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm">
+            <i class="fa fa-plus"></i>
+            <span class='hideOnMobile'>New Record</span>
+        </a>
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <!--<tr>
+                                                                <th>Index</th>
+                                                                <th>Apply Type ID</th>
+                                                                <th>Active</th>
+                                                                <th>Apply Type Name</th>
+                                                                <th>Description</th>
+                                                                <th>Created Time</th>
+                                                                <th>Detail</th>
+                                                                <th>Delete</th>
+                                                            </tr>-->
+                                <th>Index</th>
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Code name</th>
+                                <th>Mô tả</th>
+                                <th>Ngày tạo</th>
+
+                                <th>Detail</th>
+                                <th>Delete</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                <th>Index</th>
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Code name</th>
+                                <th>Mô tả</th>
+                                <th>Ngày tạo</th>
+
+                                <th> </th>
+                                <th> </th>
+                                </tfoot>
+                            </table>
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Detail item</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="POST"
+                                                  onsubmit='updateItem(updatingItemID); return false;' role="form">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="">ID</label><span class='required'>*</span>
+                                                            <input type="number" class="form-control input-id" value="0"
+                                                                   id="systemConfigId" required readonly
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="">Tên</label><span class='required'>*</span>
+                                                            <input type="text" class="form-control  input-name"
+                                                                   id="systemConfigName" required
+                                                                   placeholder="">
+                                                        </div>
+
+                                                        <div class="col-sm-4">
+                                                            <label for="">Loại hiển thị</label><span class='required'>*</span>
+                                                            <select name='select' required id='systemConfigCode'
+                                                                    class='form-control fill dataSelect  input-code'
+                                                                    style=' border: 1px solid #e9ecef; '>
+                                                                <option value="SLIDE_HOMEPAGE_CONTENT" selected="selected">Slide trang chủ</option>
+                                                                @*<option value="FINANCIAL_BUTTON">Cấu hình nút sổ tay tài chính</option>*@
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="systemConfigActive" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group slide-homepage">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="">Tên danh mục</label>
+                                                            <input type="text" class="form-control  input-category"
+                                                                   id="category" required
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="">Tiêu đề Slide</label>
+                                                            <input type="text" class="form-control  input-slidetitle"
+                                                                   id="slidetitle" required
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group slide-homepage">
+                                                                <label for="">Tiêu đề phụ Slide</label>
+                                                                <input type="text" class="form-control  input-slidecontent"
+                                                                       id="slidecontent" required
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="">Tên danh mục - Tiếng Anh</label>
+                                                            <input type="text" class="form-control  input-category2"
+                                                                   id="category2" required
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="">Tiêu đề Slide - Tiếng Anh</label>
+                                                            <input type="text" class="form-control  input-slidetitle2"
+                                                                   id="slidetitle2" required
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group slide-homepage">
+                                                                <label for="">Tiêu đề phụ Slide - Tiếng Anh</label>
+                                                                <input type="text" class="form-control  input-slidecontent2"
+                                                                       id="slidecontent2" required
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-group slide-homepage">
+                                                                <label for="">Ảnh nền slide</label>
+                                                                <input type="text" class="form-control  input-background-slide input-photo"
+                                                                       id="background-slide" required
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <div class="form-group slide-cover-homepage">
+                                                                <img class="input-photo-thumbnail" id="image-background-homepage" src="" height="50" width="70" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-group slide-cover-homepage">
+                                                                <label for="">Ảnh cover slide</label>
+                                                                <input type="text" class="form-control  input-background-cover-slide input-file"
+                                                                       id="background-cover-slide"
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <div class="form-group slide-cover-homepage">
+                                                                <img class="input-file-thumbnail" id="image-cover-homepage" src="" height="50" width="70" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group slide-homepage">
+                                                    <label for="">Dạng nút hiển thị</label>
+                                                    <select name='select' required id='buttonTypeId'
+                                                            class='form-control fill dataSelect  input-buttonTypeId'
+                                                            style=' border: 1px solid #e9ecef; '>
+                                                        <option value="1">Nút bấm</option>
+                                                        <option value="2">Thẻ đường dẫn</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group button-slide-homepage">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <label for="">Tiêu đề nút</label>
+                                                            <input type="text" class="form-control  input-namebutton"
+                                                                   id="background-namebutton"
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <label for="">Tiêu đề nút - Tiếng Anh</label>
+                                                            <input type="text" class="form-control  input-namebutton2"
+                                                                   id="background-namebutton2"
+                                                                   placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-3 color-homepage">
+                                                            <label for="">Màu nền nút bấm</label>
+                                                            <input type="color" class="form-control  input-colorbutton fill" id="background-colorbutton" required="" placeholder="">
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <label for="">Đường dẫn nút bấm</label>
+                                                            <input type="text" class="form-control  input-urlbutton"
+                                                                   id="background-urlbutton"
+                                                                   placeholder="">
+                                                        </div>
+
+                                                    </div>
+                                                    <table id="tableDataListButton" class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Thứ tự</th>
+                                                                <th>Id</th>
+                                                                <th>Loại nút bấm</th>
+                                                                <th>Tên nút bấm</th>
+                                                                <th>Tên nút tiếng Anh</th>
+                                                                <th>Màu sắc hiển thị</th>
+                                                                <th>Đường dẫn</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <input type="button" class="btn btn-success" id="addButton" value="Thêm" />
+                                                <div class="form-group" style="display:none;">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control  input-description " rows="2" id="systemConfigDescription"></textarea>
+                                                </div>
+                                                <div class='form-group'>
+                                                    <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                    <div class='input-group date datetimepicker  input-createdTime' id='systemConfigCreatedTimeDiv'>
+                                                        <input type='text' id="systemConfigCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit"
+                                                       class="btn btn-default" value="Save changes">
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem"
+                                                    onclick="document.getElementById('hiddenSubmit').click();">
+                                                Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var hiddenItem = ["active", "nameSlideContent", 'category', "nameSlideTitle", "nameSlideContent2", 'category2', "nameSlideTitle2", "color","slidePhoto","coverPhoto","listSlideButton","buttonTypeId"];
+        var dataSource = [];
+        var updatingItemID = 0;
+        var tableUpdating = 0;
+        var table;
+
+        $(document).ready(function () {
+            // Load data
+            loadData();
+            // includeLibrary();
+
+            // Datetime picker
+            $('.datetimepicker').datetimepicker({
+                format: 'DD-MM-YYYY HH:mm:ss'
+            });
+
+            $('.dataSelect').select2();
+
+            $(".datetimepicker").on('dp.change', function (e) {
+                // console.log(this.value);
+                this.value = moment(this.value).format("DD-MM-YYYY HH:mm:ss");
+                // console.log(this.value);
+            })
+
+        });
+
+        function loadData() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/systemConfig/api/ListSlide",
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    // debugger;
+                    var data = responseData.data;
+                    dataSource = data;
+                    data.forEach(function (item, index) {
+                        // console.log(item, index);
+                        var rowContent = "";
+                        rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (!hiddenItem.includes(key)) {
+                                    rowContent += "<td class='row"+item.id+"-column column-"+key+"' property='"+key+"'>" + item[key] + "</td>";
+                                }
+                            }
+                        }
+                        rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                        rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+                        $(newRow).appendTo($("#tableData tbody"));
+                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    });
+                    //Init datatable
+                    if (tableUpdating === 0) {
+                        initTable();
+                    }
+
+                    //update data with foreign key
+                    updateTable();
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    initTable();
+                }
+            });
+        }
+
+        function initTable(){
+            table = $('#tableData').DataTable({
+                aLengthMenu: [
+                    [10, 25, 50, 100, 200, -1],
+                    [10, 25, 50, 100, 200, 'Tất cả']
+                ],
+                'order': [
+                    [1, 'desc']
+                ]
+            });
+
+
+
+            table.on('order.dt search.dt', function() {
+                table.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+            $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function() {
+                var title = $(this).text();
+                $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+            });
+
+            table.columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        }
+
+    function editItem(id) {
+        debugger;
+        updatingItemID = id;
+        $("#modal-id").modal('show');
+
+        let obj = getItemById(id);
+
+        $("#systemConfigId").val(id > 0 ? obj.id : "");
+        $("#systemConfigActive").val(id > 0 ? obj.active : "");
+        $("#systemConfigName").val(id > 0 ? obj.name : "");
+        $("#systemConfigCode").val(id > 0 ? obj.code : "");
+        $("#systemConfigDescription").val(id > 0 ? obj.description : "");
+        $("#systemConfigCreatedTime").val(id > 0 ? obj.createdTime : "");
+        $("#slidetitle").val(id > 0 ? obj.nameSlideTitle : "");
+        $("#category").val(id > 0 ? obj.category : "");
+        $("#slidecontent").val(id > 0 ? obj.nameSlideContent : "");
+        $("#slidetitle2").val(id > 0 ? obj.nameSlideTitle2 : "");
+        $("#category2").val(id > 0 ? obj.category2 : "");
+        $("#slidecontent2").val(id > 0 ? obj.nameSlideContent2 : "");
+        $("#background-slide").val(id > 0 ? obj.slidePhoto : "");
+        $("#background-cover-slide").val(id > 0 ? obj.coverPhoto : "");
+        if (id > 0 && obj.listSlideButton.length > 0) {
+            debugger;
+            if (obj.listSlideButton.length > 0) {
+                $("#tableDataListButton tbody").html("");
+                flag = 0;
+                dataButtons = [];
+                $(".button-slide-homepage").css("display", "block");
+                $("#tableDataListButton").css("display", "block");
+                obj.listSlideButton.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    rowContent += "<td style='text-align: center;'>" + (flag + 1) + "</td>";
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (key == "buttonTypeId") {
+                                if (item[key] == "1") {
+                                    rowContent += "<td class='row" + (flag + 1) + "-column column-" + key + "' property='" + key + "'>Nút bấm</td>";
+                                }
+                                else if (item[key] == "2") {
+                                    rowContent += "<td class='row" + (flag + 1) + "-column column-" + key + "' property='" + key + "'>Thẻ đường dẫn</td>";
+                                }
+                            }
+                            else {
+                                rowContent += "<td class='row" + (flag + 1) + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                            }
+                        }
+                    }
+                    rowContent += "<td style='text-align: center;'><a onclick='deleteItemButton(" + (flag + 1) + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+                    var newRow = "<tr id='row" + (flag + 1) + "' >" + rowContent + "</tr>";
+                    $(newRow).appendTo($("#tableDataListButton tbody"));
+                    flag++;
+                    // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    dataButtons.push(item);
+                });
+            }
+        }
+        else if(id == 0) {
+            $("#tableDataListButton tbody").html("");
+            flag = 0;
+            dataButtons = [];
+            $(".button-slide-homepage").css("display", "none");
+            $("#tableDataListButton").css("display", "none");
+        }
+
+        // $("#systemConfigId").val(id > 0 ? obj.id : "");
+        // $("#systemConfigName").val(id > 0 ? obj.name : "");
+        // $("#systemConfigDescription").val(id > 0 ? obj.description : "");
+        // $("#systemConfigCreatedTime").val(id > 0 ? obj.createdTime : "");
+        // $("#systemConfigActive").val(id > 0 ? obj.active : "");
+
+        if (id == 0) {
+            $("#systemConfigActive").val(1);
+            $("#systemConfigCreatedTime").val(new Date());
+            $("#image-cover-homepage").attr("src", "/upload/10001/upload/default-thumbnail.jpg");
+            $("#image-background-homepage").attr("src", "/upload/10001/upload/default-thumbnail.jpg");
+        }
+        else {
+            // correcting data
+            //$('#buyProvinceID').val(obj.provinceID.split(", ")).trigger('change');
+            if (obj.coverPhoto.length > 0) {
+                $("#image-cover-homepage").attr("src", obj.coverPhoto);
+
+            }
+            if (obj.slidePhoto.length > 0) {
+                $("#image-background-homepage").attr("src", obj.slidePhoto);
+            }
+
+        }
+        formatNumber();
+    }
+
+        var AllData = [];
+        function updateItem(id) {
+            var actionName = (id == 0 ? "Create" : "Update");
+            let obj = getItemById(id);
+            let objName = id > 0 ? obj.name : " ";
+            var objAllData = {
+                "category": $("#category").val(),
+                "nameSlideTitle": $("#slidetitle").val(),
+                "nameSlideContent": $("#slidecontent").val(),
+                "category2": $("#category2").val(),
+                "nameSlideTitle2": $("#slidetitle2").val(),
+                "nameSlideContent2": $("#slidecontent2").val(),
+                "slidePhoto": $("#background-slide").val(),
+                "coverPhoto": $("#background-cover-slide").val(),
+                "listSlideButton": dataButtons,
+            };
+            AllData.push(objAllData);
+            validateInputNumber();
+
+            // "id": $("#systemConfigId").val(),
+            // "name": $("#systemConfigName").val(),
+            // "description": $("#systemConfigDescription").val(),
+            // "createdTime": $("#systemConfigCreatedTime").val(),
+            // "active": $("#systemConfigActive").val()
+            var updatingObj = {
+                "id": $("#systemConfigId").val(),
+                "active": $("#systemConfigActive").val(),
+                "name": $("#systemConfigName").val(),
+                "code": $("#systemConfigCode :selected").val(),
+                "description": JSON.stringify(AllData),
+                "createdTime": datetimeFormat($("#systemConfigCreatedTime").val()),
+            };
+
+            // correcting data
+            //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Performing " + actionName + " item " + objName,
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Yes, confirm!'
+            }).then((result) => {
+                if (result.value) {
+                    $("#modal-id").modal('hide');
+
+                    //CALL AJAX TO UPDATE
+                    if (id > 0) {
+                        updatingObj.code = obj.code;
+                        $.ajax({
+                            url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/systemConfig/api/update",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                    Swal.fire(
+                                        'Updated!',
+                                        'Item ' + objName + ' has been successfully updated!',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            location.reload();
+                                        }
+                                    });
+                                    updateTable(id,updatingObj,"update");
+                                    var updatedItemIndex= dataSource.findIndex(item => parseInt(item.id) === id);
+                                    dataSource[updatedItemIndex] = updatingObj;
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Could\' update item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    };
+
+                    //CALL AJAX TO CREATE
+                    if (id == 0) {
+                        updatingObj.id = 1;
+                        delete updatingObj["id"]
+                        updatingObj.active = 1;
+                        updatingObj.createdTime = new Date();
+                        console.log(updatingObj);
+                        $.ajax({
+                            url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/systemConfig/api/addSlide",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 201 && responseData.message === "CREATED") {
+                                    Swal.fire(
+                                        'Created!',
+                                        'New item has been successfully created!',
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            location.reload();
+                                        }
+                                    });
+                                    updatingObj = responseData.data;
+                                    dataSource.push(updatingObj[0]);
+                                    updateTable(0,updatingObj,"add");
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Could\' create item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                }
+            })
+        }
+
+        function deleteItem(id) {
+            let obj = getItemById(id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+
+                    //CALL AJAX TO DELETE
+                    $.ajax({
+                        url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/systemConfig/api/delete",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ "id": id }),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Item ' + obj.name + ' has been deleted.',
+                                    'success'
+                                ).then((result) => {
+                                    if (result.value) {
+                                        location.reload();
+                                    }
+                                });
+                                updateTable(id,0,"delete");
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Item ' + obj.name + ' can\'t be deleted.',
+                                'error'
+                            );
+                        }
+                    });
+
+                }
+            })
+        }
+
+        function updateTable(id,obj,action) {
+            if(action === "delete"){
+                table.row("#row"+id).remove().draw();
+            }
+
+            if(action === "add"){
+                console.log("Added:"+obj);
+
+                //var addedItems = [obj];
+                var addedItems = obj;
+                var addedValues =[];
+
+
+                addedItems.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    addedValues.push("<td style='text-align: center;'></td>");
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (!hiddenItem.includes(key)) {
+                                addedValues.push("<td class='row"+item.id+"-column column-"+key+"' property='"+key+"'>" + item[key] + "</td>");
+                            }
+                        }
+                    }
+                    addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+                    addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                    table.row.add(addedValues).draw();
+                });
+                // location.reload();
+            }
+
+            if(action === "update"){
+                // alert(id);
+                $(".row"+id+"-column").each(function(){
+                    var propertyName = $(this).attr("property");
+                    console.log(propertyName);
+
+                    for (var key in obj) {
+                        if (key === propertyName && obj.hasOwnProperty(key)) {
+                            this.innerText = obj[key];
+                        }
+                    }
+
+                });
+            }
+
+            //Update columns with foreign key
+            // var NO_FKFKUpdateSelector = 'tr';
+            // if( !(typeof(id) === 'undefined')) {
+            //     NO_FKFKUpdateSelector = '#row'+id;
+            // }
+            // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKID]').each(function(){
+            //     // debugger;
+            //     var systemConfigID = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+            //     var systemConfigObj = getItemById(systemConfigID);
+            //     var NO_FKID = parseInt(systemConfigObj.NO_FKID);
+            //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKID);
+            //     $(this).text(NO_FKObj.name);
+            //     // console.log('FK updated for Staff '+systemConfigID);
+            // });
+
+
+            formatNumber();
+        }
+
+
+        function getItemById(id) {
+            const result = dataSource.find(item => parseInt(item.id) === id);
+            return result;
+        }
+
+        function camelToSentenceCase(input) {
+            var text = input;
+            var result = text.replace(/([A-Z])/g, " $1");
+            var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+            return finalResult;
+        }
+
+
+        //Hàm lưu code trên slide
+    $("#systemConfigCode").on("change", function () {
+        var value = $(this).val();
+        //alert(value);
+    });
+    $("#buttonTypeId").on("change", function () {
+        var value = $(this).val();
+        if (value == "0") {
+            $(".button-slide-homepage").css("display", "none");
+        }
+        else if (value == "2") {
+            $(".button-slide-homepage").css("display", "block");
+            $(".color-homepage").css("display", "none");
+        }
+        else {
+            $(".color-homepage").css("display", "block");
+            $(".button-slide-homepage").css("display", "block");
+        }
+    });
+    var dataButtons = [];
+    var flag = 0;
+    $("#addButton").on("click", function () {
+        var detailButton = [];
+        var buttonTypeId = parseInt($("#buttonTypeId :selected").val());
+        if (buttonTypeId == '1') {
+            var objButton = {
+                "id": (flag+1),
+                "buttonTypeId": buttonTypeId,
+                "name": $("#background-namebutton").val(),
+                "name2": $("#background-namebutton2").val(),
+                "color": $("#background-colorbutton").val(),
+                "url": $("#background-urlbutton").val()
+            };
+            detailButton.push(objButton);
+        }
+        else if (buttonTypeId == "2") {
+            var objButton = {
+                "id": (flag+1),
+                "buttonTypeId": buttonTypeId,
+                "name": $("#background-namebutton").val(),
+                "name2": $("#background-namebutton2").val(),
+                "color": "",
+                "url": $("#background-urlbutton").val()
+            };
+            detailButton.push(objButton);
+
+        }
+        dataButtons.push(objButton);
+        console.log("Thêm thành công" + JSON.stringify(dataButtons));
+        if (detailButton.length > 0) {
+            detailButton.forEach(function (item, index) {
+                // console.log(item, index);
+                var rowContent = "";
+                rowContent += "<td style='text-align: center;'>" + (flag + 1) + "</td>";
+                for (var key in item) {
+                    if (item.hasOwnProperty(key)) {
+                        // console.log(key + " -> " + item[key]);
+                        if (key == "buttonTypeId") {
+                            if (item[key] == "1") {
+                                rowContent += "<td class='row" + (flag + 1) + "-column column-" + key + "' property='" + key + "'>Nút bấm</td>";
+                            }
+                            else if (item[key] == "2") {
+                                rowContent += "<td class='row" + (flag + 1) + "-column column-" + key + "' property='" + key + "'>Thẻ đường dẫn</td>";
+                            }
+                        }
+                        else {
+                            rowContent += "<td class='row" + (flag + 1) + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                        }
+                    }
+                }
+                rowContent += "<td style='text-align: center;'><a onclick='deleteItemButton(" + (flag + 1) + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+                var newRow = "<tr id='row" + (flag + 1) + "' >" + rowContent + "</tr>";
+                $(newRow).appendTo($("#tableDataListButton tbody"));
+                flag++;
+                // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+            });
+        }
+        $("#tableDataListButton").css("display", "block");
+    });
+    function deleteItemButton(id) {
+        $("#row" + id).remove();
+        var objDataButton = dataButtons.find(x => x.id == id);
+        dataButtons.pop(objDataButton);
+        if (dataButtons.length == 0) {
+            flag = 0;
+        }
+    }
+</script>

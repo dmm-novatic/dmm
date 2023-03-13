@@ -1,0 +1,1345 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    .blackText {
+        color: black !important;
+    }
+    .image-fluid{
+        width:50%;
+    }
+    @@media only screen and (max-width: 767px) {
+        .Pc-version .dropdown-toggle::after {
+            width: 0px !important;
+        }
+
+        .Pc-version .open .dropdown-toggle::after {
+            width: 0px !important;
+        }
+
+        .Pc-version .dropdown-toggle:hover::after {
+            width: 0px !important;
+        }
+
+        .SingleMenu:after {
+            width: 0px !important;
+        }
+
+        .SingleMenu:hover::after {
+            width: 0px !important;
+        }
+    }
+
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+        background: #fff;
+    }
+
+    .navbar-nav > li > .dropdown-menu {
+        border-radius: 10px;
+    }
+
+    .SingleMenu:after {
+        position: absolute;
+        bottom: 7px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+    }
+
+    .SingleMenu:hover::after {
+        position: absolute;
+        bottom: 7px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 50%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+        transition: all .5s;
+    }
+
+    .Pc-version .dropdown-toggle::after {
+        position: absolute;
+        bottom: 7px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+    }
+
+    .Pc-version .open .dropdown-toggle::after {
+        position: absolute;
+        bottom: 7px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 50%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+        transition: all .5s;
+    }
+
+    .Pc-version .dropdown-toggle:hover::after {
+        position: absolute;
+        bottom: 7px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 40%;
+        content: ' ';
+        color: red;
+        background: #FF9900;
+        height: 4px;
+        transition: all .5s;
+    }
+
+    .navbar.navbar-default.header-color {
+        background: #ffffff !important;
+    }
+
+    #changeLanguage {
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .nav-wrapper-language {
+        float: right;
+        display: inline-block;
+        padding-right: 28px;
+    }
+
+    .sl-nav {
+        display: inline;
+    }
+
+        .sl-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sl-nav li {
+            cursor: pointer;
+        }
+
+            .sl-nav li ul {
+                display: none;
+            }
+
+            .sl-nav li:hover ul {
+                position: absolute;
+                top: 29px;
+                right: -15px;
+                display: block;
+                background: #fff;
+                width: 150px;
+                padding-top: 0px;
+                z-index: 1;
+                border-radius: 5px;
+                box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+            }
+
+            .sl-nav li:hover .triangle {
+                position: absolute;
+                top: 15px;
+                right: 0px;
+                z-index: 10;
+                height: 14px;
+                overflow: hidden;
+                width: 30px;
+                background: transparent;
+            }
+
+                .sl-nav li:hover .triangle:after {
+                    content: '';
+                    display: block;
+                    z-index: 20;
+                    width: 15px;
+                    transform: rotate(45deg) translateY(0px) translateX(10px);
+                    height: 15px;
+                    background: #fff;
+                    border-radius: 2px 0px 0px 0px;
+                    box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+                }
+
+            .sl-nav li ul li {
+                position: relative;
+                text-align: left;
+                background: transparent;
+                padding: 15px 15px;
+                padding-bottom: 0;
+                z-index: 2;
+                font-size: 18px;
+                color: #3c3c3c;
+            }
+
+                .sl-nav li ul li:last-of-type {
+                    padding-bottom: 15px;
+                }
+
+                .sl-nav li ul li span {
+                    padding-left: 5px;
+                }
+
+                    .sl-nav li ul li span:hover, .sl-nav li ul li span.active {
+                        color: #146c78;
+                    }
+
+    b .sl-flag {
+        width: 13px;
+        height: 13px;
+    }
+
+    .sl-flag {
+        display: inline-block;
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
+        width: 15px;
+        height: 15px;
+        background: #aaa;
+        border-radius: 50%;
+        position: relative;
+        top: 2px;
+        overflow: hidden;
+        margin: 0px 5px;
+    }
+
+    .flag-vi {
+        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR31wvaMUFAhAt6sdp2-U_pJXGQ-h48rWbqGcNcIs_iCBrfmKuw&usqp=CAU');
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .flag-usa {
+        background-size: cover;
+        background-position: center center;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTM0A1t6AAABhUlEQVQ4T2Ows82PjGixsc4LD2tysC/09Kjw8622tyuICG8u0w/cpGSCBzF4e1VmZkzw9anOzOj38a4KCW4IC22ECHYk1l9tn4gHMeTlTnZxLikvm+XiUpKW2hvgX+vnV5OVOQEoOGfOtv94AYOzU3Fd7XxHh6Lq6rlurqUx0W0J8Z1AnbW18yotonaYuOJBDBXls4A+bGpaBCTz86YEBtQCvVBSPAPIbY0oP1/aiAcxABU1Ny+2tclvbFjo5FgUF9uenNwNDLnmpkWEnV1TPRcY1O1tS4H6i4umA/0MDK2K8tlAwRqHpP1uoXgQKKraWpcClTY3LQZaCLQ5NaUX5OaWJY3++SeTC/AgBmA4AXUClUJs9ver8fKsAAYEUJCws4G21dXNB1oFdD/Qz8DQTk4C+bm2dn6DZ9bRiDQ8iAEYt8CoBpK5YBIYw0AEEZwSXX4oMB4PYoC6gCzAcDqrjGzEsMfen2xEmbMv1rSTjRi26dqRjShz9o2+6WQjBrSShQSkZAIADvW/HLrLY6cAAAAASUVORK5CYII=');
+    }
+</style>
+<style>
+    .fa-mobile-alt {
+        padding-left: 10px;
+    }
+
+
+
+    .Header-Info .dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+
+
+
+    .navbar-right .dropdown-menu {
+        right: auto;
+        left: 0;
+    }
+
+    .Main_Page {
+        display: none;
+    }
+
+    .navbar-left {
+        display: none;
+    }
+
+    .textbox {
+        display: none;
+    }
+
+    #mobile {
+        padding-right: 10px;
+    }
+
+    .fa-mobile-alt {
+        padding-left: 10px;
+    }
+
+    .navbar-default .navbar-toggle:focus,
+    .navbar-default .navbar-toggle:hover {
+        background-color: white;
+    }
+
+    .navbar {
+        margin-bottom: 0px;
+    }
+
+    #search2 {
+        font-size: large;
+        padding-left: 10px;
+    }
+
+    #searchKeyword:focus {
+        outline: none;
+    }
+
+    .Header-Info {
+        padding: 10px 0px 10px 30px;
+    }
+
+        .Header-Info a:nth-child(9), .Header-Info a:nth-child(10) {
+            float: right;
+            padding-right: 10px;
+            color: white;
+        }
+
+        .Header-Info a:nth-child(8) {
+            float: right;
+            padding-right: 30px;
+            color: white;
+        }
+
+        .Header-Info a:nth-child(7) {
+            float: right;
+            padding-right: 28px;
+            color: white;
+        }
+
+    #header-login {
+        float: right;
+        padding-right: 30px;
+        color: aqua
+    }
+
+    .Header-Info i {
+        font-size: 12px;
+    }
+
+    .Main_Page {
+        display: none !important;
+    }
+</style>
+<style>
+    @@media screen and (min-width:426px) and (max-width: 767px) {
+        .navbar-left {
+            display: block !important;
+            padding-top: 10px !important;
+            margin-bottom: 0px !important;
+            width: 100%;
+            border-style:none;
+        }
+
+        .logo-image-mobile {
+            display: block !important;
+        }
+
+        .logo-image {
+            display: none;
+        }
+
+        .logo-image-mobile img {
+            height: 30px;
+            margin-top: unset !important;
+        }
+
+        .mobile-header-hidden {
+            display: none;
+        }
+
+        #searchKeyword {
+            border-style:solid !important;
+            height: 32px;
+            position: absolute;
+            border: 2px;
+            border-radius: 50px;
+            padding: 10px;
+            width: 86% !important;
+        }
+
+        #SearchButton {
+            height: 32px;
+            position: relative;
+            border-radius: 50px;
+            float: right;
+            background-color: #154183;
+        }
+
+        .fa-home {
+            display: none;
+        }
+
+        .Main_Page {
+            display: block !important;
+        }
+
+        .navbar-header {
+            float: right;
+            width: 100%;
+        }
+
+        #search1 {
+            display: none;
+        }
+
+        .Header-Info {
+            padding: 10px 0px 0px 18px !important;
+        }
+
+        #header-login {
+            padding-right: 18px !important;
+        }
+
+        .navbar-left {
+            width: 100% !important;
+        }
+    }
+
+
+    @@media only screen and (min-width: 1246px) {
+        .logo-image-mobile {
+            display: none !important;
+        }
+        ul.nav li.dropdown:hover ul.dropdown-menu {
+            display: block;
+        }
+        .Header-Info .dropdown:hover ul.dropdown-menu {
+            display: block;
+        }
+        .navbar-left {
+            display: none;
+            float: right !important;
+            padding-top: 0.5%;
+            width: 25%;
+        }
+
+        #searchKeyword {
+            margin-top: -1%;
+            width: 80%;
+            height: 41px;
+            position: relative;
+        }
+
+        #SearchButton {
+            position: absolute;
+            right: 6.5%;
+            background-color: transparent;
+            border: none;
+            height: 1%;
+            top: 25%;
+        }
+
+            #SearchButton i {
+                color: #265178;
+            }
+
+            #SearchButton:hover, #SearchButton:focus, #SearchButton:active {
+                outline: none;
+                background-color: transparent;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+
+        #search1 {
+            display: block !important;
+        }
+
+        .BoxEvent {
+            background-repeat: no-repeat;
+            background-size: cover;
+            /*width: 562px !important;*/
+        }
+
+            .BoxEvent:first-child {
+                /*margin-right: 45px;*/
+            }
+        .logo-image {
+            width: 386px;
+        }
+
+        .image-fluid {
+            width: 75% !important;
+        }
+    }
+    @*Responsive for iphone 5 start*@
+    @@media only screen and (max-width: 320px) {
+/*        .Pc-version {
+            display: none !important;
+        }*/
+
+        .mobile-button {
+            float: left;
+            margin-right: 0px;
+            margin-left: 10px;
+        }
+
+        #search1 {
+            display: none;
+        }
+
+        .Header-Info {
+            padding: 10px 0px 0px 10px !important;
+        }
+
+        .fa-home {
+            display: none;
+        }
+
+        .Main_Page {
+            display: block;
+        }
+
+        .logo-image-mobile img {
+            height: 26px !important;
+            /*margin-top: -3px !important;*/
+            display: block !important;
+        }
+
+        .logo-image {
+            display: none !important;
+        }
+
+        .navbar-left {
+            display: block;
+            width: 110%;
+            border-style:none;
+        }
+
+        .mobile-header-hidden {
+            display: none;
+        }
+
+        #searchKeyword {
+            height: 32px !important;
+            position: absolute !important;
+            border-style:solid;
+            border-radius: 50px !important;
+            padding: 10px !important;
+            width: 90% !important;
+        }
+
+        #SearchButton {
+            height: 32px;
+            position: relative;
+            border-radius: 50px;
+            float: right;
+            background-color: #154183;
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 50;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+        .sidenav a{
+            font-size:9px;
+        }
+        .sidenav i{
+            font-size:10px;
+        }
+        .nav-wrapper-language{
+            padding-right:6px;
+        }
+        .flag-vi{
+            display:none;
+        }
+        .flag-usa{
+            display:none;
+        }
+    }
+    @*Responsive for iphone 5 end*@
+    @@media (min-width:321px) and (max-width: 425px) {
+
+        .navbar-left {
+            display: block;
+            width: 100%;
+            border-style: none;
+        }
+        .mobile-button {
+            float: left;
+            margin-right: 0px;
+            margin-left: 10px;
+        }
+        .Header-Info {
+            padding: 10px 0px 0px 18px !important;
+        }
+
+        .mobile-header-hidden {
+            display: none;
+        }
+
+        .logo-image-mobile img {
+            height: 28px !important;
+            margin-top: -3px !important;
+            display: block !important
+        }
+
+        .logo-image {
+            display: none !important;
+        }
+
+        #search1 {
+            display: none;
+        }
+
+        .fa-home {
+            display: none;
+        }
+
+        .Main_Page {
+            display: block;
+        }
+        #searchKeyword {
+            height: 32px !important;
+            position: relative !important;
+            border-radius: 50px !important;
+            padding: 10px !important;
+            width: 100% !important;
+            border-style: solid;
+        }
+        .fa-times {
+            display:none;
+        }
+        #SearchButton {
+            height: 32px;
+            position: absolute;
+            border-radius: 50px;
+            float: right;
+            background-color: #154183;
+            right:9%;
+        }
+    }
+
+    @@media screen and (max-width:768px) and (min-width: 768px) {
+         .Header-Info {
+            padding: 0 !important;
+        }
+        .blackText{
+            padding-right:0px;
+        }
+        .navbar-right {
+            padding-bottom: 0px !important;
+
+        }
+        .navigator {
+            font-size: small !important;
+        }
+        .navigator li a{
+            padding-right:0px;
+        }
+        .Main_Page {
+            display: none !important;
+        }
+
+        .logo-image-mobile {
+            display: block !important;
+        }
+
+        .navbar-left {
+            display: block;
+            width: 50%;
+            margin-top:3%;
+        }
+
+        #searchKeyword {
+            height: 32px;
+            position: absolute;
+            border: 0px;
+            border-radius: 50px;
+            padding: 10px;
+            width: 45%;
+        }
+
+        #SearchButton {
+            height: 32px;
+            position: relative;
+            border-radius: 50px;
+            float: right;
+            background-color: #154183;
+        }
+
+        .logo-image {
+            display: none;
+        }
+
+        .dropdown-res {
+            padding-right: 0px !important;
+            padding-left: 15px !important;
+        }
+
+        #Last_Link {
+            padding-right: 0px !important;
+            padding-left: 15px !important;
+            margin-right: 15px !important;
+        }
+
+        .link-res {
+            padding-right: 0px !important;
+            padding-left: 15px !important;
+        }
+
+        #search1 {
+            display: none;
+        }
+
+        .fa-home {
+            padding-right: 0px !important;
+        }
+
+
+        .padding {
+            padding-left: 25px;
+        }
+        .image-fluid-mobile{
+            width:55%;
+        }
+    }
+
+    @@media screen and (min-width: 769px) and (max-width:991px) {
+        .Header-Info{
+            padding:unset;
+        }
+        .navbar-right {
+            padding-bottom: 0px !important;
+        }
+        .navigator {
+            font-size: small !important;
+            float:left !important;
+        }
+
+            .navigator li a {
+                padding-right: 0px;
+            }
+        .blackText {
+            padding-right: 0px;
+        }
+        .fa-home {
+            display: block;
+        }
+
+        .Main_Page {
+            display: none !important;
+        }
+
+        .navbar-left {
+            width: 50%;
+            display: block;
+        }
+
+        #searchKeyword {
+            height: 32px;
+            position: absolute;
+            border: 0px;
+            border-radius: 50px;
+            padding: 10px;
+            width: 44%;
+        }
+
+        #SearchButton {
+            height: 32px;
+            position: relative;
+            border-radius: 50px;
+            float: right;
+            background-color: #154183;
+        }
+
+        #search1 {
+            display: none;
+        }
+
+        .logo-image-mobile {
+            display: block !important;
+        }
+
+        .logo-image {
+            display: none;
+        }
+
+
+        .dropdown-res {
+            padding-right: 0px !important;
+            padding-left: 10px !important;
+            margin-right: 0px !important;
+        }
+
+        #Last_Link {
+            padding-right: 0px !important;
+            padding-left: 15px !important;
+            margin-right: 30px !important;
+        }
+
+        .link-res {
+            padding-right: 0px !important;
+            padding-left: 10px !important;
+            margin-right: 0px !important;
+        }
+
+        .dropdown-menu {
+            margin-right: 30px;
+        }
+
+        .fa-home {
+            padding-right: 0px !important;
+        }
+    }
+
+
+
+    @@media screen and (min-width: 993px) and (max-width:1245px) {
+        .fa-home {
+            display: block;
+        }
+
+        .Main_Page {
+            display: none !important;
+        }
+        .navigator{
+            font-size:medium !important;
+            padding-right:2%;
+        }
+        .navigator li a:first-child{
+            padding-right:0px;
+        }
+        .navbar-left {
+            padding-top: 1%;
+            width:45%;
+            display: block;
+        }
+        .image-fluid{
+            width:70%;
+        }
+
+        .close-button {
+            display: none;
+        }
+        #searchKeyword {
+            height: 32px;
+            position: absolute;
+            border: 0px;
+            border-radius: 50px;
+            padding: 10px;
+            width: 40%;
+        }
+
+        #SearchButton {
+            height: 32px;
+            position: relative;
+            border-radius: 50px;
+            float: right;
+            background-color: #154183;
+        }
+
+        #search1 {
+            display: none;
+        }
+
+        .logo-image-mobile {
+            display: none !important;
+        }
+
+        .logo-image {
+            display: block !important;
+            width:500px;
+        }
+
+
+        .dropdown-res {
+            padding-left: 0px !important;
+        }
+        .link-res {
+            padding-left: 0px !important;
+        }
+
+        .dropdown-menu {
+            margin-right: -32px;
+        }
+    }
+
+    @@media only screen and (min-width: 1246px) and (max-width: 1566px) {
+        .dropdown-res{
+            font-size:small;
+            padding-left:0px !important;
+        }
+        .link-res {
+            font-size: small;
+            padding-left: 0px !important;
+        }
+        .fa-home {
+            font-size: small;
+            padding-left: 0px;
+        }
+        #search1 {
+            font-size: small;
+            padding-left: 0px;
+        }
+        .navigator{
+            font-size:small !important;
+        }
+        .logo-image{
+            width:315px;
+        }
+        .image-fluid{
+            width:90% !important;
+        }
+
+    }
+    .navigator {
+        font-size: large;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<style>
+
+    .mobile-header {
+        font-size: 9px;
+        display: inline-block;
+    }
+
+    .dropdown a:focus, a:hover {
+        color: #23527c;
+        text-decoration: unset;
+    }
+</style>
+<style>
+    #loader {
+        display: none;
+        position: fixed;
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+        background: #000;
+        opacity: 0.7;
+        text-align: center;
+        vertical-align: middle;
+        top: 0;
+        left: 0;
+        z-index: 99999999 !important;
+    }
+
+    #loaderContent {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        padding-top: calc(50vh - 90px);
+    }
+
+    #loaderImage {
+        width: 80px;
+        height: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block
+    }
+
+    #loaderText {
+        color: #fff;
+        letter-spacing: 10px;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
+<!-- Header Start -->
+
+<div class="container-fluid"
+     style="font-size:12px;background-color:#154183;color:white;height:35px;font-family:My Custom Regular;">
+    <div class="row">
+        <div class="col-12 Header-Info">
+            <span>@ViewBag.lblBoKeHoachVaDauTu.ToUpper()</span>
+            <span><i class="fa fa-mobile-alt mobile-header-hidden"></i></span>
+            <span class="mobile-header-hidden" id="mobile"><a href="tel:08044498" style="color: white !important;">080.44498</a></span>
+            <span><i class="far fa-envelope mobile-header-hidden"></i></span>
+            <span class="mobile-header-hidden"><a href="mailto:A2F@business.gov.vn" style="color: white !important;">A2F@BUSINESS.GOV.VN</a></span>
+            @{
+                if (ViewBag.UserName != null)
+                {
+                    if (ViewBag.UserTypeID == 10001)
+                    {
+                                        <div class="dropdown" style="left: -13px; display: inline; float: right; position: relative; z-index: 9999; bottom: 3px;">
+                                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" style="display: inline; border: none; background-color: #154183; font-size: 15px;font-family:My Custom Regular;">
+                                                @ViewBag.UserFullname
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="width: 230px">
+                                                <!-- onclick="change()" -->
+                                                <li><span><img style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 8%" src="~/images/AccountSettingIcon/24px/ic-user.svg"> </span><span onclick="change('home')"><a href="/thong-tin-tai-khoan#home" style="font-size: 18px">@ViewBag.lblThongTinTaiKhoan</a></span></li>
+                                                <li><span><img style="margin-left: 9%; width: 20px; height: 20px; margin-bottom: 5px;" src="~/images/AccountSettingIcon/24px/Group 408.png"> </span><span onclick="change('tab1')"><a href="/thong-tin-tai-khoan#tab1" style="margin-left: 2%; font-size: 18px">@ViewBag.lblQuanLySuKien</a></span></li>
+                                                <li style="margin-top: 3px"><span><img style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 8%" src="~/images/AccountSettingIcon/24px/ic-lock.png"> </span><span onclick="change('tab')"><a href="/thong-tin-tai-khoan#tab" style="font-size: 18px">@ViewBag.lblDoiMatKhau</a></span></li>
+                                                <li><span><img style="width: 25px; height: 21px; margin-bottom: 5px; margin-left: 8%; margin-top : 2px" src="~/images/AccountSettingIcon/24px/ic-user.png"> </span><span><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}admin" style="font-size: 18px">@ViewBag.lblTrangQuanTri</a></span></li>
+                                                <li style="margin-top: 3px"><span><img style="margin-left: 10%; width: 20px; height: 20px; margin-bottom: 5px; " src="~/images/AccountSettingIcon/24px/line.png"> </span><span><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}logout2" onclick="dangxuat()" style="font-size: 18px">@ViewBag.lblDangXuat</a></span></li>
+                                            </ul>
+                                        </div>
+                                        <a href="/faq" class="mobile-header-hidden" style="color:white;float:right;text-decoration:none;">FAQ</a>
+                    }
+                    else
+                    {
+                                        <div class="dropdown" style="left: -13px; display: inline; float: right; position: relative; z-index: 9999; bottom: 3px;">
+                                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" style="display: inline; border: none; background-color: #154183; font-size: 15px;font-family:My Custom Regular;">
+                                                @ViewBag.UserFullname
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="width: 230px">
+                                                <li><span><img style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 8%" src="~/images/AccountSettingIcon/24px/ic-user.svg"> </span><span><a href="/thong-tin-tai-khoan#home" style="font-size: 18px">@ViewBag.lblThongTinTaiKhoan</a></span></li>
+                                                <li><span><img style="margin-left: 9%; width: 20px; height: 20px; margin-bottom: 5px;" src="~/images/AccountSettingIcon/24px/Group 408.png"> </span><span><a href="/thong-tin-tai-khoan#tab1" style="margin-left: 2%; font-size: 18px">@ViewBag.lblQuanLySuKien</a></span></li>
+                                                <li style="margin-top: 3px"><span><img style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 8%" src="~/images/AccountSettingIcon/24px/ic-lock.png"> </span><span><a href="/thong-tin-tai-khoan#tab" style="font-size: 18px">@ViewBag.lblDoiMatKhau</a></span></li>
+                                                @*<li><span><img style="width: 25px; height: 25px; margin-bottom: 5px; margin-left: 8%" src="~/images/AccountSettingIcon/24px/ic-lock.png"> </span><span><a href="@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/admin" style="font-size: 18px">Trang quản trị</a></span></li>*@
+                                                <li style="margin-top: 3px"><span><img style="margin-left: 10%; width: 20px; height: 20px; margin-bottom: 5px; " src="~/images/AccountSettingIcon/24px/line.png"> </span><span><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}logout2" style="font-size: 18px">@ViewBag.lblDangXuat</a></span></li>
+                                            </ul>
+                                        </div>
+                                        <a href="faq" class="mobile-header-hidden" style="color:white;float:right;text-decoration:none;">FAQ</a>
+                    }
+
+                }
+                else
+                {
+                                    <a href="/dang-nhap" class="mobile-header-show" id="header-login">@ViewBag.lblDangNhap.ToUpper()</a>
+                                    <a href="/dang-ky" class="mobile-header-hidden">@ViewBag.lblDangKi.ToUpper()</a>
+                                    <a href="/faq" class="mobile-header-hidden">FAQ</a>
+                }
+                                <div class="nav-wrapper-language" id="ChangeLanguage">
+                                    <div class="sl-nav">
+                                        <ul>
+                                            <li>
+                                                <b id="changeLanguage"><i class="sl-flag flag-vi"></i></b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                                <div class="triangle"></div>
+                                                <ul>
+                                                    <li onclick="ChangeVI()"><i class="sl-flag flag-vi"></i> <span id="changeLanguage-vi" class="active">Tiếng Việt</span></li>
+                                                    <li onclick="ChangeEN()"><i class="sl-flag flag-usa"></i> <span id="changeLanguage-en">English</span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    @if (ViewBag.UserName != null)
+                    {
+                                        <script>
+                                            document.getElementById("ChangeLanguage").style.paddingRight = "16px";
+                                        </script>
+                    }
+                                </div>
+                                @*<a href="" class="mobile-header-hidden" onclick="ChangeEN()">EN</a>
+                    <a href="" class="mobile-header-hidden" onclick="ChangeVI()">VI</a>*@
+            }
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default header-color" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style="padding-bottom: 10px;">
+        <button type="button" class="navbar-toggle mobile-button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/Home">
+            <div class="logo-image">
+                @*<img src="~/images//ea2ed89283234b7d1232.jpg" class="image-fluid" />*@
+                <img src="~/images/Group 257 (1).png" class="image-fluid"/>
+            </div>
+            <div class="logo-image-mobile">
+                @*<img src="~/images//ea2ed89283234b7d1232.jpg" class="image-fluid-mobile" />*@
+                <img src="~/images/Group 257 (1).png" class="image-fluid-mobile" />
+            </div>
+        </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse Pc-version" style="font-family: My Custom Medium !important">
+        <form class="navbar-form navbar-left">
+            <form name="myform" method="GET" class="woocommerce-product-search menu-search" action="A2FHomeController">
+                <input id="searchKeyword" type="text" name="" class="search-field" maxlength="128" value="" placeholder="@ViewBag.lblSearch ...">
+                <button type="button" class="btn btn-primary" id="SearchButton" onclick="searchA2F()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <i class="fas fa-times close-button" onclick="TurnOffSearchBar()" style="color: #154183; padding-left:2%"></i>
+            </form>
+        </form>
+        <ul class="nav navbar-nav navbar-right navigator">
+            <li><a href="/home"><i class="fa fa-home"></i></a></li>
+            <li><a href="/home" class="Main_Page">Trang Chủ</a></li>
+            @{
+
+                foreach (var obj in ViewBag.MenuList)
+                {
+                    int hasChild = 0;
+                    string childContent = "";
+                    if (obj.GroupID == 1)
+                    {
+                        foreach (var obj2 in ViewBag.MenuList)
+                        {
+                            if (obj2.ParentId == obj.Id)
+                            {
+                                hasChild = 1;
+                                childContent += "<li><a href='" + @obj2.Url + "'>" + @obj2.Name + "</a></li>";
+                            }
+                        }
+
+                    }
+                    //kiem tra la cha
+                    if (hasChild == 0 && obj.ParentId == 0)
+                    {
+                                        <li><a class="blackText SingleMenu" href="@obj.Url">@obj.Name</a></li>
+                                        @*<li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="~/@obj.Url">@obj.Name</a>
+                            </li>*@
+
+                    }
+                    //kiem tra co con
+                    else if (hasChild == 1)
+                    {
+                                        <!--<li id="menu-item-1913" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1913">
+                                            <a href="~/@obj.Url">@obj.Name</a>
+                                            <div class="sub-menu">
+                                                <div class="sub-menu-inner">
+                                                    <ul class="clearfix">
+                                                        @Html.Raw(childContent)
+                                                    </ul>-->
+                                        <!-- end 0 -->
+                                        <!--</div>-->
+                                        <!-- Close mnmd-menu__inner -->
+                                        <!--</div>-->
+                                        <!-- Close mnmd-menu -->
+                                        <!--</li>-->
+
+                                        <li class="dropdown">
+                                            <a class="blackText dropdown-toggle" style="cursor:context-menu;" data-toggle="dropdown">@obj.Name <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li>@Html.Raw(childContent)</li>
+                                            </ul>
+                                        </li>
+                    }
+
+
+                }
+            }
+            @*<li class="dropdown">
+                    <a href="/aboutus" class="dropdown-res">Giới thiệu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/aboutus">Về chúng tôi</a></li>
+                        <li><a href="/aboutus">Mục tiêu dự án</a></li>
+                        <li><a href="/aboutus">Vai trò các đơn vị</a></li>
+                        <li><a href="/aboutus">Về LinkSME</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/news" class="dropdown-res">Tin tức <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/news">Tổng hợp</a></li>
+                        <li><a href="/news">Các chính sách tài chính chính thống</a></li>
+                        <li><a href="/news">Doanh nghiệp và tài chính</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="/event" class="dropdown-res">Sự kiện <span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-left">
+                        <li><a href="/events">Sự kiện sắp diễn ra</a></li>
+                        <li><a href="/events">Sự kiện đang diễn ra</a></li>
+                        <li><a href="/events">Sự kiện kết thúc</a></li>
+                        <li><a href="/aboutus">Hướng dẫn</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/library" class="dropdown-res">Thư viện <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Tài liệu tham khảo</a></li>
+                        <li><a href="#">Kinh nghiệm</a></li>
+                        <li><a href="#">Kiến thức</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="link-res">Bản đồ tài chính</a></li>
+                <li><a href="#" class="link-res">Tiện ích</a></li>
+                <li><a href="#" class="link-res" id="Last_Link">Liên hệ</a></li>*@
+            <li><a class="fa fa-search" href="#" id="search1" onclick="Search()"></a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    <div id="mySidenav" class="sidenav" style="display:none">
+        <div style="background-color: #E9F4F5; ">
+            <div>
+                <span><a href="/faq">FAQ</a></span>
+                <span><i class="fa fa-mobile-alt" style="padding-left:0px;"></i><a href="tel:08044092">080.44092</a></span>
+                <span><i class="far fa-envelope"></i><a href="mailto:A2F@business.gov.vn">A2F@BUSINESS.GOV.VN</a></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <button style="background: linear-gradient(278.2deg, #E4750E 11.21%, rgba(228, 117, 14, 0) 103.52%), linear-gradient(0deg, #FFB526, #FFB526); ">ĐĂNG NHẬP</button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <button style="background: radial-gradient(85.42% 65.15% at 100% 24.24%, #38E2A7 0%, rgba(56, 226, 167, 0) 100%), linear-gradient(0deg, #11AC87, #11AC87); ">ĐĂNG KÝ</button>
+                </div>
+            </div>
+        </div>
+        @*<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>*@
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+<!-- Header End -->
+
+<!-- dang xuat xoa local storage -->
+<script>
+function dangxuat() {
+    localStorage.clear();
+}
+
+</script>
+
+<script>
+
+    function change(link) {
+
+        if (window.location.pathname == '/thong-tin-tai-khoan') {
+            window.location.href = '/thong-tin-tai-khoan#';
+        } else {
+            window.location.href = '/thong-tin-tai-khoan#' + link;
+        }
+    }
+
+</script>
+
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "190px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
+<script>
+    function TurnOffSearchBar() {
+        $(".navbar-left").fadeOut('slow', function () {
+            $(".navbar-right").fadeIn('slow');
+        });
+    }
+    function Search() {
+        $(".navbar-right").fadeOut('slow', function () {
+            $(".navbar-left").fadeIn('slow');
+        });
+    }
+    function searchA2F() {
+        debugger;
+        var keyword = $("#searchKeyword").val();
+        if (keyword == "") {
+            Swal.fire({
+                type: 'warning',
+                title:'Required',
+                text: "Search box cannot be empty",
+                showConfirmButton:true
+            })
+        } else {
+            var URL = window.location.href;
+            var getURL = URL.split('/');
+            var setURL = getURL[0] + "//" + getURL[2] + "/ket-qua-tim-kiem/" + keyword;
+            window.location.href = setURL;
+        }
+
+    }
+    // Get the input field
+    var input = document.getElementById("searchKeyword");
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function (event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            searchA2F();
+        }
+    });
+
+    function ChangeVI() {
+        //$("#menu-Language-EN").attr("style", "display:none;")
+        //$("#menu-Language-VI").removeAttr("style")
+        var dt = new Date();
+        var obj = {
+            "id": 0,
+            "name": "a",
+            "name2": "a",
+            "active":1,
+            "code": "LanguageCode",
+            "description": "vi",
+            "createdTime": dt,
+        };
+        //console.log(obj);
+        //debugger;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/LanguageConfig/api/SetLanguage",
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    //window.location.href = "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description";
+                    location.reload();
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                console.log("Failed");
+            }
+        });
+
+    }
+    function ChangeEN() {
+        //$("#menu-Language-VI").attr("style", "display:none;")
+        //$("#menu-Language-EN").removeAttr("style")
+        var dt = new Date();
+        var obj = {
+            "id": 0,
+            "name": "a",
+            "name2": "a",
+            "active":1,
+            "code": "LanguageCode",
+            "description": "en",
+            "createdTime": dt,
+        };
+        //console.log(obj);
+        //debugger;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/LanguageConfig/api/SetLanguage",
+            data: JSON.stringify(obj),
+            success: function (responseData) {
+                //debugger;
+                //responseData = JSON.parse(responseData)
+                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                    //window.location.href = "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description";
+                    location.reload();
+                }
+            },
+            error: function (e) {
+                //console.log(e.message);
+                console.log("Failed");
+            }
+        });
+    }
+    $(document).ready(function () {
+        if ("@ViewBag.Lang" == "vi") {
+            $("#changeLanguage").html('<i class="sl-flag flag-vi"></i>VIE');
+            $("#changeLanguage-en").removeClass("active");
+            $("#changeLanguage-vi").addClass("active");
+        }
+        else {
+            $("#changeLanguage").html('<i class="sl-flag flag-usa"></i>ENG');
+            $("#changeLanguage-vi").removeClass("active");
+            $("#changeLanguage-en").addClass("active");
+        }
+    });
+</script>
+

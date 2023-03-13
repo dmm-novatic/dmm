@@ -1,0 +1,1685 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    @@media (min-width: 992px) {
+        .gwHomepageList {
+            width: 100% !important;
+        }
+    }
+</style>
+
+<div class="mnmd-main-col gwHomepageList" role="main">
+
+
+    <!-- .mnmd-block -->
+    <div id="tnm_posts_block_main_col_h-5d773d13d88bc" class="mnmd-block">
+
+
+        <div class="row row--space-between">
+
+            <!-- Hiếu ơi đây là Column 1 -->
+            <div class="col-xs-12 col-sm-4">
+
+                @{
+                    int i1 = 0;
+                    foreach (var obj in ViewBag.NewStoriesListItem1)
+                    {
+                        i1++;
+                        if (i1 == 1)
+                        {
+                            <div class="block-heading block-heading--line">
+                                <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_1_URL">@ViewBag.HOMEPAGE_CATEGORY_1</a></h4>
+                            </div>
+                            <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                </div>
+                                @{
+                                    if (@obj.PostPublishStatusId == 2)
+                                    {
+                                        <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                            <div class="post-score-hexagon 1967 ">
+                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                    <g>
+                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="post-score-value">
+                                                    <i class="mdicon mdicon-star "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <div class="post__text inverse-text">
+                                    <div class="post__text-wrap">
+                                        <div class="post__text-inner ">
+                                            @*@{ if (obj.PostPublishStatusId == 2)
+                                                    {
+                                                        <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="@obj.Url"><i class="mdicon mdicon-star"></i>Membership</a>
+                                                    }
+                                                }*@
+                                            <h3 class="post__title typescale-2"><a class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                            <div class="post__meta ">
+                                                <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="~/@obj.Url" class="link-overlay"></a>
+                                <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                            </article>
+                            break;
+                        }
+                    }
+
+
+                }
+
+                <div class="spacer-xs"></div>
+                <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                    @{
+                        int j1 = 0;
+                        foreach (var obj in ViewBag.NewStoriesListItem1)
+                        {
+                            j1++;
+                            if (j1 == 2)
+                            {
+                                <li>
+                                    <article class="post post--horizontal post--horizontal-xs">
+                                        <div class="post__thumb ">
+                                            <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                            <!-- close a tag -->
+                                        </div>
+                                        <div class="post__text ">
+                                            <h3 class="post__title typescale-1">
+                                                <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                    @*<span>
+                                                            @{ if (obj.PostPublishStatusId == 2)
+                                                                {
+                                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                                }
+                                                            }
+                                                        </span>*@
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <span>
+                                                                <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span class="post-score-value">
+                                                                        <i class="mdicon mdicon-star "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        }
+                                                    }
+                                                    @obj.Name
+                                                </a>
+                                            </h3>
+                                            <div class="post__meta">
+                                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+                            else if (j1 > 2)
+                            {
+                                <li>
+                                    <article class="post post--horizontal ">
+                                        <div class="post__text ">
+                                            <h3 class="post__title typescale-0">
+                                                <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                    @*<span>
+                                                            @{ if (obj.PostPublishStatusId == 2)
+                                                                {
+                                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                                }
+                                                            }
+                                                        </span>*@
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <span>
+                                                                <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span class="post-score-value">
+                                                                        <i class="mdicon mdicon-star "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        }
+                                                    }
+                                                    @obj.Name
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+                        }
+
+                    }
+
+
+                </ul>
+            </div>
+            <!-- end Column 1 -->
+            <!-- Hiếu ơi đây là Column 2 -->
+            <div class="col-xs-12 col-sm-4">
+
+                @{
+                    int i2 = 0;
+                    foreach (var obj in ViewBag.NewStoriesListItem2)
+                    {
+                        i2++;
+                        if (i2 == 1)
+                        {
+                            <div class="block-heading block-heading--line">
+                                <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_2_URL">@ViewBag.HOMEPAGE_CATEGORY_2</a></h4>
+                            </div>
+                            <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                </div>
+                                @{
+                                    if (@obj.PostPublishStatusId == 2)
+                                    {
+                                        <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                            <div class="post-score-hexagon 1967 ">
+                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                    <g>
+                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="post-score-value">
+                                                    <i class="mdicon mdicon-star "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <div class="post__text inverse-text">
+                                    <div class="post__text-wrap">
+                                        <div class="post__text-inner ">
+                                            @*@{ if (obj.PostPublishStatusId == 2)
+                                                    {
+                                                        <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="@obj.Url"><i class="mdicon mdicon-star"></i>Membership</a>
+                                                    }
+                                                }*@
+                                            <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                            <div class="post__meta ">
+                                                <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="~/@obj.Url" class="link-overlay"></a>
+                                <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                            </article>
+                            break;
+                        }
+                    }
+
+
+                }
+                <div class="spacer-xs"></div>
+                <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                    @{
+                        int j2 = 0;
+                        foreach (var obj in ViewBag.NewStoriesListItem2)
+                        {
+                            j2++;
+                            if (j2 == 2)
+                            {
+                                <li>
+                                    <article class="post post--horizontal post--horizontal-xs">
+                                        <div class="post__thumb ">
+                                            <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                            <!-- close a tag -->
+                                        </div>
+                                        <div class="post__text ">
+                                            @*@{ if (obj.PostPublishStatusId == 2)
+                                                    {
+                                                        <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="@obj.Url"><i class="mdicon mdicon-star"></i>Membership</a>
+
+                                                    }
+                                                }*@
+                                            <h3 class="post__title typescale-1">
+                                                <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                    @*<span>
+                                                            @{ if (obj.PostPublishStatusId == 2)
+                                                                {
+                                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                                }
+                                                            }
+                                                        </span>*@
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <span>
+                                                                <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span class="post-score-value">
+                                                                        <i class="mdicon mdicon-star "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        }
+                                                    }
+                                                    @obj.Name
+                                                </a>
+                                            </h3>
+                                            <div class="post__meta">
+                                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+                            else if (j2 > 2)
+                            {
+                                <li>
+                                    <article class="post post--horizontal ">
+                                        <div class="post__text ">
+                                            @*@{ if (obj.PostPublishStatusId == 2)
+                                                    {
+                                                        <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="@obj.Url"><i class="mdicon mdicon-star"></i>Membership</a>
+
+                                                    }
+                                                }*@
+                                            <h3 class="post__title typescale-0">
+                                                <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                    @*<span>
+                                                            @{ if (obj.PostPublishStatusId == 2)
+                                                                {
+                                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                                }
+                                                            }
+                                                        </span>*@
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <span>
+                                                                <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span class="post-score-value">
+                                                                        <i class="mdicon mdicon-star "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        }
+                                                    }
+                                                    @obj.Name
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+                        }
+
+                    }
+
+
+                </ul>
+            </div>
+            <!-- end Column 2 -->
+            <!-- Hiếu ơi đây là Column 3 -->
+            <div class="col-xs-12 col-sm-4">
+
+                @{
+                    int i3 = 0;
+                    foreach (var obj in ViewBag.NewStoriesListItem3)
+                    {
+                        i3++;
+                        if (i3 == 1)
+                        {
+                            <div class="block-heading block-heading--line">
+                                <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_3_URL">@ViewBag.HOMEPAGE_CATEGORY_3</a></h4>
+                            </div>
+                            <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                </div>
+                                @{
+                                    if (@obj.PostPublishStatusId == 2)
+                                    {
+                                        <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                            <div class="post-score-hexagon 1967 ">
+                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                    <g>
+                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="post-score-value">
+                                                    <i class="mdicon mdicon-star "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <div class="post__text inverse-text">
+                                    <div class="post__text-wrap">
+                                        <div class="post__text-inner ">
+                                            <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                            <div class="post__meta ">
+                                                <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="~/@obj.Url" class="link-overlay"></a>
+                                <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                            </article>
+                            break;
+                        }
+                    }
+
+
+                }
+
+                <div class="spacer-xs"></div>
+                <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                    @{
+                        int j3 = 0;
+                        foreach (var obj in ViewBag.NewStoriesListItem3)
+                        {
+                            j3++;
+                            if (j3 == 2)
+                            {
+                                <li>
+                                    <article class="post post--horizontal post--horizontal-xs">
+                                        <div class="post__thumb ">
+                                            <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                            <!-- close a tag -->
+                                        </div>
+                                        <div class="post__text ">
+                                            <h3 class="post__title typescale-1">
+                                                <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                    @*<span>
+                                                            @{ if (obj.PostPublishStatusId == 2)
+                                                                {
+                                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                                }
+                                                            }
+                                                        </span>*@
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <span>
+                                                                <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span class="post-score-value">
+                                                                        <i class="mdicon mdicon-star "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        }
+                                                    }
+                                                    @obj.Name
+                                                </a>
+                                            </h3>
+                                            <div class="post__meta">
+                                                <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+                            else if (j3 > 2)
+                            {
+                                <li>
+                                    <article class="post post--horizontal ">
+                                        <div class="post__text ">
+                                            <h3 class="post__title typescale-0">
+                                                <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                    @*<span>
+                                                            @{ if (obj.PostPublishStatusId == 2)
+                                                                {
+                                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                                }
+                                                            }
+                                                        </span>*@
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <span>
+                                                                <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                    <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span class="post-score-value">
+                                                                        <i class="mdicon mdicon-star "></i>
+                                                                    </span>
+                                                                </div>
+                                                            </span>
+                                                        }
+                                                    }
+                                                    @obj.Name
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+                        }
+
+                    }
+
+
+                </ul>
+            </div>
+            <!-- end Column 3 -->
+       
+        </div>
+    </div>
+    <!-- .mnmd-block -->
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+<partial name="GWComponent/_HomePage_VideoLates" />
+<div class="mnmd-layout-split mnmd-block mnmd-block--fullwidth">
+<div class="container">
+<div class="row">
+
+            <div class="mnmd-main-col gwHomepageList" role="main">
+                <!-- .mnmd-block -->
+                <div id="tnm_posts_block_main_col_h-5d773d13d88bc" class="mnmd-block">
+                    <div class="row row--space-between">
+
+                        <!-- end Column 1 -->
+                        <!-- Hiếu ơi đây là Column 4 -->
+                        <div class="col-xs-12 col-sm-4">
+
+                            @{
+                                int i4 = 0;
+                                foreach (var obj in ViewBag.NewStoriesListItem4)
+                                {
+                                    i4++;
+                                    if (i4 == 1)
+                                    {
+                                        <div class="block-heading block-heading--line">
+                                            <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_4_URL">@ViewBag.HOMEPAGE_CATEGORY_4</a></h4>
+                                        </div>
+                                        <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                            <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                            </div>
+                                            @{
+                                                if (@obj.PostPublishStatusId == 2)
+                                                {
+                                                    <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                                        <div class="post-score-hexagon 1967 ">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="post__text inverse-text">
+                                                <div class="post__text-wrap">
+                                                    <div class="post__text-inner ">
+                                                        <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                                        <div class="post__meta ">
+                                                            <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="~/@obj.Url" class="link-overlay"></a>
+                                            <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                                        </article>
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            <div class="spacer-xs"></div>
+                            <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                @{
+                                    int j4 = 0;
+                                    foreach (var obj in ViewBag.NewStoriesListItem4)
+                                    {
+                                        j4++;
+                                        if (j4 == 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal post--horizontal-xs">
+                                                    <div class="post__thumb ">
+                                                        <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                        <!-- close a tag -->
+                                                    </div>
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-1">
+                                                            <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                        else if (j4 > 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal ">
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-0">
+                                                            <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </div>
+
+                        <!-- Hiếu ơi đây là Column 5 -->
+                        <div class="col-xs-12 col-sm-4">
+
+                            @{
+                                int i5 = 0;
+                                foreach (var obj in ViewBag.NewStoriesListItem5)
+                                {
+                                    i5++;
+                                    if (i5 == 1)
+                                    {
+                                        <div class="block-heading block-heading--line">
+                                            <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_5_URL">@ViewBag.HOMEPAGE_CATEGORY_5</a></h4>
+                                        </div>
+                                        <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                            <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                            </div>
+                                            @{
+                                                if (@obj.PostPublishStatusId == 2)
+                                                {
+                                                    <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                                        <div class="post-score-hexagon 1967 ">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="post__text inverse-text">
+                                                <div class="post__text-wrap">
+                                                    <div class="post__text-inner ">
+                                                        <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                                        <div class="post__meta ">
+                                                            <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="~/@obj.Url" class="link-overlay"></a>
+                                            <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                                        </article>
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            <div class="spacer-xs"></div>
+                            <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                @{
+                                    int j5 = 0;
+                                    foreach (var obj in ViewBag.NewStoriesListItem5)
+                                    {
+                                        j5++;
+                                        if (j5 == 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal post--horizontal-xs">
+                                                    <div class="post__thumb ">
+                                                        <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                        <!-- close a tag -->
+                                                    </div>
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-1">
+                                                            <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                        else if (j5 > 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal ">
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-0">
+                                                            <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- end Column 2 -->
+                        <!-- Hiếu ơi đây là Column 6 -->
+                        <div class="col-xs-12 col-sm-4">
+
+                            @{
+                                int i6 = 0;
+                                foreach (var obj in ViewBag.NewStoriesListItem6)
+                                {
+                                    i6++;
+                                    if (i6 == 1)
+                                    {
+                                        <div class="block-heading block-heading--line">
+                                            <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_6_URL">@ViewBag.HOMEPAGE_CATEGORY_6</a></h4>
+                                        </div>
+                                        <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                            <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                            </div>
+                                            @{
+                                                if (@obj.PostPublishStatusId == 2)
+                                                {
+                                                    <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                                        <div class="post-score-hexagon 1967 ">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="post__text inverse-text">
+                                                <div class="post__text-wrap">
+                                                    <div class="post__text-inner ">
+                                                        <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                                        <div class="post__meta ">
+                                                            <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="~/@obj.Url" class="link-overlay"></a>
+                                            <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                                        </article>
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            <div class="spacer-xs"></div>
+                            <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                @{
+                                    int j6 = 0;
+                                    foreach (var obj in ViewBag.NewStoriesListItem6)
+                                    {
+                                        j6++;
+                                        if (j6 == 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal post--horizontal-xs">
+                                                    <div class="post__thumb ">
+                                                        <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                        <!-- close a tag -->
+                                                    </div>
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-1">
+                                                            <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                        else if (j6 > 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal ">
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-0">
+                                                            <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- end Column 3 -->
+
+
+                        <div style="height:1px ; width: 100%; clear:both"></div>
+                        <!-- Hiếu ơi đây là Column 7 -->
+                        <div class="col-xs-12 col-sm-4">
+
+                            @{
+                                int i7 = 0;
+                                foreach (var obj in ViewBag.NewStoriesListItem7)
+                                {
+                                    i7++;
+                                    if (i7 == 1)
+                                    {
+                                        <div class="block-heading block-heading--line">
+                                            <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_7_URL">@ViewBag.HOMEPAGE_CATEGORY_7</a></h4>
+                                        </div>
+                                        <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                            <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                            </div>
+                                            @{
+                                                if (@obj.PostPublishStatusId == 2)
+                                                {
+                                                    <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                                        <div class="post-score-hexagon 1967 ">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="post__text inverse-text">
+                                                <div class="post__text-wrap">
+                                                    <div class="post__text-inner ">
+                                                        <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                                        <div class="post__meta ">
+                                                            <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="~/@obj.Url" class="link-overlay"></a>
+                                            <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                                        </article>
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            <div class="spacer-xs"></div>
+                            <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                @{
+                                    int j7 = 0;
+                                    foreach (var obj in ViewBag.NewStoriesListItem7)
+                                    {
+                                        j7++;
+                                        if (j7 == 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal post--horizontal-xs">
+                                                    <div class="post__thumb ">
+                                                        <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                        <!-- close a tag -->
+                                                    </div>
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-1">
+                                                            <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                        else if (j7 > 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal ">
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-0">
+                                                            <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- end Column 1 -->
+                        <!-- Hiếu ơi đây là Column 8 -->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="block-heading block-heading--line">
+                                <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_8_URL">@ViewBag.HOMEPAGE_CATEGORY_8</a></h4>
+                            </div>
+                            @{
+                                int i8 = 0;
+                                foreach (var obj in ViewBag.NewStoriesListItem8)
+                                {
+                                    i8++;
+                                    if (i8 == 1)
+                                    {
+                                        @*<div class="block-heading block-heading--line">
+                            <h4 class="block-heading__title">@ViewBag.HOMEPAGE_CATEGORY_8</h4>
+                        </div>*@
+                                        <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                            <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                            </div>
+                                            @{
+                                                if (@obj.PostPublishStatusId == 2)
+                                                {
+                                                    <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                                        <div class="post-score-hexagon 1967 ">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="post__text inverse-text">
+                                                <div class="post__text-wrap">
+                                                    <div class="post__text-inner ">
+                                                        <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                                        <div class="post__meta ">
+                                                            <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="~/@obj.Url" class="link-overlay"></a>
+                                            <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                                        </article>
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            <div class="spacer-xs"></div>
+                            <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                @{
+                                    int j8 = 0;
+                                    foreach (var obj in ViewBag.NewStoriesListItem8)
+                                    {
+                                        j8++;
+                                        if (j8 == 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal post--horizontal-xs">
+                                                    <div class="post__thumb ">
+                                                        <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                        <!-- close a tag -->
+                                                    </div>
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-1">
+                                                            <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                        else if (j8 > 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal ">
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-0">
+                                                            <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- end Column 2 -->
+                        <!-- Hiếu ơi đây là Column 9 -->
+                        <!-- Hiếu ơi đây là Column 3 -->
+                        <!-- GOOGLE ADS  -->
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="row">
+                                <div class="col" id="googleAdsHomepageBanner3">
+
+                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                    <!-- Homepage Banner 3 -->
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-client="ca-pub-9498518197328948"
+                                         data-ad-slot="3867417964"
+                                         data-ad-format="auto"
+                                         data-full-width-responsive="true"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- GOOGLE ADS ENDS -->
+
+                        <div class="col-xs-12 col-sm-4" style="display:none">
+                            <div class="block-heading block-heading--line">
+                                <h4 class="block-heading__title"><a href="/category/@ViewBag.HOMEPAGE_CATEGORY_9_URL">@ViewBag.HOMEPAGE_CATEGORY_9</a></h4>
+                            </div>
+                            @{
+                                int i9 = 0;
+                                foreach (var obj in ViewBag.NewStoriesListItem9)
+                                {
+                                    i9++;
+                                    if (i9 == 1)
+                                    {
+                                        @*<div class="block-heading block-heading--line">
+                            <h4 class="block-heading__title">@ViewBag.HOMEPAGE_CATEGORY_9</h4>
+                        </div>*@
+                                        <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                            <div class="background-img " style="background-image: url('@obj.Photo');">
+
+                                            </div>
+                                            @{
+                                                if (@obj.PostPublishStatusId == 2)
+                                                {
+                                                    <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                                        <div class="post-score-hexagon 1967 ">
+                                                            <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                <g>
+                                                                    <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                </g>
+                                                            </svg>
+                                                            <span class="post-score-value">
+                                                                <i class="mdicon mdicon-star "></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="post__text inverse-text">
+                                                <div class="post__text-wrap">
+                                                    <div class="post__text-inner ">
+                                                        <h3 class="post__title typescale-2"><a title="@obj.Name" class="ellipsis4" href="~/@obj.Url">@obj.Name</a></h3>
+                                                        <div class="post__meta ">
+                                                            <span class="entry-author"> @ViewBag.lblBoi <a class="entry-author__name" href="~/@obj.PostAccountURL">@obj.PostAccountName</a></span>
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="~/@obj.Url" class="link-overlay"></a>
+                                            <a style="background:@obj.PostCategoryColor !important" class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>
+                                        </article>
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            <div class="spacer-xs"></div>
+                            <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                @{
+                                    int j9 = 0;
+                                    foreach (var obj in ViewBag.NewStoriesListItem9)
+                                    {
+                                        j9++;
+                                        if (j9 == 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal post--horizontal-xs">
+                                                    <div class="post__thumb ">
+                                                        <a title="@obj.Name" href="~/@obj.Url"><img width="180" height="135" src="@obj.Photo" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                        <!-- close a tag -->
+                                                    </div>
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-1">
+                                                            <a class="ellipsis3" title="@obj.Name" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInSlider">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="@obj.PublishedTime" title="@obj.PublishedTime"><i class="mdicon mdicon-schedule"></i>@obj.PublishedTime</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                        else if (j9 > 2)
+                                        {
+                                            <li>
+                                                <article class="post post--horizontal ">
+                                                    <div class="post__text ">
+                                                        <h3 class="post__title typescale-0">
+                                                            <a title="@obj.Name" class="ellipsis3" href="~/@obj.Url">
+                                                                @*<span>
+                                                    @{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="@obj.Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                                        }
+                                                    }
+                                                </span>*@
+                                                                @{ if (obj.PostPublishStatusId == 2)
+                                                                    {
+                                                                        <span>
+                                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                                    <g>
+                                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                                <span class="post-score-value">
+                                                                                    <i class="mdicon mdicon-star "></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    }
+                                                                }
+                                                                @obj.Name
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    }
+
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- end Column 3 -->
+                        <!-- end Column 3 -->
+
+                    </div>
+
+
+
+                    @*
+                        <div class="row row--space-between">
+
+                            <!-- Hiếu ơi đây là Column 1 -->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="block-heading block-heading--line">
+                                    <h4 class="block-heading__title">Sports</h4>
+                                </div>
+                                <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                    <div class="background-img " style="background-image: url('/files/frontend/images/upload/StockSnap_KA4U9AQ17G-1-600x338.jpg');"></div>
+                                    <div class="post__text inverse-text">
+                                        <div class="post__text-wrap">
+                                            <div class="post__text-inner ">
+                                                <h3 class="post__title typescale-2"><a class="ellipsis4" href="play-off-needed-to-decide-last-bradford-billiards-semi-finalist/index.html">Play-off needed to decide last Bradford billiards semi-finalist</a></h3>
+                                                <div class="post__meta ">
+                                                    <span class="entry-author"> By <a class="entry-author__name" href="author/gappingworld/index.html">gappingworld</a></span>
+                                                    <time class="time published" datetime="2018-03-07T12:19:48+00:00" title="March 7, 2018 at 12:19 pm"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="play-off-needed-to-decide-last-bradford-billiards-semi-finalist/index.html" class="link-overlay"></a>
+                                    <a class="cat-194 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="category/news/index.html">News</a>
+                                </article>
+                                <div class="spacer-xs"></div>
+                                <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                    <li>
+                                        <article class="post post--horizontal post--horizontal-xs">
+                                            <div class="post__thumb ">
+                                                <a href="blomfield-wins-title-at-australian-longboard-surfing-open/index.html"><img width="180" height="135" src="/files/frontend/images/upload/pexels-photo-416676-1-180x135.jpg" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-416676-1-180x135.jpg 180w, /files/frontend/images/upload/pexels-photo-416676-1-400x300.jpg 400w, /files/frontend/images/upload/pexels-photo-416676-1-600x450.jpg 600w, /files/frontend/images/upload/pexels-photo-416676-1-800x600.jpg 800w, /files/frontend/images/upload/pexels-photo-416676-1-1200x900.jpg 1200w, /files/frontend/images/upload/pexels-photo-416676-1-1600x1200.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                <!-- close a tag -->
+                                            </div>
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-1"><a class="ellipsis3" title="@obj.Name" href="blomfield-wins-title-at-australian-longboard-surfing-open/index.html">Blomfield wins title at Australian Longboard Surfing Open</a></h3>
+                                                <div class="post__meta">
+                                                    <time class="time published" datetime="2018-03-07T09:02:25+00:00" title="March 7, 2018 at 9:02 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="texas-mens-tennis-team-sweeps-pennsylvania/index.html">Texas men’s tennis team sweeps Pennsylvania</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="2018-fifa-world-cup-power-rankings-all-32-teams-in-russia-rated-from-best-to-worst/index.html">2018 FIFA World Cup Power Rankings: All 32 teams in Russia rated from best to worst</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="nfl-rumors-are-eagles-going-to-trade-a-cornerback/index.html">NFL rumors: Are Eagles going to trade a cornerback?</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end Column 1 -->
+                            <!-- Hiếu ơi đây là Column 2 -->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="block-heading block-heading--line">
+                                    <h4 class="block-heading__title">Business</h4>
+                                </div>
+                                <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                    <div class="background-img " style="background-image: url('/files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-600x338.jpg');"></div>
+                                    <div class="post__text inverse-text">
+                                        <div class="post__text-wrap">
+                                            <div class="post__text-inner ">
+                                                <h3 class="post__title typescale-2"><a class="ellipsis4" href="family-owned-florist-business-looks-to-bloom-in-chestertown/index.html">Family-owned florist business looks to bloom in Chestertown</a></h3>
+                                                <div class="post__meta ">
+                                                    <span class="entry-author"> By <a class="entry-author__name" href="author/gappingworld/index.html">gappingworld</a></span>
+                                                    <time class="time published" datetime="2018-03-08T08:12:29+00:00" title="March 8, 2018 at 8:12 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="family-owned-florist-business-looks-to-bloom-in-chestertown/index.html" class="link-overlay"></a>
+                                    <a class="cat-192 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="category/business/index.html">Business</a>
+                                </article>
+                                <div class="spacer-xs"></div>
+                                <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                    <li>
+                                        <article class="post post--horizontal post--horizontal-xs">
+                                            <div class="post__thumb ">
+                                                <a href="asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html"><img width="180" height="135" src="/files/frontend/images/upload/negative-space-checking-timetable-train-station-1-180x135.jpg" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" srcset="/files/frontend/images/upload/negative-space-checking-timetable-train-station-1-180x135.jpg 180w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-400x300.jpg 400w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-600x450.jpg 600w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-800x600.jpg 800w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-1200x900.jpg 1200w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-1600x1200.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                <!-- close a tag -->
+                                            </div>
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-1"><a class="ellipsis3" title="@obj.Name" href="asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html">Asian stocks pull back on U.S. tech declines, eurozone worries</a></h3>
+                                                <div class="post__meta">
+                                                    <time class="time published" datetime="2018-03-08T07:23:55+00:00" title="March 8, 2018 at 7:23 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="plan-to-convert-complaints-from-client-into-sales/index.html">Plan to convert complaints from client into sales</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="ten-top-tips-to-improve-your-financial-management/index.html">Ten top tips to improve your financial management</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="delhi-airport-ranked-number-1-in-world-in-service-quality/index.html">Delhi airport ranked number 1 in world in service quality</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end Column 2 -->
+                            <!-- Hiếu ơi đây là Column 3 -->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="block-heading block-heading--line">
+                                    <h4 class="block-heading__title">Business</h4>
+                                </div>
+                                <article class="post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                    <div class="background-img " style="background-image: url('/files/frontend/images/upload/StockSnap_C95EBLNTPQ-1-600x338.jpg');"></div>
+                                    <div class="post__text inverse-text">
+                                        <div class="post__text-wrap">
+                                            <div class="post__text-inner ">
+                                                <h3 class="post__title typescale-2"><a class="ellipsis4" href="family-owned-florist-business-looks-to-bloom-in-chestertown/index.html">Family-owned florist business looks to bloom in Chestertown</a></h3>
+                                                <div class="post__meta ">
+                                                    <span class="entry-author"> By <a class="entry-author__name" href="author/gappingworld/index.html">gappingworld</a></span>
+                                                    <time class="time published" datetime="2018-03-08T08:12:29+00:00" title="March 8, 2018 at 8:12 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="family-owned-florist-business-looks-to-bloom-in-chestertown/index.html" class="link-overlay"></a>
+                                    <a class="cat-192 post__cat post__cat--bg cat-theme-bg overlay-item--top-left" href="category/business/index.html">Business</a>
+                                </article>
+                                <div class="spacer-xs"></div>
+                                <ul class="list-space-xs list-square-bullet-exclude-first list-seperated-exclude-first list-unstyled">
+                                    <li>
+                                        <article class="post post--horizontal post--horizontal-xs">
+                                            <div class="post__thumb ">
+                                                <a href="asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html"><img width="180" height="135" src="/files/frontend/images/upload/negative-space-checking-timetable-train-station-1-180x135.jpg" class="attachment-tnm-xxs-4_3 size-tnm-xxs-4_3 wp-post-image" alt="" srcset="/files/frontend/images/upload/negative-space-checking-timetable-train-station-1-180x135.jpg 180w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-400x300.jpg 400w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-600x450.jpg 600w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-800x600.jpg 800w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-1200x900.jpg 1200w, /files/frontend/images/upload/negative-space-checking-timetable-train-station-1-1600x1200.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /></a>
+                                                <!-- close a tag -->
+                                            </div>
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-1"><a class="ellipsis3" title="@obj.Name" href="asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html">Asian stocks pull back on U.S. tech declines, eurozone worries</a></h3>
+                                                <div class="post__meta">
+                                                    <time class="time published" datetime="2018-03-08T07:23:55+00:00" title="March 8, 2018 at 7:23 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="plan-to-convert-complaints-from-client-into-sales/index.html">Plan to convert complaints from client into sales</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="ten-top-tips-to-improve-your-financial-management/index.html">Ten top tips to improve your financial management</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="post post--horizontal ">
+                                            <div class="post__text ">
+                                                <h3 class="post__title typescale-0"><a href="delhi-airport-ranked-number-1-in-world-in-service-quality/index.html">Delhi airport ranked number 1 in world in service quality</a></h3>
+
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end Column 3 -->
+
+                        </div>
+
+
+                    *@
+
+
+
+
+
+                </div>
+                <!-- .mnmd-block -->
+            </div>
+
+            <!-- có biết vì sao phải format code ntn k ?cho dep, bảo ai là chó ?cho đẹp
+            ok:)) ko. quan trọng là xem có mở đóng đúng k. Tráng có thấy nếu mở đóng đúng thì phải ntn:
+            thằng đầu và thằng cuois là sát vào lề k ?có
+            ntn tức là sao ??thiếu thẻ div, llafm gì bây h cop thêm
+
+            ko phải, chỗ đó layout là
+            row
+            col-8 col-4
+
+            mình đã cắt cái mà:
+            row
+            col-8
+
+            cái thẻ đóng của row là ở cuối cái col-4 cơ, hiểu k ok
+            tức là phải ntn: tôi tét thấy phải lùi 3 nhát mới đủ -->

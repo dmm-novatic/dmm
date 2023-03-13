@@ -1,0 +1,100 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+    <!-- Added by HTTrack -->
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+
+    <partial name="../Shared/A2FComponent/Library" />
+
+    <!-- End Library-->
+
+
+
+</head>
+
+<body>
+
+    @RenderBody()
+
+    <!-- Starts Header -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <partial name="../Shared/A2FComponent/_Header" />
+
+    <!-- Ends Header -->
+    <!-- Content FAQ Start-->
+    <!-- CSS Start -->
+
+    <div class="container-fluid" id="libCategory">
+        <div style="height: 500px; width: 500px;">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <script>
+        // === include 'setup' then 'config' above ===
+        const data = {
+            labels: [
+                'Toán',
+                'Văn',
+                'Anh',
+                'Vật lý',
+                'Hóa học',
+                'Địa lý',
+            ],
+            datasets: [{
+                label: 'Đánh giá tình trạng học tập',
+                data: [7, 9, 9, 8, 6, 7],
+                fill: true,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgb(54, 162, 235)',
+                pointBackgroundColor: 'rgb(54, 162, 235)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(54, 162, 235)',
+                pointRadius: 6,
+            }]
+        };
+        const config = {
+            type: 'radar',
+            data: data,
+            options: {
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            },
+        };
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+    <!-- STARTS FOOTER -->
+
+    <partial name="../Shared/A2FComponent/_Footer" />
+
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+</body>
+
+</html> 

@@ -1,0 +1,255 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+
+
+
+    /*make linked slider has no border */
+    .link-slider {
+        border : none;
+    }
+
+    .owl-carousel p a, .owl-carousel small a {
+        color : white;
+    }
+
+    .owl-carousel p  {
+        font-size : 37px;
+    }
+
+    .owl-carousel small {
+        font-size : 24px
+    }
+
+    
+
+    .slide-one-item .owl-dots .owl-dot.active > span {
+        width: 15px;
+        background: #FFFFFF;
+        border: 1px solid #265178;
+    }
+
+    .testimony-29101 .text { 
+    padding: 6rem 4rem 0rem 8rem; 
+}
+
+#StripCover {
+    position: absolute;
+    bottom: 0;
+    left: -102px;
+   width: 323px;
+}
+
+.testimony-29101 .text-lower blockquote a{
+                z-index: 2;
+                position: relative;
+            }
+
+            blockquote .small:before, blockquote footer:before, blockquote small:before {
+                content : none !important;
+            }
+</style>
+
+<!-- Doing responsive : Start -->
+    <style>
+        /* screen large screen 4k */
+        @@media (min-width : 1441px) {
+            /* Do nothing */
+            .testimony-29101 .text-lower {
+                display :none !important;
+            }
+
+        }
+
+        /* screen L laptop */
+        @@media (max-width : 1441px) and (min-width : 1025px) {
+            .testimony-29101 .image{
+                width : 65% ;
+            }
+            .testimony-29101 .text{
+                width : 35% ;
+            }
+
+            a.title-aboutus-carousel {
+                font-size: 33px;
+            }
+
+            .testimony-29101 .text-lower {
+                display :none !important;
+            }
+        }
+
+        /* small screen laptop */
+        @@media (max-width : 1025px) and (min-width : 769px) {
+            .testimony-29101 .image{
+                width : 60%;
+            }
+            .testimony-29101 .text{
+                width : 40%;
+
+                padding: 4rem 4rem 0rem 8rem;
+            }
+            .description-aboutus  {
+                 -webkit-line-clamp: 3;
+                 font-size : 15px;
+             }
+             .testimony-29101 .text a.title-aboutus-carousel {
+                font-size: 22px;
+                 -webkit-line-clamp: 2;
+            }
+
+            .testimony-29101 .text-lower {
+                display :none !important;
+            }
+
+            blockquote .small:before, blockquote footer:before, blockquote small:before {
+                content : none !important;
+            }
+        }
+
+        /* screen for tablet and screen for phone */
+        @@media (max-width : 769px)  {
+            /*and (min-width : 426px)*/
+            /* Bắt carousel từ thư viện để chỉnh sửa */
+            .d-md-flex {
+                display: block !important;
+            }
+
+            .owl-carousel.owl-loaded {
+                display : flex;
+            }
+            /* Ẩn thẻ .text-upper trong slide carousel thay bằng thẻ .text-lower */
+            .testimony-29101 .image{
+                width : 100%;
+            }
+            /* Ẩn thẻ paragraph chỉ để tiêu đề và button xem thêm */
+            .testimony-29101 .text-upper{
+                display : none !important;
+            }
+
+            .testimony-29101 .text-lower{
+                width : 100%;
+                height: 220px;
+                padding: 0rem 4rem 0rem 8rem; 
+                display : block !important;
+            }
+
+            .testimony-29101 .text-lower .description-aboutus {
+                    -webkit-line-clamp: 2;
+                    font-size : 15px;
+            }
+
+            .testimony-29101 .text-lower .title-aboutus {
+                    font-size : 16px;
+                    padding-top: 0px ;
+
+            }
+
+            .testimony-29101 .text-lower .title-aboutus-wrapper {
+                padding-top: 10px ;
+                font-size : 18px;
+            }
+
+            
+            
+            .testimony-29101 .text {
+                height: 218px !important;
+    
+            }
+
+            #StripCover {
+                width: 335px ;
+                left: -50px;
+            }
+
+            
+        }
+
+
+        @@media (max-width : 425px) {
+            .logo-image-mobile {
+                display : block !important;
+            }
+        }
+        /* screen for phone  */
+
+    </style>
+<!-- Doing responsive : End -->
+
+    <div class="content">
+        <div class="container-slide" style="padding: 0;">
+
+            <div class="owl-carousel slide-one-item">
+                
+                <!-- .item -->
+                <div class="d-md-flex testimony-29101 align-items-stretch">
+                    <div class="text text-upper">
+                        <blockquote>
+                            <p><a class="title-aboutus-carousel "  href="Liet-ke-cac-khao-sat">@ViewBag.lblKhaoSatToanDien  </a></p>
+                            <small  style="margin-bottom : 20px"><a class="ellipsis4 description-aboutus" href="Liet-ke-cac-khao-sat">@ViewBag.lblMoTaSurvey </a></small>
+                           <a class="btn btn-lg btn-primary btn-carousel link-slider" href="Liet-ke-cac-khao-sat" role="button">@ViewBag.lblXemThem</a>
+                            
+                        </blockquote> 
+                    </div>
+                    <div class="image" style="background-image: url('/images/Rectangle304.png');"></div>
+                    <div class="text text-lower">
+                        <blockquote>
+                            <p class="title-aboutus-wrapper"><a class="title-aboutus-carousel title-aboutus"  href="Liet-ke-cac-khao-sat">@ViewBag.lblKhaoSatToanDien  </a></p>
+                            <small  style="margin-bottom : 20px"><a class="ellipsis4 description-aboutus" href="Liet-ke-cac-khao-sat">@ViewBag.lblMoTaSurvey </a></small>
+                           <a class="btn btn-lg btn-primary btn-carousel link-slider" href="Liet-ke-cac-khao-sat" role="button">@ViewBag.lblXemThem</a>
+                            
+                        </blockquote> 
+                    </div>
+                    <img src="/images/Group (2).png" id="StripCover">
+                </div>
+                <!-- .item -->
+
+                <div class="d-md-flex testimony-29101 align-items-stretch">
+                    <div class="text text-upper">
+                        <blockquote>
+                            <p><a class="title-aboutus-carousel"  href="so-tay-tai-chinh">@ViewBag.lblSoTayTitle  </a></p>
+                            <small style="margin-bottom : 20px"><a class="ellipsis4 description-aboutus" href="so-tay-tai-chinh">@ViewBag.lblIntroduction1 </a></small>
+                           <a class="btn btn-lg btn-primary btn-carousel link-slider " href="so-tay-tai-chinh" role="button">@ViewBag.lblXemThem</a>
+                            
+                        </blockquote>
+                    </div>
+                    <div class="image" style="background-image: url('/images/degital.png');"></div>
+                    <div class="text text-lower">
+                        <blockquote>
+                            <p class="title-aboutus-wrapper" ><a class="title-aboutus-carousel title-aboutus"  href="so-tay-tai-chinh">@ViewBag.lblSoTayTitle  </a></p>
+                            <small style="margin-bottom : 20px"><a class="ellipsis4 description-aboutus" href="so-tay-tai-chinh">@ViewBag.lblIntroduction1 </a></small>
+                           <a class="btn btn-lg btn-primary btn-carousel link-slider " href="so-tay-tai-chinh" role="button">@ViewBag.lblXemThem</a>
+                            
+                        </blockquote>
+                    </div>
+                    <img src="/images/Group (2).png" id="StripCover">
+                </div>
+
+                <div class="d-md-flex testimony-29101 align-items-stretch">
+                    <div class="text text-upper">
+                        <blockquote>
+                            <p><a class="title-aboutus-carousel" href="thu-vien">@ViewBag.objParrentCategory[0].Name  </a></p>
+                            <small  style="margin-bottom : 20px"><a class="ellipsis4 description-aboutus" href="thu-vien">@ViewBag.lblThuVienCarousel </a></small>
+                           <a class="btn btn-lg btn-primary btn-carousel link-slider" href="thu-vien" role="button">@ViewBag.lblXemThem</a>
+                            
+                        </blockquote>
+                    </div>
+                    <div class="image" style="background-image: url('/images/hero_3.jpg');"></div>
+                    <div class="text text-lower">
+                        <blockquote>
+                            <p class="title-aboutus-wrapper"><a class="title-aboutus-carousel title-aboutus " href="thu-vien">@ViewBag.objParrentCategory[0].Name  </a></p>
+                            <small  style="margin-bottom : 20px"><a class="ellipsis4 description-aboutus" href="thu-vien">@ViewBag.lblThuVienCarousel </a></small>
+                           <a class="btn btn-lg btn-primary btn-carousel link-slider" href="thu-vien" role="button">@ViewBag.lblXemThem</a>
+                            
+                        </blockquote>
+                    </div>
+                    <img src="/images/Group (2).png" id="StripCover">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+

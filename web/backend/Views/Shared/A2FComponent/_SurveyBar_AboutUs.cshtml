@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<style>
+    #surveyBar {
+        margin-top: 40px;
+        background-image: url('/images/image 19.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 367px;
+        width: auto;
+        border-radius: 10px;
+    }
+
+        #surveyBar.stickIt {
+            position: fixed;
+            top: 0px;
+        }
+
+    @@media (max-width : 991px) {
+        #surveyBar {
+            display: none;
+        }
+    }
+</style>
+<div id="surveyBar" style="margin-top: 40px; background-image: url('/images/image 19.png'); background-repeat: no-repeat; background-size: cover; height: 367px; width: auto; border-radius: 10px;" class="">
+    <div style="padding-top: 50px;">
+        <img style="margin-left: 30px;" src="~/images/Vector.png" class="img-responsive" alt="Image">
+        <p style="line-height: 18.75px; font-size: 15px; font-weight: 400; color: white; margin-left: 30px;">
+            @ViewBag.lblDangKyNhanHoTro
+        </p>
+        <p style="color: #2AD9FF; font-size: 36px; margin-left: 30px;margin-right: 30px;">
+            @ViewBag.lblKetNoiVoiChungToi
+        </p>
+        <button class="btn btn-warning" style="margin-left: 30px;" onclick="window.location.href='/Liet-ke-cac-khao-sat';">@ViewBag.lblKhaoSatToanDien.ToUpper()</button>
+    </div>
+</div>
+
+<script>
+    var topLimit = $("#surveyBar").offset().top;
+    var topNavbar = $("#privacy-ul").offset().top;
+    document.addEventListener('DOMContentLoaded', function () {
+        var clientWidth = $('#surveyBar').innerWidth();
+        var navbar = document.querySelector("#surveyBar");
+        var navtabsprivacy = document.querySelector(".nav-tabs-privacy");
+        var banner = document.querySelector(".banner");
+        var surveyBarTop = parseInt($("#surveyBar").css("marginTop"));
+        // Giới hạn khoảng trượt
+        var sticky = navbar.offsetTop;
+        var spaceFree = sticky + navtabsprivacy.offsetHeight + banner.offsetHeight + navbar.offsetHeight;
+        // Giới hạn khoảng trượt End
+        window.onscroll = function () {
+            var foot = document.querySelector("footer");
+            var maxSpaceFree = document.querySelector(".navtab-inner .container-nopadding").offsetHeight;
+            var scroll = window.pageYOffset;
+            var finalTopLimit = topLimit + navtabsprivacy.offsetHeight + navbar.offsetHeight;
+            if (scroll>= finalTopLimit
+                && (scroll) <= (foot.offsetTop - (topLimit) - surveyBarTop)) {
+                navbar.classList.add("sticky");
+                $('#surveyBar').css("margin-top", surveyBarTop + "px");
+                $('#surveyBar.sticky').attr("style", "width:" + clientWidth + "px !important");
+            }
+            else if (finalTopLimit > scroll) {
+                navbar.classList.remove("sticky");
+                $('#surveyBar').css("margin-top", surveyBarTop + "px");
+                $('#surveyBar.sticky').attr("style", "width:" + clientWidth + "px !important");
+            }
+            else {
+                navbar.classList.remove("sticky");
+                $('#surveyBar').css("margin-top", maxSpaceFree - spaceFree + surveyBarTop + "px");
+            } };
+    });
+</script>

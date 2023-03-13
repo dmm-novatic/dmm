@@ -1,0 +1,182 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <!-- About Us Body Starts -->
+    <!-- Style : Start -->
+
+    <style>
+        .owl-carousel {
+            z-index:0 !important;
+        }
+        .logo-image-mobile {
+            display: none;
+        }
+
+
+
+        .navbar-default .navbar-toggle:focus,
+        .navbar-default .navbar-toggle:hover {
+            background-color: white;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
+    </style>
+
+    <!-- Carousel -->
+    <!--
+         This is font library did not supplied yet!
+        <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/carousel.css">
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <style>
+        .d-md-flex {
+            display: flex;
+        }
+
+        .align-items-stretch {
+            -ms-flex-align: stretch ;
+            align-items: stretch ;
+        }
+
+        blockquote {
+            border-left: 0px solid #eee;
+        }
+
+        .content .container-slide {
+            width: 100%;
+        }
+
+        .btn-carousel {
+            background-color: white;
+            color: #0D9CC9;
+            font-weight: 600;
+            border-color: none;
+        }
+
+            .btn-carousel:hover {
+                background-color: rgba(255, 255, 255, 0.863);
+                color: #0D9CC9;
+                font-weight: 600;
+                border-color: none;
+            }
+    </style>
+    <!-- Carousel End -->
+    <!--CSS TABS Start-->
+    <style>
+
+        .fa-arrow-right {
+            float: right;
+            display: none;
+        }
+
+            .fa-arrow-right.show {
+                display: block;
+            }
+
+        .img-responsive {
+            padding: 0px;
+        }
+
+        .tab-pane h2 {
+            margin-bottom: 3rem;
+            color: #265178;
+        }
+
+        .container {
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+    </style>
+    <!--CSS T!importantBS End-->
+    <!-- Image style Start -->
+    <style>
+        #tab > div > .row div {
+            background-repeat: no-repeat;
+            background-size: auto;
+            height: 345px;
+             position: relative;
+        }
+
+            #tab > div > .row div img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 215px;
+                
+            }
+    </style>
+
+    <style>
+        p {
+            padding-top: 20px;
+        }
+
+    </style>
+
+    <!-- Style : End -->
+    <!-- Body : Start -->
+    <!--SLIDE START-->
+    <partial name="../Shared/A2FComponent/_ContentSlide_AboutUs" />
+    <!--SLIDE END-->
+    <!-- Body-->
+    <div class="container container-nopadding-aboutus">
+        <div class="navtab-inner" role="tabpanel">
+            <!-- Nav tabs -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-nopadding">
+                
+
+                        <!-- Tab Bar Start-->
+                        <partial name="../Shared/A2FComponent/_TabBar_AboutUs" />
+                        <!-- Tab Bar End-->
+                         
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+    <!-- Body End-->
+    <!-- About Us Body Ends-->
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+
+</body>
+</html>

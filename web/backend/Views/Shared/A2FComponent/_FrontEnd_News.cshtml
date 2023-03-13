@@ -1,0 +1,215 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    <style>
+        /*style for navigator*/
+
+
+        /* NAVIGATION */
+
+        nav#navcategory {
+            width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0px 1px 0px #dedede;
+        }
+
+            nav#navcategory ul {
+                list-style: none;
+                text-align: center;
+            }
+
+                nav#navcategory ul li {
+                    display: inline-block;
+                }
+
+                    nav#navcategory ul li a.category-tag {
+                        display: block;
+                        padding: 10px;
+                        text-decoration: none;
+                        color: #aaa;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        margin: 0 10px;
+                        font-size: 16px;
+                    }
+
+                        nav#navcategory ul li a.category-tag,
+                        nav#navcategory ul li a.category-tag:after,
+                        nav#navcategory ul li a.category-tag:before {
+                            transition: all .5s;
+                        }
+
+                            nav#navcategory ul li a.category-tag:hover {
+                                color: white;
+                                text-decoration: none !important;
+                            }
+
+                            nav#navcategory ul li a.category-tag:hover {
+                                color: white;
+                                text-decoration: none !important;
+                            }
+
+                            nav#navcategory ul li a.category-tag:focus {
+                                color: inherit !important;
+                            }
+            /* stroke */
+
+            nav#navcategory.stroke ul li a.category-tag,
+            nav#navcategory.fill ul li a.category-tag {
+                position: relative;
+            }
+
+                nav#navcategory.stroke ul li a.category-tag:after,
+                nav#navcategory.fill ul li a.category-tag:after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 0%;
+                    content: '.';
+                    color: transparent;
+                    background: #aaa;
+                    height: 1px;
+                }
+
+                nav#navcategory.stroke ul li a.category-tag:hover:after {
+                    width: 100%;
+                }
+
+            nav#navcategory.fill ul li a.category-tag {
+                transition: all 2s;
+            }
+
+                nav#navcategory.fill ul li a.category-tag:after {
+                    text-align: left;
+                    content: '.';
+                    margin: 0;
+                    opacity: 0;
+                }
+
+                nav#navcategory.fill ul li a.category-tag:hover {
+                    color: white;
+                    z-index: 1;
+                }
+
+                    nav#navcategory.fill ul li a.category-tag:hover:after {
+                        z-index: -10;
+                        animation: fill 1s forwards;
+                        -webkit-animation: fill 1s forwards;
+                        -moz-animation: fill 1s forwards;
+                        opacity: 1;
+                    }
+
+                nav#navcategory.fill ul li a.category-tag: {
+                    color: white !important;
+                }
+    </style>
+    <style>
+        @@media only screen and (min-width: 991px) {
+            .right-bar {
+                padding-right: 0
+            }
+        }
+    </style>
+
+    <style>
+        /* Zoom when hover to picture */
+        .geeks { 
+            overflow: hidden;
+            /*display :   inline-block; */
+            padding :0px;
+            margin : 0px;
+        }
+      .zoom { 
+          transition: transform .2s; 
+          margin: 0 auto;
+  
+        }
+
+        .zoom:hover {
+          -ms-transform: scale(1.1); /* IE 9 */
+          -webkit-transform: scale(1.1); /* Safari 3-8 */
+          transform: scale(1.1); 
+        }
+        @@media only screen and (max-width: 1134px) {
+            .category-tag {
+                font-size: 12px !important;
+            }
+        }
+        @@media only screen and (max-width: 913px) {
+            #navcategory {
+                display: none !important;
+            }
+        }
+    </style>
+    @RenderBody()
+
+    <!-- Starts Header -->
+
+    <partial name="../Shared/A2FComponent/_Header" />
+
+    <!-- Ends Header -->
+    <!-- Starts Banner Header-->
+    <partial name="../Shared/A2FComponent/_BannerHeader" />
+    @*Ends Banner Header --*@
+    <nav class="stroke" id="navcategory">
+        <ul style="
+        background-color: #0D3D68;
+        color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 0">
+
+            @for (int i = 0; i < ViewBag.listCategory.Count; i++)
+            {
+                var item = ViewBag.listCategory[i];
+                <li><a class="category-tag" href="/category/@item.Slug">@item.Name</a></li>
+            }
+
+
+        </ul>
+    </nav>
+     @*Category Start*@
+    <partial name="../Shared/A2FComponent/_Hottest_News" />
+     @*Category Ends*@ 
+    <!-- News Category Start -->
+
+
+    <div class="container" style="padding-bottom: 50px; padding: unset">
+
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <partial name="../Shared/A2FComponent/_News_CategoryMenu" />
+        </div>
+
+        <div class="right-bar col-xs-12 col-sm-12 col-md-3 col-lg-3" style="margin-top: 35px">
+            <partial name="../Shared/A2FComponent/_Newest_News" />
+            <partial name="../Shared/A2FComponent/_SurveyBar" />
+        </div>
+
+
+
+    </div>
+    <!-- News Category Ends -->
+    <!-- Start Footer -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- Ends Footer -->
+    <!-- Start Javascript -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+    <!-- Ends Javascript -->
+
+</body>
+
+</html>

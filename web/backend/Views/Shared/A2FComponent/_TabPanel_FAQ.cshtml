@@ -1,0 +1,478 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!--CSS TABS Start-->
+<style>
+   /* CSS in tab bar : Start */
+
+    .nav-tabs-privacy > li > a {
+        line-height: 1.428571;
+        padding: 20px 30px;
+        letter-spacing: 1px;
+        font-size: 18px;
+    }
+
+    ul.nav-tabs-privacy {
+        box-shadow: 0px 0px 10px #ccc;
+    }
+
+    .nav-tabs-privacy li {
+        width: 100%;
+        
+        background-color: #E9F4F5;
+        color: #265178;
+        border-bottom-width: thin;
+        border-bottom-style: solid;
+        border-bottom-color: #ccc;
+    }
+
+    .nav-tabs-privacy > li.active > a,
+    .nav-tabs-privacy > li.active > a:focus,
+    .nav-tabs-privacy > li.active > a:hover {
+        background-color: #0D9CC9;
+        color: white;
+    }
+
+    .fa-arrow-right {
+        float: right;
+        display: none;
+    }
+
+        .fa-arrow-right.show {
+            display: block;
+        }
+
+    i.icon-navbar {
+        padding-top: 3px;
+        pointer-events: none;
+    }
+    /* CSS in tab bar : End */
+    
+
+    .img-responsive {
+        padding: 0px;
+    }
+
+    .tab-pane h2 {
+        margin-bottom: 3rem;
+        color: #265178;
+    }
+
+    .container {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+
+    .icon-faq {
+        font-size: 9px;
+        margin-right: 2%;
+    }
+
+    
+    .btn:focus, .btn:hover {
+        color : none;
+    }
+    
+</style>
+<!-- CSS End -->
+
+<!-- Responsive start -->
+<style>
+    @@media (max-width : 992px) {
+        #seachbox-FAQ {
+            display : none;
+        }
+        .faq-container {
+            margin-top: 0!important;
+        }
+    }
+</style>
+<!-- Responsive end -->
+
+<!-- Script Start -->
+<!-- Script for Navbar changes NavPanes -->
+<script>
+    setTimeout(function(){ 
+        // hàm sự kiện click vào thẻ <li>    
+        $("li.tab-contain").click(function(){ 
+            // xử lí xóa class show
+            $(".fa-solid.fa-arrow-right").removeClass("show");
+            // xử lí thêm class show vào trong thẻ <li>
+            $(this).children().children().addClass("show");
+        });
+    }, 1000);
+</script>
+<!-- Script End -->
+<!-- Content Tabbar and tabPanes-->
+<div class="container faq-container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 faq-container" style="margin-bottom: 50px; margin-top: 50px;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xlg-3">
+            <div class="navbar-header" style="background-color: #0D9CC9; ">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#privacy-navbar" style="
+                        border: 1px solid white;
+                        box-sizing: border-box;
+                        color: #FFFFFF;
+                        cursor: pointer;
+                        flex-shrink: 0;
+                        font-size: 16px;
+                        font-weight: 500;
+                        height: 4rem;
+                        padding: 0 1.6rem;
+                        text-align: center;
+                        text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+                        transition: all .5s;
+                        user-select: none;
+                        -webkit-user-select: none;
+                        touch-action: manipulation;">
+                    <span class="fas fa-bars"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="privacy-navbar">
+                <ul class="nav nav-tabs-privacy  flex-column" id="privacy-ul" role="tablist" style="text-transform: uppercase;">
+                    <li class="tab-contain active" role="presentation">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            @ViewBag.lblDangKyTuVan <i class="fa-solid fas fa-arrow-right" style="padding-top: 3px;"></i>
+                        </a>
+                    </li>
+                    <li role="presentation" class=" tab-contain">
+                        <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">
+                            @ViewBag.lblHuongDanThamGia <i class="fa-solid fas fa-arrow-right" style="padding-top: 3px;"></i>
+                        </a>
+                    </li>
+                    <li class="tab-contain" role="presentation">
+                        <a href="#tab1" aria-controls="tab" role="tab" data-toggle="tab">
+                            @ViewBag.lblThongTinHoTro <i class="fa-solid fas fa-arrow-right" style="padding-top: 3px;"></i>
+                        </a>
+                    </li>
+                    @*<li class="tab-contain" role="presentation">
+                        <a href="#tab2" aria-controls="tab" role="tab" data-toggle="tab">
+                            @ViewBag.lblGiaiDapThacMac <i class="fa-solid fas fa-arrow-right" style="padding-top: 3px;"></i>
+                        </a>
+                    </li>*@
+                    <li class="  tab-contain" role="presentation">
+                        <a href="#tab3" aria-controls="tab" role="tab" data-toggle="tab">
+                            SITEMAP <i class="fa-solid fas fa-arrow-right" style="padding-top: 3px;"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xlg-9" style="font-size: 16px">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        <h2>@ViewBag.lblDangKyTuVan</h2>
+
+                        <p>
+                            GIỚI THIỆU VỀ CỔNG THÔNG TIN DOANH NGHIỆP:
+                        </p>
+                        
+                        <p>
+                            Cổng Thông tin doanh nghiệp là trang thông tin điện tử kết nối, cung cấp các thông tin, dịch vụ hỗ trợ doanh nghiệp thông qua việc 
+                            tích hợp thông tin về doanh nghiệp, mạng lưới tư vấn viên, chương trình, chính sách hỗ trợ doanh nghiệp nhỏ và vừa, chỉ dẫn kinh doanh
+                            , báo cáo nghiên cứu ngành, thị trường, chương trình chuyển đổi số, đổi mới sáng tạo, tiếp nhận ý kiến của doanh nghiệp và công bố thông 
+                            tin doanh nghiệp nhà nước.
+
+                        </p>
+                        <p>
+                            Cá nhân, tổ chức truy cập Cổng Thông tin doanh nghiệp tại địa chỉ <a href="https://business.gov.vn">https://business.gov.vn</a> để khai thác thông tin, dịch vụ phục vụ cho hoạt
+                            động sản xuất kinh doanh cũng như kết nối, tham gia vào chuỗi cung ứng toàn cầu, mở rộng thị trường trên nền tảng công nghệ hiện đại, thuận tiện và an toàn.    
+                        </p>
+                        <br />
+
+                        <p>
+                            LIÊN HỆ VỚI CHÚNG TÔI:
+                        </p>
+                        <p> 
+                            Liên hệ ngay <a href="/contact">tại đây</a>
+                        </p>
+                        <p>
+                            Trưởng Ban Biên tập: Nguyễn Như Sơn – Giám đốc Trung tâm Tin học; Email: banbientap@mpi.gov.vn Ghi rõ nguồn Cổng thông tin điện tử Bộ Kế hoạch và Đầu tư (www.mpi.gov.vn) khi trích dẫn lại tin từ địa chỉ này.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <style>
+                    .faq-button {
+                        border: 0;
+                        width: 100%;
+                        border-bottom: 0.5px #265178 solid;
+                        background-color: #F1FDFF;
+                        border-radius: 0 !important;
+                        color: #5A6990;
+                        text-align: left;
+                    }
+
+                    .collapsible:after {
+                        content: '\002B';
+                        color: #5A6990;
+                        font-weight: bold;
+                        float: right;
+                        margin-left: 5px;
+                    }
+
+                    .collapsible.active:after {
+                        content: "\2212";
+                    }
+
+                    .content {
+                        padding: 0 18px;
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.2s ease-out;
+                        background-color: #f1f1f1;
+                    }
+                </style>
+                <script>
+                    $(document).ready(function() {
+                        var coll = document.getElementsByClassName("collapsible");
+                        var i;
+
+                        for (i = 0; i < coll.length; i++) {
+                            coll[i].addEventListener("click", function() {
+                                this.classList.toggle("active");
+                                var content = this.nextElementSibling;
+                                if (content.style.maxHeight) {
+                                    content.style.maxHeight = null;
+                                }
+                            });
+                        }
+                    });
+                </script>
+
+                <!-- Script End -->
+                <!-- Script add class, remove class for icon of tab panel inner : End -->
+                <div role="tabpanel" class="tab-pane " id="tab">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        <h2>@ViewBag.lblHuongDanThamGia</h2>
+                        <button class="btn collapsible faq-button" style="margin-bottom : 8px; width: 100%; box-shadow: none; outline: none; padding:0 !important; height:35px;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="fas fa-circle icon-faq"></i></span>
+                            <span style="font-size : 18px;">Về tin tức và sự kiện</span>
+                        </button>
+
+                        <div class="collapse" id="collapseExample" style="    margin-top: 8px;">
+                            <div class="card card-body" style="background-color: #F1FDFF;">
+                                <p><strong>Các nguồn tin tức các chính sách tài chính chính thống:</strong></p>
+                                <ul>
+	                                <li>Ngân hàng Nhà nước Việt Nam : www.sbv.gov.vn<br>
+	                                <small>( phần cơ chế chính sách hỗ trợ doanh nghiệp )</small></li>
+	                                <li>Bộ Kế hoạch và Đầu tư : www.mpi.gov.vn</li>
+	                                <li>Bộ tài chính : www.mof.gov.vn</li>
+                                </ul>
+                                <p><strong>Một số nguồn tin tức cổng thông tin doanh nghiệp và tài chính khác:</strong></p>
+                                <ul>
+	                                <li>www.Cafef.vn</li>
+	                                <li>www.vneconomy.vn</li>
+	                                <li>www.thoibaotaichinhvietnam.vn</li>
+	                                <li>www.diendandoanhnghiep.vn</li>
+	                                <li>www.baodautu.vn</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <button class="btn collapsible faq-button" style="margin-bottom : 8px;width: 100%; box-shadow: none; outline: none; padding:0 !important; height:35px;" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="fas fa-circle icon-faq"></i></span>
+                            <span  style="font-size : 18px;">Về thư viện</span>
+                        </button>
+
+                        <div class="collapse" id="collapseExample1" style="    margin-top: 8px;">
+                            <div class="card card-body" style="background-color: #F1FDFF;">
+                                <p><strong>Người dùng cần sử dụng tài khoản doanh nghiệp để truy cập</strong></p>
+                                <p>Khi thực hiện các hoạt động khảo sát nhu cầu nâng cao năng lực tiếp cận tài chính, Dự án USAID LinkSME nhận thấy đa phần các doanh nghiệp Nhỏ và Vừa gặp phải nhiều khó khăn khi tiếp cận tài chính với các tổ chức tín dụng. Đặc biệt, với tác động tiêu cực của Covid 19 đến với các doanh nghiệp trong suốt 2 năm vừa qua, đã gây ra nhiều đứt gãy trong sản xuất kinh doanh.</p>
+                                <p>Để hỗ trợ doanh nghiệp về nâng cao năng lực tiếp cận tài chính và đảm bảo dòng tiền tài chính phục hồi cho hoạt động sản xuất kinh doanh của doanh nghiệp, Cục phát triển doanh nghiệp – Bộ Kế hoạch và Đầu tư phối hợp với Dự án LinkSME và Phòng Thương mại và Công nghiệp Việt Nam tổ chức đào tạo Khóa học cơ bản “Nâng cao năng lực tiếp cận tài chính” và Khóa học Nâng cao“ Quản trị tài chính và chiến lược tài chính” dành cho các doanh nghiệp Nhỏ và Vừa Việt Nam. Các chủ doanh nghiệp khi tham gia khóa học sẽ được trang bị thêm kiến thức về tài chính ngân hàng và doanh nghiệp. Ngoài ra, các chuyên gia trong lĩnh vực tài chính của Dự án USAID LinkSME sẽ đồng hành cùng doanh nghiệp đánh giá tình hình tài chính hiện tại để xây dựng phương án đi vay hay tái cấu trúc dòng tiền tài chính.</p>
+                            </div>
+                        </div>
+
+
+                        <button class="btn collapsible faq-button" style="margin-bottom : 8px; width: 100%; box-shadow: none; outline: none; padding:0 !important; height:35px;" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="fas fa-circle icon-faq"></i></span>
+                            <span style="font-size: 18px"> Về đánh giá khảo sát tài chính </span>
+                        </button>
+
+                        <div class="collapse" id="collapseExample2" style="    margin-top: 8px;">
+                            <div class="card card-body" style="background-color: #F1FDFF;">
+                                <p><strong>Người dùng cần sử dụng tài khoản doanh nghiệp để truy cập</strong></p>
+                                <p>Giúp các doanh nghiệp định hình và đánh giá tiếp cận các nguồn tài chính mới</p>
+                                <p>Tái cấu trúc tình hình tài chính của doanh nghiệp</p>
+                            </div>
+                        </div>
+
+
+                        <button class="btn collapsible faq-button" style="margin-bottom : 8px; width: 100%; box-shadow: none; outline: none; padding:0 !important; height:35px;" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="fas fa-circle icon-faq"></i></span>
+                            <span style="font-size: 18px">Về sổ tay tài chính</span>
+                        </button>
+
+                        <div class="collapse" id="collapseExample3" style="    margin-top: 8px;">
+                            <div class="card card-body" style="background-color: #F1FDFF;">
+                                    <p><strong>Người dùng cần sử dụng tài khoản doanh nghiệp để truy cập</strong></p>
+                                    <p>Nhằm bảo đảm tính thực tiễn và phù hợp nhất với nhu cầu của các DNNVV, Sổ tay được xây dựng trên cơ sở các nghiên cứu khảo sát 
+                                    khách quan và cập nhật về thực trạng và nhu cầu tiếp
+                                    cận tài chính của các DNNVV với các chính sách, sản phẩm, dịch vụ tài chính và các nguồn hỗ trợ tài chính khác nhau cho DNNVV
+                                    từ các tổ chức tài chính tại Việt Nam...</p>
+                            </div>
+                        </div>
+
+                        <button class="btn collapsible faq-button" style="margin-bottom : 8px; width: 100%; box-shadow: none; outline: none; padding:0 !important; height:35px;" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="fas fa-circle icon-faq"></i></span>
+                            <span style="font-size: 18px">Về liên hệ</span>
+
+                        </button>
+
+                        <div class="collapse" id="collapseExample4" style="    margin-top: 8px;">
+                            <div class="card card-body" style="background-color: #F1FDFF;">
+                                <p>
+                                    LIÊN HỆ VỚI CHÚNG TÔI:
+                                </p>
+                                <p> 
+                                    Liên hệ ngay <a href="/contact">tại đây</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- end of 1 panel-->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab1">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        <h2>@ViewBag.lblThongTinHoTro</h2>
+                        <p>
+                            <span style="font-size: 28px; vertical-align: -webkit-baseline-middle; margin-right: 2px">©</span>
+                           Bản quyền thuộc về Cục Phát triển Doanh nghiệp, Bộ Kế hoạch và Đầu tư.
+
+                        </p>
+                        <p>
+                            <strong>Bộ Kế hoạch và Đầu tư</strong> 
+                        </p>
+                        <p>Cục Phát triển doanh nghiệp, Địa chỉ: Số 6B, Hoàng Diệu, Ba Đình, Hà Nội.</p>
+                        
+                        <p>
+                            <strong>Hỗ trợ đăng ký</strong> 
+                        </p>
+                        <p>Điện thoại: 080.44092 | Email: A2F@BUSINESS.GOV.VN</p>
+                        <p>
+                            <strong>Hỗ trợ về Doanh nghiệp nhà nước</strong> 
+                        </p>
+                        <p>Điện thoại: 080.43507 | Email: dnnn@business.gov.vn</p>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="tab2">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h2>@ViewBag.lblGiaiDapThacMac</h2>
+                        <p>
+                            GIỚI THIỆU VỀ CỔNG THÔNG TIN DOANH NGHIỆP:
+                        </p>
+                        <p>
+                            Cổng Thông tin doanh nghiệp là trang thông tin điện tử kết nối, cung cấp các thông tin, dịch vụ hỗ trợ doanh nghiệp thông qua việc 
+                            tích hợp thông tin về doanh nghiệp, mạng lưới tư vấn viên, chương trình, chính sách hỗ trợ doanh nghiệp nhỏ và vừa, chỉ dẫn kinh doanh
+                            , báo cáo nghiên cứu ngành, thị trường, chương trình chuyển đổi số, đổi mới sáng tạo, tiếp nhận ý kiến của doanh nghiệp và công bố thông 
+                            tin doanh nghiệp nhà nước.
+
+                        </p>
+                        <p>
+                            Cá nhân, tổ chức truy cập Cổng Thông tin doanh nghiệp tại địa chỉ <a href="https://business.gov.vn">https://business.gov.vn</a> để khai thác thông tin, dịch vụ phục vụ cho hoạt
+                            động sản xuất kinh doanh cũng như kết nối, tham gia vào chuỗi cung ứng toàn cầu, mở rộng thị trường trên nền tảng công nghệ hiện đại, thuận tiện và an toàn.    
+                        </p>
+                        <br />
+
+                        <p>
+                            LIÊN HỆ VỚI CHÚNG TÔI:
+                        </p>
+                        <p> 
+                            Liên hệ ngay <a href="/contact">tại đây</a>
+                        </p>
+                        <!-- end of 1 panel-->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane " id="tab3">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        @*<h2>@ViewBag.lblGiaiDapThacMac</h2>*@
+                        <div _ngcontent-piy-c449="" class="row"><!----><div _ngcontent-piy-c449="" class="col-md-12"><!----><!----><div _ngcontent-piy-c449="" class="page-content showless"><div _ngcontent-piy-c449=""><div style="background-image: url('https://i.imgur.com/npeWIVr.png'); background-repeat: no-repeat; width: 50px; height: 50px; display: inline-block; padding-top: 15px!important;">&nbsp;</div>
+<h2 style="display: inline-block; color: #1f86b5; padding: 10px; border-radius: 5px; border: solid 1px #1f86b5;">Sơ đồ Cổng thông tin Access to financial</h2>
+<ul class="tree">
+<li><strong><a href="../../home">Cổng thông tin&nbsp;</a></strong>
+<ul style="list-style-type: circle;">
+<li><strong>Giới thiệu</strong>
+<ul>
+<li><a href="../../ve-chung-toi#tab" target="new">Giới thiệu về website</a></li>
+<li><a href="../../aboutus#tab-1" target="new">Giới thiệu về dự án USAID LinkSME</a></li>
+</ul>
+</li>
+</ul>
+
+<ul style="list-style-type: circle;">
+<li><strong>Tin tức và sự kiện</strong>
+<ul>
+<li><a href="../../news" target="new">Tin tức tổng hợp</a></li>
+<li><a href="../../su-kien" target="new">Danh sách sự kiện</a></li>
+</ul>
+</li>
+</ul>
+
+<ul style="list-style-type: circle;">
+<li><strong>Thư viện</strong>
+<ul>
+<li><a href="../../thu-vien" target="new">Tài liệu đào tạo cơ bản</a></li>
+<li><a href="../../thu-vien" target="new">Tài liệu đào tạo nâng cao</a></li>
+</ul>
+</li>
+</ul>
+
+<ul style="list-style-type: circle;">
+<li><strong>Đánh giá tài chính</strong>
+<ul>
+<li><a href="../../Liet-ke-cac-khao-sat" target="new">Các công cụ đánh giá tài chính</a></li>
+@*<li><a href="../../thu-vien" target="new">Tài liệu đào tạo nâng cao</a></li>*@
+</ul>
+</li>
+</ul>
+
+<ul style="list-style-type: circle;">
+<li><strong>Sổ tay tài chính</strong>
+<ul>
+<li><a href="../../so-tay-tai-chinh" target="new">Sổ tay hướng dẫn tiếp cận các nguồn tài chính cho doanh nghiệp nhỏ và vừa Việt Nam</a></li>
+</ul>
+</li>
+</ul>
+
+<ul style="list-style-type: circle;">
+<li><strong>Liên hệ</strong>
+<ul>
+<li><a href="../../lien-he" target="new">Liên hệ</a></li>
+<li><a href="../../chinh-sach-bao-mat" target="new">Chính sách bảo mật</a></li>
+</ul>
+</li>
+</ul>
+
+</li>
+</ul>
+</div></div><div _ngcontent-piy-c449="" class="source-pen-block text-right mt-5"><!----><!----></div><div _ngcontent-piy-c449=""><!----></div><!----><app-file-vault-slider _ngcontent-piy-c449=""><!----></app-file-vault-slider><div _ngcontent-piy-c449="" class="page-template-layout"><!----><!----><!----><!----><!----><!----></div><!----><!----><app-cms-page-get-image _ngcontent-piy-c449="" _nghost-piy-c439=""></app-cms-page-get-image><!----><!----><!----></div><!----></div>
+                        <!-- end of 1 panel-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

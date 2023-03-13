@@ -1,0 +1,745 @@
+﻿@{
+    Layout = null;
+}
+
+<!-- [ navigation menu ] start -->
+
+
+<nav class='pcoded-navbar'>
+
+    <div class='nav-list'>
+        <div class='pcoded-inner-navbar main-menu'>
+
+
+            <div class='pcoded-navigation-label'>Novatic Core</div>
+            <ul class='pcoded-item pcoded-left-item'>
+
+                <!-- <li class=''>
+                    <a href='authentication/admin/list' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-credit-card'></i></span>
+                        <span class='pcoded-mtext'>Authentication</span>
+                    </a>
+                </li>
+
+                <li class=''>
+                    <a href='messageCheckingStatus/admin/list' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-scissors'></i></span>
+                        <span class='pcoded-mtext'>Trạng thái đọc thông báo</span>
+                    </a>
+                </li>
+                 -->
+                <!-- <li class=''>
+                    <a href='province/admin/list' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-maximize'></i></span>
+                        <span class='pcoded-mtext'>Tỉnh thành</span>
+                    </a>
+                </li> -->
+                <li id="0" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(0)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-users'></i></span>
+                        <span class='pcoded-mtext'>Quản lý khách hàng</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}account/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-user'></i></span>
+                                <span class='pcoded-mtext'>Danh sách khách hàng</span>
+                                @*<span class='pcoded-badge label label-success ' id='accountCount'>0</span>*@
+                            </a>
+                        </li>
+                 @*       <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}accountType/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-user'></i></span>
+                                <span class='pcoded-mtext'>Loại tài khoản</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}accountMeta/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-user'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình tài khoản</span>
+                            </a>
+                        </li>*@
+                    </ul>
+                </li>
+
+
+         
+
+                @*
+                <li id="4" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(4)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-book'></i></span>
+                        <span class='pcoded-mtext'>Quản lý khảo sát</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}survey/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-log-out'></i></span>
+                                <span class='pcoded-mtext'>Khảo sát</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}surveytype/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-log-out'></i></span>
+                                <span class='pcoded-mtext'>Loại khảo sát</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}surveysection/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>Loại đầu mục</span>
+                            </a>
+                        </li>
+
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}surveysectionquestion/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>Đầu mục câu hỏi</span>
+                            </a>
+                        </li>
+
+                        <li class=''>
+                        <a href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}question/admin/list' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                        <span class='pcoded-mtext'>Loại câu hỏi</span>
+                        </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}question/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>Câu hỏi</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}answer/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>Đáp án</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}recomment/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>Nhận xét, đánh giá</span>
+                            </a>
+                        </li>
+
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}surveyAccount/admin/report' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>Báo cáo bài khảo sát của người dùng</span>
+                            </a>
+                        </li>
+
+                        <li class=''>
+                            <a href='@{
+                                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}contact/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                                <span class='pcoded-mtext'>DS người dùng yêu cầu hỗ trợ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>*@
+
+
+
+                @*<li class='pcoded-hasmenu'>
+                <a href='javascript:void(0)' class='waves-effect waves-dark'>
+                <span class='pcoded-micon'><i class='feather icon-briefcase'></i></span>
+                <span class='pcoded-mtext'>Preferential</span>
+                </a>
+                <ul class='pcoded-submenu'>
+
+
+
+
+                </ul>
+                </li>*@
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--<li class='pcoded-hasmenu'>
+                <a href='javascript:void(0)' class='waves-effect waves-dark'>
+                    <span class='pcoded-micon'><i class='feather icon-sliders'></i></span>
+                    <span class='pcoded-mtext'>Cấu hình bài viết</span>
+                </a>
+                <ul class='pcoded-submenu'>
+
+
+
+                    <li class=''>
+                        <a href='@{
+                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                }postLayout/admin/list' class='waves-effect waves-dark'>
+                            <span class='pcoded-micon'><i class='feather icon-log-out'></i></span>
+                            <span class='pcoded-mtext'>Layout bài viết</span>
+                        </a>
+                    </li>
+
+                    <li class=''>
+                        <a href='@{
+                    @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+                }postType/admin/list' class='waves-effect waves-dark'>
+                            <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                            <span class='pcoded-mtext'>Loại bài viết</span>
+                        </a>
+                    </li>-->
+                @*<li class=''>
+                <a href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}postPublishStatus/admin/list' class='waves-effect waves-dark'>
+                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                <span class='pcoded-mtext'>Loại xuất bản</span>
+                </a>
+                </li>*@
+
+                @*<li class=''>
+                <a href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}postCommentStatus/admin/list' class='waves-effect waves-dark'>
+                <span class='pcoded-micon'><i class='feather icon-arrow-right'></i></span>
+                <span class='pcoded-mtext'>Trạng thái comment</span>
+                </a>
+                </li>*@
+
+                <!--</ul>
+                </li>-->
+                @*<li class='pcoded-hasmenu'>
+                <a href='javascript:void(0)' class='waves-effect waves-dark'>
+                <span class='pcoded-micon'><i class='feather icon-briefcase'></i></span>
+                <span class='pcoded-mtext'>Cấu hình tài khoản</span>
+                </a>
+                <ul class='pcoded-submenu'>
+
+                <li class=''>
+                <a href='@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}accountType/admin/list' class='waves-effect waves-dark'>
+                <span class='pcoded-micon'><i class='feather icon-repeat'></i></span>
+                <span class='pcoded-mtext'>Loại tài khoản</span>
+                </a>
+                </li>
+
+
+                </ul>
+                </li>*@
+
+
+
+                <li id="10" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(10)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-airplay'></i></span>
+                        <span class='pcoded-mtext'>Đơn hàng</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}orders/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Danh sách đơn hàng</span>
+                            </a>
+                        </li>
+
+
+                        @*  <li class=''>
+                                    <a href='@{
+                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+        }orderMeta/admin/list' class='waves-effect waves-dark'>
+                                        <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                        <span class='pcoded-mtext'>Order meta</span>
+                                    </a>
+                                </li>*@
+
+                        <li class=''>
+                            <a href='@{
+                                            @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}orders/admin/ListWaitingOrder' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Đơn hàng đang chờ</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                            @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}orders/admin/ListCancelOrder' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Đơn hàng đã hủy</span>
+                            </a>
+                        </li>
+                       @* <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}orderItem/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Order Item</span>
+                            </a>
+                        </li>*@
+
+
+                        @*               <li class=''>
+                                    <a href='@{
+                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+        }orderItemMeta/admin/list' class='waves-effect waves-dark'>
+                                        <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                        <span class='pcoded-mtext'>Order Item Meta</span>
+                                    </a>
+                                </li>*@
+
+                        @*
+                                <li class=''>
+                                    <a href='@{
+                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+        }orderType/admin/list' class='waves-effect waves-dark'>
+                                        <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                        <span class='pcoded-mtext'>Loại Đơn hàng</span>
+                                    </a>
+                                </li>
+                                <li class=''>
+                                    <a href='@{
+                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+        }orderStatus/admin/list' class='waves-effect waves-dark'>
+                                        <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                        <span class='pcoded-mtext'>Trạng thái Đơn hàng</span>
+                                    </a>
+                                </li>
+                        *@
+
+                        <li class=''>
+                            <a href='@{
+                                            @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}transactions/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Giao dịch</span>
+                            </a>
+                        </li>
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}orderTransaction/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Order Transaction</span>
+                            </a>
+                        </li>
+
+
+                        @* <li class=''>
+                                    <a href='@{
+                                                @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+        }cart/admin/list' class='waves-effect waves-dark'>
+                                        <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                        <span class='pcoded-mtext'>Giỏ hàng</span>
+                                    </a>
+                                </li>*@
+
+
+
+                    </ul>
+                </li>
+
+
+                <li id="8" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(7)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-briefcase'></i></span>
+                        <span class='pcoded-mtext'>Cửa hàng</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}shop/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Thông tin cửa hàng</span>
+                            </a>
+                        </li>
+
+
+                      <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}shopMeta/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình cửa hàng</span>
+                            </a>
+                        </li>
+@*
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}shopType/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Loại cửa hàng</span>
+                            </a>
+                        </li>
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}shopStatus/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Trạng thái cửa hàng</span>
+                            </a>
+                        </li>*@
+
+
+                    </ul>
+                </li>
+
+                <li id="9" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(7)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-grid'></i></span>
+                        <span class='pcoded-mtext'>Kho hàng</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}Warehouse/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Danh sách kho hàng</span>
+                            </a>
+                        </li>
+
+
+                    @*    <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}WarehouseType/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Loại kho hàng</span>
+                            </a>
+                        </li>
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}WarehouseStatus/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Trạng thái kho hàng</span>
+                            </a>
+                        </li>*@
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}WarehouseMeta/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình kho hàng</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+                <li id="9" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(7)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-box'></i></span>
+                        <span class='pcoded-mtext'>Sản phẩm</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}product/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Danh sách Sản phẩm</span>
+                            </a>
+                        </li>
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}productMeta/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình Sản phẩm</span>
+                            </a>
+                        </li>
+
+                   @*     <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}productType/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Loại Sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}productStatus/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Trạng thái Sản phẩm</span>
+                            </a>
+                        </li>*@
+
+
+                        @*<li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}productBrand/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Hãng Sản phẩm</span>
+                            </a>
+                        </li>*@
+
+                       @* <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}productCategory/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Danh mục sản phẩm</span>
+                            </a>
+                        </li>*@
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}ProductItem/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Chi tiết sản phẩm</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li id="9" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(7)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-tag'></i></span>
+                        <span class='pcoded-mtext'>Voucher</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}Promotion/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Chương trình khuyến mại</span>
+                            </a>
+                        </li>
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}voucher/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Danh sách Voucher</span>
+                            </a>
+                        </li>
+
+@*
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}voucherStatus/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Trạng thái Voucher</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}voucherType/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Loại Voucher</span>
+                            </a>
+                        </li>*@
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}voucherMeta/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình Voucher</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+
+
+                <li id="7" class='pcoded-hasmenu'>
+                    <a onclick="checkActiveParent(7)" href='javascript:void(0)' class='waves-effect waves-dark'>
+                        <span class='pcoded-micon'><i class='feather icon-settings'></i></span>
+                        <span class='pcoded-mtext'>Cấu hình</span>
+                    </a>
+                    <ul class='pcoded-submenu'>
+
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}menu/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Menu</span>
+                            </a>
+                        </li>
+
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}systemConfig/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình hệ thống</span>
+                            </a>
+                        </li>
+
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}LanguageConfig/admin/list' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình ngôn ngữ</span>
+                            </a>
+                        </li>
+                        <li class=''>
+                            <a href='@{
+                                        @ViewBag.SystemConfigs["HOMEPAGE_URL"].Description
+}systemConfig/admin/Slide' class='waves-effect waves-dark'>
+                                <span class='pcoded-micon'><i class='feather icon-stop-circle'></i></span>
+                                <span class='pcoded-mtext'>Cấu hình slide trang chủ</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <!--<li class='pcoded-hasmenu'>
+                <a href='javascript:void(0)' class='waves-effect waves-dark'>
+                    <span class='pcoded-micon'><i class='feather icon-compass'></i></span>
+                    <span class='pcoded-mtext'>Support</span>
+                </a>
+                <ul class='pcoded-submenu'>
+
+                    <li class=''>
+                        <a target='_blank' href='https://novatic.vn' class='waves-effect waves-dark'>
+                            <span class='pcoded-mtext'>Novatic</span>
+                        </a>
+                    </li>-->
+                <!-- <li class=''>
+                    <a target='_blank' href='https://fb.com/liberty4692' class='waves-effect waves-dark'>
+                        <span class='pcoded-mtext'>Harry</span>
+                    </a>
+                </li> -->
+                <!--</ul>
+                </li>-->
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<script>
+    $(document).ready(function () {
+        //var idChildMenu = localStorage.getItem("childMenu");
+        var idParentMenu = localStorage.getItem("parentMenu");
+
+        if (/*idChildMenu != "" &&*/idParentMenu != "") {
+
+            $(".pcoded-hasmenu#" + idParentMenu + "").addClass("pcoded-trigger");
+
+            $(".pcoded-hasmenu#" + idParentMenu + " .pcoded-submenu").css("display", "block");
+
+            //$(".pcoded-submenu #" + parseInt(idChildMenu) + "").addClass("active");
+        }
+    });
+
+    //function checkActiveChild(childId) {
+    //    localStorage.removeItem("childMenu");
+    //    localStorage.setItem("childMenu", childId);
+    //};
+    function checkActiveParent(parentId) {
+        //localStorage.removeItem("childMenu");
+        //localStorage.setItem("childMenu", childId);
+        localStorage.removeItem("parentMenu");
+        localStorage.setItem("parentMenu", parentId);
+    };
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- [ navigation menu ] end -->

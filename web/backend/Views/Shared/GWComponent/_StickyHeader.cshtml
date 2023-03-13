@@ -1,0 +1,595 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!-- Sticky header -->
+<div id="mnmd-sticky-header" class="sticky-header js-sticky-header ">
+    <!-- Navigation bar -->
+    <nav class="navigation-bar navigation-bar--fullwidth hidden-xs hidden-sm ">
+        <div class="navigation-bar__inner">
+            <div class="navigation-bar__section">
+                <a href="#mnmd-offcanvas-primary" class="offcanvas-menu-toggle navigation-bar-btn js-mnmd-offcanvas-toggle">
+                    <i class="mdicon mdicon-menu icon--2x"></i>
+                </a>
+                <div class="site-logo header-logo">
+                    <a href="#">
+                        <img src="~/files/frontend/images/core/LOGO-gw.png" alt="logo" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="navigation-wrapper navigation-bar__section js-priority-nav">
+                <div id="sticky-main-menu" class="menu-main-menu-container">
+                    <button type="submit" class="navigation-bar-btn js-search-dropdown-toggle"><i class="mdicon mdicon-search"></i></button>
+                    <ul id="menu-main-menu-1" class="navigation navigation--main navigation--inline">
+
+                        @{
+
+                            foreach (var obj in ViewBag.MenuList)
+                            {
+                                int hasChild = 0;
+                                string childContent = "";
+                                if (obj.GroupID == 1)
+                                {
+                                    foreach (var obj2 in ViewBag.MenuList)
+                                    {
+                                        if (obj2.ParentId == obj.Id)
+                                        {
+                                            hasChild = 1;
+                                            childContent += "<li class='menu-item menu-item-type-post_type menu-item-object-post menu-item-2011'><a href='/"+@obj2.Url+"'>" + @obj2.Name + "</a></li>";
+                                        }
+                                    }
+
+                                }
+                                //kiem tra la cha
+                                if (hasChild == 0 && obj.ParentId == 0)
+                                {
+                                    <li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                        <a href="~/@obj.Url">@obj.Name</a>
+                                    </li>
+                                }
+                                //kiem tra co con
+                                else if (hasChild == 1)
+                                {
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1988">
+                                        <a href="~/@obj.Url">@obj.Name</a>
+                                        <ul class="sub-menu clearfix">
+                                            @Html.Raw(childContent)
+                                        </ul>
+
+                                    </li>
+                                }
+
+
+                            }
+                        }
+
+
+                        @*<li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="">Hàng hóa</a>
+                            </li>
+                            <li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="">Xu hướng - Dự báo</a>
+                            </li>
+                            <li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="">Đầu tư</a>
+                            </li>
+                            <li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="">Chính sách</a>
+                            </li>
+                            <li id="menu-item-2111" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="">Công nghệ</a>
+                            </li>*@
+
+                        @*
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1913">
+                                <a href="#">Home</a>
+                                <div class="sub-menu">
+                                    <div class="sub-menu-inner">
+                                        <ul class="clearfix">
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2079"><a href="../home-1/index.html">Home 1</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2081"><a href="../home-2/indexb70f.html?header=site-header-2&amp;footer=footer-2">Home 2</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2082"><a href="../home-3/index1bb7.html?header=site-header-3&amp;footer=footer-3">Home 3</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2083"><a href="../home-4/indexa157.html?header=site-header-5&amp;footer=footer-5">Home 4</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2084"><a href="../home-5/index57b8.html?header=site-header-6&amp;footer=footer-6">Home 5</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2085"><a href="../home-6/indexb110.html?header=site-header-7&amp;footer=footer-2">Home 6</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2086"><a href="../home-7/index3974.html?header=site-header-8&amp;footer=footer-8">Home 7</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2087"><a href="../home-8/index5530.html?header=site-header-9&amp;footer=footer-6">Home 8</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2301"><a href="http://thenextmag.bk-ninja.com/tnm_tech/">Tech</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2300"><a href="http://thenextmag.bk-ninja.com/tnm_business">Business</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2302"><a href="http://thenextmag.bk-ninja.com/tnm_sport/">Sport</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2303"><a href="http://thenextmag.bk-ninja.com/tnm_crypto/">Crypto</a></li>
+                                        </ul>
+                                        <!-- end 0 -->
+                                    </div>
+                                    <!-- Close mnmd-menu__inner -->
+                                </div>
+                                <!-- Close mnmd-menu -->
+                            </li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor menu-item-has-children menu-item-1985">
+                                <a href="#">Features</a>
+                                <div class="mnmd-mega-menu">
+                                    <div class="mnmd-mega-menu__inner">
+                                        <ul class="sub-menu clearfix">
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-1986">
+                                                <a href="#">Post templates</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-1990"><a href="index.html">Title top</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2000"><a href="../best-4k-camera-drones-to-create-stunning-aerial-film/index.html">Title top wide</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2291"><a href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html">Title top wide left sidebar</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1995"><a href="../the-best-sights-and-bites-in-hong-kong-readers-travel-tips/index.html">Title top wide no sidebar</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1994"><a href="../what-to-expect-when-you-stay-at-a-motel/index.html">Featured image top</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1996"><a href="../ubc-researchers-use-drones-to-track-jellyfish-blooms/index.html">Featured image top wide</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1997"><a href="../delhi-airport-ranked-number-1-in-world-in-service-quality/index.html">Featured image top no sidebar</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1998"><a href="../after-years-of-problems-nasas-robonaut-is-coming-home/index.html">Header w/ background</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1999"><a href="../this-city-has-the-hardest-working-people-in-the-united-states/index.html">Header w/ background no sidebar</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1987">
+                                                <a href="#">Post templates</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2001"><a href="../whos-afraid-of-trump-not-enough-republicans-at-least-for-now/index.html">Header w/ background alt</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2003"><a href="../apple-watch-what-does-the-future-hold/index.html">Header w/ background alt light</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2002"><a href="../hiking-in-vietnam-10-trails-with-the-most-picturesque-views/index.html">Header w/ background alt no sidebar</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2004"><a href="../asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html">Billboard</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2005"><a href="../forces-of-nature-gather-in-a-new-fashion-exhibition-at-fit/index.html">Billboard center</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2006"><a href="../how-to-start-a-coffee-shop-that-will-be-a-great-success/index.html">Billboard no sidebar</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2008"><a href="../overtourism-and-the-big-chill-travel-trends-in-2018/index.html">Billboard blur</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2007"><a href="../best-places-around-the-world-to-go-kayaking/index.html">Billboard blur center</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2009"><a href="../apple-report-reveals-expensive-new-iphone-secret/index.html">Billboard blur no sidebar</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1988">
+                                                <a href="#">Post examples</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2011"><a href="../dubrovnik-croatian-city-by-the-sea-has-it-all-but-hidden-away/index.html">Gallery</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2012"><a href="../the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html">Video</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2013"><a href="../the-top-trends-for-summer-wedding-dressing/index.html">Video no sidebar</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2014"><a href="../texas-mens-tennis-team-sweeps-pennsylvania/index.html">Video w/ list</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2015"><a href="../apple-iphone-x-review-the-best-iphone-challenges-you-to-think-different/index.html">Review</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2016"><a href="../dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html">Review aside</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2019"><a href="../family-owned-florist-business-looks-to-bloom-in-chestertown/index.html">Paginated</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2267"><a href="../understanding-your-dog-for-dummies-cheatsheet/index.html">Typography</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1989">
+                                                <a href="#">Page templates</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2021"><a href="../lost.html">404</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2022"><a href="../author/gappingworld/index.html">Author</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2025"><a href="../authors-list/index.html">Authors list</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2051 menu-item-cat-190"><a href="../category/tech/index.html">Category 1</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2276 menu-item-cat-193"><a href="../category/travel/index.html">Category 2</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2278 menu-item-cat-195"><a href="../category/sports/index.html">Category 3</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2279 menu-item-cat-192"><a href="../category/business/index.html">Category 4</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2048"><a href="../coming-soon/index.html">Coming soon</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2096"><a href="../shortcodes/index.html">Shortcodes</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                        </ul>
+                                        <!-- end 0 -->
+                                    </div>
+                                    <!-- Close mnmd-menu__inner -->
+                                </div>
+                                <!-- Close mnmd-menu -->
+                            </li>
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2026">
+                                <a href="#">More</a>
+                                <div class="mnmd-mega-menu">
+                                    <div class="mnmd-mega-menu__inner">
+                                        <ul class="sub-menu clearfix">
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2035">
+                                                <a href="#">Header examples</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2027"><a href="../index.html">Header 1</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2028"><a href="../home-2/indexb70f.html?header=site-header-2&amp;footer=footer-2">Header 2</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2029"><a href="../home-3/index1bb7.html?header=site-header-3&amp;footer=footer-3">Header 3</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2030"><a href="../home-4/indexa157.html?header=site-header-5&amp;footer=footer-5">Header 4</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2031"><a href="../home-5/index57b8.html?header=site-header-6&amp;footer=footer-6">Header 5</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2032"><a href="../home-6/indexb110.html?header=site-header-7&amp;footer=footer-2">Header 6</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2033"><a href="../home-7/index3974.html?header=site-header-8&amp;footer=footer-8">Header 7</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2034"><a href="../home-8/index5530.html?header=site-header-9&amp;footer=footer-6">Header 8</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2036">
+                                                <a href="#">Footer examples</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2037"><a href="../index.html">Footer 1</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2039"><a href="../home-3/index1bb7.html?header=site-header-3&amp;footer=footer-3">Footer 2</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2040"><a href="../home-4/indexa157.html?header=site-header-5&amp;footer=footer-5">Footer 3</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2041"><a href="../home-5/index57b8.html?header=site-header-6&amp;footer=footer-6">Footer 4</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2042"><a href="../home-7/index3974.html?header=site-header-8&amp;footer=footer-8">Footer 5</a></li>
+                                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2043"><a href="../home-8/index5530.html?header=site-header-9&amp;footer=footer-6">Footer 6</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2049">
+                                                <a href="#">Archive templates</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2050 menu-item-cat-193"><a href="../category/travel/index.html">List</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2052 menu-item-cat-190"><a href="../category/tech/index.html">List alt 1</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2053 menu-item-cat-194"><a href="../category/news/index.html">List alt 2</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2054 menu-item-cat-192"><a href="../category/business/index.html">List alt 3</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2055 menu-item-cat-195"><a href="../category/sports/index.html">Grid</a></li>
+                                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2056 menu-item-cat-191"><a href="../category/life/index.html">Grid alt</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2057">
+                                                <a href="#">Others</a>
+                                                <ul class="sub-menu clearfix">
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2064"><a href="../page-builder-blocks-content-section/index.html">Page builder blocks – Content section</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2065"><a href="../page-builder-blocks-full-width-section/index.html">Page builder blocks – Full width section</a></li>
+                                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2068"><a href="../page-builder-blocks-content-section/index.html">Widgets</a></li>
+                                                </ul>
+                                                <!-- end 1 -->
+                                            </li>
+                                        </ul>
+                                        <!-- end 0 -->
+                                    </div>
+                                    <!-- Close mnmd-menu__inner -->
+                                </div>
+                                <!-- Close mnmd-menu -->
+                            </li>
+                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2069 menu-item-cat-193">
+                                <a href="../category/travel/index.html">Travel</a>
+                                <div class="mnmd-mega-menu">
+                                    <div class="mnmd-mega-menu__inner">
+                                        <ul class="posts-list list-unstyled">
+                                            <li class="big-post">
+                                                <article class="post post--overlay post--overlay-bottom post--overlay-floorfade post--overlay-xs">
+                                                    <div class="background-img" style="background-image: url('files/frontend/images/upload/pexels-photo-356808-1-400x300.jpg');"></div>
+
+                                                    <div class="post__text inverse-text">
+                                                        <div class="post__text-wrap">
+                                                            <div class="post__text-inner">
+                                                                <h3 class="post__title typescale-2"><a href="../the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html">The couple that quit their jobs to go on a six months’ road trip</a></h3>
+                                                                <div class="post__meta">
+                                                                    <span class="entry-author">By <a href="../author/gappingworld/index.html">gappingworld</a></span>
+                                                                    <time class="time published" datetime="2018-03-08T07:54:46+00:00" title="March 8, 2018 at 7:54 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a href="../the-couple-that-quit-their-jobs-to-go-on-a-six-months-road-trip/index.html" class="link-overlay"></a>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../overtourism-and-the-big-chill-travel-trends-in-2018/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/negative-space-beach-beer-sea-swim-blue-sky-wood-nicole-law-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/negative-space-beach-beer-sea-swim-blue-sky-wood-nicole-law-1-400x200.jpg 400w, /files/frontend/images/upload/negative-space-beach-beer-sea-swim-blue-sky-wood-nicole-law-1-600x300.jpg 600w, /files/frontend/images/upload/negative-space-beach-beer-sea-swim-blue-sky-wood-nicole-law-1-800x400.jpg 800w, /files/frontend/images/upload/negative-space-beach-beer-sea-swim-blue-sky-wood-nicole-law-1-1200x600.jpg 1200w, /files/frontend/images/upload/negative-space-beach-beer-sea-swim-blue-sky-wood-nicole-law-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../overtourism-and-the-big-chill-travel-trends-in-2018/index.html">Overtourism and the big chill: travel trends in 2018</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-08T07:20:02+00:00" title="March 8, 2018 at 7:20 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../supershe-island-women-only-luxury-retreat-opening-in-finland/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/StockSnap_PQASJKOCU7-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/StockSnap_PQASJKOCU7-1-400x200.jpg 400w, /files/frontend/images/upload/StockSnap_PQASJKOCU7-1-600x300.jpg 600w, /files/frontend/images/upload/StockSnap_PQASJKOCU7-1-800x400.jpg 800w, /files/frontend/images/upload/StockSnap_PQASJKOCU7-1-1200x600.jpg 1200w, /files/frontend/images/upload/StockSnap_PQASJKOCU7-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../supershe-island-women-only-luxury-retreat-opening-in-finland/index.html">SuperShe Island: Women-only luxury retreat opening in Finland</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-07T12:27:27+00:00" title="March 7, 2018 at 12:27 pm"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../hiking-in-vietnam-10-trails-with-the-most-picturesque-views/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/pexels-photo-2-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/pexels-photo-2-1-400x200.jpg 400w, /files/frontend/images/upload/pexels-photo-2-1-600x300.jpg 600w, /files/frontend/images/upload/pexels-photo-2-1-800x400.jpg 800w, /files/frontend/images/upload/pexels-photo-2-1-1200x600.jpg 1200w, /files/frontend/images/upload/pexels-photo-2-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../hiking-in-vietnam-10-trails-with-the-most-picturesque-views/index.html">Hiking in Vietnam: 10 Trails with the Most Picturesque Views</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-07T08:42:51+00:00" title="March 7, 2018 at 8:42 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Close mnmd-mega-menu__inner -->
+                                </div>
+                                <!-- Close Megamenu -->
+                            </li>
+                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2070 menu-item-cat-213">
+                                <a href="../category/tech/review/index.html">Review</a>
+                                <div class="mnmd-mega-menu">
+                                    <div class="mnmd-mega-menu__inner">
+                                        <ul class="posts-list list-unstyled">
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/Dell-XPS-13-Pattern-Image-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/Dell-XPS-13-Pattern-Image-400x200.jpg 400w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-600x300.jpg 600w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-800x400.jpg 800w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-1200x600.jpg 1200w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+                                                            <div class="overlay-center-y text-center">
+                                                                <div class="post-score-hexagon">
+                                                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg><span class="post-score-value">9.1</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html">Dell XPS 13 review (2018): Still the best Windows laptop</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-08T03:50:42+00:00" title="March 8, 2018 at 3:50 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../apple-iphone-x-review-the-best-iphone-challenges-you-to-think-different/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/iphone-x-17-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/iphone-x-17-1-400x200.jpg 400w, /files/frontend/images/upload/iphone-x-17-1-600x300.jpg 600w, /files/frontend/images/upload/iphone-x-17-1-800x400.jpg 800w, /files/frontend/images/upload/iphone-x-17-1-1200x600.jpg 1200w, /files/frontend/images/upload/iphone-x-17-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+                                                            <div class="overlay-center-y text-center">
+                                                                <div class="post-score-hexagon">
+                                                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg><span class="post-score-value">9</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../apple-iphone-x-review-the-best-iphone-challenges-you-to-think-different/index.html">Apple iPhone X review: The best iPhone challenges you to think different</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-07T08:16:51+00:00" title="March 7, 2018 at 8:16 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../review-nokia-retunes-3310-for-a-new-generation/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/001-Nokia_3310_new-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/001-Nokia_3310_new-1-400x200.jpg 400w, /files/frontend/images/upload/001-Nokia_3310_new-1-600x300.jpg 600w, /files/frontend/images/upload/001-Nokia_3310_new-1-800x400.jpg 800w, /files/frontend/images/upload/001-Nokia_3310_new-1-1200x600.jpg 1200w, /files/frontend/images/upload/001-Nokia_3310_new-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+                                                            <div class="overlay-center-y text-center">
+                                                                <div class="post-score-hexagon">
+                                                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg><span class="post-score-value">10</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../review-nokia-retunes-3310-for-a-new-generation/index.html">Review: Nokia retunes 3310 for a new generation</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-07T07:37:05+00:00" title="March 7, 2018 at 7:37 am"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../oneplus-6-review-a-big-step-closer-to-the-perfect-smartphone/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-400x200.jpg 400w, /files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-600x300.jpg 600w, /files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-800x400.jpg 800w, /files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-1200x600.jpg 1200w, /files/frontend/images/upload/oneplus-6-hero-promo-hoyle-4-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+                                                            <div class="overlay-center-y text-center">
+                                                                <div class="post-score-hexagon">
+                                                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg><span class="post-score-value">8.9</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../oneplus-6-review-a-big-step-closer-to-the-perfect-smartphone/index.html">OnePlus 6 review: A big step closer to the perfect smartphone</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-06T04:02:55+00:00" title="March 6, 2018 at 4:02 am"><i class="mdicon mdicon-schedule"></i>March 6, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Close mnmd-mega-menu__inner -->
+                                </div>
+                                <!-- Close Megamenu -->
+                            </li>
+                            <li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2111 menu-item-cat-190">
+                                <a href="../category/tech/index.html">Tech</a>
+                                <div class="mnmd-mega-menu">
+                                    <div class="mnmd-mega-menu__inner">
+                                        <ul class="posts-list list-unstyled">
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-400x200.jpg 400w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-600x300.jpg 600w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-800x400.jpg 800w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-1200x600.jpg 1200w, /files/frontend/images/upload/StockSnap_0NV2FAVPAX-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../the-best-laptop-stands-elevate-your-system-and-keep-it-running-quick-and-cool/index.html">The best laptop stands: elevate your system and keep it running quick and cool</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-08T08:07:27+00:00" title="March 8, 2018 at 8:07 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../apple-report-reveals-expensive-new-iphone-secret/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/144730036-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/144730036-400x200.jpg 400w, /files/frontend/images/upload/144730036-600x300.jpg 600w, /files/frontend/images/upload/144730036-800x400.jpg 800w, /files/frontend/images/upload/144730036-1200x600.jpg 1200w, /files/frontend/images/upload/144730036-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../apple-report-reveals-expensive-new-iphone-secret/index.html">Apple report reveals expensive new iPhone secret</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-08T07:00:46+00:00" title="March 8, 2018 at 7:00 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="../dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/Dell-XPS-13-Pattern-Image-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/Dell-XPS-13-Pattern-Image-400x200.jpg 400w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-600x300.jpg 600w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-800x400.jpg 800w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-1200x600.jpg 1200w, /files/frontend/images/upload/Dell-XPS-13-Pattern-Image-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+                                                            <div class="overlay-center-y text-center">
+                                                                <div class="post-score-hexagon">
+                                                                    <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 184 210">
+                                                                        <g>
+                                                                            <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                        </g>
+                                                                    </svg><span class="post-score-value">9.1</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="../dell-xps-13-review-2018-still-the-best-windows-laptop-2/index.html">Dell XPS 13 review (2018): Still the best Windows laptop</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-08T03:50:42+00:00" title="March 8, 2018 at 3:50 am"><i class="mdicon mdicon-schedule"></i>March 8, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                            <li>
+                                                <article class="post post--vertical">
+                                                    <div class="post__thumb">
+                                                        <a href="index.html" class="thumb-link">
+                                                            <img width="400" height="200" src="~/files/frontend/images/upload/StockSnap_LBYK1XTHFC-1-400x200.jpg" class="attachment-tnm-xs-2_1 size-tnm-xs-2_1 wp-post-image" alt="" srcset="/files/frontend/images/upload/StockSnap_LBYK1XTHFC-1-400x200.jpg 400w, /files/frontend/images/upload/StockSnap_LBYK1XTHFC-1-600x300.jpg 600w, /files/frontend/images/upload/StockSnap_LBYK1XTHFC-1-800x400.jpg 800w, /files/frontend/images/upload/StockSnap_LBYK1XTHFC-1-1200x600.jpg 1200w, /files/frontend/images/upload/StockSnap_LBYK1XTHFC-1-1600x800.jpg 1600w" sizes="(max-width: 400px) 100vw, 400px" />
+
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="post__text">
+                                                        <h3 class="post__title typescale-0"><a href="index.html">Microsoft joins forces with Intel to beat Spectre</a></h3>
+                                                        <div class="post__meta">
+                                                            <time class="time published" datetime="2018-03-07T12:22:14+00:00" title="March 7, 2018 at 12:22 pm"><i class="mdicon mdicon-schedule"></i>March 7, 2018</time>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ul>
+                                        <ul class="sub-categories">
+                                            <li class="menu-item-cat-190"><a class="post__cat post__cat--bg cat-theme-bg cat-190" href="../category/tech/index.html" title="All">All</a></li>
+                                            <li class="menu-item-cat-208"><a class="post__cat post__cat--bg cat-theme-bg cat-208" href="../category/tech/computer/index.html" title="Computer">Computer</a></li>
+                                            <li class="menu-item-cat-207"><a class="post__cat post__cat--bg cat-theme-bg cat-207" href="../category/tech/mobile/index.html" title="Mobile">Mobile</a></li>
+                                            <li class="menu-item-cat-213"><a class="post__cat post__cat--bg cat-theme-bg cat-213" href="../category/tech/review/index.html" title="Review">Review</a></li>
+                                            <li class="menu-item-cat-209"><a class="post__cat post__cat--bg cat-theme-bg cat-209" href="../category/tech/science/index.html" title="Science">Science</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- Close mnmd-mega-menu__inner -->
+                                </div>
+                                <!-- Close Megamenu -->
+                            </li>
+
+                        *@
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="navigation-bar__section lwa lwa-template-modal">
+                @*<a href="#login-modal" class="navigation-bar__login-btn navigation-bar-btn" data-toggle="modal" data-target="#login-modal"><i class="mdicon mdicon-person"></i></a>*@
+                @{
+                    if (ViewBag.UserName != null)
+                    {
+                        <ul id="menu-main-menu" class="navigation navigation--main navigation--inline">
+                            <li id="menu-item-1913" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1913">
+                                <a>@ViewBag.UserFullname</a>
+                                <div class="sub-menu">
+                                    <div class="sub-menu-inner">
+                                        <ul class="clearfix">
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2081"><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}profile">Thông tin cá nhân</a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2081"><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}AdvancedSearch">Tìm kiếm nâng cao</a></li>
+                                            @{
+                                                    if (@ViewBag.UserTypeID == 10001)
+                                                    {
+                                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2081"><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}admin">Trang quản trị</a></li>
+                                                    }
+                                                }
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2081"><a href="@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}logout2">Logout</a></li>
+                                        </ul>
+                                        <!-- end 0 -->
+                                    </div>
+                                    <!-- Close mnmd-menu__inner -->
+                                </div>
+                                <!-- Close mnmd-menu -->
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="#login-modal" class="navigation-bar__login-btn navigation-bar-btn" data-toggle="modal" data-target="#login-modal">
+                            <i class="mdicon mdicon-person"></i>
+                        </a>
+                    }
+
+                    <ul id="menu-Language-VI" class="navigation navigation--main navigation--inline menu-Language-VI">
+                                <li id="menu-item-1913" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1913">
+                                    <a id="" href="" onclick="ChangeVI()" hreflang="vi" title="Tiếng Việt (vi)" class="qtranxs_image qtranxs_image_vi novaticLanguage novatic-Language-Vi">
+                                        VI
+                                        <span style="display:none">Tiếng Việt</span>
+                                    </a>
+                                    <!-- Close mnmd-menu -->
+                                </li>
+                            </ul>
+
+                            <ul id="menu-Language-EN" class="navigation navigation--main navigation--inline menu-Language-EN">
+                                <li id="menu-item-1913" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1913">
+                                    <a id="" href="" onclick="ChangeEN()" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en novaticLanguage novatic-Language-En">
+                                        EN
+                                        <span style="display:none">English</span>
+                                    </a>
+                                    <!-- Close mnmd-menu -->
+                                </li>
+                            </ul>
+
+                    }
+            </div>
+        </div>
+        <!-- .navigation-bar__inner -->
+    </nav>
+    <!-- Navigation-bar -->
+</div>
+<!-- Sticky header -->

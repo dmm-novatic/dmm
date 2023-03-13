@@ -1,0 +1,442 @@
+﻿@{
+    Layout = null;
+}
+
+<!-- CSS : Starts -->
+<style>
+    /*input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: white;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid #d1d3d1;
+    }*/
+
+        /*input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #3085d6;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid white;*/
+       /* font-family: "Font Awesome 5 Pro" !important;
+        content: "\f00c" !important;
+        color:white;
+        font-weight:900;*/
+    /*}*/
+    .rounded-list .questionactive::before {
+        font-family: "Font Awesome 5 Pro" !important;
+        content: "\f00c" !important;
+        display: inline-block !important;
+        padding: 0px 5px !important;
+        vertical-align: middle !important;
+        font-weight: 900;
+        background: linear-gradient(135.52deg, rgba(56, 226, 167, 0) 3.36%, #22A9D3 95.87%), linear-gradient(0deg, #3FD5A8, #3FD5A8) !important;
+        animation: zoom 0.5s linear normal;
+    }
+    @@keyframes zoom{0%{transform:scale(.5);opacity:0}50%{opacity:0.5}to{opacity:1;transform:scale(1)}}
+
+
+    .title-survey {
+        background: linear-gradient(90deg, #0D9CC9 0%, rgba(13, 156, 201, 0) 80.23%), linear-gradient(0deg, #125FA6, #125FA6);
+        height: 50px;
+        border-radius: 4px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+        .title-survey p {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #FFFFFF;
+            padding: 13px 20px;
+            /*display : inline;*/
+        }
+
+            .title-survey p span {
+                float: right;
+                font-size: 15px !important;
+            }
+
+    p.question-survey {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .answer-question {
+        text-align: left;
+        padding-left: 70px;
+    }
+
+        .answer-question span {
+            padding: 20px 0px 0px 0px;
+        }
+
+        .answer-question label {
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+
+    ol {
+        counter-reset: li; /* Initiate a counter */
+        list-style: none; /* Remove default numbering */
+        *list-style: decimal; /* Keep using default numbering for IE6/7 */
+
+        padding: 0;
+        margin-bottom: 4em;
+    }
+
+        ol ol {
+            margin: 0 0 0 2em; /* Add some left margin for inner lists */
+        }
+
+    .rounded-list p {
+        /*position: absolute;*/
+        padding-left: 60px!important;
+        padding: .4em .4em .4em 1em;
+    }
+
+        .rounded-list p:before {
+                    content: counter(li);
+            counter-increment: li;
+            background: linear-gradient(
+        289.54deg
+        , #E4750E -6.67%, rgba(228, 117, 14, 0) 103.74%), linear-gradient(
+        0deg
+        , #FFB526, #FFB526);
+            color: #ffffff;
+            line-height: 1.5em;
+            border-radius: 50%;
+            /* padding: 2px 8px; */
+            position: absolute;
+            left: 40px;
+            height: 32px;
+            width: 32px;
+            padding-left: 10px;
+            padding-top: 1px;
+        }
+         
+
+
+    /* Container result show : Starts */
+    .container-result-show {
+        background-color: #ECF9FB;
+        left: 291px;
+        top: 1635px;
+        background: #ECF9FB;
+        border: 1px solid #BDE4EB;
+        box-sizing: border-box;
+        border-radius: 4px;
+        margin-bottom: 40px;
+    }
+
+        .container-result-show div {
+            float: right;
+            padding: 20px;
+        }
+
+            .container-result-show div span {
+                margin-right: 40px;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 28px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+
+                .container-result-show div span b {
+                    font-weight: 700;
+                    color: #0E9CC9;
+                }
+
+    .btn-grad {
+        background-image: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%)
+    }
+
+    .btn-grad {
+        padding: 12px 28px;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+    }
+
+        .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+    .answer-question div div b{
+        display: none;
+    }
+    /* Container result show : Ends*/
+
+</style>
+<!-- CSS : Ends -->
+<!-- Survey 1 : Starts-->
+
+
+
+<div class="container" style="background-color: white;height: auto;position: relative;z-index: 2;top:-107px;margin: auto;background: #FFFFFF;
+box-shadow: 0px 8px 20px rgba(32, 51, 73, 0.15);
+border-radius: 8px;text-align: center;">
+
+    @*item*@
+    @foreach (var item in ViewBag.listSurveySectionBySurveyId)
+    {
+        <div class="container-fluid title-survey"  >
+            <p class="surveySection" data-value="@item.Id" data-promotionccore="@item.ProportionScore">@item.Name <span>@ViewBag.lblTyTrong : <b class="promotionScore">@item.ProportionScore%</b></span></p>
+        </div>
+
+        //Danh sach cau hoi
+
+        <div class="container-fluid">
+            <ol class="rounded-list">
+                @foreach (var item2 in ViewBag.DataListViewModel)
+                { 
+                    if (item.Id == item2.Id)
+                    {
+                        <li>
+                            <p class="question-survey" id="question-@item2.IdQuestion" >@item2.NameQuestion</p>
+
+
+                            <div class="answer-question"  >
+                                <div class="col-md-12">
+                                    @foreach (var item3 in ViewBag.listAnswer)
+                                    {
+                                        if (item3.QuestionId == item2.IdQuestion)
+                                        {
+                                            <!-- Chia col -->
+                                            if(item2.QuestionTypeId == 1000002)
+                                            {
+                                                <div class="col-md-3">
+                                                    <span class="answer">
+                                                        <input class="radio-checked" type="radio" id="@item2.IdQuestion-@item3.Id" name="@item2.IdQuestion" value="@item3.Score" data-surveysectionId="@item.Id" data-questionid="@item2.IdQuestion" data-answerid="@item3.Id" data-promotionccore="@item.ProportionScore" data-scorequestion="@item2.ScoreQuestion" required>
+                                                        <label for="@item2.IdQuestion-@item3.Id"> <b>@item3.Score</b> @item3.Name</label>
+                                                    </span>
+                                                </div>
+                                            } else if(item2.QuestionTypeId == 1000001)
+                                            {
+                                                <div class="col-md-4">
+                                                    <span class="answer">
+                                                        <input class="radio-checked" type="radio" id="@item2.IdQuestion-@item3.Id" name="@item2.IdQuestion" value="@item3.Score" data-surveysectionId="@item.Id" data-questionid="@item2.IdQuestion" data-answerid="@item3.Id" data-promotionccore="@item.ProportionScore" required>
+                                                        <label for="@item2.IdQuestion-@item3.Id"> <b>@item3.Score</b> @item3.Name</label>
+                                                    </span>
+                                                </div>
+                                            } else
+                                            {
+                                               <!-- bad request 404  --> 
+                                            }
+
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ol>
+        </div>
+        //Danh sach cau hoi - End
+
+    } 
+
+    @*end item*@
+    <div class="container-fluid container-result-show">
+        <div>
+            <span >@ViewBag.lblTongDiemTamTinh: <b class="totalScore">0</b></span> <button class="btn btn-warning btn-grad" onclick="checkAnswer()" style="text-transform:uppercase">@ViewBag.lblXemKetQuaDanhGia</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(".answer .radio-checked").click(function () {
+        var totalScore = 0;
+        var totalSurveySection = 0;
+        $(".answer .radio-checked:checked").each(function () {
+            var score = parseFloat($(this).val());
+            var questionId = $(this).data("questionid");
+            $("#question-" + questionId + "").addClass("questionactive");
+            totalScore += score;
+        });
+
+        $(".surveySection").each(function () {
+            var totalScoreSurveySection = 0;
+            var surveySectionId = $(this).data("value");
+            var promotionScore = $(this).data("promotionccore");
+            $(".answer .radio-checked:checked").each(function () {
+                var dataSurveySectionId = $(this).data("surveysectionid");
+                var scoreQuestion = $(this).data("scorequestion");
+                var score = parseFloat($(this).val());
+                if (surveySectionId == dataSurveySectionId) {
+                    if (@ViewBag.SurveyDetailObj[0].SurveyTypeId == 1000001) {
+                        totalScoreSurveySection += (((score * scoreQuestion / 100) * (promotionScore / 100)) * 100);
+                    }
+                    else {
+                        totalScoreSurveySection += (((score / 100) * (promotionScore / 100)) * 100);
+                    }
+                }
+            });
+            totalSurveySection += totalScoreSurveySection;
+        });
+        $(".totalScore").text(totalSurveySection.toFixed(2));
+    });
+    function TotalScore() {
+            var updatingObj = {};
+        var totalScore = 0;
+        var JsonSurveyAccount = [];
+        var JsonOfQuestion = [];
+        var dataOfQuestion = "";
+        $(".answer .radio-checked:checked").each(function (index) {
+            var score = parseFloat($(this).val());
+            var questionId = $(this).data("questionid");
+            var answerId = $(this).data("answerid");
+            var promotionScore = $(this).data("promotionccore");
+            var scoreQuestion = $(this).data("scorequestion");
+            if (@ViewBag.SurveyDetailObj[0].SurveyTypeId == 1000001) {
+                totalScore += (((score * scoreQuestion / 100) * (promotionScore / 100)) * 100);
+            }
+            else {
+                totalScore += (((score / 100) * (promotionScore / 100)) * 100);
+            }
+            
+            dataOfQuestion = '{"questionId": "' + questionId + '","answerId": "' + answerId + '","score": ' + score+'},'
+            JsonOfQuestion += dataOfQuestion;
+        });
+        JsonSurveyAccount = '{"surveyId":' +@ViewBag.SurveyId+',"score":' + totalScore + ',"name":"' + $(".nameSurvey").text()+'"}';
+        var data = "";
+        var JsonOfSurveySectionAccount = [];
+        $(".surveySection").each(function () {
+            var totalScoreSurveySection = 0;
+            var surveySectionId = $(this).data("value");
+            var surveySectionName = $(this).text();
+            $(".answer .radio-checked:checked").each(function () {
+                var dataSurveySectionId = $(this).data("surveysectionid");
+                var score = parseFloat($(this).val());
+                var scoreQuestion = $(this).data("scorequestion");
+                if (surveySectionId == dataSurveySectionId) {
+                    if (@ViewBag.SurveyDetailObj[0].SurveyTypeId == 1000001) {
+                        totalScoreSurveySection += score * scoreQuestion;
+                    }
+                    else {
+                        totalScoreSurveySection += score;
+                    }
+                }
+            });
+            data = '{"score": ' + totalScoreSurveySection + ', "name": "' + surveySectionName + '","description":"' + surveySectionId+'"},'
+            JsonOfSurveySectionAccount += data;
+        });
+        var dataJsonOfSurveySectionAccount = "[" + JsonOfSurveySectionAccount + "]";
+        var dataJsonOfQuestion = "[" + JsonOfQuestion + "]";
+        updatingObj.JsonSurveyAccount = JsonSurveyAccount;
+        updatingObj.JsonOfSurveySectionAccount = JSON.parse(dataJsonOfSurveySectionAccount.replace(",]","]"));
+        updatingObj.JsonOfQuestion = JSON.parse(dataJsonOfQuestion.replace(",]", "]"));
+        $("#loader").show();
+        var apiSurveyAccountMultiple = $.ajax({
+            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}surveyAccount/api/AddMultiple",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(updatingObj),
+            success: function (responseData) {
+                // debugger;
+                if (responseData.status == 201 && responseData.message === "CREATED") {
+                    $("#loader").hide();
+                    var dataResponse = responseData.data;
+                    console.log("Created SurveyAccount");
+                    Swal.fire({
+                        title: 'Bạn đã hoàn thành bài khảo sát',
+                        html: "Vui lòng nhấn vào nút <b>Xem kết quả khảo sát</b> để xem tổng quan đánh giá khảo sát của bạn",
+                        type: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#FF512F',
+                        cancelButtonColor: '#777',
+                        confirmButtonText: 'Xem kết quả khảo sát',
+                        cancelButtonText: 'Hủy'
+                    }).then((result) => {
+                        if (result.value == true) {
+                            location.href = "/ket-qua-khao-sat/" + dataResponse[0].id;
+                        }
+
+
+                    });
+                }
+            },
+            error: function (e) {
+                $("#loader").hide();
+                Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập để làm bài khảo sát",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+                console.log(e.message);
+            }
+        });
+    }
+</script>
+
+<script>
+    function checkAnswer() {
+        // check if user does not answer all question
+        if ($('div.answer-question:not(:has(:radio:checked))').length) {
+            Swal.fire({
+                    title: 'Bạn chưa điền hết các câu hỏi', 
+                    html: 'Bạn vẫn còn ít nhất 1 câu hỏi chưa điền, bạn chắc chắn vẫn muốn đánh giá kết quả?',
+                    footer: 'Điền tất cả các câu trả lời để có một bài đánh giá chính xác nhất!',
+                    type: 'warning',
+                    showConfirmButton: true,
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Có, xem kết quả',
+                    cancelButtonText: 'Làm tiếp khảo sát'
+                }).then((result) => {
+                    if (result.value == true) {
+                        TotalScore();
+                    }
+                });
+        } else {
+            TotalScore();
+        }
+            
+    }
+</script>
+
+<!-- Survey 1 : Ends -->

@@ -1,0 +1,170 @@
+﻿
+@{
+    Layout = null;
+}
+<div id="bk_widget_posts_list-11" class="widget mnmd-widget">
+    <div class="mnmd-widget-indexed-posts-c">
+        <div class="widget__title block-heading block-heading--line">
+            <h4 class="widget__title-text">@ViewBag.lblBaiVietPhoBien</h4>
+        </div>
+        <ol class="posts-list list-space-md list-seperated-exclude-first list-unstyled">
+
+            @{
+                int i = 0;
+                foreach (var obj in ViewBag.PopularList)
+                {
+                    i++;
+                    //First item
+                    if (i == 1)
+                    {
+                        <li>
+                            <article class="post post--overlay post--overlay-bottom">
+                                <div class="background-img background-img--darkened" style="background-image: url('@obj.Photo')">
+                                </div>
+                                @{
+                                    if (@obj.PostPublishStatusId == 2)
+                                    {
+                                        <div class="overlay-item post-type-icon--inverse novaticStarListCategory">
+                                            <div class="post-score-hexagon 1967 ">
+                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                    <g>
+                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="post-score-value">
+                                                    <i class="mdicon mdicon-star "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                <div class="post__text inverse-text">
+                                    <div class="post__text-inner">
+                                        <div class="media">
+                                            <div class="media-left media-middle"><span class="list-index">1</span></div>
+                                            <div class="media-body media-middle">
+                                                @*@{ if (obj.PostPublishStatusId == 2)
+                                                        {
+                                                            <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="@obj.Url"><i class="mdicon mdicon-star"></i>Membership</a>
+
+                                                        }
+                                                    }*@
+                                                <h3 class="post__title typescale-2"><a title="@obj.Name" href="~/@obj.Url">@obj.Name</a></h3>
+                                                <div class="post__meta"><a style="background: @obj.PostCategoryColor !important;" class="cat-190 post__cat post__cat--bg cat-theme-bg" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a></div>
+                                            </div>
+                                            <!--End media-body-->
+                                        </div>
+                                        <!--End media-->
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    }
+                    //Other items
+                    else
+                    {
+                        <li>
+                            <article class="post">
+                                <div class="media">
+                                    <div class="media-left media-middle"><span class="list-index">@i</span></div>
+                                    <div class="media-body media-middle">
+                                        @*@{ if (obj.PostPublishStatusId == 2)
+                                                {
+                                                    <a title="@obj.Name" class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="@obj.Url"><i class="mdicon mdicon-star"></i>Membership</a>
+
+                                                }
+                                            }*@
+                                        <h3 class="post__title typescale-0">
+                                            <a title="@obj.Name" href="~/@obj.Url">
+                                                @{ if (obj.PostPublishStatusId == 2)
+                                                    {
+                                                        <span>
+                                                            <div class="post-score-hexagon 1967 novaticStarInList">
+                                                                <svg class="hexagon-svg " version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                                                    <g>
+                                                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                                                    </g>
+                                                                </svg>
+                                                                <span class="post-score-value">
+                                                                    <i class="mdicon mdicon-star "></i>
+                                                                </span>
+                                                            </div>
+                                                        </span>
+                                                    }
+                                                }
+                                                @obj.Name
+                                            </a>
+                                        </h3>
+                                        <div class="post__meta"><a style="background: @obj.PostCategoryColor !important;" class="cat-190 post__cat post__cat--bg cat-theme-bg" href="/category/@obj.PostCategoryURL">@obj.PostCategoryName</a>@*<span><i class="mdicon mdicon-visibility"></i>@obj.ViewCount @ViewBag.lblLuotXem</span>*@</div>
+                                    </div>
+                                    <!--End media-body-->
+                                </div>
+                                <!--End media-->
+                            </article>
+                        </li>
+                    }
+                }
+            }
+            @*
+                <li>
+                    <article class="post post--overlay post--overlay-bottom">
+                        <div class="background-img background-img--darkened" style="background-image: url('/files/frontend/images/upload/photo-1434494878577-86c23bcb06b9-1-400x225.jpg')"></div>
+                        <div class="post__text inverse-text">
+                            <div class="post__text-inner">
+                                <div class="media">
+                                    <div class="media-left media-middle"><span class="list-index">1</span></div>
+                                    <div class="media-body media-middle">
+                                        <h3 class="post__title typescale-2"><a href="../apple-watch-what-does-the-future-hold/index.html">Apple Watch: What does the future hold?</a></h3>
+                                        <div class="post__meta"><a class="cat-190 post__cat post__cat--bg cat-theme-bg" href="../category/tech/index.html">Tech</a><span><i class="mdicon mdicon-visibility"></i>3034 views</span></div>
+                                    </div>
+                                    <!--End media-body-->
+                                </div>
+                                <!--End media-->
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="post">
+                        <div class="media">
+                            <div class="media-left media-middle"><span class="list-index">2</span></div>
+                            <div class="media-body media-middle">
+                                <h3 class="post__title typescale-0"><a href="../best-4k-camera-drones-to-create-stunning-aerial-film/index.html">Best 4K Camera Drones To Create Stunning Aerial Film</a></h3>
+                                <div class="post__meta"><a class="cat-190 post__cat post__cat--bg cat-theme-bg" href="../category/tech/index.html">Tech</a><span><i class="mdicon mdicon-visibility"></i>2931 views</span></div>
+                            </div>
+                            <!--End media-body-->
+                        </div>
+                        <!--End media-->
+                    </article>
+                </li>
+                <li>
+                    <article class="post">
+                        <div class="media">
+                            <div class="media-left media-middle"><span class="list-index">3</span></div>
+                            <div class="media-body media-middle">
+                                <h3 class="post__title typescale-0"><a href="../family-owned-florist-business-looks-to-bloom-in-chestertown/index.html">Family-owned florist business looks to bloom in Chestertown</a></h3>
+                                <div class="post__meta"><a class="cat-192 post__cat post__cat--bg cat-theme-bg" href="../category/business/index.html">Business</a><span><i class="mdicon mdicon-visibility"></i>2872 views</span></div>
+                            </div>
+                            <!--End media-body-->
+                        </div>
+                        <!--End media-->
+                    </article>
+                </li>
+                <li>
+                    <article class="post">
+                        <div class="media">
+                            <div class="media-left media-middle"><span class="list-index">4</span></div>
+                            <div class="media-body media-middle">
+                                <h3 class="post__title typescale-0"><a href="../asian-stocks-pull-back-on-u-s-tech-declines-eurozone-worries/index.html">Asian stocks pull back on U.S. tech declines, eurozone worries</a></h3>
+                                <div class="post__meta"><a class="cat-192 post__cat post__cat--bg cat-theme-bg" href="../category/business/index.html">Business</a><span><i class="mdicon mdicon-visibility"></i>2557 views</span></div>
+                            </div>
+                            <!--End media-body-->
+                        </div>
+                        <!--End media-->
+                    </article>
+                </li>
+            *@
+        </ol>
+    </div>
+    <!-- End Widget Module-->
+</div>

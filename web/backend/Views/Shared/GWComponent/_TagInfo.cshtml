@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "_TagInfo";
+}
+
+<div class="author-box single-entry-section">
+    <div class="author-box__image">
+        <div class="author-avatar"><img alt='@ViewBag.PostAccountName' src='@ViewBag.PostAccountPhoto' srcset='@ViewBag.PostAccountPhoto 2x' class='avatar avatar-180 photo avatar photo' height='180' width='180' /></div>
+    </div>
+    <div class="author-box__text">
+        <div class="author-name meta-font"><a href="../tag/@ViewBag.PostAccountName" title="Posts by gappingworld" rel="author">@ViewBag.PostAccountName</a></div>
+        <div class="author-bio">@ViewBag.PostAccountInfo</div>
+        <div class="author-info">
+            <div class="row row--space-between row--flex row--vertical-center grid-gutter-20">
+                <div class="author-socials col-xs-12 col-sm-6">
+                    <ul class="list-unstyled list-horizontal list-space-sm">
+                        <li><a href="" target="_blank"><i class="mdicon mdicon-twitter"></i><span class="sr-only">Twitter</span></a></li>
+                        <li><a href="" rel="publisher" target="_blank"><i class="mdicon mdicon-google-plus"></i><span class="sr-only">Google+</span></a></li>
+                        <li><a href="" target="_blank"><i class="mdicon mdicon-facebook"></i><span class="sr-only">Facebook</span></a></li>
+                        <li><a href="" target="_blank"><span class="sr-only">Youtube</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

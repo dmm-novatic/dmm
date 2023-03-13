@@ -1,0 +1,143 @@
+﻿
+@{
+    Layout = null;
+
+    foreach (var obj in ViewBag.SameCategoryList)
+    {
+
+    }
+}
+
+<style>
+    .page-heading--inverse .page-heading__title {
+    color: black;
+}
+</style>
+
+<div class="mnmd-block mnmd-block--fullwidth mnmd-mosaic mnmd-mosaic--has-shadow mnmd-mosaic--gutter-10 has-overlap-background mnmd-block--contiguous">
+    <div class="overlap-background background-svg-pattern background-svg-pattern--solid-color">
+        <div class=""  style="background-image: url('@ViewBag.Photo'); height: 100%"></div>
+    </div>
+    <div class="container container--wide">
+        <div class="page-heading page-heading--center page-heading--inverse">
+            <h2 class="page-heading__title">@ViewBag.Title</h2>
+            <div class="page-heading__subtitle">
+                @*<p>@ViewBag.Title</p>*@
+            </div>
+        </div>
+        <div class="mosaic-item col-xs-12 col-md-6">
+            <article class="post--overlay post--overlay-bottom post--overlay-md post--overlay-floorfade">
+                <div class="background-img " style="background-image: url('@ViewBag.SameCategoryList[0].Photo');"></div>
+                <div class="post__text inverse-text">
+                    <div class="post__text-wrap">
+                        <div class="post__text-inner inverse-text">
+                            @if (@ViewBag.SameCategoryList[0].PostPublishStatusId == 2)
+                            {
+                                <a class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.SameCategoryList[0].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                                @*<a class="post__cat post__cat--bg cat-theme-bg" style=" background-color: #4cff02 !important;color: #ffffff !important;" href="~/@ViewBag.SameCategoryList[0].Url"><i class="mdicon mdicon-star"></i>Membership</a>*@
+                            }
+                            <h3 class="post__title typescale-3"><a href="~/@ViewBag.SameCategoryList[0].Url">@ViewBag.SameCategoryList[0].Name</a></h3>
+                            <div class="post__meta ">
+                                <span class="entry-author"> By <a class="entry-author__name" href="~/@ViewBag.SameCategoryList[0].PostAccountURL">@ViewBag.SameCategoryList[0].PostAccountName</a></span>
+                                <time class="time published" datetime="@ViewBag.SameCategoryList[0].PublishedTime" title="@ViewBag.SameCategoryList[0].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.SameCategoryList[0].PublishedTime</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    if (@ViewBag.SameCategoryList[0].PostPublishStatusId == 2)
+                    {
+                        <div class="overlay-item post-type-icon--inverse novaticStarTopCategory">
+                            <div class="post-score-hexagon 1967">
+                                <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                    <g>
+                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                    </g>
+                                </svg>
+                                <span class="post-score-value">
+                                    <i class="mdicon mdicon-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+                <a href="~/@ViewBag.SameCategoryList[0].Url" class="link-overlay"></a>
+            </article>
+        </div>
+        <div class="mosaic-item col-xs-12 col-sm-6 col-md-3">
+            <article class="post--overlay post--overlay-bottom post--overlay-md post--overlay-floorfade">
+                <div class="background-img " style="background-image: url('@ViewBag.SameCategoryList[1].Photo');"></div>
+                <div class="post__text inverse-text">
+                    <div class="post__text-wrap">
+                        <div class="post__text-inner inverse-text">
+                            @if (@ViewBag.SameCategoryList[1].PostPublishStatusId == 2)
+                            {
+                            <a class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.SameCategoryList[1].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                            }
+                            <h3 class="post__title typescale-2"><a href="~/@ViewBag.SameCategoryList[1].Url">@ViewBag.SameCategoryList[1].Name</a></h3>
+                            <div class="post__meta ">
+                                <time class="time published" datetime="@ViewBag.SameCategoryList[1].PublishedTime" title="@ViewBag.SameCategoryList[1].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.SameCategoryList[1].PublishedTime</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    if (@ViewBag.SameCategoryList[1].PostPublishStatusId == 2)
+                    {
+                        <div class="overlay-item post-type-icon--inverse novaticStarTopCategory">
+                            <div class="post-score-hexagon 1967">
+                                <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                    <g>
+                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                    </g>
+                                </svg>
+                                <span class="post-score-value">
+                                    <i class="mdicon mdicon-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+                <a href="~/@ViewBag.SameCategoryList[1].Url"></a>
+            </article>
+        </div>
+        <div class="mosaic-item col-xs-12 col-sm-6 col-md-3">
+            <article class="post--overlay post--overlay-bottom post--overlay-md post--overlay-floorfade">
+                <div class="background-img " style="background-image: url('@ViewBag.SameCategoryList[2].Photo');"></div>
+                <div class="post__text inverse-text">
+                    <div class="post__text-wrap">
+                        <div class="post__text-inner inverse-text">
+                            @if (@ViewBag.SameCategoryList[2].PostPublishStatusId == 2)
+                            {
+                            <a class="post__cat post__cat--bg cat-theme-bg novaticMembershipBackground" href="~/@ViewBag.SameCategoryList[2].Url"><i class="novaticMembership mdicon mdicon-star"></i>Membership</a>
+                            }
+                            <h3 class="post__title typescale-2"><a href="~/@ViewBag.SameCategoryList[2].Url">@ViewBag.SameCategoryList[2].Name</a></h3>
+                            <div class="post__meta ">
+                                <time class="time published" datetime="@ViewBag.SameCategoryList[2].PublishedTime" title="@ViewBag.SameCategoryList[2].PublishedTime"><i class="mdicon mdicon-schedule"></i>@ViewBag.SameCategoryList[2].PublishedTime</time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    if (@ViewBag.SameCategoryList[2].PostPublishStatusId == 2)
+                    {
+                        <div class="overlay-item post-type-icon--inverse novaticStarTopCategory">
+                            <div class="post-score-hexagon 1967">
+                                <svg class="hexagon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="-5 -5 184 210">
+                                    <g>
+                                        <path fill="#FC3C2D" stroke="#fff" stroke-width="10px" d="M81.40638795573723 2.9999999999999996Q86.60254037844386 0 91.7986928011505 2.9999999999999996L168.0089283341811 47Q173.20508075688772 50 173.20508075688772 56L173.20508075688772 144Q173.20508075688772 150 168.0089283341811 153L91.7986928011505 197Q86.60254037844386 200 81.40638795573723 197L5.196152422706632 153Q0 150 0 144L0 56Q0 50 5.196152422706632 47Z"></path>
+                                    </g>
+                                </svg>
+                                <span class="post-score-value">
+                                    <i class="mdicon mdicon-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                }
+                <a href="~/@ViewBag.SameCategoryList[2].Url"></a>
+            </article>
+        </div>
+    </div>
+    <!-- .container -->
+</div>

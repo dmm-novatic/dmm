@@ -1,0 +1,107 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    
+    <!-- CSS container for the page : Start -->
+    <style>       
+        body {
+            background-color: #F1FDFF;
+        }
+
+        .navbar.navbar-default {
+            background-color: #FFFFFF !important;
+            border-color: #e7e7e7;
+        }        
+
+        /* Doing responsive : Start */
+
+
+        /* Doing responsive : End */
+
+    </style>
+    <!-- CSS End -->
+
+    
+    <!--  Content Page Start -->
+
+    <div class="container-fluid"  style="background: linear-gradient(88.75deg, #2F205B 12.71%, rgba(49, 65, 125, 0) 107.84%),url('/images/survey-img1.png');height: auto;
+    color: #FFFFFF;text-align: center;padding-bottom: 10%;background-size: cover;position: relative;">
+        <p  class="nameSurvey" style="font-size: 45px;text-align: center;padding-top: 5%;"  data-aos="fade-down" data-aos-duration="800">@ViewBag.SurveyDetailObj[0].Name</p>
+        <span data-aos="zoom-in-down" data-aos-duration="800"><i class="fas fa-history" style="font-size: 15px; "></i></span><a data-aos="zoom-in-down" data-aos-duration="800" onclick="watchSurveyHistoryList(@ViewBag.surveyId)" style="font-size: 15px;color: white; cursor:pointer;"> @ViewBag.lblXemLichSuDanhGia</a> 
+    </div>
+
+    
+        <partial name="../Shared/A2FComponent/_SurveyForm_SurveyDetail" />  
+    <!--  Content Page End -->
+
+    <!-- STARTS FOOTER -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+<script>
+        function watchSurveyHistoryList(surveyId) {
+        if(@ViewBag.UserID == 0 && @ViewBag.UserTypeID == 0) {
+            Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập để xem lịch sử đánh giá",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+        } else {
+            location.href = "/Liet-ke-ket-qua-khao-sat/" + surveyId;
+        }
+
+        }
+
+        $(document).ready(function () {
+         if(@ViewBag.UserID == 0 && @ViewBag.UserTypeID == 0) {
+            Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập để làm bài khảo sát",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Quay lại'
+                }).then((result) => {
+                    if (result.value) {
+                        location.href = "/dang-nhap";
+                    }
+                    else {
+                        location.href = "/";
+
+                    }
+                });
+         } else {
+        }
+      });
+</script>
+
+</body>
+</html>

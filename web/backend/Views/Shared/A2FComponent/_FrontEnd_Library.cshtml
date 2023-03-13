@@ -1,0 +1,868 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+    <partial name="../Shared/A2FComponent/Library" />
+    <!-- End Library-->
+    <style>
+        /* Video css : start */
+        .video-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0px 8px 20px rgba(black, 0.4);
+        }
+
+        .video-wrapper {
+            width: 100%;
+            height: 230px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        /* Video css : end */
+        .libItemTitle {
+            margin-top: 10px;
+        }
+
+        .libItemTitleFooter {
+            margin-top: 10px;
+        }
+
+            .libItemTitleFooter .col-xs-12, .libItemTitleFooter .col-sm-12, .libItemTitleFooter .col-md-12, .libItemTitleFooter .col-lg-12 {
+                padding: 0;
+            }
+
+                .libItemTitleFooter .col-xs-12 col-xs-4, .libItemTitleFooter .col-sm-12 .col-sm-4, .libItemTitleFooter .col-md-12 .col-md-4, .libItemTitleFooter .col-lg-12 .col-lg-4 {
+                    padding: 0;
+                }
+
+        .libItemLink {
+            color: #265178;
+            line-height: 21px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        #libCategory {
+            background-color: #E9F4F5;
+            padding-bottom: 60px;
+        }
+
+        @@media (max-width:415px) {
+            #myCarousel {
+                display: none;
+            }
+
+            #libCategory {
+                padding-bottom: 0px;
+            }
+        }
+
+        .pointer {cursor: pointer;}
+
+        .carousel-inner img.slider-first-container {
+            width: 90%; height: 400px; padding: unset; margin-left: 7%;
+        }
+
+    </style>
+
+    <style>
+    /* Responsive */
+    @@media only screen and (max-width: 991px) {
+        .resLeftDes {
+            left: 200px !important;
+        }
+    }
+
+    /* bỏ padding phần title dưới video */
+    @@media (max-width : 991px) {
+        .libItemTitleFooter {
+            margin-top : 0;
+        }
+
+        
+         
+    }
+
+    /* Chỉnh sửa độ dài hình ảnh cho video phần đào tạo */
+    @@media (max-width : 1199px) and (min-width : 992px){
+        .pointer-img {
+            height: 166px!important;
+        }
+
+        .pointer-img img:first-child {
+
+        }
+    }
+
+    @@media (max-width : 991px ) and (min-width : 768px) {
+        .pointer-img {
+            height: 125px!important;
+        }
+        .lb-date-icon{
+            display :none;
+        }
+    }
+     
+
+    @@media (max-width: 767px) and (min-width: 556px){
+        .pointer-img {
+            height: 278px!important;
+        } }
+
+    @@media(max-width : 418px) {
+        .pointer-img {
+            height: 147px!important;
+        }
+    }
+        /* Build up style*/
+
+
+    .content h2{ font-size:19px;}
+
+    .box{
+      position: absolute;
+      top: 57%;
+        left: 19%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      background: #111845a6;
+      box-sizing: border-box;
+      overflow: hidden;
+      box-shadow: 0 9px 29px rgb(23 32 90);
+      border: 2px solid #2a3cad;
+      color: white;
+      padding: 20px;
+    }
+
+    .box:before{
+      content: '';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background: rgba(255,255,255,0.1);
+      transition:0.5s;
+      pointer-events: none;
+    }
+
+    .box:hover:before{
+      left:-50%;
+      transform: skewX(-5deg);
+    }
+
+
+    .box .content{
+
+      top:15px;
+      left:15px;
+      right:15px;
+      bottom:15px;
+      border:1px solid #f0a591;
+      padding:20px;
+      text-align:center;
+      box-shadow: 0 5px 10px rgba(9,0,0,0.5);
+      height: 232px!important;
+    }
+
+    .box span{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      box-sizing: border-box;
+
+    }
+
+    .box span:nth-child(1)
+    {
+      transform:rotate(0deg);
+    }
+
+    .box span:nth-child(2)
+    {
+      transform:rotate(90deg);
+    }
+
+    .box span:nth-child(3)
+    {
+      transform:rotate(180deg);
+    }
+
+    .box span:nth-child(4)
+    {
+      transform:rotate(270deg);
+    }
+
+    .box span:before
+    {
+      content: '';
+      position: absolute;
+      width:100%;
+      height: 2px;
+      background: #50dfdb;
+      animation: animate 4s linear infinite;
+    }
+
+    @@keyframes animate {
+      0% {
+      transform:scaleX(0);
+      transform-origin: left;
+      }
+      50%
+      {
+        transform:scaleX(1);
+      transform-origin: left;
+      }
+      50.1%
+      {
+        transform:scaleX(1);
+      transform-origin: right;
+
+      }
+
+      100%
+      {
+        transform:scaleX(0);
+      transform-origin: right;
+
+      }
+
+
+    }
+    .span-2 {
+        width: 375px !important;
+        height: 375px!important;
+    }
+
+
+    /*.carousel-fade .active.left {
+        left:0;
+        opacity:0;
+        -webkit-transition: opacity 1s;
+        -moz-transition: opacity 1s;
+        -o-transition: opacity 1s;
+        transition: opacity  1s;
+        z-index:2;
+
+    }
+
+    .carousel-fade .next {
+
+        left:0;
+        opacity:1;
+        z-index:1;
+
+    }*/
+    </style>
+
+   
+</head>
+<body>
+    @RenderBody()
+    <!-- Starts Header -->
+    <partial name="../Shared/A2FComponent/_Header" />
+    <!-- Ends Header -->
+    <!-- Starts Banner Header-->
+    <partial name="../Shared/A2FComponent/_BannerHeader" />
+
+
+    <!-- Ends Banner Header -->
+    <!-- Category Start -->
+    <div class="container-fluid" id="libCategory">
+        <div class="container" style= "margin-bottom: 22px;">
+            <div style="margin-top: 20px">
+                <span style="line-height: 14.06px; font-size: 12px; font-weight: 400;"><a href="home">@ViewBag.lblTrangChu</a> </span>
+                <span style="line-height: 14.06px; font-size: 12px; font-weight: 400; padding: 10px 10px;">/</span>
+                <span style="line-height: 14.06px; font-size: 12px; font-weight: 400;"><a href="library"> @ViewBag.objParrentCategory[0].Name</a></span>
+            </div>
+            <div>
+                <h4 style="line-height: 40px; font-size: 32px; font-weight: 400; float: left; color: #265178">
+                    @ViewBag.objParrentCategory[0].Name
+                </h4>
+                <img src="~/images/logo1.bmp" class="img-responsive" alt="Image"
+                     style="float: left; padding: 0; margin-left: 5px">
+            </div>
+        </div>
+        <!-- Slide Start -->
+
+        <div class="container">
+            <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+                <!-- Indicators -->
+                <style>
+                    .carousel .carousel-indicators li {
+                        background-color: #265178;
+                        width: 16px;
+                        height: 16px;
+                    }
+
+                        .carousel .carousel-indicators li.active {
+                            background-color: white;
+                            border-color: #265178;
+                        }
+                </style>
+                <ol class="carousel-indicators" style="bottom: -55px">
+                    @for (int i = 0; i < ViewBag.ListLibrary.Count; i++)
+                    {
+                        if (i < 3)
+                        {
+                            var item = ViewBag.ListLibrary[i];
+                            if (i == 0)
+                            {
+                                <li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+                            }
+                            else
+                            {
+                                <li data-target="#myCarousel" data-slide-to="@i"></li>
+                            }
+                        }
+                    }
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    @for (int i = 0; i < ViewBag.ListLibrary.Count; i++)
+                    {
+                        if (i < 3)
+                        {
+                            var item = ViewBag.ListLibrary[i];
+                            if (i == 0)
+                            {
+                    <div class="item active ">
+                        <img src="@ViewBag.carousel_image[0]"
+                             class="img-responsive slider-first-container" alt="Image" ;>
+                        <div class="background-img box resLeftDes" style="background-image: url(/images/Rectangle\ 53.png); background-repeat: no-repeat;background-size: cover; width: 379px; height: 275px; position: absolute; bottom: 50px;">
+                            <span></span>
+                            <span class="span-2"></span>
+                            <span></span>
+                            <span class="span-2"></span>
+                            <div class="content" style="padding: 45px">
+                                <a class="ellipsis4" style="color: #2AD9FF; line-height: 35.62px; font-size: 28px; font-weight: 400; text-align: left"
+                                   href="">@ViewBag.lblDaoTaoCoBanslide</a>
+                                <p class="ellipsis2" style="line-height: 25px; font-size: 15px; font-weight: 400; color: #FFFFFF">
+
+                                </p>
+                                @*<a style="color: #FCCD2B; line-height: 17.5px; font-size: 14px; font-weight: 400"
+                href="">TÌM HIỂU THÔNG TIN</a>*@
+                            </div>
+                        </div>
+                    </div>
+                            }
+                            else if (i == 1)
+                            {
+                                <div class="item">
+                                    <img src="@ViewBag.carousel_image[i]"
+                                         class="img-responsive slider-first-container" alt="Image" ;>
+                                    <div class="background-img box resLeftDes" style="background-image: url(/images/Rectangle\ 53.png); background-repeat: no-repeat;background-size: cover; width: 379px; height: 275px; position: absolute; bottom: 50px;">
+                                        <span></span>
+                                        <span class="span-2"></span>
+                                        <span></span>
+                                        <span class="span-2"></span>
+                                        <div class="content" style="padding: 45px">
+                                            <a class="ellipsis4" style="color: #2AD9FF; line-height: 35.62px; font-size: 28px; font-weight: 400; text-align:left"
+                                               href="">@ViewBag.lblDaoTaoNangCaoslide</a>
+                                            <p class="ellipsis3" style="line-height: 25px; font-size: 15px; font-weight: 400; color: #FFFFFF">
+                                                
+                                            </p>
+                                            @*<a style="color: #FCCD2B; line-height: 17.5px; font-size: 14px; font-weight: 400"
+                                href="">TÌM HIỂU THÔNG TIN</a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else 
+                            {
+                                <div class="item">
+                                    <img src="@ViewBag.carousel_image[i]"
+                                         class="img-responsive slider-first-container" alt="Image" ;>
+                                    <div class="background-img box resLeftDes" style="background-image: url(/images/Rectangle\ 53.png); background-repeat: no-repeat;background-size: cover; width: 379px; height: 275px; position: absolute; bottom: 50px;">
+                                        <span></span>
+                                        <span class="span-2"></span>
+                                        <span></span>
+                                        <span class="span-2"></span>
+                                        <div class="content" style="padding: 45px">
+                                            <a class="ellipsis4" style="color: #2AD9FF; line-height: 35.62px; font-size: 28px; font-weight: 400; text-align:left"
+                                               href="">@ViewBag.lblDaotaoSmeslide</a>
+                                            <p class="ellipsis3" style="line-height: 25px; font-size: 15px; font-weight: 400; color: #FFFFFF">
+                                                
+                                            </p>
+                                            @*<a style="color: #FCCD2B; line-height: 17.5px; font-size: 14px; font-weight: 400"
+                                href="">TÌM HIỂU THÔNG TIN</a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+        <!-- Slide Ends -->
+    </div>
+    <!-- Category Ends -->
+    <!-- Menu Library Starts -->
+
+    <div class="container-fluid" style="margin-top: 30px; margin-bottom: 70px;">
+
+        <div class="container">
+            <style>
+                .nav-tabs > li {
+                    float: none;
+                    display: inline-block;
+                    zoom: 1;
+                }
+
+                .nav-tabs {
+                    text-align: center;
+                    border-bottom: 0px;
+                }
+
+                    .nav-tabs > li > a {
+                    border: unset;
+                    }
+
+                    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+                    border: 0px solid;
+                        border-bottom: 4px solid #2AD9FF;
+                    }
+
+                .nav > li > a:focus, .nav > li > a:hover {
+                        background-color: unset;
+                    }
+            </style>
+            <ul class="nav nav-tabs">
+                @foreach (var item in ViewBag.listChildLibrary)
+                {
+                    if (item.Id == 10300)
+                    {
+                        <li class="active">
+                            <a style="line-height: 22.5px; font-size: 18px; font-weight: 400; color: #265178;"
+                               data-toggle="tab" href="#@item.Id">@item.Name.ToUpper()</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a style="line-height: 22.5px; font-size: 18px; font-weight: 400; color: #265178;" data-toggle="tab"
+                               href="#@item.Id">@item.Name.ToUpper()</a>
+                        </li>
+                    }
+
+                }
+            </ul>
+
+            <div class="tab-content">
+                @foreach (var item in ViewBag.listChildLibrary)
+                {
+                    if (item.Id == 10300)
+                    {
+                        <div id="@item.Id" class="tab-pane fade in active">
+                            <div class="row" style="height: 80px;">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:20px;margin-bottom:20px">
+                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-10" style="padding:0;">
+                                        <span style="float:left">
+                                            <h3 style="line-height: 40px; font-size: 25px; font-weight: 400; color: #161E29;margin:0;">
+                                                @item.Name.ToUpper() (@item.PostCount)
+                                            </h3>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2" style="padding:0;">
+                                        <span style="margin-top: 22px;">
+                                            <select name="" id="inputSort" class="form-control"
+                                                    required="required">
+                                                <option value="">@ViewBag.lblSapXepTheo</option>
+                                                <option value="sortbydateesc">@ViewBag.lblTangDan</option>
+                                                <option value="sortbydatedesc">@ViewBag.lblGiamDan</option>
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="row">
+
+                                @foreach (var item2 in ViewBag.ListLibrary)
+                                {
+                                    if (item.Id == item2.PostCategoryId)
+                                    {
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="margin-bottom:30px">
+                                    @if (item2.Video != "")
+                                    {
+                                        <!-- Video : Start -->
+                                                
+                                            <div id="@item2.Id" class="pointer pointer-img" style="border: solid thin lightblue;background-image: url('@item2.Photo'); background-repeat: no-repeat;background-size: 100%; width: 100%;     height: 202px;" onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')">
+                                                 
+                                                <img src="/images/photoo3.jpg" style="width: 90px; height : 90px;    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 23%;" class="img-responsive" alt="Image">
+                                                @*<iframe class="embed-responsive-item" src="@item2.Video" style="height:100%" ></iframe>*@
+                                                <script>
+                                                    var parts = '@item2.Video'.split('/');
+                                                    var lastSegment = parts.pop() || parts.pop();
+                                                    //debugger;
+                                                    var emb = "https://i.ytimg.com/vi/"  + lastSegment +"/maxresdefault.jpg";
+                                                    $('#@item2.Id').css('background-image','url('+ emb + ')');
+                                                </script>
+                                        </div>
+                                        <!-- Video : End -->
+                                        <div class="libItemTitle">
+                                            <a class="libItemLink ellipsis2 pointer"
+                                               onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')">
+                                                @item2.Name
+                                            </a>
+                                        </div>
+
+                                        <div class="libItemTitleFooter">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-eye"></i>@item2.ViewCount</span>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span ><i class="fas fa-video"></i> Video</span>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-calendar lb-date-icon"></i>@item2.CreatedTime.ToString("dd/MM/yyyy")</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <!-- Image : Start -->
+                                        <div class="pointer pointer-img" style="border: solid thin lightblue;background-image: url('@item2.Photo'); background-repeat: no-repeat;background-size: 100%; width: 100%;     height: 202px;" onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')">
+
+                                            <img  style="    display: none;
+    margin-left: auto;
+    /* margin-right: auto; */
+    position: relative;
+    top: 154px;
+    right: 13px; cursor: pointer;"  src="/images/pdfIcon.png" class="img-responsive" alt="Image" >
+
+                                        </div>
+                                        <!-- Image : End -->
+                                        <div class="libItemTitle">
+                                            <a style="cursor: pointer;" class="libItemLink ellipsis3 pointer"  onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')" >
+                                               @item2.Name
+                                            </a>
+                                        </div>
+
+                                        <div class="libItemTitleFooter">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-eye"></i> @item2.ViewCount</span>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-file-pdf"></i> File PDF</span>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-calendar lb-date-icon"></i> @item2.CreatedTime.ToString("dd/MM/yyyy")</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                    }
+                                }
+
+                            </div>
+
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="@item.Id" class="tab-pane fade in">
+                            <div class="row" style="height: 80px;">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:20px;margin-bottom:20px">
+                                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-10" style="padding:0;">
+                                        <span style="float:left">
+                                            <h3 style="line-height: 40px; font-size: 25px; font-weight: 400; color: #161E29;margin:0;">
+                                                @item.Name.ToUpper() (@item.PostCount)
+                                            </h3>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2" style="padding:0;">
+                                        <span style="margin-top: 22px;">
+                                            <select name="" id="input" class="form-control"
+                                                    required="required">
+                                                <option value="">@ViewBag.lblSapXepTheo</option>
+                                                <option value="">@ViewBag.lblTangDan</option>
+                                                <option value="">@ViewBag.lblGiamDan</option>
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="row">
+                                @foreach (var item2 in ViewBag.ListLibrary)
+                                {
+                                    if (item.Id == item2.PostCategoryId)
+                                    {
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="margin-bottom: 30px">
+                                            @if (item2.Video != "")
+                                            {
+                                                <div id="@item2.Id" class="pointer pointer-img" style="border: solid thin lightblue; background-image: url('@item2.Photo'); background-repeat: no-repeat;background-size: 100%; width: 100%;     height: 202px;" onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')">
+                                                 
+                                                <img src="/images/photoo3.jpg" style="width: 90px; height : 90px;    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 75px;" class="img-responsive" alt="Image">
+                                                @*<iframe class="embed-responsive-item" src="@item2.Video" style="height:100%" ></iframe>*@
+                                                <script>
+                                                    var parts = '@item2.Video'.split('/');
+                                                    var lastSegment = parts.pop() || parts.pop();
+                                                    //debugger;
+                                                    var emb = "https://i.ytimg.com/vi/"  + lastSegment +"/maxresdefault.jpg";
+                                                    $('#@item2.Id').css('background-image','url('+ emb + ')');
+                                                </script>
+                                        </div>
+                                        <!-- Video : End -->
+                                        <div class="libItemTitle">
+                                            <a class="libItemLink ellipsis3 pointer"
+                                               onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')">
+                                                @item2.Name
+                                            </a>
+                                        </div>
+
+                                        <div class="libItemTitleFooter">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-eye"></i>@item2.ViewCount</span>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span ><i class="fas fa-video"></i> Video</span>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-calendar lb-date-icon"></i>@item2.CreatedTime.ToString("dd/MM/yyyy")</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            }
+                                            else
+                                            {
+                                                <!-- Image : Start -->
+                                                <div class="pointer-img" onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')"  style="border: solid thin lightblue; cursor : pointer; background-image: url('@item2.Photo'); background-repeat: no-repeat;background-size: 100%; width: 100%;     height: 202px;">
+                                                    
+                                                    <img style="display : none; padding-top: 170px; padding-left: 0px;float:right;" src="/images/pdfIcon.png" class="img-responsive" alt="Image">
+
+                                                </div>
+                                                <!-- Image : End -->
+                                                <div class="libItemTitle">
+                                                    <a class="libItemLink ellipsis3" onclick="checkSignUpforLib(@ViewBag.UserID, '@item2.Url')" style="cursor : pointer">
+                                                        @item2.Name
+                                                    </a>
+                                                </div>
+
+                                                <div class="libItemTitleFooter">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                            <span><i class="far fa-eye"></i> @item2.ViewCount</span>
+                                                        </div>
+                                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <span><i class="far fa-file-pdf"></i> File PDF</span>
+                                                </div>
+                                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                            <span><i class="far fa-calendar lb-date-icon"></i> @item2.CreatedTime.ToString("dd/MM/yyyy")</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Menu Library Ends -->
+    <style>
+        .image-design {
+            position: absolute;
+            right: 3px;
+            top: 12px;
+        }
+    </style>
+    <div class="container-fluid" style="background-color: #F6FDFF;">
+
+        <div class="container">
+
+            <div class="row" style="padding-top: 50px; padding-bottom: 50px">
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <img src="~/images/ic-consumer.png" class="img-responsive image-design" alt="Image">
+
+                    </div>
+
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <h3 style="line-height: 31.25px; font-size: 25px; font-weight: 400; color: #161D35;">
+                            @ViewBag.lblTaiLieuTrucQuanSinhDong
+                        </h3>
+                        <p style="line-height: 21.7px; font-size: 14px; font-weight: 400; color: #4B4F5F">
+                            @ViewBag.lblTaiLieuTrucQuanContext
+                        </p>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+                        <img src="~/images/ic-brand.png" class="img-responsive image-design" alt="Image">
+                    </div>
+
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <h3 style="line-height: 31.25px; font-size: 25px; font-weight: 400; color: #161D35;">
+                            @ViewBag.lblTimKiemThongTinMoiNhat
+                        </h3>
+                        <p style="line-height: 21.7px; font-size: 14px; font-weight: 400; color: #4B4F5F">
+                            @ViewBag.lblTimKiemThongTinContext
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <img src="~/images/ic-eco.png" class="img-responsive image-design" alt="Image">
+                    </div>
+
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <h3 style="line-height: 31.25px; font-size: 25px; font-weight: 400; color: #161D35;">
+                            @ViewBag.lblChuyenGiaHangDauTrongLinhVucChuyenDoiSo
+                        </h3>
+                        <p style="line-height: 21.7px; font-size: 14px; font-weight: 400; color: #4B4F5F">
+                            @ViewBag.lblChuyenGiaHangDauContext
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <img src="~/images/ic-value.png" class="img-responsive image-design" alt="Image">
+                    </div>
+
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <h3 style="line-height: 31.25px; font-size: 25px; font-weight: 400; color: #161D35;">
+                            @ViewBag.lblTaiChinhVungChacChoDoanhNghiepSME
+                        </h3>
+                        <p style="line-height: 21.7px; font-size: 14px; font-weight: 400; color: #4B4F5F">
+                            @ViewBag.lblTaiChinhVungChacContext
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Start Footer -->
+    <partial name="../Shared/A2FComponent/_Footer" />
+    <!-- Ends Footer -->
+    <!-- Start Javascript -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+    <!-- Ends Javascript -->
+
+
+</body>
+</html>
+
+<script>
+    function checkSignUpforLib(UserID, url) {
+            @*debugger;*@
+            if(UserID == 0) {
+                Swal.fire({
+                    title: 'Bạn chưa đăng nhập',
+                    html: "Vui lòng đăng nhập để truy cập tài liệu nguồn",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+            }else if(@ViewBag.UserTypeID == 10002) {
+                Swal.fire({
+                    title: 'Tài khoản của bạn không có quyền',
+                    html: "Hãy đăng nhập tài khoản doanh nghiệp để truy cập",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#FF512F',
+                    cancelButtonColor: '#777',
+                    confirmButtonText: 'Đến trang đăng nhập',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.value == true) {
+                        location.href = "/dang-nhap";
+                    }
+                });
+            }else
+                 window.open('/chi-tiet-thu-vien/' + url);
+    }
+    $("#inputSort").on("change", function () {
+        location.href = "/thu-vien?orderby=" + $(this).val();
+    });
+    $(document).ready(function () {
+        var currentUrl = location.href;
+        var url = new URL(currentUrl);
+        var sortValue = url.searchParams.get("orderby");
+        if (sortValue != null) {
+            $("#inputSort").val(sortValue);
+        }
+    });
+</script>

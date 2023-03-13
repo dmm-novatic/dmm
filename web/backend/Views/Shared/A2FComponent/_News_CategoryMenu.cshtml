@@ -1,0 +1,204 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    /* Doing Responsive for New Category Menu */
+
+    /* This to display only three line on news */
+    .text-news {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+
+
+    @@media (max-width : 400px) {
+        .spanDayReleaseBlue, .buttonCategoryOfNews, .time-category-menu {
+            display: none;
+        }
+    }
+</style>
+
+<style>
+    .buttonViewMore {
+        background: linear-gradient(271.67deg, #E4750E 3.49%, rgba(228, 117, 14, 0) 134.77%), linear-gradient(0deg, #FFB526, #FFB526);
+        border-radius: 0;
+        padding: 5px 15px 5px 15px;
+        border-radius: 2px;
+    }
+
+    .buttonCategoryOfNews {
+        width: auto;
+        height: 23px;
+        padding: 0 5px 0 5px;
+        font-size: 15px;
+        line-height: 15px;
+        font-weight: 400;
+        border-radius: 0;
+        background-color: #06308E;
+    }
+
+    .spanDayReleaseBlue {
+        float: left;
+        line-height: 15px;
+        font-size: 15px;
+        font-weight: 400;
+        color: #265178;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .newsTitle {
+        display: block;
+        height: 60px;
+        line-height: 21px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #265178;
+    }
+</style>
+
+
+@for (int i = 0; i < ViewBag.listCategory.Count; i++)
+{
+    var item = ViewBag.listCategory[i];
+    <div style="margin-top: 35px" class="row">
+        <span style="font-size: 25px; line-height: 40px; font-weight: 700; border-radius: unset; padding: 0 13px 0 13px">@item.Name</span>
+        <span style="float: right; padding: 0 13px 0 13px;">
+            <button onclick="location.href='category/@item.Slug';" value="Go to CategoryPost" class="btn btn-warning buttonViewMore">
+                @ViewBag.lblXemThem <i class="fas fa-play"
+                                       style="margin-left: 5px;font-size: 5px; vertical-align: middle; "></i>
+            </button>
+        </span>
+    </div>
+    <div class="row" style="">
+        @for (int j = 0; j < ViewBag.listPostsByCategory.Count; j++)
+        {
+            var item2 = ViewBag.listPostsByCategory[j];
+            if (item2.PostCategoryId == item.Id)
+            {
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="margin-top: 20px">
+                    <div class="geeks">
+                        <a href="/chi-tiet-tin-tuc/@item2.Url">
+                        <img class="zoom img-responsive" src="@item2.Photo"  alt="Image" style="padding: unset; width: 100%; height: 230px">
+                    </a>
+                    </div> 
+
+                    
+                    
+                    <a class="newsTitle" href="/chi-tiet-tin-tuc/@item2.Url"> <span class="ellipsis2">@item2.Name</span></a>
+                    <div>
+                        <span class="spanDayReleaseBlue">@item2.PublishedTime.ToString("dd/MM/yyyy hh:mm:ss tt")</span>
+                        <span style="float:right"><button onclick="location.href='category/@item.Slug';" value="Go to CategoryPost" class="btn btn-primary buttonCategoryOfNews">@item2.PostCategoryName</button></span>
+                    </div>
+
+                </div>
+            }
+        }
+        </div>
+}
+
+
+
+
+
+
+
+        <div style="margin-top: 35px" class="row">
+            <span style="font-size: 25px; line-height: 40px; font-weight: 700; border-radius: unset; padding: 0 13px 0 13px">@ViewBag.lblTinTongHop</span>
+
+        </div>
+        @for (int i = 0; i < ViewBag.listGeneralNews.Count; i++)
+        {
+            var item = ViewBag.listGeneralNews[i];
+            <div class="row" style="margin-top: 20px">
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                    <div class="geeks">
+                        <a href="/chi-tiet-tin-tuc/@item.Url">
+                        <img class="img-responsive zoom" src="@item.Photo" style="width: 100%; padding: unset; height: 175px" 
+                         alt="Image">
+                    </a>
+                    </div>
+                    
+                    
+                </div>
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7" style="">
+                    <p class="time-category-menu" style="line-height: 15px; font-size: 12px; color: #265178"> @item.PublishedTime.ToString("dd/MM/yyyy hh:mm:ss tt")</p>
+                    <a href="/chi-tiet-tin-tuc/@item.Url" style="font-size: 18px; font-weight: 700;color: #265178;">
+                        <span class="text-news">
+                            @item.Name
+                        </span>
+                    </a>
+                    <p class="text-news" style="line-height: 23.25px; font-size: 15px; font-weight: 400;">
+                        @item.Description
+                    </p>
+                </div>
+            </div>
+        }
+        <div id="next-view"> </div>
+
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 50px" class="row">
+            <button id="NextViewID" onclick="NextView();" style="padding-left: 120px; padding-right: 120px; background-color: #11335A; color: #FFFFFF" type="button" class="btn btn-default">@ViewBag.lblXemTiep</button>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                console.log("");
+                if (0 == 1) {
+                    $("#NextViewID").attr("style", "display:none;")
+                }
+            });
+            var currentpageIndex = 2;
+
+            function NextView() {
+                debugger;
+                var currentpageSize = 4;
+                var SameCategoryListCount = "";
+                var dataSource = [];
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json",
+                    url: 'Post/api/Listpaging?pageIndex=' + currentpageIndex + '&pageSize=' + currentpageSize,
+                    success: function (result) {
+                        console.log("arrList: " + result.data);
+                        dataSource = result.data;
+                        for (var i = 0; i < dataSource.length; i++) {
+                            dataSource[i].publishedTime = new Date(dataSource[i].publishedTime);
+                            dataSource[i].publishedTime = dataSource[i].publishedTime.toLocaleDateString('en-GB') + " " + dataSource[i].publishedTime.toLocaleTimeString();
+                            
+                            $("#next-view").append(`    <div class="row" style="margin-top: 20px">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                <div class="geeks">
+                <a href="/chi-tiet-tin-tuc/`+ dataSource[i].url + `">
+                    <img src="`+ dataSource[i].photo + `" style="width: 100%; padding: unset; height: 175px" class="img-responsive zoom"
+                         alt="Image">
+                         </a>
+                         </div>
+                </div>
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" style="">
+                    <p class="time-category-menu" style="line-height: 15px; font-size: 12px; color: #265178"> `+ dataSource[i].publishedTime + `</p>
+                    <a href="/chi-tiet-tin-tuc/`+ dataSource[i].url + `" style="font-size: 18px; font-weight: 700;color: #265178;">
+                        <span class="text-news">
+                            `+ dataSource[i].name + `
+                        </span>
+
+                    </a>
+                    <p class="text-news" style="line-height: 23.25px; font-size: 15px; font-weight: 400;">
+                        `+ dataSource[i].description + `
+                    </p>
+                </div>
+            </div>`);
+                        }
+
+                    },
+                    error: function (result) {
+                        alert("There is a Problem, try again!")
+                    }
+                });
+                currentpageIndex++;
+            }
+        </script>

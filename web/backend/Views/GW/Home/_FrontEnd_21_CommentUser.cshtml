@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gapping World</title>
+
+    <!-- INCLUDE 1 - LIBRARIES -->
+    @*<?php include_once("reusable/library.php") ?>*@
+    <partial name="GWComponent/_Library" />
+    <partial name="GWComponent/_Style" />
+</head>
+<body class="archive author author-gappingworld author-1 header-1">
+    <div class="site-wrapper">
+        <!-- INCLUDE 2 - HEADER  -->
+        @*<?php include_once("reusable/header.php") ?>*@
+        <partial name="GWComponent/_Header" />
+
+        <div class="site-content">
+
+
+            <partial name="GWComponent/_HomePage_TagList" />
+
+
+            <div class="mnmd-block mnmd-block--fullwidth">
+                <div class="container">
+                    <div class="col">
+                        @RenderBody()
+                        <partial name="GWComponent/_ListCommentUser" />
+                        <div class="mnmd-main-col " role="main">
+
+                            <div id="tnm_posts_listing_list-5d773ee96b2a7" class="mnmd-block">
+
+
+
+                            </div><!-- .mnmd-block -->
+
+
+                        </div>
+
+                        <div class="mnmd-sub-col sidebar js-sticky-sidebar" role="complementary">
+                            <div class="theiaStickySidebar">
+
+
+
+                            </div>
+                        </div>
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .mnmd-block -->
+        </div>
+
+
+        <!-- INCLUDE 4 - FOOTER -->
+        @*<?php include_once("reusable/footer.php") ?>*@
+        <partial name="GWComponent/_Footer" />
+
+        <!-- INCLUDE 5 - STICKY HEADER -->
+        @*<?php include_once("reusable/stickyHeader.php") ?>*@
+        <partial name="GWComponent/_StickyHeader" />
+
+        <!-- INCLUDE 7 - USER MODAL -->
+        @*<?php include_once("reusable/userModal.php") ?>*@
+        <partial name="GWComponent/_UserModal" />
+
+        <!-- INCLUDE 6 - CANVAS MENU -->
+        @*<?php include_once("reusable/canvasMenu.php") ?>*@
+        <partial name="GWComponent/_CanvasMenu" />
+
+        <!-- INCLUDE 8 - SUBSCRIBE MODAL -->
+        @*<?php include_once("reusable/subscribeModal.php") ?>*@
+        <partial name="GWComponent/_SubscribeModal" />
+
+        <!-- go top button -->
+        <a href="#" class="mnmd-go-top btn btn-default hidden-xs js-go-top-el">
+            <i class="mdicon mdicon-arrow_upward"></i>
+        </a>
+    </div>
+    <!-- .site-wrapper -->
+    <!-- INCLUDE 2 - JAVASCRIPT -->
+    @*<?php include_once("reusable/javascript.php") ?>*@
+    <partial name="GWComponent/_Javascript" />
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

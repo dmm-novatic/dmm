@@ -1,0 +1,601 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+    <!-- Added by HTTrack -->
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <!-- Start Library-->
+
+    <partial name="../Shared/A2FComponent/Library" />
+
+    <!-- End Library-->
+
+
+
+</head>
+
+<body>
+
+    @RenderBody()
+
+    <!-- Starts Header -->
+
+    <partial name="../Shared/A2FComponent/_Header" />
+
+    <!-- Ends Header -->
+    @* <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-9" style="padding-bottom: 50px">
+        <!-- Start Location -->
+        <partial name="../Shared/A2FComponent/_Title_Location" />
+        <!-- Ends Location -->
+        <!-- Start New Detail Information -->
+        <partial name="../Shared/A2FComponent/_NewDetail_Information" />
+        <!-- Ends New Detail Information -->
+
+        <!-- Start Comment -->
+        <partial name="../Shared/A2FComponent/_Comment_NewDetail" />
+        <!-- Start Comment -->
+
+        <!-- Start Most Viewed Information -->
+        <partial name="../Shared/A2FComponent/_MostViewed" />
+        <!-- Ends Most Viewed Information -->
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3" style="margin-top: 50px;">
+        <!-- Start Related News Information -->
+        <partial name="../Shared/A2FComponent/_Related_News" />
+        <!-- Ends Related News Information -->
+        <!-- Starts SurveyBar -->
+        <partial name="../Shared/A2FComponent/_SurveyBar" />
+        <!-- Ends SurveyBar -->
+        </div>
+        </div>
+        </div>*@
+
+
+
+
+    <!-- Content : Start -->
+    <style>
+        /* Event-container responsive */
+        @@media (min-width: 1200px) and (max-width : 1600px) {
+            .event-container {
+                width: 640px;
+            }
+        }
+
+        div.container p {
+            text-align: justify;
+        }
+
+        /* Video css : start */
+        .video-container {
+            border-radius: 4px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0px 8px 20px rgba(black, 0.4);
+        }
+
+        background {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        /* Video css : end */
+
+        /* Video-button play css : start  */
+        .play-button-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: auto;
+            pointer-events: none;
+        }
+
+        #circle-play-b {
+            pointer-events: auto;
+        }
+
+        svg {
+            width: 100px;
+            height: 100px;
+            fill: #fff;
+            stroke: #fff;
+            background-color: rgba(black, 0.2);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        /* Video-button play css : End */
+    </style>
+
+    <style>
+        /* Video infomation below : Start */
+        .spanDayReleaseBlue {
+            float: left;
+            line-height: 15px;
+            font-size: 12px;
+            color: #265178;
+        }
+
+        .buttonCategoryOfNews {
+            border-radius: 5;
+            border: 0px solid transparent;
+            padding: 1rem 2rem !important;
+            line-height: 1rem !important;
+        }
+
+        .button-join-event {
+            background-color: #fb8557 !important;
+            background-image: linear-gradient(to bottom right, #efcd90, #ff9752c7, #e37c19d2) !important;
+        }
+
+        .button-can-not-join-event {
+            background-color: gray !important;
+            background-image: linear-gradient(to bottom right, #8d8d8d, #a19999c7, #6a6060) !important;
+        }
+        /* Video infomation below : End */
+
+
+        /*  Button 'Đang Diễn Ra' : Start */
+        .button-on-going-event {
+            background-color: yellow;
+            background-image: linear-gradient(to bottom right, #c5f3e5, #41d3a7c7, #008104);
+        }
+
+        .button-end-event {
+            background-color: gray;
+            background-image: linear-gradient(to bottom right, #e9f4f5, #a19999c7, #6a6060);
+        }
+
+        .button-will-event {
+            background-color: #ffd86c;
+            ;
+            background-image: linear-gradient(to bottom right, #efcd90, #ff9752c7, #e37c19d2)
+        }
+
+        .button-76 {
+            border: 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.125rem;
+            /* 18px */
+            font-weight: 600;
+            line-height: 1.75rem;
+            /* 28px */
+            padding: 1rem 1.25rem;
+            text-align: center;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+            .button-76:hover {
+                box-shadow: none;
+            }
+
+        @@media (min-width: 1024px) {
+            .button-76 {
+                font-size: 1.5rem;
+                /* 24px */
+                padding: 1rem 3rem;
+                line-height: 0.5rem;
+                /* 32px */
+            }
+        }
+
+
+        /*  Button 'Đang Diễn Ra' : End */
+
+
+
+        /* Responsive start */
+        @@media(max-width : 1600px) and (min-width : 1200px) {
+            /* chỉnh title */
+            .event-container {
+                width: 933px;
+            }
+        }
+
+        @@media (max-width : 1030px) and (min-width : 991px) {
+            /* chỉnh title */
+            .container-event-details-1 {
+                padding-right: 0px
+            }
+        }
+
+        @@media (max-width : 1078px) {
+            /* chỉnh title */
+            .container-event-details-wrapper-1 {
+                background-size: auto !important;
+            }
+
+            .container-event-details-1 #title-name {
+                font-size: 25px !important;
+            }
+        }
+
+        @@media (max-width : 515px) {
+            /* chỉnh title */
+            .container-event-details-1 #title-name {
+                font-size: 16px !important;
+                margin-bottom: 5% !important;
+            }
+
+            #event-button-1, #event-button-2, #event-button-3 {
+                margin: auto auto 5% !important;
+            }
+
+            .thoigian-sukien {
+                right: 0 !important;
+            }
+        }
+
+        @@media (max-width : 760px) {
+            /* chinh video */
+            .event-container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            /*chinh content */
+            #noidungchitiet-sukien {
+                font-size: 23px !important;
+            }
+        }
+
+        /* Responsive end */
+    </style>
+
+
+
+    <!-- Main Layout : Start -->
+    <!-- Image background and Video : Start -->
+    <div style="background-color: #E9F4F5; width: 100%; position: relative; background-repeat: no-repeat;background-size: contain;">
+        <div class="container-event-details-wrapper-1" style="background-image: url('/images/Group331.png'); width: 100%; position: relative; background-repeat: no-repeat;background-size: contain;">
+            <div class="container-fluid container-event-details-1" style="text-align: center;">
+                <h2 id="title-name" style="margin: auto; font-size: 35px; color: white; margin-bottom: 30px; padding-top: 5%; font-weight : 200 !important; width: 88%;">
+                </h2>
+            </div>
+
+            <div class="container event-container" style="text-align: center; padding-left: 80px;
+    padding-right: 80px;">
+                <!-- Quote : Start -->
+
+
+
+                <div class="button-wrapper" style="margin: auto; height: 60px">
+                    <button id="event-button-1" class="button-76 button-on-going-event" role="button" style="margin: auto; margin-bottom: 10%; display : none">@ViewBag.lblSuKienDangDienRa</button>
+                    <button id="event-button-2" class="button-76 button-will-event" role="button" style="margin: auto; margin-bottom: 10%; display : none">@ViewBag.lblSuKienSapDienRa</button>
+                    <button id="event-button-3" class="button-76 button-end-event" role="button" style="margin: auto; margin-bottom: 10%; display : none">@ViewBag.lblSuKienDaKetThuc</button>
+                </div>
+                <!-- Quote : End -->
+                <!-- Video : Start -->
+
+                <div class="video-wrapper">
+                    <div class="video-container" id="video-container">
+                        @if (ViewBag.IsVideo == 1)
+                        {
+                            <div class="embed-responsive embed-responsive-16by9">
+                                @*<iframe id="video-event" class="embed-responsive-item" src="https://www.youtube.com/embed/tgbNymZ7vqY" ></iframe>*@
+                                <iframe width="560" height="315" src="@ViewBag.Video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="embed-responsive embed-responsive-16by9">
+                            <img class="img-responsive" style="width: 100%" src="@ViewBag.Photo">
+                            </div>
+                        }
+                        <div class="row" style="margin-top: 15px; /*margin-bottom: 15px;*/">
+
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="right: -10px;">
+                                <p style="padding-bottom : 0.25em"><i class="fas fa-calendar-day" style="font-size : 18px;"></i></p>
+                                <p><i class="fas fa-map-marker-alt" style="font-size : 18px;"></i></p>
+                            </div>
+
+                            <div class="col-xs-10 col-sm-10 col-md-7 col-lg-7 thoigian-sukien" style="right: 15px;">
+                                <p style="text-align: left; font-size : 18px;"><span id='openTimeId'>@Model.OpenTime.ToString("dd/MM/yyyy hh:mm:ss tt")</span>   -   <span id="closeTimeId">@Model.ClosedTime.ToString("dd/MM/yyyy hh:mm:ss tt")</span></p>
+
+                                <p id="name-location" style="text-align: left; font-size : 18px;"></p>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <span style="float:right; ">
+                                    <button id="event-button-click-1" onClick="RequestJoinEvent()" class="btn btn-primary button-76 buttonCategoryOfNews button-join-event" style="display : none">Đăng ký tham gia sự kiện</button>
+                                    <button id="event-button-click-3" class="btn btn-primary button-76 buttonCategoryOfNews" style="display : none;">Bạn đã đăng ký tham gia sự kiện</button>
+                                    <button id="event-button-click-2" class="btn btn-primary button-76 buttonCategoryOfNews button-can-not-join-event" style="display : none">@ViewBag.lblSuKienDaKetThuc</button>
+                                </span>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Video : End -->
+
+                <script>
+                            // script for loading data to page EventDetails
+                            //debugger;
+                            // button-event starts
+                            const g1_today = new Date();
+                            var g2_open_time = new Date('@Model.OpenTime');
+                            var g3_close_time = new Date('@Model.ClosedTime');
+
+                            // sắp diễn ra
+                            if (g1_today.getTime() < g2_open_time.getTime()) {
+                                $('#event-button-2').show();
+                                //$('#event-button-click-1').show();
+
+                                if (@ViewBag.AlreadyRegisterEvent == 0 ) {
+                                    $('#event-button-click-1').show();
+                                }
+                                else if (@ViewBag.AlreadyRegisterEvent == 1) {
+                                    $('#event-button-click-3').show();
+                                    $('#event-button-click-1').hide();
+                                }
+                            }
+                            // đã kết thúc
+                            else if (g3_close_time.getTime() < g1_today.getTime()) {
+                                $('#event-button-click-2').show();
+                                $('#event-button-3').show();
+                            }
+                            // đang diễn ra
+                            else if (g2_open_time.getTime() < g1_today.getTime() && g1_today.getTime() < g3_close_time.getTime()) {
+                                $('#event-button-1').show();
+                                //$('#event-button-click-1').show();
+                                if (@ViewBag.AlreadyRegisterEvent == 0) {
+                                    $('#event-button-click-1').show();
+                                }
+                                else if (@ViewBag.AlreadyRegisterEvent == 1) {
+                                    $('#event-button-click-3').show();
+                                    $('#event-button-click-1').hide();
+                                }
+                            }
+                            // bad habbit
+                            else {
+                                console.log("bad request 404");
+
+                                $('#event-button-click-2').show();
+                                $('#event-button-3').show();
+                            }
+
+                            // button-event Ends
+
+
+                            //// date starts
+                            //var dateObj = new Date('@Model.OpenTime');
+                            //var month = dateObj.getMonth() + 1;
+                            //var day = dateObj.getDate();
+                            //var year = dateObj.getFullYear();
+                            //newdate = day + "/" + month + "/" + year;
+                            //$('#openTimeId').html(newdate);
+
+                            //dateObj = new Date('@Model.ClosedTime');
+                            //var month = dateObj.getMonth() + 1;
+                            //var day = dateObj.getDate();
+                            //var year = dateObj.getFullYear();
+                            //newdate = day + "/" + month + "/" + year;
+                            //$('#closeTimeId').html(newdate);
+                            //// date ends
+
+                            // if data is null then data is equal to 'N/A' : Start
+                            var name_title = '@Html.Raw(@Model.Name)';
+                            if(name_title == "") name_title = 'N/A';
+                            $('#title-name').html(name_title);
+
+                            var name_location ='@Html.Raw(@Model.EventAddress)';
+                            if(name_location == "") name_location = 'Chưa có thông tin về địa điểm';
+                            $('#name-location').html(name_location);
+                            // if data is null then data is equal to 'N/A' : End
+
+
+                            // button click tham gia sự kiện : start
+                            function RequestJoinEvent() {
+                                  const swalWithBootstrapButtons = Swal.mixin({
+                      customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                      },
+                      buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                      title: 'Sự kiện : ' + name_title,
+                      text: "Bạn có muốn đăng kí tham gia sự kiện?",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonText: 'Đồng ý!' ,
+                      cancelButtonText: 'Không đồng ý',
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        swalWithBootstrapButtons.fire(
+                          'Deleted!',
+                          'Your file has been deleted.',
+                          'success'
+                        )
+                      } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.success
+                      ) {
+                        swalWithBootstrapButtons.fire(
+                          'Đăng kí thành công',
+                          'Bạn đã đăng kí tham gia sự kiện thành công',
+                          'success'
+                        )
+                      }
+                    })
+                            }
+
+                            // button click tham gia sự kiện : end
+
+
+                            // Video
+
+                </script>
+                <style>
+                    div#content-row img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                </style>
+
+                <div class="container-fluid" style="color: #6C7A9C; font-size : 14px; padding : 0;">
+                    <h3 id="noidungchitiet-sukien" style="
+    padding-bottom: 0.5em;
+    font-weight: 500;
+    font-size: 38px;
+    color: #154183;
+    text-align: left;">
+                        @ViewBag.lblNoiDungChiTiet
+                    </h3>
+                    <div id="content-row" style="font-size : 16px">
+                        @Html.Raw(Model.Text)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Image background and Video : Start -->
+    </div>
+    <!-- Content : End -->
+    @*<div class="container" style="padding-left: 0; ">
+        <h3 style="padding-top:1em; padding-bottom:1em; font-weight:600; padding-left : 15px"> @ViewBag.lblSuKienKhac</h3>
+        <partial name="../A2FComponent/_Group_Item_Event_Going_On.cshtml" />
+
+        <div id="carosel-event-detail" style="margin-top : 50px; margin-bottom : 100px; ">
+
+
+        <partial name="../A2FComponent/_Carousel_Events.cshtml" />
+        </div>
+
+        </div>*@
+
+    <style>
+        .big-event-container div.row {
+            width: 99%;
+        }
+    </style>
+
+    @*<div class="container big-event-container" style="padding-bottom: 65px">
+        <partial name="../A2FComponent/_Big_Event_HomePage.cshtml" />
+        </div>*@
+    <!-- STARTS FOOTER -->
+
+    <partial name="../Shared/A2FComponent/_Footer" />
+
+    <!-- ENDS FOOTER -->
+    @*<partial name="Auction/FrontEnd/_Javascript" />*@
+
+
+
+    <script>
+        function RequestJoinEvent() {
+            var currentUserId = @ViewBag.UserID;
+            var timestampCurrentTime = new Date().getTime();
+            if (currentUserId == 0 || currentUserId == undefined) {
+                Swal.fire({
+                    title: 'Xin vui lòng đăng nhập.',
+                    type: 'warning',
+                    html: '<h5>Vui lòng nhấn vào <a href="/dang-nhap">đây</a> để đăng nhập</h5>'
+                });
+                return;
+            }
+            //debugger;
+            var updatingObj = {
+                "eventRequestStatusId": 1000002,
+                "accountId": currentUserId,
+                "postId": @Model.Id,
+                "name": '@Html.Raw(@Model.Name)',
+                'email': '@ViewBag.Email',
+                'phone': '@ViewBag.UserPhone',
+                "active": 1,
+                'description': '',
+                "createdTime": '',
+            };
+            updatingObj.createdTime = new Date();
+            //console.log(updatingObj);
+            var eventName = '@Html.Raw(@Model.Name)';
+
+            var confirmTitle = eventName;
+
+            Swal.fire({
+                title: 'Xác nhận gửi yêu cầu tham gia sự kiện',
+                html: confirmTitle,
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Xác nhận!',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.value) {
+                    //debugger;
+                    $.ajax({
+                        url: "/EventRequest/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                Swal.fire({
+                                    title: 'Thành công!',
+                                    type: 'success',
+                                    html: 'Bạn đã đăng ký tham gia sự kiện thành công!',
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: 'OK!',
+                                }).then((result) => {
+                                    window.location.reload();
+                                })
+                            }
+                            else {
+                                Swal.fire(
+                                    'Thất bại!',
+                                    'Bạn chưa gửi được yêu cầu tham gia sự kiện.',
+                                    'error',
+                                )
+                            }
+                        }
+                    })
+
+                }
+            })
+        }
+
+
+    </script>
+
+</body>
+
+</html> 
