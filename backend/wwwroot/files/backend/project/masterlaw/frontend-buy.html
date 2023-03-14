@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500" /> -->
+        <link rel='stylesheet' id='tt-easy-google-fonts-css' href='https://fonts.googleapis.com/css?family=Roboto%3A300%2C100&#038;subset=latin%2Call&#038;ver=5.1.2' type='text/css' media='all' />
+        <!-- <link rel="stylesheet" href="../files/fonts/icomoon/style.css" /> -->
+
+        <!-- Latest compiled and minified CSS & JS -->
+        <link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+        <style>
+            .vc_custom_1519367556899 {
+                margin-right: 0px !important;
+                margin-bottom: 30px !important;
+                margin-left: 0px !important;
+                border-left-width: 0px !important;
+                border: none !important;
+            }
+            
+            .site-section.site-section-sm {
+                margin-top: 30px !important;
+            }
+            
+            .novaticContainer {
+                font-size: 1.6rem !important;
+                line-height: 1.7;
+                /* color: rgba(0, 0, 0, 0.6); */
+                font-weight: 400;
+            }
+            
+            .btn,
+            .form-control,
+            .property-entry .property-title {
+                font-size: 1.8rem !important;
+            }
+            
+            .form-control,
+            .btn {
+                border-radius: 0px !important;
+            }
+            
+            .property-title {
+                margin: 5px 0px !important;
+            }
+            
+            .property-entry .property-location {
+                font-size: 1.5rem !important;
+            }
+            
+            .property-specs {
+                font-size: 1.2rem !important;
+            }
+            
+            .property-specs-wrap {
+                margin-top: 4px;
+            }
+            
+            .property-specs-number {
+                font-size: 1.4rem !important;
+                color: #2196f3 !important;
+            }
+            
+            #keyword {
+                margin-right: 10px;
+                height: 36px;
+            }
+            
+            .property-price {
+                font-size: 1.5rem !important;
+            }
+            
+            .publishedTime {
+                font-size: 1.3rem !important;
+            }
+            
+            .form-search label {
+                text-transform: uppercase;
+                font-size: 1.4rem !important;
+                letter-spacing: 0.1em;
+                color: rgba(255, 255, 255, 0.77) !important;
+            }
+            
+            .novaticContainer input,
+            .novaticContainer select,
+            #sortCondition {
+                height: 47px !important;
+            }
+            
+            #tableData_wrapper>div:nth-child(1),
+            #tableData_wrapper>div:nth-child(2) {
+                display: none;
+            }
+            
+            .property-body {
+                padding: 0px 0px !important;
+            }
+            
+            .form-search {
+                background: #364e68;
+                position: relative;
+                z-index: 1;
+                padding: 2rem 0rem;
+            }
+            
+            .select-wrap {
+                position: relative;
+            }
+            
+            .property-entry .property-body {
+                position: relative;
+            }
+            
+            .property-entry .property-specs-wrap {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .property-entry .property-specs-wrap li {
+                display: inline-block;
+                margin-right: 10px;
+                /* margin-bottom: 10px; */
+            }
+            
+            .property-entry .property-specs {
+                display: block;
+                text-transform: uppercase;
+                font-size: 10px;
+                letter-spacing: 0.1em;
+            }
+            
+            .text-success {
+                color: #7cbd1e !important;
+            }
+            
+            #tableData {
+                border: 1px solid #2196f324;
+                width: 100%;
+            }
+            
+            #tableData>thead {
+                display: none;
+            }
+            
+            .bg-gradient-info {
+                border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+                background: linear-gradient(87deg, #11cdef 0, #1171ef 100%) !important;
+                margin-right: -0.5px;
+            }
+
+
+            .bg-gradient-success {
+            background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
+            border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+            }
+            
+            .detailItemContainer {}
+            
+            #detailName {
+                font-size: 2.5rem;
+                color: #1171ef;
+            }
+            
+            #detailProvince {
+                font-size: 2rem;
+                color: #0620b3;
+            }
+            
+            #detailPrice {
+                font-size: 2.3em !important;
+                font-weight: bold !important;
+            }
+            
+            #detailDetailInfo {
+                margin-top: 10px;
+                padding-top: 10px;
+                border-top: 1px solid #86a7b533;
+            }
+            
+            #detailPublishedYear,
+            #detailCompanyCategory {
+                background: #8bc34a38;
+                padding: 5px 10px;
+                border-radius: 4px;
+                margin-top: px !important;
+                text-align: center;
+                font-weight: bold;
+            }
+            
+            .modal-body {
+                height: auto;
+            }
+            
+            .detailFooter {
+                text-align: left;
+                margin-top: 30px;
+                padding: 10px 30px;
+            }
+            
+            .footerSeparator {
+                border-top: 1px solid #86a7b533 !important;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-left: -30px !important;
+                margin-right: -30px !important;
+                font-size: 2rem !important;
+            }
+            
+            .footerSeparator>a {
+                padding-left: 30px !important;
+            }
+            
+            .detailFooter p {
+                font-size: 2rem;
+                color: #18b13c;
+                font-weight: bold;
+            }
+            
+            .btnPhone,
+            .btnMail,
+            .btnClose {
+                border-radius: 3px !important;
+            }
+            
+            .btnPhone>a,
+            .btnMail>a {
+                color: #fff;
+                font-size: 1.7rem;
+            }
+            
+            .btnClose {
+                float: right;
+                padding: 10px 30px;
+                font-size: 1.2rem !important;
+            }
+            
+            .detailFooter a:hover {
+                text-decoration: none;
+            }
+            
+            .required {
+                color: red;
+                font-size: 1.8rem;
+                font-weight: bold !important;
+            }
+            /* BOOTSTRAP OVERRIDE */
+            
+            .h1,
+            .h2,
+            .h3,
+            .h4,
+            .h5,
+            .h6,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: 'roboto' !important;
+            }
+            
+            .modal-footer {
+                border-top: none;
+            }
+        </style>
+        <!-- Favicon icon -->
+        <link rel="icon" href="files/assets/images/favicon.ico" type="image/x-icon">
+        <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+    </head>
+
+    <div class="col novaticContainer">
+        <div class="container-fluid">
+            <div class="row">
+                <form class="form-search col-md-12">
+                    <div class="col-md-9  align-items-end">
+                        <div class="col-md-4">
+                            <label for="list-types">Ngành nghề</label>
+                            <div class="select-wrap">
+                                <select name="list-types" id="categoryID" class="form-control d-block rounded-0">
+                                <option value="0">Tất cả</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="offer-types">Tỉnh/ TP</label>
+                            <div class="select-wrap">
+                                <select name="offer-types" id="provinceID" class="form-control d-block rounded-0">
+                                <option value="0">Tất cả</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="select-city">Năm thành lập</label>
+                            <div class="select-wrap">
+                                <select name="select-city" id="publishedYear" class="form-control d-block rounded-0">
+                                <option value="0">Tất cả</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label for="offer-types">Từ khóa</label>
+                            <div class="select-wrap">
+                                <input type="text" name="" id="keyword" class="form-control" value="" required="required" pattern="" title="" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="offer-types" style="visibility: hidden">Sắp xếp</label>
+
+                            <div class="select-wrap">
+                                <select id="sortCondition" class="form-control form-control-sm d-block rounded-0">
+                                <option value=" order by publishedTime desc ">Tin mới nhất</option>
+                                <option value=" order by publishedTime asc ">Tin cũ nhất</option>
+                                <option value=" order by price asc ">Giá thấp đến cao</option>
+                                <option value=" order by price desc ">Giá cao đến thấp</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <label for="offer-types" style="visibility: hidden">Button</label>
+                            <div class="select-wrap">
+                                <input style="height: 47px;" type="button" id="searchButton" class="btn btn-success text-white btn-block rounded-0" value="Tìm kiếm" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="offer-types" style="visibility: hidden">Button</label>
+                            <div class="select-wrap" onclick="editItem(0);">
+                                <input style="height: 47px;" type="button" id="buyButton" class="btn btn-primary text-white btn-block rounded-0" value="Đăng tin bán" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col">
+        <div class="col" id="tableDataContainer">
+            <table id="tableData" class="display ">
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- ITEM STARTS -->
+        <!-- <div class="row mb-4 novaticItem" style="display: none">
+        <div class="col-md-12">
+          <div class="property-entry horizontal d-lg-flex">
+            <div class="p-4 property-body">
+              <h2 class="property-title">
+                <a href="#">Bán công ty truyền thông đa phương tiện</a>
+              </h2>
+              <span class="property-location d-block mb-3"
+                ><span class="property-icon icon-room"></span> Hà Nội
+              </span>
+              <strong
+                class="property-price text-primary mb-3 d-block text-success"
+                >28,000,000 vnđ</strong
+              >
+              <p>
+                Bán công ty có 5 năm hoạt động có kết quả kinh doanh tốt. Doanh
+                thu 2017: 679 triệu; năm 2018; 2 tỷ Công ty hiện còn 125 số hóa
+                đơn chưa sử dụng. Cam kết công ty sạch thuế, ko nợ đọng nghĩa vụ
+                tài chính, báo cáo thuế đầy đủ Giá bán: 28 triệu bao gồm mọi thủ
+                tục sang tên.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+        <!-- ITEM ENDS -->
+    </div>
+    </div>
+
+    <!-- ITEM DETAIL MODAL -->
+    <div class="modal fade detailItemContainer" id="modal-id">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-info">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                    <h4 class="modal-title"><i class="fa fa-edit"></i> Chi tiết doanh nghiệp</h4>
+                </div>
+                <div class="modal-body" style="">
+                    <form>
+
+                        <!-- ITEM STARTS -->
+                        <div class="col-md-12 novaticItem">
+                            <div class="property-entry horizontal d-lg-flex">
+                                <div class="p-4 property-body">
+                                    <h2 class="property-title">
+                                        <span id="detailName"></span>
+                                    </h2>
+                                    <span class="property-location d-block mb-3"><span class="property-icon icon">📍</span>
+                                    <span id="detailProvince"></span> <span class="property-icon icon">
+                                        &nbsp; &nbsp; &nbsp; 🕒</span>
+                                    <span class="publishedTime" id="detailPublishedTime"></span></span>
+                                    <div class="col">
+                                        <strong class="property-price text-primary text-success column-price" id="detailPrice">
+                                    </strong>
+                                        <strong class="property-price text-primary text-success"> vnđ</strong>
+                                    </div>
+                                    <p id="detailDescription">
+
+                                    </p>
+                                    <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                        <li>
+                                            <span class="property-specs">Năm thành lập</span>
+                                            <div class="property-specs-number" id="detailPublishedYear"></div>
+
+                                        </li>
+                                        <li>
+                                            <span class="property-specs">Danh mục doanh nghiệp</span>
+                                            <div class="property-specs-number" id="detailCompanyCategory"></div>
+                                        </li>
+                                    </ul>
+
+
+
+                                    <div id="detailDetailInfo">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- ITEM ENDS -->
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button> -->
+                    <div class="detailFooter row">
+
+                        <div class="row separator"></div>
+
+
+                        <h2 class="property-title footerSeparator" style="font-weight: bold;font-size:1.8rem;">
+                            <a href="contact">Liên hệ với chúng tôi</a>
+                        </h2>
+                        <button class="btnPhone btn btn-success">
+                            📞 <a href="tel:(+84) 166 360 1654">+84 166 360 1654</a>
+                        </button>
+                        <button class="btnMail btn btn-primary"> 
+                            📧 <a href="mailto:ntdat0109@gmail.com">ntdat0109@gmail.com</a>
+                        </button>
+
+                        <button class="btnClose btn btn-default" data-dismiss="modal"> 
+                         OK
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ITEM DETAIL MODAL END -->
+
+
+    <!-- SALE REQUEST MODAL -->
+    <div class="modal fade" id="saleRequest">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"><i class="fa fa-edit"></i>Đăng tin bán doanh nghiệp</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form action="" method="POST" onsubmit='updateItem(updatingItemID); return false;' role="form">
+
+                        <div class="form-group" style="display:none">
+                            <label for="">ID</label><span class='required'>*</span>
+                            <input type="number" class="form-control input-id" value="0" id="buyId" required readonly placeholder="">
+                        </div>
+                        <div class="form-group" style="display:none ">
+                            <label for="">Active</label><span class='required'>*</span>
+                            <input type="number" class="form-control input-active" value="0" id="buyActive" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tên người liên hệ:</label><span class='required'>*</span>
+                            <input type="text" class="form-control  input-name" id="buyName" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Số điện thoại:</label><span class='required'>*</span>
+                            <input type="tel" class="form-control  input-name" id="buyPhone" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Địa chỉ email:</label><span class='required'>*</span>
+                            <input type="email" class="form-control  input-name" id="buyEmail" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mã số doanh nghiệp:</label><span class='required'>*</span>
+                            <input type="number" class="form-control  input-name" id="buyCompanyCode" required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô tả yêu cầu về doanh nghiệp</label>
+                            <textarea class="form-control  input-description " rows="2" id="buyDescription"></textarea>
+                        </div>
+
+
+                        <div class='form-group row selectContainer'>
+                            <div class="col-md-6">
+                                <label for="offer-types">Ngành nghề</label>
+                                <div class="select-wrap">
+                                    <select name="offer-types" id="buyCompanyCategoryID" class="form-control d-block rounded-0">
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="offer-types">Tỉnh/ TP</label>
+                                <div class="select-wrap">
+                                    <select name="offer-types" id="buyProvinceID" class="form-control d-block rounded-0">
+                                        <option value="0">Tất cả</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="">Giá (VNĐ)</label><span class='required'>*</span>
+                            <input type="text" class="form-control  input-price" id="buyPrice" required placeholder="">
+                        </div>
+
+
+                        <div class="form-group" style="display: none">
+                            <label for="">Mã số doanh nghiệp</label><span class='required'>*</span>
+                            <input type="number" class="form-control input-publishedYear" value="0" id="buyPublishedYear" placeholder="">
+                        </div>
+
+                        <input style="display:none" id="hiddenSubmit" type="submit" class="btn btn-default" value="Save changes">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy yêu cầu</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdateItem" onclick="document.getElementById('hiddenSubmit').click();">Gửi yêu cầu
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SALE REQUEST MODAL ENDS -->
+
+</html>
+<script type="text/javascript">
+    var table;
+    var dataSource = [];
+
+    $(document).ready(function() {
+        // var table = $("#tableData ").DataTable();
+
+        loadData();
+        loadDataSelectCompanyCategory();
+        loadDataSelectProvince();
+
+        $("#searchButton").click(function() {
+            loadData();
+        });
+    });
+
+    function loadData() {
+        // $("#novaticItemContainer div").remove();
+
+        var searchCondition = "  ";
+        // data: {condition:' messageCheckingStatusID=10001 '},
+        var categoryID = $("#categoryID").val() == "0" ? 0 : $("#categoryID").val();
+        var provinceID = $("#provinceID").val() == "0" ? 0 : $("#provinceID").val();
+        var publishedYear =
+            $("#publishedYear").val() == "0" ? 0 : $("#publishedYear").val();
+
+        if (categoryID != "0") {
+            searchCondition += " companyCategoryID like '%" + categoryID + "%' ";
+        } else {
+            searchCondition += " 1=1 ";
+        }
+
+        if (provinceID != "0") {
+            searchCondition += " and provinceID like '%" + provinceID + "%' ";
+        }
+        if (publishedYear != "0") {
+            searchCondition += " and publishedYear like '%" + publishedYear + "%' ";
+        }
+
+        //keyword
+        var keyword = $("#keyword").val();
+        if (keyword.length > 0) {
+            searchCondition +=
+                " and ( name like '%" +
+                keyword +
+                "%' or description like '%" +
+                keyword +
+                "%' )";
+        }
+
+        //sort
+        searchCondition += $("#sortCondition").val();
+
+        console.log(searchCondition);
+
+        $.ajax({
+            url: "https://masterlaw.vn/manager/api/buy/readQuery.php",
+            type: "POST",
+            data: {
+                condition: searchCondition
+            },
+            success: function(responseData) {
+                // debugger;
+                if (responseData.data.length == 0) {
+                    alert("Rất tiếc, hiện chưa có thông tin !");
+                    return;
+                }
+
+                if ($("#tableData tbody tr").length > 0) {
+                    //   debugger;
+                    var dataCount = table.rows().data().length;
+                    if (dataCount > 0) {
+                        for (let index = 0; index < dataCount; index++) {
+                            table
+                                .row()
+                                .remove()
+                                .draw();
+                        }
+                    }
+                    table.destroy();
+                    var newTable =
+                        "<table id='tableData' class='display ' style='width:100%'></table>";
+                    $(newTable).appendTo($("#tableDataContainer"));
+                }
+
+                dataSource = responseData.data;
+                dataSource.forEach(function(item, index) {
+                    // debugger;
+                    // console.log(item, index);
+                    var newRow =
+                        `<tr onclick='detailItem(` +
+                        item.id +
+                        `)' class='novaticDataItem'><td>
+                        <div class='col-md-12 novaticItem'>
+                            <div class='property-entry horizontal d-lg-flex'>
+                                <div class='p-4 property-body'>
+                                    <!-- <span href='#' class='property-favorite'><span class='icon-heart-o'></span></a> -->
+                                    <h2 class='property-title'><a onclick='detailItem(` +
+                        item.id +
+                        `)'>` +
+                        item.name +
+                        `</a></h2>
+                                    <span class='property-location d-block mb-3'><span class='property-icon icon'>📍</span> ` +
+                        item.provinceID +
+                        ` <span class='property-icon icon'> &nbsp; &nbsp; &nbsp; 🕒</span> <span class='publishedTime'> ` +
+                        item.publishedTime +
+                        `   </span></span>
+            <div class='col'>
+                                    <strong class='property-price text-primary text-success column-price'>` +
+                        numberWithCommas(item.price) +
+                        ` </strong> 
+                                    <strong class='property-price text-primary text-success'> vnđ</strong>
+                                    </div>
+                                    <p>
+                                        ` +
+                        item.description +
+                        `
+                                    </p>
+                                    <ul class='property-specs-wrap mb-3 mb-lg-0'>
+                                        <li>
+                                            <span class='property-specs'>Năm thành lập</span>
+                                            <span class='property-specs-number'>` +
+                        item.publishedYear +
+                        `</span>
+
+                                        </li> 
+                                        <li>
+                                            <span class='property-specs'>Danh mục doanh nghiệp</span>
+                                            <span class='property-specs-number'>` +
+                        item.companyCategoryID +
+                        `</span>
+                                        </li>
+                                        </ul>
+                                </div>
+
+                            </div>
+                    </div>
+                    </td>
+                </tr>
+                `;
+                    //   $(newRow).appendTo($("#novaticItemContainer"));
+                    $(newRow).appendTo($("#tableData tbody"));
+                });
+
+                initTable();
+            },
+            error: function(e) {
+                //console.log(e.message);
+                // initTable();
+                Swal.fire({
+                    title: "Error!",
+                    text: "Hiện chưa có thông tin",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        });
+    }
+
+    function initTable() {
+        table = $("#tableData").DataTable({
+            aLengthMenu: [
+                [10, 25, 50, 100, 200, -1],
+                [10, 25, 50, 100, 200, "Tất cả"]
+            ],
+            ordering: false
+        });
+
+        // formatNumber();
+    }
+
+    function loadDataSelectCompanyCategory() {
+        $.ajax({
+            url: "https://masterlaw.vn/manager/api/companyCategory/readQuery.php",
+            type: "POST",
+            async: "true",
+            data: {
+                condition: " 1=1  "
+            },
+            success: function(responseData) {
+                console.log(
+                    new Date().getSeconds() +
+                    ":" +
+                    new Date().getMilliseconds() +
+                    " - loaded companyCategory"
+                );
+                // debugger;
+                var data = responseData.data;
+                companyCategoryData = data;
+                data.forEach(function(item, index) {
+                    var newRow =
+                        `
+                        <option value='` +
+                        item.name +
+                        `'>` +
+                        item.name +
+                        `</option>
+                        `;
+                    $(newRow).appendTo($("#categoryID"));
+                    $(newRow).appendTo($("#buyCompanyCategoryID"));
+                });
+            },
+            error: function(e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    function loadDataSelectProvince() {
+        $.ajax({
+            url: "https://masterlaw.vn/manager/api/province/readQuery.php",
+            type: "POST",
+            async: "true",
+            data: {
+                condition: " 1=1 "
+            },
+            success: function(responseData) {
+                console.log(
+                    new Date().getSeconds() +
+                    ":" +
+                    new Date().getMilliseconds() +
+                    " - loaded companyCategory"
+                );
+                // debugger;
+                var data = responseData.data;
+                companyCategoryData = data;
+                data.forEach(function(item, index) {
+                    var newRow =
+                        `
+                        <option value='` +
+                        item.name +
+                        `'>` +
+                        item.name +
+                        `</option>
+                        `;
+                    $(newRow).appendTo($("#provinceID"));
+                    $(newRow).appendTo($("#buyProvinceID"));
+                });
+            },
+            error: function(e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    function detailItem(id) {
+        // alert(id);
+        var currentObj = getItemById(id);
+        console.log(currentObj);
+
+        $("#detailName").text(currentObj.name);
+        $("#detailPrice").text(numberWithCommas(currentObj.price));
+        $("#detailDescription").text(currentObj.description);
+        $("#detailDetailInfo").html(currentObj.detailInfo);
+        $("#detailPublishedYear").text(currentObj.publishedYear);
+        $("#detailCompanyCategory").text(currentObj.companyCategoryID);
+        $("#detailPublishedTime").text(currentObj.publishedTime);
+        $("#detailProvince").text(currentObj.provinceID);
+
+        $("#modal-id").modal("show");
+    }
+
+    function getItemById(id) {
+        const result = dataSource.find(item => parseInt(item.id) === id);
+        return result;
+    }
+
+
+    function numberWithCommas(x) {
+        if (isNaN(x)) return x;
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function editItem(id) {
+        updatingItemID = id;
+        $("#saleRequest").modal('show');
+
+    }
+
+    function updateItem(id) {
+        var updatingObj = {
+            "id": "1",
+            "active": "1",
+            "name": $("#buyName").val(),
+            "email": $("#buyEmail").val(),
+            "phone": $("#buyPhone").val(),
+            "companyCode": $("#buyCompanyCode").val(),
+            "description": $("#buyDescription").val(),
+            "createdTime": "2019-09-23 22:36:43",
+            "price": $("#buyPrice").val(),
+            "companyCategoryID": $("#buyCompanyCategoryID").val(),
+            "provinceID": $("#buyProvinceID").val()
+        };
+
+        // correcting data
+        //updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+        // updatingObj.companyCategoryID = updatingObj.companyCategoryID.join(", ");
+        // updatingObj.provinceID = updatingObj.provinceID.join(", ");
+
+        Swal.fire({
+            title: 'Xác nhận?',
+            text: "Gửi thông tin",
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Tôi xác nhận'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+
+
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    updatingObj.active = 1;
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: "https://masterlaw.vn/manager/api/sellRequest/create.php",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function(responseData) {
+                            // debugger;
+                            if (responseData.status === 201 && responseData.message === "CREATED") {
+                                Swal.fire(
+                                    'Đã gửi yêu cầu!',
+                                    'Xin cảm ơn bạn đã gửi yêu cầu, chúng tôi sẽ phản hồi trong thời gian sớm nhất!',
+                                    'success'
+                                );
+                                updatingObj = responseData.data;
+                                createNotification(updatingObj);
+                                $('#saleRequest').modal('hide');
+                            }
+                        },
+                        error: function(e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Lỗi!',
+                                'Đã sảy ra lỗi, xin vui lòng liên hệ quản trị viên.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+    function createNotification(obj){
+        var updatingObj = {
+            id: 1,
+            active: 1,
+            createdTime: "2019-09-23 22:44:03",
+            description: "Bạn vừa nhận được yêu cầu mua doanh nghiệp mới từ "+obj.name,
+            id: 1,
+            messageCheckingStatusID: 10001,
+            name: "Yêu cầu mua doanh nghiệp mới",
+        }; 
+        console.log(updatingObj);
+        $.ajax({
+            url: "https://masterlaw.vn/manager/api/notification/create.php",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(updatingObj),
+            success: function (responseData) {
+                // debugger;
+                console.log("novatic technology solutions");
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+</script>

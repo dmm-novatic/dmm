@@ -1,0 +1,682 @@
+﻿
+@{
+    Layout = null;
+    if (@ViewBag.UserTypeID != 1)
+    {
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>A2F | Admin</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <link rel="shortcut icon" href="~/images/iconWeb/iconWebPage.jpg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Novatic Technology Solutions." />
+    <meta name="keywords" content="Novatic" />
+    <meta name="author" content="Novatic" />
+
+
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- Google font-->
+    <link href="https://fonts.lug.ustc.edu.cn/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://fonts.lug.ustc.edu.cn/css?family=Quicksand:500,700" rel="stylesheet">
+
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/files/backend/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+
+    <!-- Data Table Css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Feather -->
+    <link rel="stylesheet" href="~/files/backend/css/feather.css">
+
+
+    <script src="~/files/backend/assets/pages/data-table/extensions/select/js/select-custom.js"></script>
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/files/backend/assets/css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="~/files/backend/assets/css/pages.css"> -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="~/files/backend/css/style.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="~/files/backend/css/pages.css"> -->
+    <link rel="stylesheet" type="text/css" href="~/files/backend/css/novaticStyle2.css">
+    @*<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>*@
+
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    @*<script src="https://cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>*@
+    @*<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>*@
+    <style>
+        .column-createdTime {
+            max-width: 120px !important;
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-bar"></div>
+    </div>
+    <!-- [ Pre-loader ] end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <!-- [ Header ] start -->
+            <partial name="NovaticAdmin/_NovaticAdminHeader" />
+            <!-- [ Header ] end -->
+            <!-- [ Chat ] start -->
+            <partial name="NovaticAdmin/_NovaticAdminChat" />
+            <!-- [ Chat ] end -->
+
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <!-- [ navigation menu ] start -->
+                    <partial name="NovaticAdmin/_NovaticAdminNavigation" />
+                    <!-- [ navigation menu ] end -->
+                    <div class="pcoded-content">
+                        <!-- [ breadcrumb ] start -->
+                        @*<partial name="NovaticAdmin/_NovaticAdminBreadCrumb" />*@
+                        <!-- [ breadcrumb ] end -->
+
+                        @RenderBody()
+
+                    </div>
+                    <!-- Main-body end -->
+
+                    <div id="styleSelector">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="../~/template/~/files/backend/assets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="../~/template/~/files/backend/assets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="../~/template/~/files/backend/assets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="../~/template/~/files/backend/assets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="../~/template/~/files/backend/assets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Javascript -->
+
+    <script type="text/javascript" src="~/files/backend/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/files/backend/bower_components/popper.js/js/popper.min.js"></script>
+    <!-- <script type="text/javascript" src="~/files/backend/bower_components/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- waves js -->
+    <script src="~/files/backend/assets/pages/waves/js/waves.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="~/files/backend/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="~/files/backend/bower_components/modernizr/js/modernizr.js"></script>
+    <script type="text/javascript" src="~/files/backend/bower_components/modernizr/js/css-scrollbars.js"></script>
+    <!-- tinymce js -->
+    <!-- <script src="~/files/backend/assets/pages/wysiwyg-editor/js/tinymce.min.js"></script> -->
+    <!-- Custom js -->
+    <!-- <script src="~/files/backend/assets/pages/wysiwyg-editor/wysiwyg-editor.js"></script> -->
+    <script src="~/files/backend/assets/js/pcoded.min.js"></script>
+    <script src="~/files/backend/assets/js/vertical/vertical-layout.min.js"></script>
+    <script src="~/files/backend/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="~/files/backend/assets/js/script.js"></script>
+
+
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script> -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- Datatable -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- Datetime picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>
+
+    <!-- Sweet alert -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>*@
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">*@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+
+
+    @RenderSection("Scripts", required: false)
+
+
+    <script>
+        $(document).ready(function () {
+            $('.input-price').keyup(function (event) {
+                $(this).attr('type', 'text');
+
+                // skip for arrow keys
+                if (event.which >= 37 && event.which <= 40) return;
+
+                // format number
+                $(this).val(function (index, value) {
+                    return value
+                        .replace(/\D/g, '')
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                });
+            });
+
+
+            $("#accountTypeCreatedTime").change(function (){
+                alert("oh oh ohh");
+            });
+
+            loadMessage();
+            loadNotification();
+            loadCountPost();
+            loadCountAccount();
+            loadCountTopic();
+            loadCountTag();
+            loadCountCommentUnChecked();
+            loadCountPostUnsetCategory()
+        });
+
+        function formatNumber() {
+            $('.column-price').each(function (event) {
+                // format number
+                $(this).text(function (index, value) {
+                    return value
+                        .replace(/\D/g, '')
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                });
+            });
+
+            $('.input-price').each(function (event) {
+                $(this).attr('type', 'text');
+
+                // format number
+                $(this).val(function (index, value) {
+                    return value
+                        .replace(/\D/g, '')
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                });
+            });
+
+            $('.column-createdTime , .column-publishedTime').each(function (event) {
+                //debugger;
+                var currentValue = $(this).text();
+                if (!currentValue.includes("T")) return;
+                var date = new Date(currentValue);
+                var newValue = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+                $(this).text(newValue);
+            });
+
+
+            $('.input-createdTime , .input-publishedTime').each(function (event) {
+                //debugger;
+                var inputObj = $(this).find("input");
+
+                var currentValue = inputObj.val();
+                if (!currentValue.includes("T")) return;
+                var date = new Date(currentValue);
+                var newValue = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+                inputObj.val(newValue);
+            });
+        }
+
+        function validateInputNumber() {
+            $('.input-price').each(function () {
+                this.value = this.value.replace(/,/g, '')
+            });
+        }
+
+        function numberWithCommas(x) {
+            var parts = x.toString().split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            return parts.join('.');
+        }
+
+        function datetimeFormat(datetime) {
+            try {
+                datetime = datetime.replace(" AM", "");
+                datetime = datetime.replace(" PM", "");
+
+                //let currentDate = "";
+                var currentDate = datetime;
+
+                //in case date or month has only 1 character
+                var array = currentDate.split("/");
+                if (array[0].length == 1) array[0] = "0" + array[0];
+                if (array[1].length == 1) array[1] = "0" + array[1];
+                currentDate = array.join("/");
+
+                if (currentDate.includes("AM") == true || currentDate.includes("PM") == true) {
+                    currentDate = currentDate.substring(0, currentDate.indexOf("M") - 2);
+                }
+
+                var dateValue = currentDate.substring(0, 2);
+                var monthValue = currentDate.substring(3, 5);
+                var formatedDate = monthValue + "-" + dateValue + currentDate.substring(5);
+                var returnValue = moment(formatedDate).format("YYYY-MM-DD HH:mm:ss");
+                if (returnValue != "Invalid date") {
+                    return returnValue;
+                }
+                else {
+                    return "2019-01-01 00:00:00";
+                }
+                //return moment(formatedDate).format("YYYY-MM-DD HH:mm:ss");
+            } catch (err) {
+                return "2019-01-01 00:00:00";
+            }
+        }
+
+        function loadCountPost() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/Count",
+                type: "GET",
+                success: function (responseData) {
+                    //console.log(responseData);
+                    $("#PostCount").text(responseData);
+                },
+                error: function (e) {
+                    console.log("something wrong when count post!");
+                }
+            });
+        }
+
+        function loadCountAccount() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/account/api/Count",
+                type: "GET",
+                success: function (responseData) {
+                    //console.log(responseData);
+                    $("#accountCount").text(responseData);
+                },
+                error: function (e) {
+                    console.log("something wrong when count account!");
+                }
+            });
+        }
+
+        function loadCountTopic() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/topic/api/Count",
+                type: "GET",
+                success: function (responseData) {
+                    //console.log(responseData);
+                    $("#TopicCount").text(responseData);
+                },
+                error: function (e) {
+                    console.log("something wrong when count topic!");
+                }
+            });
+        }
+
+        function loadCountTag() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/tag/api/Count",
+                type: "GET",
+                success: function (responseData) {
+                    //console.log(responseData);
+                    $("#TagCount").text(responseData);
+                },
+                error: function (e) {
+                    console.log("something wrong when count tag!");
+                }
+            });
+        }
+
+        function loadCountCommentUnChecked() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/comment/api/Count",
+                type: "GET",
+                success: function (responseData) {
+                    //console.log(responseData);
+                    $("#CommentCount").text(responseData);
+                },
+                error: function (e) {
+                    console.log("something wrong when count Comment!");
+                }
+            });
+        }
+
+        function loadCountPostUnsetCategory() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/post/api/CountUnsetCategory",
+                type: "GET",
+                success: function (responseData) {
+                    //console.log(responseData);
+                    $("#PostCountUnsetCategory").text(responseData);
+                },
+                error: function (e) {
+                    console.log("something wrong when count Post unset category!");
+                }
+            });
+        }
+
+
+        function loadNotification() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/notification/api/ListNotification",
+                type: "GET",
+                success: function(responseData) {
+                    // debugger;
+                    var data = responseData.data;
+
+                    data.forEach(function(item, index) {
+                        // console.log(item, index);
+                        var contentItem = `
+                        <li class='notificationItem'>
+                            <a href="/notification/admin/list">
+                                <div class='media'>
+                                    <!--<img class='img-radius' src='files/assets/images/avatar-4.jpg' alt='Generic placeholder image'>-->
+                                    <div class='media-body'>
+                                        <h5 class='notification-user'>` + item.name + `</h5>
+                                        <p class='notification-msg'>` + item.description + `</p>
+                                        <span class='notification-time'>` + item.createdTime + `</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        `;
+                        $("#notificationContainer").append(contentItem);
+
+                    });
+                    $("#notificationCount").text(data.length);
+                    $("#notificationCount2").text(data.length);
+                },
+                error: function(e) {
+                    //console.log(e.message);
+                    $("#notificationCount").hide();
+                }
+            });
+
+        }
+
+        function loadMessage() {
+            $.ajax({
+                url: "@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description/message/api/ListMessage",
+                type: "GET",
+                success: function(responseData) {
+                    // debugger;
+                    var data = responseData.data;
+
+                    data.forEach(function(item, index) {
+                        // console.log(item, index);
+                        var contentItem = `
+                        <li class='notificationItem'>
+                            <a href="/message/admin/list">
+                                <div class='media'>
+                                    <!--<img class='img-radius' src='files/assets/images/avatar-4.jpg' alt='Generic placeholder image'>-->
+                                    <div class='media-body'>
+                                        <h5 class='notification-user'>` + item.name + `</h5>
+                                        <p class='notification-msg'>` + item.description + `</p>
+                                        <span class='notification-time'>` + item.createdTime + `</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        `;
+                        $("#messageContainer").append(contentItem);
+
+                    });
+                    $("#messageCount").text(data.length);
+                    $("#messageCount2").text(data.length);
+                },
+                error: function(e) {
+                    //console.log(e.message);
+                    $("#messageCount").hide();
+                }
+            });
+        }
+    </script>
+
+
+    <!-- FILE selector -->
+    <style>
+        .glyphicon-open {
+            margin-top: 23px;
+            width: 38px;
+            height: 34px;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background: #eeeeee;
+            border-left: 1px solid #cccccc;
+            border-right: 1px solid #ccc;
+            right: -20px;
+        }
+    </style>
+
+    <script>
+        var fileSelectURL = "";
+        var fileSelectType = "";
+
+        function openFileSelector(fileType) {
+            if (typeof (fileType) !== "string") return;
+            fileSelectType = fileType;
+            $("#fileSelectorModal").show();
+            $(".modal-backdrop:first").hide();
+
+            $("#fileSelectorModal").modal();
+            $("#fileSelectorModal").css("z-index", "1050");
+        }
+
+        //function fileSelect(data) {
+        //    if (typeof (data) === "undefined") return;
+        //    fileSelectURL = data;
+        //    // alert(fileSelectURL);
+
+        //    var re = /(\.pdf|\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+        //    if (!re.exec(fileSelectURL)) {
+        //        Swal.fire({
+        //            icon: 'error',
+        //            title: 'Định dạng file không hợp lệ!',
+        //            text: '',
+        //            footer: '<a href>Xin vui lòng sử dụng file ảnh .pdf/.jpg/.png/.gif</a>'
+        //        })
+        //    } else {
+        //        //$(".input-photo").val(fileSelectURL);
+        //        console.log(fileSelectURL);
+        //        if (fileSelectType === "") return;
+        //        if (fileSelectType === "ck") {
+        //            $(".cke_dialog_image_url input").val(fileSelectURL)
+        //        }
+        //        else {
+        //            $("." + fileSelectType + "").val(fileSelectURL)
+        //            $("." + fileSelectType + "-thumbnail").attr("src", fileSelectURL);
+        //        }
+
+        //        // $("#fileSelectorModal").css("z-index","1030");
+        //        $("#fileSelectorModal").hide();
+        //        $(".modal-backdrop:first").hide();
+        //        fileSelectType === "";
+        //        // $("#fileSelectorModal").modal('hide');
+        //    }
+        //}
+
+        $("input.input-photo").click(function (e) {
+            //e.preventDefault();
+            openFileSelector("input-photo");
+        });
+
+        $("#btnUpdateItem").click(function () {
+            if ($(".input-photo")[0]) {
+                // Do something if class exists
+                $(".modal-backdrop").hide();
+            }
+        });
+
+
+
+        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+        // Listen to message from child window
+        eventer(messageEvent, function (e) {
+            // debugger;
+            var key = e.message ? "message" : "data";
+            var data = e[key];
+            if (typeof (data) === "string") {
+
+                //alert(data);
+                fileSelect(data);
+            }
+            //run function//
+        }, false);
+
+
+
+        function setUpCKServerButton() {
+            setTimeout(function () {
+                $("#cke_79 , #cke_174 , #cke_175").click(function () {
+                    setTimeout(function () {
+                        $("a[title='Browse Server']").hide();
+                        $("a[title='Browse Server']").parent().append('<a onclick="openFileSelector(\'ck\');" style="display: inline-block; margin-top: 14px; margin-left: auto; margin-right: auto; user-select: none;" title="Browse Server" hidefocus="true" class="cke_dialog_ui_button" role="button" aria-labelledby="cke_182_label" id="cke_183_uiElement"><span id="fileSelectLbl" class="cke_dialog_ui_button">Select picture</span></a>')
+                    }, 100);
+                });
+            }, 2500);
+        }
+
+    </script>
+
+    @*<a id="fileSelectorModalBtn" class="btn btn-primary" data-toggle="modal" href='fileSelectorModal'>Trigger modal</a>*@
+    <div class="modal fade" id="fileSelectorModal" style="z-index: 99999">
+        <div class="modal-dialog  modal-lg" style="width:80% !important;">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">File selector</h4>
+                </div> -->
+                <div class="modal-body">
+                    <iframe src="https://file.novatic.vn/fileManager.php" frameborder="0" style="width:100%; min-height:80vh; border-radius:5px; border:0px;">
+                    </iframe>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            width: 100%;
+            min-height: 100vh;
+            height: auto;
+            background: #000;
+            opacity: 0.7;
+            text-align: center;
+            vertical-align: middle;
+            top: 0;
+            left: 0;
+            z-index: 99999999 !important;
+        }
+
+        #loaderContent {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            padding-top: calc(50vh - 90px);
+        }
+
+        #loaderImage {
+            width: 80px;
+            height: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block
+        }
+
+        #loaderText {
+            color: #fff;
+            letter-spacing: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+    <div id="loader" style="">
+        <div id="loaderContent">
+            <img id="loaderImage" style="" src="~/files/frontend/images/core/loader.gif" />
+            <div id="loaderText" style="">ĐANG XỬ LÝ</div>
+        </div>
+    </div>
+    <style>
+        #fileSelectorModal {
+            z-index: 99999 !important;
+        }
+
+        body {
+            overflow-y: scroll !important;
+        }
+    </style>
+
+</body>
+</html>

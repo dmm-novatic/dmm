@@ -1,0 +1,700 @@
+
+
+@{
+    ViewData["Title"] = "Survey Section Account";
+    Layout = "_NovaticAdmin";
+}
+
+<style>
+
+    #tableData tbody tr td:nth-child(2), #tableData thead tr th:nth-child(2) {
+        text-align: left;
+        width: 150px;
+        max-width: 150px;
+    }
+     
+    #tableData tbody tr td:nth-child(3), #tableData thead tr th:nth-child(3) {
+        text-align: center;
+        width: 100px;
+        max-width: 100px;
+    }
+
+
+    #tableData tbody tr td:nth-child(5), #tableData thead tr th:nth-child(5) {
+        text-align: center;
+        width: 100px;
+        max-width: 100px;
+    }
+</style>
+
+
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Survey Section Account</h3>
+            </div>
+        </div>
+
+        <a href="#" id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm">
+            <i class="fa fa-plus"></i>
+            <span class='hideOnMobile'>New Record</span>
+        </a>
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Id Survey Account</th>
+                                        <th>Kết quả điểm</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+
+                                        <th>Detail</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Id Survey Account</th>
+                                        <th>Kết quả điểm</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+
+                                        <th> </th>
+                                        <th> </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Detail item</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <form action="" method="POST"
+                                                  onsubmit='updateItem(updatingItemId); return false;' role="form">
+
+                                                <!-- <div class="form-group">
+                                                                    <label for="">Apply type Id</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="surveySectionAccountId" required readonly
+                                                                        placeholder="">
+                                                                </div>
+
+
+                                                                <div class='form-group'>
+                                                                    <label for=''>Apply type name</label>
+                                                                    <input type='text' class='form-control'
+                                                                        id='surveySectionAccountName' required
+                                                                        placeholder=''>
+                                                                </div>
+
+
+                                                                <div class='form-group'>
+                                                                    <label for=''>Description</label>
+                                                                    <input type='text' class='form-control'
+                                                                        id='surveySectionAccountDescription'
+                                                                        placeholder=''>
+                                                                </div>
+
+
+                                                                <div class='form-group'>
+                                                                    <label for=''>CreatedTime</label>
+                                                                    <input type='text'
+                                                                        class='form-control datetimepicker'
+                                                                        id='surveySectionAccountCreatedTime'
+                                                                        placeholder=''>
+                                                                </div>
+
+
+                                                                <div class='form-group' style="">
+                                                                    <label for=''>Active</label>
+                                                                    <input type='text' class='form-control'
+                                                                        id='surveySectionAccountActive' readonly
+                                                                        placeholder=''>
+                                                                </div>
+                                                                -->
+                                                <div class="form-group  col-sm-12">
+                                                    <label for="">Id</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-id" value="0"
+                                                           id="surveySectionAccountId" required readonly
+                                                           placeholder="">
+                                                </div><div class='form-group  col-sm-12 selectContainer'>
+                                                    <label class=''>Id Survey Account</label><span class='required'>*</span>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' required id='surveySectionAccountSurveyAccountId' class='form-control fill dataSelect  input-surveyAccountId' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                    var surveyAccountData =[];
+                    function loadDataSelectSurveyAccount() {
+                        return $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'surveyAccount/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded surveyAccount');
+                                // debugger;
+                                var data = responseData.data;
+                                surveyAccountData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#surveySectionAccountSurveyAccountId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectSurveyAccount();
+                    });
+                                                </script> <div class="form-group  col-sm-12" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="surveySectionAccountActive" required
+                                                           placeholder="">
+                                                </div> <div class="form-group  col-sm-12">
+                                                    <label for="">Kết quả điểm</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control input-score" value="0"
+                                                           id="surveySectionAccountScore" required
+                                                           placeholder="">
+                                                </div>   <div class="form-group  col-sm-12">
+                                                    <label for="">Tiêu đề</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-name"
+                                                           id="surveySectionAccountName" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control  input-description " rows="2" id="surveySectionAccountDescription"></textarea>
+                                                </div><div class='form-group col-sm-12'>
+                                                    <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                    <div class='input-group date datetimepicker  input-createdTime' id='surveySectionAccountCreatedTimeDiv'>
+                                                        <input type='text' id="surveySectionAccountCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit"
+                                                       class="btn btn-default" value="Save changes">
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem"
+                                                    onclick="document.getElementById('hiddenSubmit').click();">
+                                                Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+        var hiddenItem = ["id","active","description"];
+        var showItem = ["surveyAccountId","score","name","createdTime"];
+        var dataSource = [];
+        var updatingItemId = 0;
+        var tableUpdating = 0;
+        var table;
+
+        $(document).ready(function () {
+            // Load data
+            //loadData();
+            //setTimeout(function(){loadData();}, 460);
+
+            $.when( loadDataSelectSurveyAccount()).done(function( resultDataSelectSurveyAccountsurveySectionAccountSurveyAccountId) {
+                loadData();
+            });
+
+            // includeLibrary();
+
+            // Datetime picker
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss'
+            });
+
+            $('.dataSelect').select2();
+
+            $(".datetimepicker").on('dp.change', function (e) {
+                // console.log(this.value);
+                this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+                // console.log(this.value);
+            });
+
+
+
+            //IFRAME
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var src = url.searchParams.get("src");
+            console.log(src);
+            if (src != null) {
+                if (src.includes("iframe")) {
+                    setTimeout(function () { updateIframeDisplay(); }, 500);
+                    setTimeout(function () { updateIframeDisplay(); }, 1000);
+                    setTimeout(function () { updateIframeDisplay(); }, 3000);
+                }
+            }
+            
+            //IFRAME ENDS
+
+        });
+
+
+        function loadData() {
+            $.ajax({
+                url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "surveySectionAccount/api/list",
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    // debugger;
+                    var data = responseData.data;
+                    dataSource = data;
+
+
+
+
+                    data.forEach(function (item, index) {
+                        // console.log(item, index);
+                        var rowContent = "";
+                        rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (showItem.includes(key)) {
+                                    if (key != "photo" && key != "score") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                    }
+                                    else if (key == "score") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + +(Math.round(item[key] + "e+2") + "e-2") + "</td>";
+                                    }
+                                    else {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+                                    }
+                                }
+                            }
+                        }
+                        rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                        rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+                        $(newRow).appendTo($("#tableData tbody"));
+
+                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    });
+
+                    //Init datatable
+                    if (tableUpdating === 0) {
+                        initTable();
+                    }
+
+                    //update data with foreign key
+                    updateTable();
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    initTable();
+                }
+            });
+        }
+
+        function initTable(){
+            table = $('#tableData').DataTable({
+                aLengthMenu: [
+                    [-1, 10, 25, 50, 100, 200],
+                    ['Tất cả', 10, 25, 50, 100, 200]
+                ],
+                'order': [
+                    [1, 'desc']
+                ]
+            });
+
+
+
+            table.on('order.dt search.dt', function() {
+                table.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+            $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function() {
+                var title = $(this).text();
+                $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+            });
+
+            table.columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+            setTimeout(function() {
+                table.page.len(10).draw();
+            }, 1000);
+
+        }
+
+        function editItem(id) {
+            updatingItemId = id;
+            $("#modal-id").modal('show');
+
+            let obj = getItemById(id);
+            		$("#surveySectionAccountId").val(id > 0 ? obj.id : "");
+		$("#surveySectionAccountSurveyAccountId").val(id > 0 ? obj.surveyAccountId : "");
+		$("#surveySectionAccountActive").val(id > 0 ? obj.active : "");
+		$("#surveySectionAccountScore").val(id > 0 ? obj.score : "");
+		$("#surveySectionAccountName").val(id > 0 ? obj.name : "");
+		$("#surveySectionAccountDescription").val(id > 0 ? obj.description : "");
+		$("#surveySectionAccountCreatedTime").val(id > 0 ? obj.createdTime : "");
+$('#surveySectionAccountSurveyAccountId').trigger('change');
+
+            // $("#surveySectionAccountId").val(id > 0 ? obj.id : "");
+            // $("#surveySectionAccountName").val(id > 0 ? obj.name : "");
+            // $("#surveySectionAccountDescription").val(id > 0 ? obj.description : "");
+            // $("#surveySectionAccountCreatedTime").val(id > 0 ? obj.createdTime : "");
+            // $("#surveySectionAccountActive").val(id > 0 ? obj.active : "");
+
+            if(id==0){
+                $("#surveySectionAccountActive").val(1);
+                $("#surveySectionAccountCreatedTime").val(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
+            }
+            else{
+                // correcting data
+                //$('#buyProvinceId').val(obj.provinceId.split(", ")).trigger('change');
+
+            }
+            formatNumber();
+        }
+
+
+        function updateItem(id) {
+            var actionName = (id == 0 ? "Create" : "Update");
+            let obj = getItemById(id);
+            let objName = id > 0 ? obj.name : " ";
+
+            validateInputNumber();
+
+            // "id": $("#surveySectionAccountId").val(),
+            // "name": $("#surveySectionAccountName").val(),
+            // "description": $("#surveySectionAccountDescription").val(),
+            // "createdTime": $("#surveySectionAccountCreatedTime").val(),
+            // "active": $("#surveySectionAccountActive").val()
+            var updatingObj = {
+                		"id": $("#surveySectionAccountId").val(),
+		"surveyAccountId": $("#surveySectionAccountSurveyAccountId").val(),
+		"active": $("#surveySectionAccountActive").val(),
+		"score": $("#surveySectionAccountScore").val(),
+		"name": $("#surveySectionAccountName").val(),
+		"description": $("#surveySectionAccountDescription").val(),
+		"createdTime": datetimeFormat($("#surveySectionAccountCreatedTime").val()),
+
+            };
+
+            // correcting data
+            //updatingObj.provinceId = updatingObj.provinceId.join(", ");
+
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Performing " + actionName + " item " + objName,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Yes, confirm!'
+            }).then((result) => {
+                if (result.value) {
+                    $("#modal-id").modal('hide');
+
+                    //CALL AJAX TO UPDATE
+                    if (id > 0) {
+                        $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "surveySectionAccount/api/update",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                    Swal.fire(
+                                        'Updated!',
+                                        'Item ' + objName + ' has been successfully updated!',
+                                        'success'
+                                    );
+                                    updateTable(id,updatingObj,"update");
+                                    var updatedItemIndex= dataSource.findIndex(item => parseInt(item.id) === id);
+                                    dataSource[updatedItemIndex] = updatingObj;
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Couldn\'t update item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    };
+
+                    //CALL AJAX TO CREATE
+                    if (id == 0) {
+                        updatingObj.id = 1;
+                        delete updatingObj["id"]
+                        updatingObj.active = 1;
+                        updatingObj.createdTime = new Date();
+                        console.log(updatingObj);
+                        $.ajax({
+                            url:"@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "surveySectionAccount/api/add",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 201 && responseData.message === "CREATED") {
+                                    Swal.fire(
+                                        'Created!',
+                                        'New item has been successfully created!',
+                                        'success'
+                                    );
+                                    updatingObj = responseData.data;
+                                    dataSource.push(updatingObj);
+                                    updateTable(0,updatingObj,"add");
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Couldn\'t create item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                }
+            })
+        }
+
+        function deleteItem(id) {
+            let obj = getItemById(id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+
+                    //CALL AJAX TO DELETE
+                    $.ajax({
+                        url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "surveySectionAccount/api/delete",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ "id": id }),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Item ' + obj.name + ' has been deleted.',
+                                    'success'
+                                );
+                                updateTable(id,0,"delete");
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Item ' + obj.name + ' can\'t be deleted.',
+                                'error'
+                            );
+                        }
+                    });
+
+                }
+            })
+        }
+
+        function updateTable(id,obj,action) {
+            if(action === "delete"){
+                table.row("#row"+id).remove().draw();
+            }
+
+            if(action === "add"){
+                console.log("Added:"+obj);
+
+                //var addedItems = [obj];
+                var addedItems = obj;
+                var addedValues =[];
+
+
+                addedItems.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    addedValues.push("<td style='text-align: center;'></td>");
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (showItem.includes(key)) {
+                                if (key != "photo") {
+                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+                                }
+                                else {
+                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>");
+                                }
+                            }
+                        }
+                    }
+                    addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+                    addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                    table.row.add(addedValues).draw();
+                });
+                // location.reload();
+            }
+
+            if(action === "update"){
+                // alert(id);
+                $(".row"+id+"-column").each(function(){
+                    var propertyName = $(this).attr("property");
+                    console.log(propertyName);
+
+                    for (var key in obj) {
+                        if (key === propertyName && obj.hasOwnProperty(key)) {
+                            if(key === "photo"){
+                                $(this).children().attr("src",obj[key]);
+                            }
+                            else{
+                                this.innerText = obj[key];
+                            }
+                        }
+                    }
+
+                });
+            }
+
+            //Update columns with foreign key
+            // var NO_FKFKUpdateSelector = 'tr';
+            // if( !(typeof(id) === 'undefined')) {
+            //     NO_FKFKUpdateSelector = '#row'+id;
+            // }
+            // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKId]').each(function(){
+            //     // debugger;
+            //     var surveySectionAccountId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+            //     var surveySectionAccountObj = getItemById(surveySectionAccountId);
+            //     var NO_FKId = parseInt(surveySectionAccountObj.NO_FKId);
+            //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKId);
+            //     $(this).text(NO_FKObj.name);
+            //     // console.log('FK updated for Staff '+surveySectionAccountId);
+            // });
+
+            try {
+                var surveyAccountFKUpdateSelector = 'tr';
+                if( !(typeof(id) === 'undefined')) {
+                    // debugger;
+                    surveyAccountFKUpdateSelector = '#row'+id;
+                    var surveyAccountId = parseInt(obj.surveyAccountId);
+                    var surveyAccountObj = surveyAccountData.find(item => parseInt(item.id) === surveyAccountId);
+                    //create data
+                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(surveyAccountObj.name);
+
+                    //update data
+                    $('#tableData tbody '+surveyAccountFKUpdateSelector+' td[property=surveyAccountId]').text(surveyAccountObj.name);
+                    //table.cell( this ).data(surveyAccountObj.name);
+                }
+                else{
+                    //Page load
+                    $('#tableData tbody '+surveyAccountFKUpdateSelector+' td[property=surveyAccountId]').each(function(){
+                        // debugger;
+                        var surveySectionAccountId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+                        var surveySectionAccountObj = getItemById(surveySectionAccountId);
+                        var surveyAccountId = parseInt(surveySectionAccountObj.surveyAccountId);
+                        var surveyAccountObj = surveyAccountData.find(item => parseInt(item.id) === surveyAccountId);
+                        //$(this).text(surveyAccountObj.name);
+                        table.cell( this ).data(surveyAccountObj.name);
+                        // console.log('FK updated for Staff '+surveySectionAccountId);
+                    });
+                }
+            } catch (error) {
+
+            }
+
+            formatNumber();
+        }
+
+
+        function getItemById(id) {
+            const result = dataSource.find(item => parseInt(item.id) === id);
+            return result;
+        }
+
+
+</script>

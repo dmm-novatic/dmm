@@ -1,0 +1,250 @@
+<html lang="pt-br" accept-charset="UTF-8" xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'> <head><meta charset="UTF-8"><meta http-equiv="Content-type" content="text/html; charset=UTF-8"><title></title> <!--[if gte mso 9]><xml> <w:WordDocument> <w:View>Print</w:View> <w:Zoom>90</w:Zoom> </w:WordDocument> </xml><![endif]--> <style> p.MsoFooter, li.MsoFooter, div.MsoFooter { margin:0in; margin-bottom:.0001pt; mso-pagination:widow-orphan; tab-stops:center 3.0in right 6.0in; font-size:12.0pt; }</style> <style> <!-- /* Style Definitions */ @page Section1 { size:landscape; margin:1.5in 1.5in 1.5in 1.5in; mso-page-orientation:landscape; mso-header-margin:.5in; mso-footer-margin:.5in; mso-title-page:yes; mso-header: h1; mso-footer: f1; mso-first-header: f1; mso-first-footer: ff1; mso-paper-source:0; } div.Section1 { page:Section1; } #exportContent { margin:0in 0in 0in 900in; width:1px; height:1px; overflow:hidden; } -->table { border-collapse: collapse; } tr td { border: 2px solid black; } tr th { border: 2px solid black; } td { border: 2px solid black; } .header-color { background-color: lightgray } p {font-family: Arial} strong {font-family: Arial} h1 {font-family: Arial} .info { padding-left: 5px; font-weight: bold; font-size: 12.5pt; } .danone-alert { font-weight: bold; font-size: 12.5pt; color: blue; } .word { font-family:Arial } * {font-family: Arial} .stronger { padding-left: 5px; background-color: lightgrey; font-weight: bold; font-size: 15px; } .table-test tr td, .table-test tr th { border:0px !important;padding:10px;} .table-test tr th p {font-size:10px;font-style: italic;font-weight:100 } .reportTitle {text-align:center;font-weight:bold;} .dayTitle {text-align:right;}</style></head><body style='tab-interval:.5in'>
+            <!--Header-->
+            <div class="row">
+                <div class="row">
+                    <div class="col-xs-3 imageTop">
+                        <img src="https://data.novatic.vn/novatic/v2/upload/Image/LOGO-LVAuction.png">
+                    </div>
+                    <div class="col-xs-6">
+                        <div>
+                            <div class="reportTitle">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                            <div class="reportTitle">Độc lập - Tự do - Hạnh phúc</div>
+                            <div style="text-align:center">-----------o0o------------</div>
+                            <br>
+                        </div>
+                        <div class="reportTitle titleAuction">
+                                <span>DIỄN BIẾN CUỘC ĐẤU GIÁ TRỰC TUYẾN</span><br> <span>"LÔ HÀNG THỨ 1: LÔ HÀNG TIÊU DÙNG CÁC LOẠI "</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="dayTitle">
+                            Ngày 24 tháng 01 năm 2022
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end header-->
+            <!--1.Auction information-->
+            <div class="row">
+                <div class="row textTitle" style="margin-top:50px">
+                    1. Thông tin cuộc đấu giá và tài sản
+                </div>
+                <div class="row">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="tableTitle" style="">Cuộc đấu giá</td>
+                                <td style="width:40%">Lô hàng thứ 1 - tang vật vi phạm hành chính bị tịch thu của Cục Điều tra chống buôn lậu</td>
+                                <td class="tableTitle" style="">Tên tài sản</td>
+                                <td colspan="3">LÔ HÀNG THỨ 1: LÔ HÀNG TIÊU DÙNG CÁC LOẠI </td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle" style="">Mã cuộc đấu giá</td>
+                                <td style="">PDG-NY17IN</td>
+                                <td class="tableTitle" style="">Mã tài sản</td>
+                                <td>MTS-I1QJJN</td>
+                                <td class="tableTitle" style="">Tính chất tài sản</td>
+                                        <td>Bắt buộc phải đấu giá</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle" style="">Thời gian tổ chức</td>
+                                <td style="">00:00:00 24-01-2022 đến 08:40:00 24-01-2022</td>
+                                <td class="tableTitle" style="">Giá khởi điểm (VNĐ/m²) (1)</td>
+                                <td class="tableContentPrice novaticPrice">538.209.770</td>
+                                <td class="tableTitle" style=""># Lot</td>
+                                <td>Lot 1</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle" style="">Đơn vị tổ chức</td>
+                                <td style="">Công ty đấu giá hợp danh Lạc Việt</td>
+                                <td class="tableTitle" style="">Bước giá (VNĐ/m²)</td>
+                                <td colspan="3" class="tableContentPrice novaticPrice">10.000.000</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle" rowspan="3" style="">Đấu giá viên điều hành</td>
+                                <td rowspan="3" style="">
+                                    <p>Đỗ Thị Hồng Hạnh</p><p>Chứng chỉ hành nghề số: 1331/TP/ĐG-CCHN, do Bộ Tư Pháp cấp ngày 02/2/2016.</p><p>Thẻ đấu giá viên số: 100/ĐGV do Sở Tư Pháp cấp ngày 17/11/2017</p>
+                                </td>
+                                <td class="tableTitle" style="">Tiền đặt trước (VNĐ)</td>
+                                <td colspan="3" class="tableContentPrice novaticPrice">106.000.000</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle" style="">Chủ tài sản</td>
+                                <td colspan="3">Cục Điều tra chống buôn lậu</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle" style="">Số hợp đồng dịch vụ</td>
+                                <td colspan="3">126/2021/HĐDVĐG-LACVIET</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--1.End Auction information-->
+            <!--2. -->
+                <div class="row">
+                    <div class="row textTitle" style="margin-top:50px">
+                        2. Diễn biến và kết quả đấu giá
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                                <tr>
+                                        <td class="" colspan="4" style="text-align:center;font-size:1.6em;">Đấu giá thành công</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle" style="">Số người đăng ký tham gia đấu giá cho tài sản</td>
+                                    <td style="">2</td>
+                                    <td class="tableTitle" style="">Tổng tiền đặt trước cho tài sản (VNĐ)</td>
+                                    <td class="tableContentPrice novaticPrice">212.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle" style="">Số người không trả giá cho tài sản</td>
+                                    <td style="">0</td>
+                                    <td class="tableTitle" style="">Mã người trúng đấu giá</td>
+                                    <td style="text-align:right">MKH-BUFWE6</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle" style="">Tổng số lần trả giá cho tài sản</td>
+                                    <td style="">6</td>
+                                    <td class="tableTitle" style="">Tên người trúng đấu giá</td>
+                                    <td style="text-align:right">Trần Văn C</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle" style="">Thời gian bắt đầu trả giá cho tài sản</td>
+                                    <td style="">00:00:00 24-01-2022</td>
+                                    <td class="tableTitle" style="">Giá bán thành (VNĐ/m²) (2)</td>
+                                    <td style="" class="tableContentPrice novaticPrice">588.209.770</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle" style="">Thời gian kết thúc trả giá cho tài sản</td>
+                                    <td style="">08:40:00 24-01-2022</td>
+                                    <td class="tableTitle" style="">Giá bán chênh lệch (VNĐ/m²) (3) <br> (3)=(2)-(1)</td>
+                                    <td style="" class="tableContentPrice novaticPrice">50.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            <!--2.-->
+            <!--3.Bidding-->
+            <div class="row">
+                <div class="row textTitle" style="text-align:center !important">
+                    DIỄN BIẾN TRẢ GIÁ
+                </div>
+                <div class="row">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã khách hàng</th>
+                                <th style="width:6%">Số lần trả giá</th>
+                                <th>Lần trả</th>
+                                <th>Giá trả (VNĐ/m²)</th>
+                                <th>Thời gian trả giá</th>
+                                <th>Giá cao nhất (VNĐ/m²)</th>
+                                <th>Kết quả đấu giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                        <tr>
+                                                            <td class="tableTitle tableContent" rowspan="4">1</td>
+                                                            <td class="tableContent" rowspan="4">MKH-BUFWE6</td>
+                                                            <td class="tableContent" rowspan="4">4</td>
+                                                            <td class="tableContent">4</td>
+                                                            <td class="tableContentPrice novaticPrice">588.209.770</td>
+                                                            <td class="tableContent">24/01/2022 08:38:44.397</td>
+                                                            <td class="tableContentPrice novaticPrice" rowspan="4">588.209.770</td>
+                                                                    <td style="font-weight:800" class="tableContent" rowspan="4">Trúng</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="tableContent">3</td>
+                                                            <td class="tableContentPrice novaticPrice">578.209.770</td>
+                                                            <td class="tableContent">24/01/2022 08:38:42.760</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="tableContent">2</td>
+                                                            <td class="tableContentPrice novaticPrice">568.209.770</td>
+                                                            <td class="tableContent">24/01/2022 08:38:41.578</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="tableContent">1</td>
+                                                            <td class="tableContentPrice novaticPrice">558.209.770</td>
+                                                            <td class="tableContent">24/01/2022 08:38:40.219</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="tableTitle tableContent" rowspan="2">2</td>
+                                                            <td class="tableContent" rowspan="2">MKH-DR4X4T</td>
+                                                            <td class="tableContent" rowspan="2">2</td>
+                                                            <td class="tableContent">2</td>
+                                                            <td class="tableContentPrice novaticPrice">548.209.770</td>
+                                                            <td class="tableContent">22/01/2022 10:37:12.429</td>
+                                                            <td class="tableContentPrice novaticPrice" rowspan="2">548.209.770</td>
+                                                                    <td class="tableContent" rowspan="2">Trượt</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="tableContent">1</td>
+                                                            <td class="tableContentPrice novaticPrice">538.209.770</td>
+                                                            <td class="tableContent">22/01/2022 10:37:02.079</td>
+                                                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--3.End Bidding-->
+
+                    <div class="row col-sm-12" style="display:none;">
+                        <div class="col-sm-3 print-report">
+                            <div class="footerTitle" style="text-align:center">
+                                Đại diện người có tài sản đấu giá
+                            </div>
+                            <div class="footerSign" style="text-align:center">
+                                (Ký, ghi rõ họ tên)
+                            </div>
+                        </div>
+                        <div class="col-sm-3 print-report">
+                            <div class="footerTitle" style="text-align:center">
+                                Người trúng đấu giá
+                            </div>
+                            <div class="" style="font-style:italic;font-size:0.8em;text-align:center">
+                                (Xác nhận kết quả đấu giá)
+                            </div>
+                            <div style="font-style:italic;font-size:0.8em;text-align:center;display:none"><br> xác nhận kết quả đấu giá</div>
+                        </div>
+                        <div class="col-sm-3 print-report">
+                            <div class="footerTitle" style="text-align:center">
+                                Người ghi biên bản
+                            </div>
+                            <div class="footerSign" style="text-align:center">
+                                (Ký, ghi rõ họ tên)
+                            </div>
+                        </div>
+                        <div class="col-sm-3 print-report">
+                            <div class="footerTitle" style="text-align:center">
+                                Đấu giá viên điều hành
+                            </div>
+                            <div class="footerSign" style="text-align:center">
+                                (Ký, ghi rõ họ tên)
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table-test">
+                        <thead>
+                            <tr>
+                                <th>Đại diện người có tài sản <p>(Ký, ghi rõ họ tên)</p></th>
+                                <th>Người trúng đấu giá <p>(Xác nhận kết quả đấu giá)</p></th>
+                                <th>Người ghi biên bản<p>(Ký, ghi rõ họ tên)</p></th>
+                                <th>Đấu giá viên điều hành <p>(Ký, ghi rõ họ tên)</p></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </body></html>

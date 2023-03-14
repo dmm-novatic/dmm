@@ -1,0 +1,1120 @@
+﻿
+
+@{
+    ViewData["Title"] = "Survey Account";
+    Layout = "_NovaticAdminReport";
+}
+
+<style>
+    .bg-gradient-info {
+        background: unset !important;
+    }
+    .buttons-excel {
+        margin-left: 10px
+    }
+
+    .buttonFilter {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 3px;
+        margin-left: 5px;
+        margin-bottom: 1px;
+    }
+
+    #tableData tbody tr td:nth-child(2), #tableData thead tr th:nth-child(2) {
+        text-align: left;
+        width: 50px;
+        max-width: 100px;
+    }
+        #tableData tbody tr td:nth-child(3), #tableData thead tr th:nth-child(3) {
+        text-align: left;
+        width: 50px;
+        max-width: 100px;
+    }
+
+    #tableData tbody tr td:nth-child(4), #tableData thead tr th:nth-child(4) {
+        text-align: left;
+        width: 250px;
+        min-width: 250px;
+    }
+
+/*    #tableData tbody tr td:nth-child(4), #tableData thead tr th:nth-child(4) {
+        text-align: center;
+        width: 100px;
+        max-width: 100px;
+    }*/
+
+
+    #tableData tbody tr td:nth-child(5), #tableData thead tr th:nth-child(5) {
+        text-align: center;
+        width: 100px;
+        max-width: 100px;
+    }
+</style>
+
+
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Báo cáo làm bài khảo sát của doanh nghiệp</h3>
+            </div>
+        </div>
+
+        <a href="#" id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm" style="display:none">
+            <i class="fa fa-plus"></i>
+            <span class='hideOnMobile'>New Record</span>
+        </a>
+    </div>
+</div>
+
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+                            <div style="margin-left: 20px; margin-bottom: 20px;">
+                                <label for="">Lọc theo bài khảo sát</label><span class='required'>*</span>
+                                <div style="width: 350px">
+                                    <select id="SurveyType">
+                                        <option value="1">Tất cả</option>
+                                        <option value="1000002">Tái cấu trúc tình hình tài chính của doanh nghiệp</option>
+                                        <option value="1000001">Đánh giá tiếp cận tài chính mới</option>
+                                    </select>
+                                </div>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#SurveyType').select2();
+                                    });
+                                    //Tạm thời bỏ Load động
+                                    @*function loadDataSurvey() {
+                                        $.ajax({
+                                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'survey/api/list',
+                                            type: 'GET',
+                                            async: 'true',
+                                            contentType: 'application/json',
+                                            success: function (responseData) {
+                                                console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                 debugger;
+                                                var data = responseData.data;
+                                                data.forEach(function (item, index) {
+                                                    var data = {
+                                                        id: item.id,
+                                                        text: item.name
+                                                    };
+                                                    var newOption = new Option(data.text, data.id, false, false);
+                                                    $('#SurveyType').append(newOption).trigger('change');
+                                                });
+                                            },
+                                            error: function (e) {
+                                                //console.log(e.message);
+                                            }
+                                        });
+                                    }
+                                    $(document).ready(function () {
+                                        loadDataSurvey()
+                                    });*@
+                                    $('#SurveyType').on('change', function () {
+                                        FilterBySelect()
+                                    });
+                                </script>
+                                @*<button class="btn btn-info buttonFilter" onclick="FilterBySelect()">Lọc</button>*@
+                            </div>
+                            <h3 id="filterTitle" style="text-align:center">Báo cáo làm bài khảo sát của người dùng</h3>
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Id bài kết quả</th>
+                                        <th>Người làm</th>
+                                        <th>Bài khảo sát</th>
+                                        <th>Kết quả điểm</th>
+                                        @*<th>Tiêu đề</th>*@
+                                        <th>Ngày làm</th>
+
+                                        <th>Xem chi tiết</th>
+                                        @*<th>Delete</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Id bài kết quả</th>
+                                        <th>Người làm</th>
+                                        <th>Bài khảo sát</th>
+                                        <th>Kết quả điểm</th>
+                                        @*<th>Tiêu đề</th>*@
+                                        <th>Ngày làm</th>
+
+                                        <th>Xem chi tiết</th>
+                                        @*<th>Delete</th>*@
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Detail item</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <form action="" method="POST"
+                                                  onsubmit='updateItem(updatingItemId); return false;' role="form">
+
+                                                <!-- <div class="form-group">
+                                                    <label for="">Apply type Id</label>
+                                                    <input type="text" class="form-control"
+                                                        id="surveyAccountId" required readonly
+                                                        placeholder="">
+                                                </div>
+
+
+                                                <div class='form-group'>
+                                                    <label for=''>Apply type name</label>
+                                                    <input type='text' class='form-control'
+                                                        id='surveyAccountName' required
+                                                        placeholder=''>
+                                                </div>
+
+
+                                                <div class='form-group'>
+                                                    <label for=''>Description</label>
+                                                    <input type='text' class='form-control'
+                                                        id='surveyAccountDescription'
+                                                        placeholder=''>
+                                                </div>
+
+
+                                                <div class='form-group'>
+                                                    <label for=''>CreatedTime</label>
+                                                    <input type='text'
+                                                        class='form-control datetimepicker'
+                                                        id='surveyAccountCreatedTime'
+                                                        placeholder=''>
+                                                </div>
+
+
+                                                <div class='form-group' style="">
+                                                    <label for=''>Active</label>
+                                                    <input type='text' class='form-control'
+                                                        id='surveyAccountActive' readonly
+                                                        placeholder=''>
+                                                </div>
+                                                -->
+                                                <div class="form-group  col-sm-12">
+                                                    <label for="">Id</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-id" value="0"
+                                                           id="surveyAccountId" required readonly
+                                                           placeholder="">
+                                                </div><div class='form-group  col-sm-12 selectContainer'>
+                                                    <label class=''>Id người dùng</label><span class='required'>*</span>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' required id='surveyAccountAccountId' class='form-control fill dataSelect  input-accountId' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                    var accountData =[];
+                    function loadDataSelectAccount() {
+                        data = "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'account/api/list';
+                        if(1 == 1) {
+                                data = "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'account/api/list';
+                            }
+
+                        return $.ajax({
+
+                            url: data,
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded account');
+                                // debugger;
+                                var data = responseData.data;
+                                accountData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#surveyAccountAccountId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectAccount();
+                    });
+                                                </script><div class='form-group  col-sm-12 selectContainer'>
+                                                    <label class=''>Id survey</label><span class='required'>*</span>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' required id='surveyAccountSurveyId' class='form-control fill dataSelect  input-surveyId' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                    var surveyData =[];
+                    function loadDataSelectSurvey() {
+                        return $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'survey/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded survey');
+                                // debugger;
+                                var data = responseData.data;
+                                surveyData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#surveyAccountSurveyId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectSurvey();
+                    });
+                                                </script> <div class="form-group  col-sm-12" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="surveyAccountActive" required
+                                                           placeholder="">
+                                                </div> <div class="form-group  col-sm-12">
+                                                    <label for="">Kết quả điểm</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control input-score" value="0"
+                                                           id="surveyAccountScore" required
+                                                           placeholder="">
+                                                </div>   <div class="form-group  col-sm-12">
+                                                    <label for="">Tiêu đề</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-name"
+                                                           id="surveyAccountName" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control  input-description " rows="2" id="surveyAccountDescription"></textarea>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Nội dung</label>
+                                                    <textarea class="form-control  input-text " rows="2" id="surveyAccountText"></textarea>
+                                                </div>
+                                                <script>
+                                                    var surveyAccountTextEditor;
+                                                    ClassicEditor
+                                                        .create(document.querySelector('#surveyAccountText'))
+                                                        .then(editor => {
+                                                            // console.log( 'Editor was initialized', editor );
+                                                            surveyAccountTextEditor = editor;
+                                                            editor.model.document.on('change:data', (evt, data) => {
+                                                                // debugger;
+                                                                // console.log('Updated:'+ data );
+                                                                $('#surveyAccountText').val(surveyAccountTextEditor.getData());
+                                                            });
+                                                        })
+                                                        .catch(err => {
+                                                            console.error(err.stack);
+                                                        });
+                                                </script><div class='form-group col-sm-12'>
+                                                    <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                    <div class='input-group date datetimepicker  input-createdTime' id='surveyAccountCreatedTimeDiv'>
+                                                        <input type='text' id="surveyAccountCreatedTime" required class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit"
+                                                       class="btn btn-default" value="Save changes">
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem"
+                                                    onclick="document.getElementById('hiddenSubmit').click();">
+                                                Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-transaction">
+    <div class="modal-dialog modal-lg" style="width: 50% !important">
+        <div class="modal-content" style="margin-top: 25%">
+            <div class="modal-header bg-gradient-info">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><i class="fa fa-edit"></i>Thông tin chi tiết bài làm</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-sm-12">
+                    <h4 style="color: #265178">Thông tin bài làm</h4>
+                    <div class="mediaPanelContainer" style="padding:10px 20px; margin: 0px -15px; clear:both; min-height:100px">
+                        <div class="col-sm-12" style="padding: unset">
+                            <div class="form-group col-sm-4">
+                                <label for="">Bài khảo sát</label><span class='required'>*</span>
+                                <input type="text" class="form-control"
+                                       id="surveyTypeDetail"
+                                       placeholder="">
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label for="">Tài khoản</label><span class='required'>*</span>
+                                <input type="text" class="form-control"
+                                       id="userNameDetail"
+                                       placeholder="">
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label for="">Tổng điểm</label><span class='required'>*</span>
+                                <input type="text" class="form-control"
+                                       id="totalScoreDetail"
+                                       placeholder="">
+                            </div>
+                            <div class='form-group col-sm-4'>
+                                <label for=''>Ngày làm BKS</label>
+                                <div class='input-group date datetimepicker  input-createdTime'>
+                                    <input disabled type='text' id="createdTimeDetail" required class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 style="color: #265178">Thông tin điểm theo đầu mục</h4>
+                        <div class="col-sm-12" style="padding:unset">
+                            <div class="col-sm-12 selectContainer">
+                                <div class='col-sm-12'>
+                                    <div class="mediaPanel" style="clear:both">
+                                        <table id="tableSubscription" class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên đầu mục</th>
+                                                    <th>Số điểm</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="totalMoneyTransaction"></div>
+                    </div>
+                </div>
+                <!--End Fee Infomation-->
+            </div>
+            <div style="clear: both">
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+        var hiddenItem = ["id","active","description","text"];
+        var showItem = ["id","accountId","surveyId","score","","createdTime"];
+        var dataSource = [];
+        var updatingItemId = 0;
+        var tableUpdating = 0;
+        var table;
+
+        // get surveyId from url compare to load
+        var surveyId = null;
+        var dataList = null;
+
+
+        $(document).ready(function () {
+            // Load data
+            //loadData();
+            //setTimeout(function(){loadData();}, 460);
+
+            $.when( loadDataSelectAccount(),loadDataSelectSurvey()).done(function( resultDataSelectAccountsurveyAccountAccountId,resultDataSelectSurveysurveyAccountSurveyId) {
+                loadData();
+            });
+
+            // includeLibrary();
+
+            // Datetime picker
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss'
+            });
+
+            $('.dataSelect').select2();
+
+            $(".datetimepicker").on('dp.change', function (e) {
+                // console.log(this.value);
+                this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+                // console.log(this.value);
+            });
+
+
+            //IFRAME
+            //google.vn?src=abc&id=123
+
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var src = url.searchParams.get("src");
+
+            console.log(src);
+            debugger;
+            if (src != null && src.includes("iframe")) {
+                //Cập nhật giao diện
+                setTimeout(function () { updateIframeDisplay(); }, 500);
+                setTimeout(function () { updateIframeDisplay(); }, 1000);
+                setTimeout(function () { updateIframeDisplay(); }, 3000);
+
+            }
+
+            //Load data theo URL - xét parameter rồi lấy giá trị gán cho biến toàn cục : surveyId
+            // url : https://localhost:44324/surveysection/admin/list?surveyId=1000001
+                if(url != null) {
+                    if(url_string.includes('surveyId')) {
+                    surveyId = url.searchParams.get("surveyId");
+
+                    }
+                }
+            //IFRAME ENDS
+
+        });
+
+
+        function loadData() {
+            // Chia 2 trường hợp và chuyển đến api lấy theo SurveyId
+
+            var urll = "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "surveyAccount/api/list";
+            @*if(surveyId != null) {
+                urll =  "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "surveyAccount/api/ListBySurveyId/" + surveyId;
+            }*@
+            $("#loader").show();
+            $.ajax({
+                url: urll,
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    $("#loader").hide();
+                    var data = responseData.data;
+                    dataSource = data;
+
+
+
+
+                    data.forEach(function (item, index) {
+                        // console.log(item, index);
+                        var rowContent = "";
+                        rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (showItem.includes(key)) {
+                                    if (key != "photo" && key != "score") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                    }
+                                    else if (key == "score") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><p style='font-weight:600; color:black'>" + +(Math.round(item[key] + "e+2") + "e-2") + "</p></td>";
+                                    }
+                                    else {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+                                    }
+                                }
+                            }
+                        }
+                        rowContent += "<td style='text-align: center;'><a onclick='openDetail(" + item.id + ")'><i class='fa fa-book fa-2x' style='color:#03a9f4'></i></a></td>";
+                        //rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+                        $(newRow).appendTo($("#tableData tbody"));
+
+                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    });
+
+                    //Init datatable
+                    if (tableUpdating === 0) {
+                        initTablePage();
+                    }
+
+                    //update data with foreign key
+                    updateTable();
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    initTablePage();
+                }
+            });
+        }
+
+    function initTablePage() {
+        table = $('#tableData').DataTable({
+            aLengthMenu: [
+                //[10, 25, 50, 100, 200, -1],
+                //[10, 25, 50, 100, 200, 'Tất cả']
+                [-1, 10, 25, 50, 100, 200],
+                ['Tất cả', 10, 25, 50, 100, 200]
+            ],
+
+            'order': [
+                [1, 'desc']
+            ],
+            buttons: true,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: 'Xuất file Excel',
+                    title: 'Danh sách kết quả khảo sát của doanh nghiệp'
+                }
+            ],
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            "initComplete": function (settings, json) {
+                table.on('order.dt search.dt', function () {
+                    table.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+
+                $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="tableFooterFilter" value="" placeholder="Tìm kiếm ' + title + '" />');
+                });
+
+                table.columns().every(function () {
+                    var that = this;
+                    $('input.tableFooterFilter', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+            }
+        });
+        setTimeout(function () {
+            table.page.len(10).draw();
+        }, 1000);
+    }
+
+        function editItem(id) {
+            updatingItemId = id;
+            $("#modal-id").modal('show');
+
+            let obj = getItemById(id);
+            		$("#surveyAccountId").val(id > 0 ? obj.id : "");
+		$("#surveyAccountAccountId").val(id > 0 ? obj.accountId : "");
+		$("#surveyAccountSurveyId").val(id > 0 ? obj.surveyId : "");
+		$("#surveyAccountActive").val(id > 0 ? obj.active : "");
+		$("#surveyAccountScore").val(id > 0 ? obj.score : "");
+		$("#surveyAccountName").val(id > 0 ? obj.name : "");
+		$("#surveyAccountDescription").val(id > 0 ? obj.description : "");
+		$("#surveyAccountText").val(id > 0 ? obj.text : "");
+		$("#surveyAccountCreatedTime").val(id > 0 ? obj.createdTime : "");
+$('#surveyAccountAccountId').trigger('change');
+$('#surveyAccountSurveyId').trigger('change');
+surveyAccountTextEditor.setData((id > 0 ? obj.text : ''));
+
+            // $("#surveyAccountId").val(id > 0 ? obj.id : "");
+            // $("#surveyAccountName").val(id > 0 ? obj.name : "");
+            // $("#surveyAccountDescription").val(id > 0 ? obj.description : "");
+            // $("#surveyAccountCreatedTime").val(id > 0 ? obj.createdTime : "");
+            // $("#surveyAccountActive").val(id > 0 ? obj.active : "");
+
+            if(id==0){
+                $("#surveyAccountActive").val(1);
+                $("#surveyAccountCreatedTime").val(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
+            }
+            else{
+                // correcting data
+                //$('#buyProvinceId').val(obj.provinceId.split(", ")).trigger('change');
+
+            }
+            formatNumber();
+        }
+
+
+        function updateItem(id) {
+            var actionName = (id == 0 ? "Create" : "Update");
+            let obj = getItemById(id);
+            let objName = id > 0 ? obj.name : " ";
+
+            validateInputNumber();
+
+            // "id": $("#surveyAccountId").val(),
+            // "name": $("#surveyAccountName").val(),
+            // "description": $("#surveyAccountDescription").val(),
+            // "createdTime": $("#surveyAccountCreatedTime").val(),
+            // "active": $("#surveyAccountActive").val()
+            var updatingObj = {
+                		"id": $("#surveyAccountId").val(),
+		"accountId": $("#surveyAccountAccountId").val(),
+		"surveyId": $("#surveyAccountSurveyId").val(),
+		"active": $("#surveyAccountActive").val(),
+		"score": $("#surveyAccountScore").val(),
+		"name": $("#surveyAccountName").val(),
+		"description": $("#surveyAccountDescription").val(),
+		"text": $("#surveyAccountText").val(),
+		"createdTime": datetimeFormat($("#surveyAccountCreatedTime").val()),
+
+            };
+
+            // correcting data
+            //updatingObj.provinceId = updatingObj.provinceId.join(", ");
+
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Performing " + actionName + " item " + objName,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Yes, confirm!'
+            }).then((result) => {
+                if (result.value) {
+                    $("#modal-id").modal('hide');
+
+                    //CALL AJAX TO UPDATE
+                    if (id > 0) {
+                        $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "surveyAccount/api/update",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                    Swal.fire(
+                                        'Updated!',
+                                        'Item ' + objName + ' has been successfully updated!',
+                                        'success'
+                                    );
+                                    updateTable(id,updatingObj,"update");
+                                    var updatedItemIndex= dataSource.findIndex(item => parseInt(item.id) === id);
+                                    dataSource[updatedItemIndex] = updatingObj;
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Couldn\'t update item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    };
+
+                    //CALL AJAX TO CREATE
+                    if (id == 0) {
+                        updatingObj.id = 1;
+                        delete updatingObj["id"]
+                        updatingObj.active = 1;
+                        updatingObj.createdTime = new Date();
+                        console.log(updatingObj);
+                        $.ajax({
+                            url:"@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "surveyAccount/api/add",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 201 && responseData.message === "CREATED") {
+                                    Swal.fire(
+                                        'Created!',
+                                        'New item has been successfully created!',
+                                        'success'
+                                    );
+                                    updatingObj = responseData.data;
+                                    dataSource.push(updatingObj);
+                                    updateTable(0,updatingObj,"add");
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Couldn\'t create item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                }
+            })
+        }
+
+        function deleteItem(id) {
+            let obj = getItemById(id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+
+                    //CALL AJAX TO DELETE
+                    $.ajax({
+                        url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "surveyAccount/api/delete",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ "id": id }),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Item ' + obj.name + ' has been deleted.',
+                                    'success'
+                                );
+                                updateTable(id,0,"delete");
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Item ' + obj.name + ' can\'t be deleted.',
+                                'error'
+                            );
+                        }
+                    });
+
+                }
+            })
+        }
+
+        function updateTable(id,obj,action) {
+            if(action === "delete"){
+                table.row("#row"+id).remove().draw();
+            }
+
+            if(action === "add"){
+                console.log("Added:"+obj);
+
+                //var addedItems = [obj];
+                var addedItems = obj;
+                var addedValues =[];
+
+
+                addedItems.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    addedValues.push("<td style='text-align: center;'></td>");
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (showItem.includes(key)) {
+                                if (key != "photo") {
+                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+                                }
+                                else {
+                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>");
+                                }
+                            }
+                        }
+                    }
+                    addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+                    addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                    table.row.add(addedValues).draw();
+                });
+                // location.reload();
+            }
+
+            if(action === "update"){
+                // alert(id);
+                $(".row"+id+"-column").each(function(){
+                    var propertyName = $(this).attr("property");
+                    console.log(propertyName);
+
+                    for (var key in obj) {
+                        if (key === propertyName && obj.hasOwnProperty(key)) {
+                            if(key === "photo"){
+                                $(this).children().attr("src",obj[key]);
+                            }
+                            else{
+                                this.innerText = obj[key];
+                            }
+                        }
+                    }
+
+                });
+            }
+
+            //Update columns with foreign key
+            // var NO_FKFKUpdateSelector = 'tr';
+            // if( !(typeof(id) === 'undefined')) {
+            //     NO_FKFKUpdateSelector = '#row'+id;
+            // }
+            // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKId]').each(function(){
+            //     // debugger;
+            //     var surveyAccountId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+            //     var surveyAccountObj = getItemById(surveyAccountId);
+            //     var NO_FKId = parseInt(surveyAccountObj.NO_FKId);
+            //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKId);
+            //     $(this).text(NO_FKObj.name);
+            //     // console.log('FK updated for Staff '+surveyAccountId);
+            // });
+
+            try {
+                var accountFKUpdateSelector = 'tr';
+                if( !(typeof(id) === 'undefined')) {
+                    // debugger;
+                    accountFKUpdateSelector = '#row'+id;
+                    var accountId = parseInt(obj.accountId);
+                    var accountObj = accountData.find(item => parseInt(item.id) === accountId);
+                    //create data
+                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(accountObj.name);
+
+                    //update data
+                    $('#tableData tbody '+accountFKUpdateSelector+' td[property=accountId]').text(accountObj.name);
+                    //table.cell( this ).data(accountObj.name);
+                }
+                else{
+                    //Page load
+                    $('#tableData tbody '+accountFKUpdateSelector+' td[property=accountId]').each(function(){
+                        // debugger;
+                        var surveyAccountId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+                        var surveyAccountObj = getItemById(surveyAccountId);
+                        var accountId = parseInt(surveyAccountObj.accountId);
+                        var accountObj = accountData.find(item => parseInt(item.id) === accountId);
+                        //$(this).text(accountObj.name);
+                        table.cell( this ).data(accountObj.name);
+                        // console.log('FK updated for Staff '+surveyAccountId);
+                    });
+                }
+            } catch (error) {
+
+            }
+            try {
+                var surveyFKUpdateSelector = 'tr';
+                if( !(typeof(id) === 'undefined')) {
+                    // debugger;
+                    surveyFKUpdateSelector = '#row'+id;
+                    var surveyId = parseInt(obj.surveyId);
+                    var surveyObj = surveyData.find(item => parseInt(item.id) === surveyId);
+                    //create data
+                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(surveyObj.name);
+
+                    //update data
+                    $('#tableData tbody '+surveyFKUpdateSelector+' td[property=surveyId]').text(surveyObj.name);
+                    //table.cell( this ).data(surveyObj.name);
+                }
+                else{
+                    //Page load
+                    $('#tableData tbody '+surveyFKUpdateSelector+' td[property=surveyId]').each(function(){
+                        // debugger;
+                        var surveyAccountId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+                        var surveyAccountObj = getItemById(surveyAccountId);
+                        var surveyId = parseInt(surveyAccountObj.surveyId);
+                        var surveyObj = surveyData.find(item => parseInt(item.id) === surveyId);
+                        //$(this).text(surveyObj.name);
+                        table.cell( this ).data(surveyObj.name);
+                        // console.log('FK updated for Staff '+surveyAccountId);
+                    });
+                }
+            } catch (error) {
+
+            }
+
+            formatNumber();
+        }
+
+
+        function getItemById(id) {
+            const result = dataSource.find(item => parseInt(item.id) === id);
+            return result;
+        }
+
+
+</script>
+
+
+<script>
+//SCRIPT FILTER
+    function loadDataFilter(idSurvey) {
+        var urll = "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "surveyAccount/api/listBySurveyId1/" + idSurvey;
+        $("#loader").show();
+            $.ajax({
+                url: urll,
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    $("#loader").hide();
+
+                    // debugger;
+                    var data = responseData.data;
+                    dataSource = data;
+                    data.forEach(function (item, index) {
+                        // console.log(item, index);
+                        var rowContent = "";
+                        rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (showItem.includes(key)) {
+                                    if (key != "photo" && key != "score") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                    }
+                                    else if (key == "score") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><p style='font-weight:600; color:black'>" + +(Math.round(item[key] + "e+2") + "e-2") + "</p></td>";
+
+                                    }
+                                    else {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+                                    }
+                                }
+                            }
+                        }
+                        rowContent += "<td style='text-align: center;'><a onclick='openDetail(" + item.id + ")'><i class='fa fa-book fa-2x' style='color:#03a9f4'></i></a></td>";
+                        //rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+                        $(newRow).appendTo($("#tableData tbody"));
+
+                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    });
+
+                    //Init datatable
+                    if (tableUpdating === 0) {
+                        initTablePage();
+                    }
+
+                    //update data with foreign key
+                    updateTable();
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    initTablePage();
+                }
+            });
+        }
+    function FilterBySelect() {
+        table = $('#tableData').DataTable()
+        table.clear();
+        table.destroy();
+        var svFilter = $("#SurveyType").val();
+        if (svFilter == 1) {
+            $('#filterTitle').text("Báo cáo làm bài khảo sát của doanh nghiệp");
+            loadData();
+        }
+        else {
+            if (svFilter == 1000002) {
+                $('#filterTitle').text("Tái cấu trúc tình hình tài chính của doanh nghiệp");
+            }
+            else if (svFilter == 1000001) {
+                $('#filterTitle').text("Đánh giá tiếp cận tài chính mới");
+            }
+            loadDataFilter(svFilter);
+        }
+
+    }
+
+
+    function openDetail(surveyId) {
+        $("#modal-transaction").modal('show');
+        var showItemTransaction = ["name", "score"];
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/surveySectionAccount/api/ListBySurveyAccountId?surveyAccountId=" + surveyId,
+            success: function (responseData) {
+                debugger;
+                if (responseData.status == 200 && responseData.message == "SUCCESS") {
+                    let dataDocument = responseData.data;
+                    //Xử lý thông tin bài làm
+                    $('#surveyTypeDetail').val(dataDocument[0].surveyAccountName);
+                    $('#userNameDetail').val(dataDocument[0].accountUsername);
+                    $('#totalScoreDetail').val(+(Math.round(dataDocument[0].surveyAccountScore + "e+2") + "e-2"));
+                    $('#createdTimeDetail').val(dataDocument[0].createdTime);
+                    var totalMoneyTransaction = 0;
+                    let allDataTable = "";
+                    dataDocument.forEach(function (item, index) {
+                        var rowContent = "";
+                        rowContent += "<th style='text-align: center;'>" + (index + 1) + "</th>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (showItemTransaction.includes(key)) {
+                                    if (key == "score") {
+                                        rowContent += "<th class=' row" + item.id + "-column column-" + key + "' property='" + key + "'>" + +(Math.round(item[key] + "e+2") + "e-2") + "</th>";
+                                    }
+                                    else rowContent += "<th class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</th>";
+                                }
+                            }
+                        }
+
+                        var newRow = "<tr id='row" + item.id + "' >" + rowContent + "</tr>";
+                        allDataTable += newRow;
+                    })
+                    $("#tableSubscription tbody").html(allDataTable);
+                    formatNumber();
+                }
+            },
+            error: function (e) {
+                alert("Fail")
+                $("#tableSubscription tbody").html("");
+            }
+        })
+    }
+</script>

@@ -1,0 +1,210 @@
+﻿@using Novatic.Util;
+@model Novatic.ViewModel.PostViewModel
+@{
+    
+    ViewData["Title"] = @Model.Name;
+    string layoutValue = "~/Views/GW/Home/_FrontEnd_Contact.cshtml";
+
+    
+
+    Layout = layoutValue;
+    ViewBag.Title = @Model.Name;
+    ViewBag.Description = @Model.Description;
+    ViewBag.Photo = @Model.Photo;
+    ViewBag.ViewCount = @Model.ViewCount;
+    ViewBag.CommentCount = @Model.CommentCount;
+    ViewBag.URL = @Model.Url;
+    ViewBag.PublishedTime = @Model.PublishedTime;
+    ViewBag.PostCategoryId = @Model.PostCategoryId;
+    ViewBag.PostCategoryName = @Model.PostCategoryName;
+    ViewBag.PostCategoryURL = @Model.PostCategoryURL;
+    ViewBag.PostAccountId = @Model.PostAccountId;
+    ViewBag.PostAccountName = @Model.PostAccountName;
+    ViewBag.PostAccountInfo = @Model.PostAccountInfo;
+    ViewBag.PostAccountURL = @Model.PostAccountURL;
+    ViewBag.PostAccountPhoto = @Model.PostAccountPhoto;
+    ViewBag.Text = @Model.Text;
+    ViewBag.TextShort = @Model.Text.Length > 300 ? @Model.Text.Substring(0, @Model.Text.IndexOf("", 280)) + " ..." : " ";
+    ViewBag.PostPublishStatusId = @Model.PostPublishStatusId;
+    ViewBag.Video = @Model.Video;
+    if (@Model.Video.Length > 0)
+    {
+        Uri myUri = new Uri(@Model.Video);
+        string param = System.Web.HttpUtility.ParseQueryString(myUri.Query).Get("v");
+        ViewBag.Video = "https://www.youtube.com/embed/" + param;
+    }
+    foreach (var obj in ViewBag.LanguageConfigList)
+    {
+        if (obj.Code == "lblDangKi") { ViewBag.lblDangKi = obj.Name; }
+        else { ViewBag.lblDangKi = LanguageConfigUtil.getLanguageConfigByCode("lblDangKi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblBoi") { ViewBag.lblBoi = obj.Name; }
+        else { ViewBag.lblBoi = LanguageConfigUtil.getLanguageConfigByCode("lblBoi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblBaiVietTuongTu") { ViewBag.lblBaiVietTuongTu = obj.Name; }
+        else { ViewBag.lblBaiVietTuongTu = LanguageConfigUtil.getLanguageConfigByCode("lblBaiVietTuongTu", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblBaiTruoc") { ViewBag.lblBaiTruoc = obj.Name; }
+        else { ViewBag.lblBaiTruoc = LanguageConfigUtil.getLanguageConfigByCode("lblBaiTruoc", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblBaiSau") { ViewBag.lblBaiSau = obj.Name; }
+        else { ViewBag.lblBaiSau = LanguageConfigUtil.getLanguageConfigByCode("lblBaiSau", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblTitleBinhLuan") { ViewBag.lblTitleBinhLuan = obj.Name; }
+        else { ViewBag.lblTitleBinhLuan = LanguageConfigUtil.getLanguageConfigByCode("lblTitleBinhLuan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblTraLoiBinhLuan") { ViewBag.lblTraLoiBinhLuan = obj.Name; }
+        else { ViewBag.lblTraLoiBinhLuan = LanguageConfigUtil.getLanguageConfigByCode("lblTraLoiBinhLuan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblChiaSeQuaMangXaHoi") { ViewBag.lblChiaSeQuaMangXaHoi = obj.Name; }
+        else { ViewBag.lblChiaSeQuaMangXaHoi = LanguageConfigUtil.getLanguageConfigByCode("lblChiaSeQuaMangXaHoi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblDiaChiEmailCuaBan") { ViewBag.lblDiaChiEmailCuaBan = obj.Name; }
+        else { ViewBag.lblDiaChiEmailCuaBan = LanguageConfigUtil.getLanguageConfigByCode("lblDiaChiEmailCuaBan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblTen") { ViewBag.lblTen = obj.Name; }
+        else { ViewBag.lblTen = LanguageConfigUtil.getLanguageConfigByCode("lblTen", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblEmail") { ViewBag.lblEmail = obj.Name; }
+        else { ViewBag.lblEmail = LanguageConfigUtil.getLanguageConfigByCode("lblEmail", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblDangBinhLuan") { ViewBag.lblDangBinhLuan = obj.Name; }
+        else { ViewBag.lblDangBinhLuan = LanguageConfigUtil.getLanguageConfigByCode("lblDangBinhLuan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblXemThem") { ViewBag.lblXemThem = obj.Name; }
+        else { ViewBag.lblXemThem = LanguageConfigUtil.getLanguageConfigByCode("lblXemThem", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblXemHet") { ViewBag.lblXemHet = obj.Name; }
+        else { ViewBag.lblXemHet = LanguageConfigUtil.getLanguageConfigByCode("lblXemHet", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblBaiVietMoiNhat") { ViewBag.lblBaiVietMoiNhat = obj.Name; }
+        else { ViewBag.lblBaiVietMoiNhat = LanguageConfigUtil.getLanguageConfigByCode("lblBaiVietMoiNhat", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblBaiVietPhoBien") { ViewBag.lblBaiVietPhoBien = obj.Name; }
+        else { ViewBag.lblBaiVietPhoBien = LanguageConfigUtil.getLanguageConfigByCode("lblBaiVietPhoBien", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblLuotXem") { ViewBag.lblLuotXem = obj.Name; }
+        else { ViewBag.lblLuotXem = LanguageConfigUtil.getLanguageConfigByCode("lblLuotXem", ViewBag.LanguageCode).Name; }
+
+        if (obj.Code == "lblDangKiNhanThongBao") { ViewBag.lblDangKiNhanThongBao = obj.Name; }
+        else { ViewBag.lblDangKiNhanThongBao = LanguageConfigUtil.getLanguageConfigByCode("lblDangKiNhanThongBao", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblNhapEmailCuaBan") { ViewBag.lblNhapEmailCuaBan = obj.Name; }
+        else { ViewBag.lblNhapEmailCuaBan = LanguageConfigUtil.getLanguageConfigByCode("lblNhapEmailCuaBan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblDiaChiEmailCuaBanSubscribe") { ViewBag.lblDiaChiEmailCuaBanSubscribe = obj.Name; }
+        else { ViewBag.lblDiaChiEmailCuaBanSubscribe = LanguageConfigUtil.getLanguageConfigByCode("lblDiaChiEmailCuaBanSubscribe", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblDungLoLang") { ViewBag.lblDungLoLang = obj.Name; }
+        else { ViewBag.lblDungLoLang = LanguageConfigUtil.getLanguageConfigByCode("lblDungLoLang", ViewBag.LanguageCode).Name; }
+
+        if (obj.Code == "lblDangKiNhanThongBao") { ViewBag.lblDangKiNhanThongBao = obj.Name; }
+        else { ViewBag.lblDangKiNhanThongBao = LanguageConfigUtil.getLanguageConfigByCode("lblDangKiNhanThongBao", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblNhapEmailCuaBan") { ViewBag.lblNhapEmailCuaBan = obj.Name; }
+        else { ViewBag.lblNhapEmailCuaBan = LanguageConfigUtil.getLanguageConfigByCode("lblNhapEmailCuaBan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblDiaChiEmailCuaBanSubscribe") { ViewBag.lblDiaChiEmailCuaBanSubscribe = obj.Name; }
+        else { ViewBag.lblDiaChiEmailCuaBanSubscribe = LanguageConfigUtil.getLanguageConfigByCode("lblDiaChiEmailCuaBanSubscribe", ViewBag.LanguageCode).Name; }
+
+        if (obj.Code == "lblDangNhap") { ViewBag.lblDangNhap = obj.Name; }
+        else { ViewBag.lblDangNhap = LanguageConfigUtil.getLanguageConfigByCode("lblDangNhap", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblDangKy") { ViewBag.lblDangKy = obj.Name; }
+        else { ViewBag.lblDangKy = LanguageConfigUtil.getLanguageConfigByCode("lblDangKy", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblTenDangNhap") { ViewBag.lblTenDangNhap = obj.Name; }
+        else { ViewBag.lblTenDangNhap = LanguageConfigUtil.getLanguageConfigByCode("lblTenDangNhap", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblMatKhau") { ViewBag.lblMatKhau = obj.Name; }
+        else { ViewBag.lblMatKhau = LanguageConfigUtil.getLanguageConfigByCode("lblMatKhau", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblLuuTaiKhoan") { ViewBag.lblLuuTaiKhoan = obj.Name; }
+        else { ViewBag.lblLuuTaiKhoan = LanguageConfigUtil.getLanguageConfigByCode("lblLuuTaiKhoan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblQuenMatKhau") { ViewBag.lblQuenMatKhau = obj.Name; }
+        else { ViewBag.lblQuenMatKhau = LanguageConfigUtil.getLanguageConfigByCode("lblQuenMatKhau", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblHoac") { ViewBag.lblHoac = obj.Name; }
+        else { ViewBag.lblHoac = LanguageConfigUtil.getLanguageConfigByCode("lblHoac", ViewBag.LanguageCode).Name; }
+
+
+        //languageconfig by subscribe modal
+
+        if (obj.Code == "lblThanhCong") { ViewBag.lblThanhCong = obj.Name; }
+        else { ViewBag.lblThanhCong = LanguageConfigUtil.getLanguageConfigByCode("lblThanhCong", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblThanhCongDetail") { ViewBag.lblThanhCongDetail = obj.Name; }
+        else { ViewBag.lblThanhCongDetail = LanguageConfigUtil.getLanguageConfigByCode("lblThanhCongDetail", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblError") { ViewBag.lblError = obj.Name; }
+        else { ViewBag.lblError = LanguageConfigUtil.getLanguageConfigByCode("lblError", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblErrorDetail") { ViewBag.lblErrorDetail = obj.Name; }
+        else { ViewBag.lblErrorDetail = LanguageConfigUtil.getLanguageConfigByCode("lblErrorDetail", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblErrorEmailFormat") { ViewBag.lblErrorEmailFormat = obj.Name; }
+        else { ViewBag.lblErrorEmailFormat = LanguageConfigUtil.getLanguageConfigByCode("lblErrorEmailFormat", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblEmailAlreadyExists") { ViewBag.lblEmailAlreadyExists = obj.Name; }
+        else { ViewBag.lblEmailAlreadyExists = LanguageConfigUtil.getLanguageConfigByCode("lblEmailAlreadyExists", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblAlreadyExists") { ViewBag.lblAlreadyExists = obj.Name; }
+        else { ViewBag.lblAlreadyExists = LanguageConfigUtil.getLanguageConfigByCode("lblAlreadyExists", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblCheckData") { ViewBag.lblCheckData = obj.Name; }
+        else { ViewBag.lblCheckData = LanguageConfigUtil.getLanguageConfigByCode("lblCheckData", ViewBag.LanguageCode).Name; }
+
+        //Footer config
+        if (obj.Code == "lblVeChungToi") { ViewBag.lblVeChungToi = obj.Name; }
+        else { ViewBag.lblVeChungToi = LanguageConfigUtil.getLanguageConfigByCode("lblVeChungToi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblVeChungToi_NoiDung") { ViewBag.lblVeChungToi_NoiDung = obj.Name; }
+        else { ViewBag.lblVeChungToi_NoiDung = LanguageConfigUtil.getLanguageConfigByCode("lblVeChungToi_NoiDung", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblLienHe") { ViewBag.lblLienHe = obj.Name; }
+        else { ViewBag.lblLienHe = LanguageConfigUtil.getLanguageConfigByCode("lblLienHe", ViewBag.LanguageCode).Name; }
+
+        //languageconfig by Contact
+        if (obj.Code == "lblYourMessage") { ViewBag.lblYourMessage = obj.Name; }
+        else { ViewBag.lblYourMessage = LanguageConfigUtil.getLanguageConfigByCode("lblYourMessage", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblNoiDungLienHe") { ViewBag.lblNoiDungLienHe = obj.Name; }
+        else { ViewBag.lblNoiDungLienHe = LanguageConfigUtil.getLanguageConfigByCode("lblNoiDungLienHe", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblSendMessage") { ViewBag.lblSendMessage = obj.Name; }
+        else { ViewBag.lblSendMessage = LanguageConfigUtil.getLanguageConfigByCode("lblSendMessage", ViewBag.LanguageCode).Name; }
+
+        if (obj.Code == "lblChuaLaThanhVien") { ViewBag.lblChuaLaThanhVien = obj.Name; }
+        else { ViewBag.lblChuaLaThanhVien = LanguageConfigUtil.getLanguageConfigByCode("lblChuaLaThanhVien", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblQuyenLoiThamGia") { ViewBag.lblQuyenLoiThamGia = obj.Name; }
+        else { ViewBag.lblQuyenLoiThamGia = LanguageConfigUtil.getLanguageConfigByCode("lblQuyenLoiThamGia", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblKhongTraPhi") { ViewBag.lblKhongTraPhi = obj.Name; }
+        else { ViewBag.lblKhongTraPhi = LanguageConfigUtil.getLanguageConfigByCode("lblKhongTraPhi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblThanhVienTraPhi") { ViewBag.lblThanhVienTraPhi = obj.Name; }
+        else { ViewBag.lblThanhVienTraPhi = LanguageConfigUtil.getLanguageConfigByCode("lblThanhVienTraPhi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblLichSuBaiViet") { ViewBag.lblLichSuBaiViet = obj.Name; }
+        else { ViewBag.lblLichSuBaiViet = LanguageConfigUtil.getLanguageConfigByCode("lblLichSuBaiViet", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblGhimBaiVietYeuThich") { ViewBag.lblGhimBaiVietYeuThich = obj.Name; }
+        else { ViewBag.lblGhimBaiVietYeuThich = LanguageConfigUtil.getLanguageConfigByCode("lblGhimBaiVietYeuThich", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblLuuTruBinhLuan") { ViewBag.lblLuuTruBinhLuan = obj.Name; }
+        else { ViewBag.lblLuuTruBinhLuan = LanguageConfigUtil.getLanguageConfigByCode("lblLuuTruBinhLuan", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblTiepCanBaiViet") { ViewBag.lblTiepCanBaiViet = obj.Name; }
+        else { ViewBag.lblTiepCanBaiViet = LanguageConfigUtil.getLanguageConfigByCode("lblTiepCanBaiViet", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblTimKhoAnhDuLieu") { ViewBag.lblTimKhoAnhDuLieu = obj.Name; }
+        else { ViewBag.lblTimKhoAnhDuLieu = LanguageConfigUtil.getLanguageConfigByCode("lblTimKhoAnhDuLieu", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblNhanNewsLetter") { ViewBag.lblNhanNewsLetter = obj.Name; }
+        else { ViewBag.lblNhanNewsLetter = LanguageConfigUtil.getLanguageConfigByCode("lblNhanNewsLetter", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblMucPhi") { ViewBag.lblMucPhi = obj.Name; }
+        else { ViewBag.lblMucPhi = LanguageConfigUtil.getLanguageConfigByCode("lblMucPhi", ViewBag.LanguageCode).Name; }
+        if (obj.Code == "lblHinhThucThanhToan") { ViewBag.lblHinhThucThanhToan = obj.Name; }
+        else { ViewBag.lblHinhThucThanhToan = LanguageConfigUtil.getLanguageConfigByCode("lblHinhThucThanhToan", ViewBag.LanguageCode).Name; }
+    }
+
+    //foreach (var obj in ViewBag.SystemConfigList)
+    //{
+    //    if (obj.Code == "lblLogoHeader") { ViewBag.lblLogoHeader = obj.Description; }
+    //    else { ViewBag.lblLogoHeader = SystemConfigUtil.getSystemConfigbyCode("LOGO_HEADER").Description; }
+    //    if (obj.Code == "lblLogoMobile") { ViewBag.lblLogoMobile = obj.Description; }
+    //    else { ViewBag.lblLogoMobile = SystemConfigUtil.getSystemConfigbyCode("LOGO_MOBILE").Description; }
+    //    if (obj.Code == "lblLogoCanvas") { ViewBag.lblLogoCanvas = obj.Description; }
+    //    else { ViewBag.lblLogoCanvas = SystemConfigUtil.getSystemConfigbyCode("LOGO_CANVAS").Description; }
+    //    if (obj.Code == "lblLogoSticky") { ViewBag.lblLogoSticky = obj.Description; }
+    //    else { ViewBag.lblLogoSticky = SystemConfigUtil.getSystemConfigbyCode("LOGO_STICKY").Description; }
+    //    if (obj.Code == "lblLogoFooter") { ViewBag.lblLogoFooter = obj.Description; }
+    //    else { ViewBag.lblLogoFooter = SystemConfigUtil.getSystemConfigbyCode("LOGO_FOOTER").Description; }
+    //    if (obj.Code == "lblLinkFacebook") { ViewBag.lblLinkFacebook = obj.Description; }
+    //    else { ViewBag.lblLinkFacebook = SystemConfigUtil.getSystemConfigbyCode("LINK_FACEBOOK").Description; }
+    //    if (obj.Code == "lblLinkTwitter") { ViewBag.lblLinkTwitter = obj.Description; }
+    //    else { ViewBag.lblLinkTwitter = SystemConfigUtil.getSystemConfigbyCode("LINK_TWITTER").Description; }
+    //    if (obj.Code == "lblLinkGoogle") { ViewBag.lblLinkGoogle = obj.Description; }
+    //    else { ViewBag.lblLinkGoogle = SystemConfigUtil.getSystemConfigbyCode("LINK_GOOGLE").Description; }
+    //    if (obj.Code == "lblLinkInstagram") { ViewBag.lblLinkInstagram = obj.Description; }
+    //    else { ViewBag.lblLinkInstagram = SystemConfigUtil.getSystemConfigbyCode("LINK_INSTAGRAM").Description; }
+
+
+    //    if (obj.Code == "lblLinkAuthorFacebook") { ViewBag.lblLinkAuthorFacebook = obj.Description; }
+    //    else { ViewBag.lblLinkAuthorFacebook = SystemConfigUtil.getSystemConfigbyCode("LINK_AUTHOR_FACEBOOK").Description; }
+    //    if (obj.Code == "lblLinkAuthorTwitter") { ViewBag.lblLinkAuthorTwitter = obj.Description; }
+    //    else { ViewBag.lblLinkAuthorTwitter = SystemConfigUtil.getSystemConfigbyCode("LINK_AUTHOR_TWITTER").Description; }
+    //    if (obj.Code == "lblLinkAuthorYoutube") { ViewBag.lblLinkAuthorYoutube = obj.Description; }
+    //    else { ViewBag.lblLinkAuthorYoutube = SystemConfigUtil.getSystemConfigbyCode("LINK_AUTHOR_YOUTUBE").Description; }
+    //    if (obj.Code == "lblLinkAuthorInstagram") { ViewBag.lblLinkAuthorInstagram = obj.Description; }
+    //    else { ViewBag.lblLinkAuthorInstagram = SystemConfigUtil.getSystemConfigbyCode("LINK_AUTHOR_INSTAGRAM").Description; }
+    //    if (obj.Code == "lblLinkAuthorGoogle") { ViewBag.lblLinkAuthorGoogle = obj.Description; }
+    //    else { ViewBag.lblLinkAuthorGoogle = SystemConfigUtil.getSystemConfigbyCode("LINK_AUTHOR_GOOGLE").Description; }
+    //    if (obj.Code == "lblTopicBackgroundPhoto") { ViewBag.lblTopicBackgroundPhoto = obj.Description; }
+    //    else { ViewBag.lblTopicBackgroundPhoto = SystemConfigUtil.getSystemConfigbyCode("TOPIC_BACKGROUND_PHOTO").Description; }
+    //    if (obj.Code == "lblVideoBackgroundPhoto") { ViewBag.lblVideoBackgroundPhoto = obj.Description; }
+    //    else { ViewBag.lblVideoBackgroundPhoto = SystemConfigUtil.getSystemConfigbyCode("VIDEO_BACKGROUND_PHOTO").Description; }
+
+
+
+    //}
+
+}
+
+
+

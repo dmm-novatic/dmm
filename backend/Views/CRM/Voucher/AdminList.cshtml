@@ -1,0 +1,811 @@
+@{ ViewData["Title"] = "Voucher"; Layout = "_NovaticAdmin"; }
+
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Voucher</h3>
+            </div>
+        </div>
+
+        <a href="#" id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm">
+            <i class="fa fa-plus"></i>
+            <span class="hideOnMobile">New Record</span>
+        </a>
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Chương trình khuyến mại</th>
+                                        <th>Loại voucher</th>
+                                        <th>Trạng thái voucher</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá trị</th>
+                                        <th>Code</th>
+
+                                        <th>Detail</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Chương trình khuyến mại</th>
+                                        <th>Loại voucher</th>
+                                        <th>Trạng thái voucher</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá trị</th>
+
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Detail item</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="POST" onsubmit="updateItem(updatingItemId); return false;" role="form">
+                                                <!-- <div class="form-group">
+                                                                        <label for="">Apply type Id</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="voucherId" required readonly
+                                                                            placeholder="">
+                                                                    </div>
+
+
+                                                                    <div class='form-group'>
+                                                                        <label for=''>Apply type name</label>
+                                                                        <input type='text' class='form-control'
+                                                                            id='voucherName' required
+                                                                            placeholder=''>
+                                                                    </div>
+
+
+                                                                    <div class='form-group'>
+                                                                        <label for=''>Description</label>
+                                                                        <input type='text' class='form-control'
+                                                                            id='voucherDescription'
+                                                                            placeholder=''>
+                                                                    </div>
+
+
+                                                                    <div class='form-group'>
+                                                                        <label for=''>CreatedTime</label>
+                                                                        <input type='text'
+                                                                            class='form-control datetimepicker'
+                                                                            id='voucherCreatedTime'
+                                                                            placeholder=''>
+                                                                    </div>
+
+
+                                                                    <div class='form-group' style="">
+                                                                        <label for=''>Active</label>
+                                                                        <input type='text' class='form-control'
+                                                                            id='voucherActive' readonly
+                                                                            placeholder=''>
+                                                                    </div>
+                                                                    -->
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Id</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-id input-price" value="0" id="voucherId" required readonly placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">GUID</label>
+                                                    <input type="text" class="form-control input-guId" id="voucherGuId" placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-12 selectContainer">
+                                                    <label class="">Chương trình khuyến mại</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="voucherPromotionId" class="form-control fill dataSelect input-promotionId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+													var promotionData =[];
+													function loadDataSelectPromotion() {
+													    return $.ajax({
+													        url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'promotion/api/list',
+													        type: 'GET',
+													        async:'true',
+													        contentType: 'application/json',
+													        success: function(responseData) {
+													            console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded promotion');
+													            // debugger;
+													            var data = responseData.data;
+													            promotionData = data;
+													            data.forEach(function(item, index) {
+													                var data = {
+													                    id: item.id,
+													                    text: item.name
+													                };
+													                var newOption = new Option(data.text, data.id, false, false);
+													                $('#voucherPromotionId').append(newOption).trigger('change');
+													            });
+													        },
+													        error: function(e) {
+													            //console.log(e.message);
+													        }
+													    });
+													}
+													$(document).ready(function() {
+													    //loadDataSelectPromotion();
+													});
+                                                </script>
+                                                <div class="form-group col-sm-12 selectContainer">
+                                                    <label class="">Loại voucher</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="voucherVoucherTypeId" class="form-control fill dataSelect input-voucherTypeId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+													var voucherTypeData =[];
+													function loadDataSelectVoucherType() {
+													    return $.ajax({
+													        url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'voucherType/api/list',
+													        type: 'GET',
+													        async:'true',
+													        contentType: 'application/json',
+													        success: function(responseData) {
+													            console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded voucherType');
+													            // debugger;
+													            var data = responseData.data;
+													            voucherTypeData = data;
+													            data.forEach(function(item, index) {
+													                var data = {
+													                    id: item.id,
+													                    text: item.name
+													                };
+													                var newOption = new Option(data.text, data.id, false, false);
+													                $('#voucherVoucherTypeId').append(newOption).trigger('change');
+													            });
+													        },
+													        error: function(e) {
+													            //console.log(e.message);
+													        }
+													    });
+													}
+													$(document).ready(function() {
+													    //loadDataSelectVoucherType();
+													});
+                                                </script>
+                                                <div class="form-group col-sm-12 selectContainer">
+                                                    <label class="">Trạng thái voucher</label><span class="required">*</span>
+                                                    <div class="col-sm-12">
+                                                        <select name="select" required id="voucherVoucherStatusId" class="form-control fill dataSelect input-voucherStatusId" style=" border: 1px solid #e9ecef; "> </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+													var voucherStatusData =[];
+													function loadDataSelectVoucherStatus() {
+													    return $.ajax({
+													        url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + 'voucherStatus/api/list',
+													        type: 'GET',
+													        async:'true',
+													        contentType: 'application/json',
+													        success: function(responseData) {
+													            console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded voucherStatus');
+													            // debugger;
+													            var data = responseData.data;
+													            voucherStatusData = data;
+													            data.forEach(function(item, index) {
+													                var data = {
+													                    id: item.id,
+													                    text: item.name
+													                };
+													                var newOption = new Option(data.text, data.id, false, false);
+													                $('#voucherVoucherStatusId').append(newOption).trigger('change');
+													            });
+													        },
+													        error: function(e) {
+													            //console.log(e.message);
+													        }
+													    });
+													}
+													$(document).ready(function() {
+													    //loadDataSelectVoucherStatus();
+													});
+                                                </script>
+
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Tiêu đề</label><span class="required">*</span>
+                                                    <input type="text" class="form-control input-name" id="voucherName" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control input-description" rows="2" id="voucherDescription"></textarea>
+                                                </div>
+
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Code</label><span class="required">*</span>
+                                                    <input type="text" class="form-control input-code" id="voucherCode" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Nội dung</label>
+                                                    <textarea class="form-control input-info" rows="2" id="voucherInfo"></textarea>
+                                                </div>
+                                                <script>
+                                                    var voucherInfoEditor;
+                                                    ClassicEditor
+                                                        .create(document.querySelector('#voucherInfo'))
+                                                        .then(editor => {
+                                                            // console.log( 'Editor was initialized', editor );
+                                                            voucherInfoEditor = editor;
+                                                            editor.model.document.on('change:data', (evt, data) => {
+                                                                // debugger;
+                                                                // console.log('Updated:'+ data );
+                                                                $('#voucherInfo').val(voucherInfoEditor.getData());
+                                                            });
+                                                        })
+                                                        .catch(err => {
+                                                            console.error(err.stack);
+                                                        });
+                                                </script>
+                                                <div class="form-group col-sm-12" style="display:none ">
+                                                    <label for="">Active</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-active" value="0" id="voucherActive" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Ngày tạo </label><span class="required">*</span>
+                                                    <div class="input-group date datetimepicker input-createdTime" id="voucherCreatedTimeDiv">
+                                                        <input type="text" id="voucherCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Số lượng</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-quantity" value="0" id="voucherQuantity" required placeholder="" />
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Giá trị</label><span class="required">*</span>
+                                                    <input type="number" class="form-control input-value" value="0" id="voucherValue" required placeholder="" />
+                                                </div>
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit" class="btn btn-default" value="Save changes" />
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem" onclick="document.getElementById('hiddenSubmit').click();">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	        var hiddenItem = ["id","guId","description","info","active"];
+			var showItem = ["promotionId","voucherTypeId","voucherStatusId","name","code","createdTime","quantity","value"];
+	        var dataSource = [];
+	        var updatingItemId = 0;
+	        var tableUpdating = 0;
+	        var table;
+
+	        $(document).ready(function () {
+	            // Load data
+	            //loadData();
+	            //setTimeout(function(){loadData();}, 460);
+
+                $.when(loadDataSelectPromotion(),loadDataSelectVoucherType(),loadDataSelectVoucherStatus()).done(function( resultDataSelectPromotionvoucherPromotionId,resultDataSelectVoucherTypevoucherVoucherTypeId,resultDataSelectVoucherStatusvoucherVoucherStatusId) {
+	                loadData();
+	            });
+
+	            // includeLibrary();
+
+	            // Datetime picker
+	            $('.datetimepicker').datetimepicker({
+	                format: 'YYYY-MM-DD HH:mm:ss'
+	            });
+
+	            $('.dataSelect').select2();
+
+	            $(".datetimepicker").on('dp.change', function (e) {
+	                // console.log(this.value);
+	                this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+	                // console.log(this.value);
+	            })
+
+	        });
+
+
+	        function loadData() {
+	            $.ajax({
+	                url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}'+ "voucher/api/list",
+	                type: "GET",
+	                contentType: "application/json",
+	                success: function (responseData) {
+	                    // debugger;
+	                    var data = responseData.data;
+	                    dataSource = data;
+
+
+
+
+	                    data.forEach(function (item, index) {
+	                        // console.log(item, index);
+	                        var rowContent = "";
+	                        rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+	                        for (var key in item) {
+	                            if (item.hasOwnProperty(key)) {
+	                                // console.log(key + " -> " + item[key]);
+	                                if (showItem.includes(key)) {
+	                                    if (key != "photo") {
+	                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+	                                    }
+	                                    else {
+	                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+	                                    }
+	                                }
+	                            }
+	                        }
+	                        rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+	                        rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+	                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+	                        $(newRow).appendTo($("#tableData tbody"));
+
+	                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+	                    });
+
+	                    //Init datatable
+	                    if (tableUpdating === 0) {
+	                        initTable();
+	                    }
+
+	                    //update data with foreign key
+	                    updateTable();
+	                },
+	                error: function (e) {
+	                    //console.log(e.message);
+	                    initTable();
+	                }
+	            });
+	        }
+
+	        function initTable(){
+	            table = $('#tableData').DataTable({
+	                aLengthMenu: [
+	                    [-1, 10, 25, 50, 100, 200],
+	                    ['Tất cả', 10, 25, 50, 100, 200]
+	                ],
+	                'order': [
+	                    [1, 'desc']
+	                ]
+	            });
+
+
+
+	            table.on('order.dt search.dt', function() {
+	                table.column(0, {
+	                    search: 'applied',
+	                    order: 'applied'
+	                }).nodes().each(function(cell, i) {
+	                    cell.innerHTML = i + 1;
+	                });
+	            }).draw();
+
+	            $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function() {
+	                var title = $(this).text();
+	                $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+	            });
+
+	            table.columns().every(function() {
+	                var that = this;
+
+	                $('input', this.footer()).on('keyup change', function() {
+	                    if (that.search() !== this.value) {
+	                        that
+	                            .search(this.value)
+	                            .draw();
+	                    }
+	                });
+	            });
+
+	            setTimeout(function() {
+	                table.page.len(10).draw();
+	            }, 1000);
+
+	        }
+
+	        function editItem(id) {
+	            updatingItemId = id;
+	            $("#modal-id").modal('show');
+
+	            let obj = getItemById(id);
+	            		$("#voucherId").val(id > 0 ? obj.id : "");
+			$("#voucherGuId").val(id > 0 ? obj.guId : "");
+			$("#voucherPromotionId").val(id > 0 ? obj.promotionId : "");
+			$("#voucherVoucherTypeId").val(id > 0 ? obj.voucherTypeId : "");
+			$("#voucherVoucherStatusId").val(id > 0 ? obj.voucherStatusId : "");
+			$("#voucherName").val(id > 0 ? obj.name : "");
+			$("#voucherDescription").val(id > 0 ? obj.description : "");
+			$("#voucherCode").val(id > 0 ? obj.code : "");
+			$("#voucherInfo").val(id > 0 ? obj.info : "");
+			$("#voucherActive").val(id > 0 ? obj.active : "");
+			$("#voucherCreatedTime").val(id > 0 ? obj.createdTime : "");
+			$("#voucherQuantity").val(id > 0 ? obj.quantity : "");
+			$("#voucherValue").val(id > 0 ? obj.value : "");
+	$('#voucherPromotionId').trigger('change');
+	$('#voucherVoucherTypeId').trigger('change');
+	$('#voucherVoucherStatusId').trigger('change');
+	voucherInfoEditor.setData((id > 0 ? obj.info : ''));
+
+	            // $("#voucherId").val(id > 0 ? obj.id : "");
+	            // $("#voucherName").val(id > 0 ? obj.name : "");
+	            // $("#voucherDescription").val(id > 0 ? obj.description : "");
+	            // $("#voucherCreatedTime").val(id > 0 ? obj.createdTime : "");
+	            // $("#voucherActive").val(id > 0 ? obj.active : "");
+
+	            if(id==0){
+	                $("#voucherActive").val(1);
+	                $("#voucherCreatedTime").val(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
+	            }
+	            else{
+	                // correcting data
+	                //$('#buyProvinceId').val(obj.provinceId.split(", ")).trigger('change');
+
+	            }
+	            formatNumber();
+	        }
+
+
+	        function updateItem(id) {
+	            var actionName = (id == 0 ? "Create" : "Update");
+	            let obj = getItemById(id);
+	            let objName = id > 0 ? obj.name : " ";
+
+	            validateInputNumber();
+
+	            // "id": $("#voucherId").val(),
+	            // "name": $("#voucherName").val(),
+	            // "description": $("#voucherDescription").val(),
+	            // "createdTime": $("#voucherCreatedTime").val(),
+	            // "active": $("#voucherActive").val()
+	            var updatingObj = {
+	                		"id": $("#voucherId").val(),
+			"guId": $("#voucherGuId").val(),
+			"promotionId": $("#voucherPromotionId").val(),
+			"voucherTypeId": $("#voucherVoucherTypeId").val(),
+			"voucherStatusId": $("#voucherVoucherStatusId").val(),
+			"name": $("#voucherName").val(),
+			"description": $("#voucherDescription").val(),
+			"info": $("#voucherInfo").val(),
+			"code": $("#voucherCode").val(),
+			"active": $("#voucherActive").val(),
+			"createdTime": datetimeFormat($("#voucherCreatedTime").val()),
+			"quantity": $("#voucherQuantity").val(),
+			"value": $("#voucherValue").val(),
+
+	            };
+
+	            // correcting data
+	            //updatingObj.provinceId = updatingObj.provinceId.join(", ");
+
+
+	            Swal.fire({
+	                title: 'Are you sure?',
+	                text: "Performing " + actionName + " item " + objName,
+	                icon: 'info',
+	                showCancelButton: true,
+	                confirmButtonColor: '#3085d6',
+	                cancelButtonColor: '#443',
+	                confirmButtonText: 'Yes, confirm!'
+	            }).then((result) => {
+	                if (result.value) {
+	                    $("#modal-id").modal('hide');
+
+	                    //CALL AJAX TO UPDATE
+	                    if (id > 0) {
+	                        $.ajax({
+	                            url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}'+ "voucher/api/update",
+	                            type: "POST",
+	                            contentType: "application/json",
+	                            data: JSON.stringify(updatingObj),
+	                            success: function (responseData) {
+	                                // debugger;
+	                                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+	                                    Swal.fire(
+	                                        'Updated!',
+	                                        'Item ' + objName + ' has been successfully updated!',
+	                                        'success'
+	                                    );
+	                                    updateTable(id,updatingObj,"update");
+	                                    var updatedItemIndex= dataSource.findIndex(item => parseInt(item.id) === id);
+	                                    dataSource[updatedItemIndex] = updatingObj;
+	                                }
+	                            },
+	                            error: function (e) {
+	                                //console.log(e.message);
+	                                Swal.fire(
+	                                    'Error!',
+	                                    'Couldn\'t update item, please check your data',
+	                                    'error'
+	                                );
+	                            }
+	                        });
+	                    };
+
+	                    //CALL AJAX TO CREATE
+	                    if (id == 0) {
+	                        updatingObj.id = 1;
+	                        delete updatingObj["id"]
+	                        updatingObj.active = 1;
+	                        updatingObj.createdTime = new Date();
+	                        console.log(updatingObj);
+	                        $.ajax({
+	                            url:'@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + "voucher/api/add",
+	                            type: "POST",
+	                            contentType: "application/json",
+	                            data: JSON.stringify(updatingObj),
+	                            success: function (responseData) {
+	                                // debugger;
+	                                if (responseData.status == 201 && responseData.message === "CREATED") {
+	                                    Swal.fire(
+	                                        'Created!',
+	                                        'New item has been successfully created!',
+	                                        'success'
+	                                    );
+	                                    updatingObj = responseData.data;
+	                                    dataSource.push(updatingObj);
+	                                    updateTable(0,updatingObj,"add");
+	                                }
+	                            },
+	                            error: function (e) {
+	                                //console.log(e.message);
+	                                Swal.fire(
+	                                    'Error!',
+	                                    'Couldn\'t create item, please check your data',
+	                                    'error'
+	                                );
+	                            }
+	                        });
+	                    }
+	                }
+	            })
+	        }
+
+	        function deleteItem(id) {
+	            let obj = getItemById(id);
+	            Swal.fire({
+	                title: 'Are you sure?',
+	                text: "You won't be able to revert this!",
+	                icon: 'warning',
+	                showCancelButton: true,
+	                confirmButtonColor: '#d33',
+	                cancelButtonColor: '#3085d6',
+	                confirmButtonText: 'Yes, delete it!'
+	            }).then((result) => {
+	                if (result.value) {
+
+	                    //CALL AJAX TO DELETE
+	                    $.ajax({
+	                        url: '@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}' + "voucher/api/delete",
+	                        type: "POST",
+	                        contentType: "application/json",
+	                        data: JSON.stringify({ "id": id }),
+	                        success: function (responseData) {
+	                            // debugger;
+	                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+	                                Swal.fire(
+	                                    'Deleted!',
+	                                    'Item ' + obj.name + ' has been deleted.',
+	                                    'success'
+	                                );
+	                                updateTable(id,0,"delete");
+	                            }
+	                        },
+	                        error: function (e) {
+	                            //console.log(e.message);
+	                            Swal.fire(
+	                                'Error!',
+	                                'Item ' + obj.name + ' can\'t be deleted.',
+	                                'error'
+	                            );
+	                        }
+	                    });
+
+	                }
+	            })
+	        }
+
+	        function updateTable(id,obj,action) {
+	            if(action === "delete"){
+	                table.row("#row"+id).remove().draw();
+	            }
+
+	            if(action === "add"){
+	                console.log("Added:"+obj);
+
+	                //var addedItems = [obj];
+	                var addedItems = obj;
+	                var addedValues =[];
+
+
+	                addedItems.forEach(function (item, index) {
+	                    // console.log(item, index);
+	                    var rowContent = "";
+	                    addedValues.push("<td style='text-align: center;'></td>");
+	                    for (var key in item) {
+	                        if (item.hasOwnProperty(key)) {
+	                            // console.log(key + " -> " + item[key]);
+	                            if (showItem.includes(key)) {
+	                                if (key != "photo") {
+	                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+	                                }
+	                                else {
+	                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>");
+	                                }
+	                            }
+	                        }
+	                    }
+	                    addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+	                    addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+	                    table.row.add(addedValues).draw();
+	                });
+	                // location.reload();
+	            }
+
+	            if(action === "update"){
+	                // alert(id);
+	                $(".row"+id+"-column").each(function(){
+	                    var propertyName = $(this).attr("property");
+	                    console.log(propertyName);
+
+	                    for (var key in obj) {
+	                        if (key === propertyName && obj.hasOwnProperty(key)) {
+	                            if(key === "photo"){
+	                                $(this).children().attr("src",obj[key]);
+	                            }
+	                            else{
+	                                this.innerText = obj[key];
+	                            }
+	                        }
+	                    }
+
+	                });
+	            }
+
+	            //Update columns with foreign key
+	            // var NO_FKFKUpdateSelector = 'tr';
+	            // if( !(typeof(id) === 'undefined')) {
+	            //     NO_FKFKUpdateSelector = '#row'+id;
+	            // }
+	            // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKId]').each(function(){
+	            //     // debugger;
+	            //     var voucherId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+	            //     var voucherObj = getItemById(voucherId);
+	            //     var NO_FKId = parseInt(voucherObj.NO_FKId);
+	            //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKId);
+	            //     $(this).text(NO_FKObj.name);
+	            //     // console.log('FK updated for Staff '+voucherId);
+	            // });
+
+	            try {
+	                var promotionFKUpdateSelector = 'tr';
+	                if( !(typeof(id) === 'undefined')) {
+	                    // debugger;
+	                    promotionFKUpdateSelector = '#row'+id;
+	                    var promotionId = parseInt(obj.promotionId);
+	                    var promotionObj = promotionData.find(item => parseInt(item.id) === promotionId);
+	                    //create data
+	                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(promotionObj.name);
+
+	                    //update data
+	                    $('#tableData tbody '+promotionFKUpdateSelector+' td[property=promotionId]').text(promotionObj.name);
+	                    //table.cell( this ).data(promotionObj.name);
+	                }
+	                else{
+	                    //Page load
+	                    $('#tableData tbody '+promotionFKUpdateSelector+' td[property=promotionId]').each(function(){
+	                        // debugger;
+	                        var voucherId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+	                        var voucherObj = getItemById(voucherId);
+	                        var promotionId = parseInt(voucherObj.promotionId);
+	                        var promotionObj = promotionData.find(item => parseInt(item.id) === promotionId);
+	                        //$(this).text(promotionObj.name);
+	                        table.cell( this ).data(promotionObj.name);
+	                        // console.log('FK updated for Staff '+voucherId);
+	                    });
+	                }
+	            } catch (error) {
+
+	            }
+	            try {
+	                var voucherTypeFKUpdateSelector = 'tr';
+	                if( !(typeof(id) === 'undefined')) {
+	                    // debugger;
+	                    voucherTypeFKUpdateSelector = '#row'+id;
+	                    var voucherTypeId = parseInt(obj.voucherTypeId);
+	                    var voucherTypeObj = voucherTypeData.find(item => parseInt(item.id) === voucherTypeId);
+	                    //create data
+	                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(voucherTypeObj.name);
+
+	                    //update data
+	                    $('#tableData tbody '+voucherTypeFKUpdateSelector+' td[property=voucherTypeId]').text(voucherTypeObj.name);
+	                    //table.cell( this ).data(voucherTypeObj.name);
+	                }
+	                else{
+	                    //Page load
+	                    $('#tableData tbody '+voucherTypeFKUpdateSelector+' td[property=voucherTypeId]').each(function(){
+	                        // debugger;
+	                        var voucherId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+	                        var voucherObj = getItemById(voucherId);
+	                        var voucherTypeId = parseInt(voucherObj.voucherTypeId);
+	                        var voucherTypeObj = voucherTypeData.find(item => parseInt(item.id) === voucherTypeId);
+	                        //$(this).text(voucherTypeObj.name);
+	                        table.cell( this ).data(voucherTypeObj.name);
+	                        // console.log('FK updated for Staff '+voucherId);
+	                    });
+	                }
+	            } catch (error) {
+
+	            }
+	            try {
+	                var voucherStatusFKUpdateSelector = 'tr';
+	                if( !(typeof(id) === 'undefined')) {
+	                    // debugger;
+	                    voucherStatusFKUpdateSelector = '#row'+id;
+	                    var voucherStatusId = parseInt(obj.voucherStatusId);
+	                    var voucherStatusObj = voucherStatusData.find(item => parseInt(item.id) === voucherStatusId);
+	                    //create data
+	                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(voucherStatusObj.name);
+
+	                    //update data
+	                    $('#tableData tbody '+voucherStatusFKUpdateSelector+' td[property=voucherStatusId]').text(voucherStatusObj.name);
+	                    //table.cell( this ).data(voucherStatusObj.name);
+	                }
+	                else{
+	                    //Page load
+	                    $('#tableData tbody '+voucherStatusFKUpdateSelector+' td[property=voucherStatusId]').each(function(){
+	                        // debugger;
+	                        var voucherId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+	                        var voucherObj = getItemById(voucherId);
+	                        var voucherStatusId = parseInt(voucherObj.voucherStatusId);
+	                        var voucherStatusObj = voucherStatusData.find(item => parseInt(item.id) === voucherStatusId);
+	                        //$(this).text(voucherStatusObj.name);
+	                        table.cell( this ).data(voucherStatusObj.name);
+	                        // console.log('FK updated for Staff '+voucherId);
+	                    });
+	                }
+	            } catch (error) {
+
+	            }
+
+	            formatNumber();
+	        }
+
+
+	        function getItemById(id) {
+	            const result = dataSource.find(item => parseInt(item.id) === id);
+	            return result;
+	        }
+</script>

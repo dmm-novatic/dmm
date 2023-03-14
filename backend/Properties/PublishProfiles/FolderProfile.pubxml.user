@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\Projects\DMM\Source\dmm\backend\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <History>True|2022-08-30T07:57:22.5036511Z;True|2022-08-30T14:06:32.3246261+07:00;True|2022-08-30T13:54:45.7993514+07:00;True|2022-08-30T02:12:05.1779531+07:00;True|2022-08-29T23:58:20.5940518+07:00;True|2022-08-29T23:26:57.8252255+07:00;True|2022-08-29T23:22:10.7202023+07:00;True|2022-08-27T23:26:26.0545110+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

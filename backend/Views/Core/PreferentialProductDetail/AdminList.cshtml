@@ -1,0 +1,806 @@
+
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm ưu đãi";
+    Layout = "_NovaticAdmin";
+}
+<style>
+    #tableData tbody tr td:nth-child(1), #tableData thead tr th:nth-child(2) {
+        text-align: center;
+        width: 350px !important;
+    }
+
+    #tableData tbody tr td:nth-child(3), #tableData thead tr th:nth-child(3) {
+        text-align: center;
+        width: 250px!important;
+    }
+
+    #tableData tbody tr td:nth-child(4), #tableData thead tr th:nth-child(3) {
+        text-align: center;
+        width: 150px !important;
+    }
+</style>
+
+<div class="page-header card">
+    <div class="col">
+        <div class="page-header-title">
+            <i class="fa fa-server"></i>
+            <div class="d-inline">
+                <h3 class="tableTitle">Chi tiết sản phẩm ưu đãi</h3>
+            </div>
+        </div>
+
+        <a href="#" id="btnAddItem" onclick="editItem(0);" class="btn btn-brand btn-elevate btn-icon-sm">
+            <i class="fa fa-plus"></i>
+            <span class='hideOnMobile'>Thêm chi tiết</span>
+        </a>
+    </div>
+</div>
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-block novaticContainer">
+                        <div class="dt-responsive table-responsive">
+
+                            <table id="tableData" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Sản phẩm ưu đãi</th>
+                                        <th>Tổ chức</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+
+                                        <th>Chi tiết</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Sản phẩm ưu đãi</th>
+                                        <th>Tổ chức</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Ngày tạo</th>
+
+                                        <th> </th>
+                                        <th> </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <div class="modal fade" id="modal-id">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-gradient-info">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i> Chi tiết</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <form action="" method="POST"
+                                                  onsubmit='updateItem(updatingItemId); return false;' role="form">
+
+                                                <!-- <div class="form-group">
+                                                                    <label for="">Apply type Id</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="preferentialProductDetailId" required readonly
+                                                                        placeholder="">
+                                                                </div>
+
+
+                                                                <div class='form-group'>
+                                                                    <label for=''>Apply type name</label>
+                                                                    <input type='text' class='form-control'
+                                                                        id='preferentialProductDetailName' required
+                                                                        placeholder=''>
+                                                                </div>
+
+
+                                                                <div class='form-group'>
+                                                                    <label for=''>Description</label>
+                                                                    <input type='text' class='form-control'
+                                                                        id='preferentialProductDetailDescription'
+                                                                        placeholder=''>
+                                                                </div>
+
+
+                                                                <div class='form-group'>
+                                                                    <label for=''>CreatedTime</label>
+                                                                    <input type='text'
+                                                                        class='form-control datetimepicker'
+                                                                        id='preferentialProductDetailCreatedTime'
+                                                                        placeholder=''>
+                                                                </div>
+
+
+                                                                <div class='form-group' style="">
+                                                                    <label for=''>Active</label>
+                                                                    <input type='text' class='form-control'
+                                                                        id='preferentialProductDetailActive' readonly
+                                                                        placeholder=''>
+                                                                </div>
+                                                                -->
+                                                <div class="form-group  col-sm-12">
+                                                    <label for="">Id</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-id" value="0"
+                                                           id="preferentialProductDetailId" required readonly
+                                                           placeholder="">
+                                                </div><div class='form-group  col-sm-12 selectContainer'>
+                                                    <label class=''>Sản phẩm ưu đãi</label>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' id='preferentialProductDetailPreferentialProductId' class='form-control fill dataSelect  input-preferentialProductId' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                    var preferentialProductData =[];
+                    function loadDataSelectPreferentialProduct() {
+                        return $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'preferentialProduct/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded preferentialProduct');
+                                // debugger;
+                                var data = responseData.data;
+                                preferentialProductData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#preferentialProductDetailPreferentialProductId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectPreferentialProduct();
+                    });
+                                                </script><div class='form-group  col-sm-12 selectContainer'>
+                                                    <label class=''>Tổ chức</label>
+                                                    <div class='col-sm-12'>
+                                                        <select name='select' id='preferentialProductDetailOrganizationId' class='form-control fill dataSelect  input-organizationId' style=' border: 1px solid #e9ecef; '>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <script>
+                    var organizationData =[];
+                    function loadDataSelectOrganization() {
+                        return $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + 'organization/api/list',
+                            type: 'GET',
+                            async:'true',
+                            contentType: 'application/json',
+                            success: function(responseData) {
+                                console.log(new Date().getSeconds()+':'+new Date().getMilliseconds()+' - loaded organization');
+                                // debugger;
+                                var data = responseData.data;
+                                organizationData = data;
+                                data.forEach(function(item, index) {
+                                    var data = {
+                                        id: item.id,
+                                        text: item.name
+                                    };
+                                    var newOption = new Option(data.text, data.id, false, false);
+                                    $('#preferentialProductDetailOrganizationId').append(newOption).trigger('change');
+                                });
+                            },
+                            error: function(e) {
+                                //console.log(e.message);
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        //loadDataSelectOrganization();
+                    });
+                                                </script> <div class="form-group  col-sm-12" style="display:none ">
+                                                    <label for="">Active</label><span class='required'>*</span>
+                                                    <input type="number" class="form-control input-active" value="0"
+                                                           id="preferentialProductDetailActive" required
+                                                           placeholder="">
+                                                </div>   <div class="form-group  col-sm-12">
+                                                    <label for="">Photo</label>
+                                                    <input type="text" class="form-control  input-photo"
+                                                           id="preferentialProductDetailPhoto"
+                                                           placeholder="">
+                                                </div>   <div class="form-group  col-sm-12">
+                                                    <label for="">Tiêu đề</label><span class='required'>*</span>
+                                                    <input type="text" class="form-control  input-name"
+                                                           id="preferentialProductDetailName" required
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Mô tả</label>
+                                                    <textarea class="form-control  input-description " rows="2" id="preferentialProductDetailDescription"></textarea>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Nội dung</label>
+                                                    <textarea class="form-control  input-text " rows="2" id="preferentialProductDetailText"></textarea>
+                                                </div>
+                                                <script>
+                                                    var preferentialProductDetailTextEditor;
+                                                    ClassicEditor
+                                                        .create(document.querySelector('#preferentialProductDetailText'))
+                                                        .then(editor => {
+                                                            // console.log( 'Editor was initialized', editor );
+                                                            preferentialProductDetailTextEditor = editor;
+                                                            editor.model.document.on('change:data', (evt, data) => {
+                                                                // debugger;
+                                                                // console.log('Updated:'+ data );
+                                                                $('#preferentialProductDetailText').val(preferentialProductDetailTextEditor.getData());
+                                                            });
+                                                        })
+                                                        .catch(err => {
+                                                            console.error(err.stack);
+                                                        });
+                                                </script>   <div class="form-group  col-sm-12">
+                                                    <label for="">Tiêu đề tiếng Anh</label>
+                                                    <input type="text" class="form-control  input-name2"
+                                                           id="preferentialProductDetailName2"
+                                                           placeholder="">
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Mô tả tiếng Anh</label>
+                                                    <textarea class="form-control  input-description2 " rows="2" id="preferentialProductDetailDescription2"></textarea>
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="">Nội dung tiếng Anh</label>
+                                                    <textarea class="form-control  input-text2 " rows="2" id="preferentialProductDetailText2"></textarea>
+                                                </div>
+                                                <script>
+                                                    var preferentialProductDetailText2Editor;
+                                                    ClassicEditor
+                                                        .create(document.querySelector('#preferentialProductDetailText2'))
+                                                        .then(editor => {
+                                                            // console.log( 'Editor was initialized', editor );
+                                                            preferentialProductDetailText2Editor = editor;
+                                                            editor.model.document.on('change:data', (evt, data) => {
+                                                                // debugger;
+                                                                // console.log('Updated:'+ data );
+                                                                $('#preferentialProductDetailText2').val(preferentialProductDetailText2Editor.getData());
+                                                            });
+                                                        })
+                                                        .catch(err => {
+                                                            console.error(err.stack);
+                                                        });
+                                                </script><div class='form-group col-sm-12'>
+                                                    <label for=''>Ngày tạo </label><span class='required'>*</span>
+                                                    <div class='input-group date datetimepicker  input-createdTime' id='preferentialProductDetailCreatedTimeDiv'>
+                                                        <input type='text' id="preferentialProductDetailCreatedTime" required class="form-control" required />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <input style="display:none" id="hiddenSubmit" type="submit"
+                                                       class="btn btn-default" value="Save changes">
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">
+                                                Đóng
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnUpdateItem"
+                                                    onclick="document.getElementById('hiddenSubmit').click();">
+                                              Lưu thông tin
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var hiddenItem = ["id", "active", "description", "text", "name2", "description2", "text2", "photo"];
+        var showItem = ["preferentialProductId","organizationId","name","createdTime"];
+        var dataSource = [];
+        var updatingItemId = 0;
+        var tableUpdating = 0;
+        var table;
+
+        $(document).ready(function () {
+            // Load data
+            //loadData();
+            //setTimeout(function(){loadData();}, 460);
+
+            $.when( loadDataSelectPreferentialProduct(),loadDataSelectOrganization()).done(function( resultDataSelectPreferentialProductpreferentialProductDetailPreferentialProductId,resultDataSelectOrganizationpreferentialProductDetailOrganizationId) {
+                loadData();
+            });
+
+            // includeLibrary();
+
+            // Datetime picker
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss'
+            });
+
+            $('.dataSelect').select2();
+
+            $(".datetimepicker").on('dp.change', function (e) {
+                // console.log(this.value);
+                this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+                // console.log(this.value);
+            })
+
+        });
+
+
+        function loadData() {
+            $.ajax({
+                url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "preferentialProductDetail/api/list",
+                type: "GET",
+                contentType: "application/json",
+                success: function (responseData) {
+                    // debugger;
+                    var data = responseData.data;
+                    dataSource = data;
+
+
+
+
+                    data.forEach(function (item, index) {
+                        // console.log(item, index);
+                        var rowContent = "";
+                        rowContent += "<td style='text-align: center;'>" + (index + 1) + "</td>";
+                        for (var key in item) {
+                            if (item.hasOwnProperty(key)) {
+                                // console.log(key + " -> " + item[key]);
+                                if (showItem.includes(key)) {
+                                    if (key != "photo") {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>";
+                                    }
+                                    else {
+                                        rowContent += "<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>";
+                                    }
+                                }
+                            }
+                        }
+                        rowContent += "<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>";
+                        rowContent += "<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>";
+
+                        var newRow = "<tr id='row"+item.id+"' >" + rowContent + "</tr>";
+                        $(newRow).appendTo($("#tableData tbody"));
+
+                        // $("#tableData #dummyRow").after("<tr id='row"+item.id+"' >" + rowContent + "</tr>");
+                    });
+
+                    //Init datatable
+                    if (tableUpdating === 0) {
+                        initTable();
+                    }
+
+                    //update data with foreign key
+                    updateTable();
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    initTable();
+                }
+            });
+        }
+
+        function initTable(){
+            table = $('#tableData').DataTable({
+                aLengthMenu: [
+                    [-1, 10, 25, 50, 100, 200],
+                    ['Tất cả', 10, 25, 50, 100, 200]
+                ],
+                'order': [
+                    [1, 'desc']
+                ],
+                'rowsGroup': [1, 2],
+            });
+
+
+
+            table.on('order.dt search.dt', function() {
+                table.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+            $('#tableData tfoot th:not(:last-child):not(:nth-last-child(2))').each(function() {
+                var title = $(this).text();
+                $(this).html("<input type='text' class='tableFooterFilter' placeholder=' ' />");
+            });
+
+            table.columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+            setTimeout(function() {
+                table.page.len(10).draw();
+            }, 1000);
+
+        }
+
+        function editItem(id) {
+            updatingItemId = id;
+            $("#modal-id").modal('show');
+
+            let obj = getItemById(id);
+            		$("#preferentialProductDetailId").val(id > 0 ? obj.id : "");
+		$("#preferentialProductDetailPreferentialProductId").val(id > 0 ? obj.preferentialProductId : "");
+		$("#preferentialProductDetailOrganizationId").val(id > 0 ? obj.organizationId : "");
+		$("#preferentialProductDetailActive").val(id > 0 ? obj.active : "");
+		$("#preferentialProductDetailPhoto").val(id > 0 ? obj.photo : "");
+		$("#preferentialProductDetailName").val(id > 0 ? obj.name : "");
+		$("#preferentialProductDetailDescription").val(id > 0 ? obj.description : "");
+		$("#preferentialProductDetailText").val(id > 0 ? obj.text : "");
+		$("#preferentialProductDetailName2").val(id > 0 ? obj.name2 : "");
+		$("#preferentialProductDetailDescription2").val(id > 0 ? obj.description2 : "");
+		$("#preferentialProductDetailText2").val(id > 0 ? obj.text2 : "");
+		$("#preferentialProductDetailCreatedTime").val(id > 0 ? obj.createdTime : "");
+$('#preferentialProductDetailPreferentialProductId').trigger('change');
+$('#preferentialProductDetailOrganizationId').trigger('change');
+preferentialProductDetailTextEditor.setData((id > 0 ? obj.text : ''));
+preferentialProductDetailText2Editor.setData((id > 0 ? obj.text2 : ''));
+
+            // $("#preferentialProductDetailId").val(id > 0 ? obj.id : "");
+            // $("#preferentialProductDetailName").val(id > 0 ? obj.name : "");
+            // $("#preferentialProductDetailDescription").val(id > 0 ? obj.description : "");
+            // $("#preferentialProductDetailCreatedTime").val(id > 0 ? obj.createdTime : "");
+            // $("#preferentialProductDetailActive").val(id > 0 ? obj.active : "");
+
+            if(id==0){
+                $("#preferentialProductDetailActive").val(1);
+                $("#preferentialProductDetailCreatedTime").val(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
+            }
+            else{
+                // correcting data
+                //$('#buyProvinceId').val(obj.provinceId.split(", ")).trigger('change');
+
+            }
+            formatNumber();
+        }
+
+
+        function updateItem(id) {
+            var actionName = (id == 0 ? "Create" : "Update");
+            let obj = getItemById(id);
+            let objName = id > 0 ? obj.name : " ";
+
+            validateInputNumber();
+
+            // "id": $("#preferentialProductDetailId").val(),
+            // "name": $("#preferentialProductDetailName").val(),
+            // "description": $("#preferentialProductDetailDescription").val(),
+            // "createdTime": $("#preferentialProductDetailCreatedTime").val(),
+            // "active": $("#preferentialProductDetailActive").val()
+            var updatingObj = {
+                		"id": $("#preferentialProductDetailId").val(),
+		"preferentialProductId": $("#preferentialProductDetailPreferentialProductId").val(),
+		"organizationId": $("#preferentialProductDetailOrganizationId").val(),
+		"active": $("#preferentialProductDetailActive").val(),
+		"photo": $("#preferentialProductDetailPhoto").val(),
+		"name": $("#preferentialProductDetailName").val(),
+		"description": $("#preferentialProductDetailDescription").val(),
+		"text": $("#preferentialProductDetailText").val(),
+		"name2": $("#preferentialProductDetailName2").val(),
+		"description2": $("#preferentialProductDetailDescription2").val(),
+		"text2": $("#preferentialProductDetailText2").val(),
+		"createdTime": datetimeFormat($("#preferentialProductDetailCreatedTime").val()),
+
+            };
+
+            // correcting data
+            //updatingObj.provinceId = updatingObj.provinceId.join(", ");
+
+
+            Swal.fire({
+                title: 'Bạn có chắc không?',
+                text: "Thực hiện " + actionName + " item " + objName,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Đồng ý!',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.value) {
+                    $("#modal-id").modal('hide');
+
+                    //CALL AJAX TO UPDATE
+                    if (id > 0) {
+                        $.ajax({
+                            url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}"+ "preferentialProductDetail/api/update",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                    Swal.fire(
+                                        'Updated!',
+                                        'Item ' + objName + ' has been successfully updated!',
+                                        'success'
+                                    );
+                                    updateTable(id,updatingObj,"update");
+                                    var updatedItemIndex= dataSource.findIndex(item => parseInt(item.id) === id);
+                                    dataSource[updatedItemIndex] = updatingObj;
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Couldn\'t update item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    };
+
+                    //CALL AJAX TO CREATE
+                    if (id == 0) {
+                        updatingObj.id = 1;
+                        delete updatingObj["id"]
+                        updatingObj.active = 1;
+                        updatingObj.createdTime = new Date();
+                        console.log(updatingObj);
+                        $.ajax({
+                            url:"@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "preferentialProductDetail/api/add",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(updatingObj),
+                            success: function (responseData) {
+                                // debugger;
+                                if (responseData.status == 201 && responseData.message === "CREATED") {
+                                    Swal.fire(
+                                        'Created!',
+                                        'New item has been successfully created!',
+                                        'success'
+                                    );
+                                    updatingObj = responseData.data;
+                                    dataSource.push(updatingObj);
+                                    updateTable(0,updatingObj,"add");
+                                }
+                            },
+                            error: function (e) {
+                                //console.log(e.message);
+                                Swal.fire(
+                                    'Error!',
+                                    'Couldn\'t create item, please check your data',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                }
+            })
+        }
+
+        function deleteItem(id) {
+            let obj = getItemById(id);
+            Swal.fire({
+                title: 'Bạn có muốn xóa không?',
+                text: "Bạn sẽ không thể phục hồi lại dữ liệu này sau khi xóa!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Đồng ý!',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.value) {
+
+                    //CALL AJAX TO DELETE
+                    $.ajax({
+                        url: "@{@ViewBag.SystemConfigs["HOMEPAGE_URL"].Description}" + "preferentialProductDetail/api/delete",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ "id": id }),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Item ' + obj.name + ' has been deleted.',
+                                    'success'
+                                );
+                                updateTable(id,0,"delete");
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Error!',
+                                'Item ' + obj.name + ' can\'t be deleted.',
+                                'error'
+                            );
+                        }
+                    });
+
+                }
+            })
+        }
+
+        function updateTable(id,obj,action) {
+            if(action === "delete"){
+                table.row("#row"+id).remove().draw();
+            }
+
+            if(action === "add"){
+                console.log("Added:"+obj);
+
+                //var addedItems = [obj];
+                var addedItems = obj;
+                var addedValues =[];
+
+
+                addedItems.forEach(function (item, index) {
+                    // console.log(item, index);
+                    var rowContent = "";
+                    addedValues.push("<td style='text-align: center;'></td>");
+                    for (var key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            // console.log(key + " -> " + item[key]);
+                            if (showItem.includes(key)) {
+                                if (key != "photo") {
+                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'>" + item[key] + "</td>");
+                                }
+                                else {
+                                    addedValues.push ("<td class='row" + item.id + "-column column-" + key + "' property='" + key + "'><img src='" + item[key] + "' style='height:80px;' /></td>");
+                                }
+                            }
+                        }
+                    }
+                    addedValues.push("<td style='text-align: center;'><a onclick='editItem(" + item.id + ")'><i class='fa fa-edit fa-2x' style='color:#03a9f4'></i></a></td>");
+                    addedValues.push("<td style='text-align: center;'><a onclick='deleteItem(" + item.id + ")'><i class='fa fa-trash fa-2x' style='color:#e91e63'></i></a></td>");
+
+                    table.row.add(addedValues).draw();
+                });
+                // location.reload();
+            }
+
+            if(action === "update"){
+                // alert(id);
+                $(".row"+id+"-column").each(function(){
+                    var propertyName = $(this).attr("property");
+                    console.log(propertyName);
+
+                    for (var key in obj) {
+                        if (key === propertyName && obj.hasOwnProperty(key)) {
+                            if(key === "photo"){
+                                $(this).children().attr("src",obj[key]);
+                            }
+                            else{
+                                this.innerText = obj[key];
+                            }
+                        }
+                    }
+
+                });
+            }
+
+            //Update columns with foreign key
+            // var NO_FKFKUpdateSelector = 'tr';
+            // if( !(typeof(id) === 'undefined')) {
+            //     NO_FKFKUpdateSelector = '#row'+id;
+            // }
+            // $('#tableData tbody '+NO_FKFKUpdateSelector+' td[property=NO_FKId]').each(function(){
+            //     // debugger;
+            //     var preferentialProductDetailId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+            //     var preferentialProductDetailObj = getItemById(preferentialProductDetailId);
+            //     var NO_FKId = parseInt(preferentialProductDetailObj.NO_FKId);
+            //     var NO_FKObj = NO_FKData.find(item => parseInt(item.id) === NO_FKId);
+            //     $(this).text(NO_FKObj.name);
+            //     // console.log('FK updated for Staff '+preferentialProductDetailId);
+            // });
+
+            try {
+                var preferentialProductFKUpdateSelector = 'tr';
+                if( !(typeof(id) === 'undefined')) {
+                    // debugger;
+                    preferentialProductFKUpdateSelector = '#row'+id;
+                    var preferentialProductId = parseInt(obj.preferentialProductId);
+                    var preferentialProductObj = preferentialProductData.find(item => parseInt(item.id) === preferentialProductId);
+                    //create data
+                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(preferentialProductObj.name);
+
+                    //update data
+                    $('#tableData tbody '+preferentialProductFKUpdateSelector+' td[property=preferentialProductId]').text(preferentialProductObj.name);
+                    //table.cell( this ).data(preferentialProductObj.name);
+                }
+                else{
+                    //Page load
+                    $('#tableData tbody '+preferentialProductFKUpdateSelector+' td[property=preferentialProductId]').each(function(){
+                        // debugger;
+                        var preferentialProductDetailId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+                        var preferentialProductDetailObj = getItemById(preferentialProductDetailId);
+                        var preferentialProductId = parseInt(preferentialProductDetailObj.preferentialProductId);
+                        var preferentialProductObj = preferentialProductData.find(item => parseInt(item.id) === preferentialProductId);
+                        //$(this).text(preferentialProductObj.name);
+                        table.cell( this ).data(preferentialProductObj.name);
+                        // console.log('FK updated for Staff '+preferentialProductDetailId);
+                    });
+                }
+            } catch (error) {
+
+            }
+            try {
+                var organizationFKUpdateSelector = 'tr';
+                if( !(typeof(id) === 'undefined')) {
+                    // debugger;
+                    organizationFKUpdateSelector = '#row'+id;
+                    var organizationId = parseInt(obj.organizationId);
+                    var organizationObj = organizationData.find(item => parseInt(item.id) === organizationId);
+                    //create data
+                    //$('#tableData tbody tr:first-child td:nth-child(0)').text(organizationObj.name);
+
+                    //update data
+                    $('#tableData tbody '+organizationFKUpdateSelector+' td[property=organizationId]').text(organizationObj.name);
+                    //table.cell( this ).data(organizationObj.name);
+                }
+                else{
+                    //Page load
+                    $('#tableData tbody '+organizationFKUpdateSelector+' td[property=organizationId]').each(function(){
+                        // debugger;
+                        var preferentialProductDetailId = parseInt($(this).attr('class').replace('row','').replace('-column',''));
+                        var preferentialProductDetailObj = getItemById(preferentialProductDetailId);
+                        var organizationId = parseInt(preferentialProductDetailObj.organizationId);
+                        var organizationObj = organizationData.find(item => parseInt(item.id) === organizationId);
+                        //$(this).text(organizationObj.name);
+                        table.cell( this ).data(organizationObj.name);
+                        // console.log('FK updated for Staff '+preferentialProductDetailId);
+                    });
+                }
+            } catch (error) {
+
+            }
+
+            formatNumber();
+        }
+
+
+        function getItemById(id) {
+            const result = dataSource.find(item => parseInt(item.id) === id);
+            return result;
+        }
+
+
+</script>

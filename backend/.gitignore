@@ -1,0 +1,9 @@
+storage.ide-shm
+storage.ide-wal
+obj
+.vs
+bin
+appsettings.json
+api.txt
+/wwwroot/template/
+/wwwroot/template4/

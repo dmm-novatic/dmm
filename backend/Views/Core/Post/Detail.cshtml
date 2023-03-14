@@ -1,0 +1,20 @@
+﻿@*@using Novatic.Models;*@
+@model Novatic.Models.Post
+
+@{
+    Layout = "~/Views/Shared/_FrontEnd-2-TitleTop.cshtml";
+}
+@*@{
+    var post = ViewData["Post"] as Post;
+}*@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Name: @Model.Name</h1>
+    <h1>Name2: @Model.Name2</h1>
+    <h1>Url: @Model.Url</h1>
+    <h1>Url2: @Model.Url2</h1>
+</body>
+</html>
